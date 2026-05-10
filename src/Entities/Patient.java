@@ -25,5 +25,10 @@ public class Patient extends Person{
         this.appointments = appointments;
         this.medicalRecords = medicalRecords;
     }
+    @Override
+    public void displayInfo(){
+
+
+    }
 
 }
