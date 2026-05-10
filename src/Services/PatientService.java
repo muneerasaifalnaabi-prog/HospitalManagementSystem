@@ -59,6 +59,31 @@ public class PatientService {
         System.out.print("Enter Email Address: ");
         String email = scanner.nextLine();
 
+        System.out.print("Enter Physical Address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter Blood Group (e.g., O+, A-): ");
+        String bloodGroup = scanner.nextLine();
+
+        System.out.print("Enter Emergency Contact Name/Phone: ");
+        String emergencyContact = scanner.nextLine();
+
+        System.out.print("Enter Insurance ID: ");
+        String insuranceId = scanner.nextLine();
+
+        System.out.print("Enter Registration Date (YYYY-MM-DD) [Leave empty for today's date]: ");
+        LocalDate registrationDate = LocalDate.parse(scanner.nextLine());
+
+
+        System.out.println("Enter Scheduled Appointments");
+        String appointment =scanner.nextLine();
+        List<String> appointments = new ArrayList<>();
+        appointments.add(appointment);
+
+
+
+
+
 
 
         Patient patient=new Patient(id)
