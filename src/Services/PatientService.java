@@ -12,15 +12,21 @@ public class PatientService {
     static Scanner scanner = new Scanner(System.in);
     static List<Patient>patients =new ArrayList<>();
 
-    public void  addPatient(Patient patient) {
+    public void  addPatient() {
         System.out.println("========= Added New Patient =====");
         System.out.println("Enter Patient id :");
         String id = scanner.nextLine();
         Patient p =getPatientById(id);
-        if (!patient.equals(null)) {
-            patients.add(patient);
-            System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
+        if (p != null) {
+            System.out.println("ID already exit ");
         }
+        System.out.print("Enter First Name: ");
+        String fname =scanner.nextLine();
+
+        System.out.print("Enter last Name: ");
+        String lname =scanner.nextLine();
+
+
     }
     public Patient  getPatientById(String patientId){
         for (Patient p :patients){
