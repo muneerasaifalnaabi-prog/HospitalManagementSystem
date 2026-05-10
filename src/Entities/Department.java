@@ -85,7 +85,7 @@ public class Department {
 
         }
     }
-    public void assignNurse() {
+    public void assignNurse(String nurseid) {
 
     }
     public void updateBedAvailability() {
