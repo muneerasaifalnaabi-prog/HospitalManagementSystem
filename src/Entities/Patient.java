@@ -27,7 +27,11 @@ public class Patient extends Person{
     }
     @Override
     public void displayInfo(){
+        super.displayInfo();
 
+
+    }
+    public void addMedicalRecord(){
 
     }
 
