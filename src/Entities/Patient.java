@@ -25,19 +25,19 @@ public class Patient extends Person{
         this.appointments = appointments;
         this.medicalRecords = medicalRecords;
     }
+
     @Override
     public void displayInfo(){
         super.displayInfo();
         toString();
-
 
     }
     public void addMedicalRecord(String medicalRecord ){
         medicalRecords.add(medicalRecord);
 
     }
-    public void addAppointment(){
-
+    public void addAppointment(String appointment){
+        appointments.add(appointment);
 
     }
     public void updateInsurance(){
