@@ -137,6 +137,7 @@ public class PatientService {
 
         }
         public List<Patient> searchPatientsByName(String name) {
+            System.out.println("Enter Patient Name  to search:");
             System.out.println("Search Results:");
             for (Patient p : patients) {
                 if (p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
