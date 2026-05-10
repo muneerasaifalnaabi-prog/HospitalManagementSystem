@@ -108,6 +108,9 @@ public class Doctor extends Person {
             assignedPatients.remove(rempatientId);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
         }
+        else {
+            System.out.println("Patient not found in list");
+        }
 
     }
     public void updateAvailability(){
