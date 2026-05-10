@@ -1,5 +1,7 @@
 package Entities;
 
+import Utiles.Constants;
+
 import java.time.LocalDate;
 
 public class Appointment {
@@ -88,6 +90,10 @@ public class Appointment {
     }
 
     public void  reschedule(LocalDate newDate, String newTime){
+        if (!status.equals("Completed") || status.equals("Cancelle")){
+            System.out.println(Constants.NOT_RESCHEDULE);
+
+        }
 
     }
     public void  cancel(){
