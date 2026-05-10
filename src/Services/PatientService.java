@@ -3,7 +3,9 @@ package Services;
 import Entities.Patient;
 import Utiles.Constants;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +13,23 @@ import java.util.Scanner;
 public class PatientService {
     static Scanner scanner = new Scanner(System.in);
     static List<Patient>patients =new ArrayList<>();
-
+/* private String patientId ;
+    private String bloodGroup ;
+    private List<String> allergies ;
+    private String emergencyContact ;
+    private LocalDate registrationDate ;
+    private String  insuranceId ;
+    private List<String> medicalRecords;
+    private List<String> appointments;
+    private String id ;
+    private  String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String gender;
+    private String phoneNumber;
+    private String email;
+    private String address;
+ */
     public void  addPatient() {
         System.out.println("========= Added New Patient =====");
         System.out.println("Enter Patient id :");
@@ -26,6 +44,16 @@ public class PatientService {
         System.out.print("Enter last Name: ");
         String lname =scanner.nextLine();
 
+        System.out.println("Enter date Of Birth :");
+        LocalDate dateOfBirth = LocalDate.parse(scanner.nextLine());
+
+        System.out.println("Enter gender");
+        String gender =scanner.nextLine();
+
+        System.out.println("phoneNumber");
+        String phoneNumber = scanner.nextLine();
+
+        Patient patient=new Patient(id)
 
     }
     public Patient  getPatientById(String patientId){
