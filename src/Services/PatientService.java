@@ -81,13 +81,6 @@ public class PatientService {
         appointments.add(appointment);
 
 
-
-
-
-
-
-        Patient patient=new Patient(id)
-
     }
     public Patient  getPatientById(String patientId){
         for (Patient p :patients){
