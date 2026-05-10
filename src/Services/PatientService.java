@@ -110,8 +110,18 @@ public class PatientService {
                    System.out.println("Enter new Address Line:");
                    p.setAddress(scanner.nextLine());
 
+                   System.out.println("Enter new Emergency Contact Name:");
+                   p.setEmergencyContact(scanner.nextLine());
+
                    System.out.println("Enter new Insurance ID:");
-                   p.set
+                   p.setInsuranceId(scanner.nextLine());
+
+                   System.out.println("Enter new Registration Date (YYYY-MM-DD):");
+                   p.setRegistrationDate(LocalDate.parse(scanner.nextLine()));
+
+                   System.out.println("Enter new allergies");
+                   p.setAllergies(scanner.nextLine());
+
 
                }
            }
