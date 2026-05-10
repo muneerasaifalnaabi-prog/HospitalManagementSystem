@@ -14,9 +14,9 @@ public class Doctor extends Person {
     private String departmentId;
     private Double consultationFee;
     private List<String> availableSlots;
-    private List<Patient> assignedPatients;
+    private List<String> assignedPatients;
 
-    public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<Patient> assignedPatients) {
+    public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<String> assignedPatients) {
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
         this.doctorId = doctorId;
         this.specialization = specialization;
@@ -84,11 +84,11 @@ public class Doctor extends Person {
         this.availableSlots = availableSlots;
     }
 
-    public List<Patient> getAssignedPatients() {
+    public List<String> getAssignedPatients() {
         return assignedPatients;
     }
 
-    public void setAssignedPatients(List<Patient> assignedPatients) {
+    public void setAssignedPatients(List<String> assignedPatients) {
         this.assignedPatients = assignedPatients;
     }
 
@@ -99,13 +99,13 @@ public class Doctor extends Person {
 
 
     }
-    public void assignPatient(Patient patient){
+    public void assignPatient(String patient){
         assignedPatients.add(patient);
         System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
 
     }
-    public void removePatient(Patient rempatientId){
-        if (!rempatientId.getId().isEmpty()){
+    public void removePatient(String rempatientId){
+        if (!rempatientId.equals(null)){
             assignedPatients.remove(rempatientId);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
         }
