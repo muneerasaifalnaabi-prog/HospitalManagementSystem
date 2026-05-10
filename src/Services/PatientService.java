@@ -13,6 +13,9 @@ public class PatientService {
     static List<Patient>patients =new ArrayList<>();
 
     public void  addPatient(Patient patient) {
+        System.out.println("========= Added New Patient =====");
+        System.out.println("Enter Patient id :");
+        String id = scanner.nextLine();
         if (!patient.equals(null)) {
             patients.add(patient);
             System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
