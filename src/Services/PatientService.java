@@ -22,6 +22,7 @@ public class PatientService {
                 return p;
             }
         }
+        return null;
     }
     public void editPatient(String patientId, Patient updatedPatient){
 
