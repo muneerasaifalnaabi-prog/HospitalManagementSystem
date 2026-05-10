@@ -112,6 +112,9 @@ public class Appointment {
         System.out.println(Constants.COMPLETED);
 
     }
+    public  void displayInfo(){
+        toString();
+    }
 
 
     @Override
