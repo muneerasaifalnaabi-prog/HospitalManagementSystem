@@ -81,13 +81,18 @@ public class Department {
     public void assignDoctor(String doctorid){
         if(!doctors.contains(doctorid)){
             doctors.add(doctorid);
-            System.out.println("Doctor" +doctorid + "assigent to"+departmentName);
+            System.out.println("Doctor" +doctorid + "assigend to"+departmentName);
 
         }
     }
     public void assignNurse(String nurseid) {
+        if(!nurses.contains(nurseid)){
+            doctors.add(nurseid);
+            System.out.println("Nurse" +nurseid + "assigend to"+departmentName);
 
+        }
     }
+    //i will complete later
     public void updateBedAvailability() {
 
     }
