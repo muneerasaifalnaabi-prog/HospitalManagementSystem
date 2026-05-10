@@ -5,7 +5,6 @@ import Utiles.Constants;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,7 +29,15 @@ public class PatientService {
     private String email;
     private String address;
  */
-    public void  addPatient() {
+    public void addaddPatients(){
+        patients.add(addPatient());
+        System.out.println("Press q to quit or enter key to continue");
+        if(scanner.nextLine().equals("q")){
+            return;
+        }
+        addaddPatients();
+    }
+    public Patient addPatient() {
 
         System.out.println("========= Added New Patient =====");
 
@@ -80,6 +87,7 @@ public class PatientService {
         Patient patient = new Patient(id,fname,lname,dateOfBirth,gender,phoneNumber,
                 email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,LocalDate.now(),
                 insuranceId,new ArrayList<>(),new ArrayList<>());
+        return p;
     }
     public Patient  getPatientById(String patientId){
         for (Patient p :patients){
