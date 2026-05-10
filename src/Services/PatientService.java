@@ -43,8 +43,14 @@ public class PatientService {
             System.out.println("Pation not found");
 
         }
-        public List<Patient> searchPatientsByName(String name){
-
+        public List<Patient> searchPatientsByName(String name) {
+            System.out.println("Search Results:");
+            for (Patient p : patients) {
+                if (p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
+                    p.displayInfo();
+                }
+            }
+            return null;
         }
         public  void displayAllPatients(){
             System.out.println("===== All Patient =====");
