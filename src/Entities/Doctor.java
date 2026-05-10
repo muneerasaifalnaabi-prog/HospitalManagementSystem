@@ -95,4 +95,27 @@ public class Doctor extends Person {
 
 
     }
+    public void assignPatient(){
+
+    }
+    public void removePatient(){
+
+    }
+    public void updateAvailability(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "doctorId='" + doctorId + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", qualification='" + qualification + '\'' +
+                ", experienceYears=" + experienceYears +
+                ", departmentId='" + departmentId + '\'' +
+                ", consultationFee=" + consultationFee +
+                ", availableSlots=" + availableSlots +
+                ", assignedPatients=" + assignedPatients +
+                '}';
+    }
 }
