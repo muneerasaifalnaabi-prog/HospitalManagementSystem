@@ -1,24 +1,22 @@
 package Services;
 
 import Entities.Patient;
+import Utiles.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PatientService {
-    private List<Patient>patients =new ArrayList<>();
-    public List<Patient> getPatients() {
-        return patients;
-    }
+    static List<Patient>patients =new ArrayList<>();
 
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
-    }
     public void  addPatient(Patient patient) {
         if (!patient.equals(null)) {
             patients.add(patient);
+            System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
         }
+
+
     }
 
 
