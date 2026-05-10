@@ -90,10 +90,14 @@ public class Appointment {
     }
 
     public void  reschedule(LocalDate newDate, String newTime){
-        if (!status.equals("Completed") || status.equals("Cancelle")){
+        if (status.equals("Completed") || status.equals("Cancelle")){
             System.out.println(Constants.NOT_RESCHEDULE);
-
         }
+        this.appointmentDate=newDate;
+        this.appointmentTime=newTime;
+        this.status="Rescheduled";
+        System.out.println(
+                Constants.RESCHEDULE_SUCCESSFULLY +"new Date:" +newDate + "Time :"+ newTime);
 
     }
     public void  cancel(){
