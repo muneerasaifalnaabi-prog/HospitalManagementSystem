@@ -15,7 +15,8 @@ public class PatientService {
             patients.add(patient);
             System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
         }
-
+    }
+    public void editPatient(String patientId, Patient updatedPatient){
 
     }
 
