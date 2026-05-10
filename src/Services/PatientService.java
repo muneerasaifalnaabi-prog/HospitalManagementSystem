@@ -87,7 +87,7 @@ public class PatientService {
         Patient patient = new Patient(id,fname,lname,dateOfBirth,gender,phoneNumber,
                 email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,LocalDate.now(),
                 insuranceId,new ArrayList<>(),new ArrayList<>());
-        return p;
+        return patient;
     }
     public Patient  getPatientById(String patientId){
         for (Patient p :patients){
@@ -99,12 +99,22 @@ public class PatientService {
     }
     public void editPatient(String patientId, Patient updatedPatient) {
         if (patientId != null) {
-            for (int i = 0; i < patients.size(); i++) {
-                if (patients.get(i).getId().equals(patientId)) {
-                    patients.set(i, updatedPatient);
-                    System.out.println(Constants.PATIENT_UPDATED);
-                }
-            }
+           for (Patient p : patients) {
+               if (p.getId().equals(patientId)) {
+                   System.out.println("Enter new phone number:");
+                   p.setPhoneNumber(scanner.nextLine());
+
+                   System.out.println("Enter new Email ");
+                   p.setEmail(scanner.nextLine());
+
+                   System.out.println("Enter new Address Line:");
+                   p.setAddress(scanner.nextLine());
+
+                   System.out.println("Enter new Insurance ID:");
+                   p.set
+
+               }
+           }
         }
     }
         public void removePatient(String patientId){
