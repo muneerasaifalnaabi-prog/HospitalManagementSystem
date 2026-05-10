@@ -33,6 +33,12 @@ public class Patient extends Person{
     }
     public void addMedicalRecord(){
 
+
     }
+    public void addAppointment(){
+
+
+    }
+
 
 }
