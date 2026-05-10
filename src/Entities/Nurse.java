@@ -42,5 +42,8 @@ public class Nurse extends Person {
                 ", assignedPatients=" + assignedPatients +
                 '}';
     }
+    public void  patientAssignment(){
+
+    }
 
 }
