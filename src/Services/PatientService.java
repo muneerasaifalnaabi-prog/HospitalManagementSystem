@@ -31,13 +31,16 @@ public class PatientService {
     private String address;
  */
     public void  addPatient() {
+
         System.out.println("========= Added New Patient =====");
+
         System.out.println("Enter Patient id :");
         String id = scanner.nextLine();
         Patient p =getPatientById(id);
         if (p != null) {
             System.out.println("ID already exit ");
         }
+
         System.out.print("Enter First Name: ");
         String fname =scanner.nextLine();
 
@@ -52,6 +55,11 @@ public class PatientService {
 
         System.out.println("phoneNumber");
         String phoneNumber = scanner.nextLine();
+
+        System.out.print("Enter Email Address: ");
+        String email = scanner.nextLine();
+
+
 
         Patient patient=new Patient(id)
 
