@@ -47,7 +47,6 @@ public class Patient extends Person{
             System.out.println(Constants.INSURANCE_UPDATE_SUCCESSFULLY);
         }
         System.out.println("insuranceId Cannot be empty ");
-
     }
 
     @Override
