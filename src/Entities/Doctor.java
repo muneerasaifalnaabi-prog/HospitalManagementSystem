@@ -3,6 +3,7 @@ package Entities;
 import Utiles.Constants;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Doctor extends Person {
@@ -113,7 +114,10 @@ public class Doctor extends Person {
         }
 
     }
-    public void updateAvailability(){
+    public void updateAvailability(List<String> newslot){
+        this.availableSlots=new ArrayList<>(newslot);
+        System.out.println("Availability has been updated");
+
 
     }
 
