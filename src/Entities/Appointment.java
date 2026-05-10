@@ -90,7 +90,7 @@ public class Appointment {
     }
 
     public void  reschedule(LocalDate newDate, String newTime){
-        if (status.equals("Completed") || status.equals("Cancelle")){
+        if (status.equals("Completed") || status.equals("Cancelled")){
             System.out.println(Constants.NOT_RESCHEDULE);
         }
         this.appointmentDate=newDate;
@@ -101,11 +101,30 @@ public class Appointment {
 
     }
     public void  cancel(){
+        if (!status.equals("Completed")){
+            this.status="Cancelled";
+            System.out.println(Constants.CANCELLED);
+        }
 
     }
     public void  complete(){
+        this.status="Completed";
+        System.out.println(Constants.COMPLETED);
 
     }
 
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId='" + appointmentId + '\'' +
+                ", patientId='" + patientId + '\'' +
+                ", doctorId='" + doctorId + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                ", appointmentTime='" + appointmentTime + '\'' +
+                ", status='" + status + '\'' +
+                ", reason='" + reason + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }
