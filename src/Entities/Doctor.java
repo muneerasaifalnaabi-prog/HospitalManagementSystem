@@ -1,5 +1,7 @@
 package Entities;
 
+import Utiles.Constants;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -98,9 +100,10 @@ public class Doctor extends Person {
     }
     public void assignPatient(Patient patient){
         assignedPatients.add(patient);
+        System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
 
     }
-    public void removePatient(){
+    public void removePatient(Patient rempatient){
 
     }
     public void updateAvailability(){
