@@ -26,6 +26,7 @@ public class Doctor extends Person {
         this.consultationFee = consultationFee;
         this.availableSlots = availableSlots;
         this.assignedPatients = assignedPatients;
+
     }
 
     public String getDoctorId() {

@@ -87,7 +87,7 @@ public class Appointment {
         this.notes = notes;
     }
 
-    public void  reschedule(){
+    public void  reschedule(LocalDate newDate, String newTime){
 
     }
     public void  cancel(){
