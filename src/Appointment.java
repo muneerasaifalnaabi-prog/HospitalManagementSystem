@@ -89,5 +89,15 @@ public class Appointment {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+    public void  reschedule(){
+
+    }
+    public void  cancel(){
+
+    }
+    public void  complete(){
+
+    }
+
 
 }
