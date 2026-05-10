@@ -38,10 +38,12 @@ public class Patient extends Person{
     }
     public void addAppointment(String appointment){
         appointments.add(appointment);
-
     }
-    public void updateInsurance(){
-
+    public void updateInsurance(String updated){
+        if (!updated.isEmpty()){
+            this.insuranceId=updated;
+            System.out.println();
+        }
 
     }
 
