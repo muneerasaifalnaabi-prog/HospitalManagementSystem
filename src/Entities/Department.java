@@ -6,12 +6,12 @@ public class Department {
     private String departmentId;
     private String departmentName;
     private String headDoctorId;
-    private List<Doctor> doctors;
+    private List<String> doctors;
     private List<Nurse> nurses;
     private int bedCapacity;
     private int availableBeds;
 
-    public Department(String departmentId, String departmentName, String headDoctorId, List<Doctor> doctors, List<Nurse> nurses, int bedCapacity, int availableBeds) {
+    public Department(String departmentId, String departmentName, String headDoctorId, List<String> doctors, List<Nurse> nurses, int bedCapacity, int availableBeds) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
         this.headDoctorId = headDoctorId;
@@ -45,11 +45,11 @@ public class Department {
         this.headDoctorId = headDoctorId;
     }
 
-    public List<Doctor> getDoctors() {
+    public List<String> getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(List<Doctor> doctors) {
+    public void setDoctors(List<String> doctors) {
         this.doctors = doctors;
     }
 
@@ -77,8 +77,10 @@ public class Department {
         this.availableBeds = availableBeds;
     }
     public void assignDoctor(String doctorid){
+        if(!doctors.contains(doctorid)){
+            doctors.add(doctorid);
 
-
+        }
     }
     public void assignNurse() {
 
