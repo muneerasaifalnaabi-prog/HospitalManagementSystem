@@ -1,6 +1,8 @@
 package Entities;
 
 
+import Utiles.Constants;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,8 +44,9 @@ public class Patient extends Person{
     public void updateInsurance(String updated){
         if (!updated.isEmpty()){
             this.insuranceId=updated;
-            System.out.println();
+            System.out.println(Constants.INSURANCE_UPDATE_SUCCESSFULLY);
         }
+        System.out.println("insuranceId Cannot be empty ");
 
     }
 
