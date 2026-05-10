@@ -24,7 +24,23 @@ public class Nurse extends Person {
         this.assignedPatients = assignedPatients;
         this.qualification = qualification;
     }
+    @Override
+    public void displayInfo(){
+        super.displayInfo();
+        toString();
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "Nurse{" +
+                "nurseId='" + nurseId + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", shift=" + shift +
+                ", qualification='" + qualification + '\'' +
+                ", assignedPatients=" + assignedPatients +
+                '}';
+    }
 
 }
