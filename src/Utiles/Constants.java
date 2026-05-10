@@ -10,5 +10,6 @@ public static String RESCHEDULE_SUCCESSFULLY ="reschedule appointment has been u
 public static String CANCELLED ="appointment has been Cancelled ";
 public static String COMPLETED ="appointment MARKED AS COMPLETED ";
 public static String PATIENT_UPDATED =" Patient has been  updated successfully ";
+public static String PATIENT_REMOVED_SUCCESSFULLY =" patient has been removed successfully ";
 
 }
