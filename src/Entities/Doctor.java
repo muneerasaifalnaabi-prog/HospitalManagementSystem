@@ -88,4 +88,11 @@ public class Doctor extends Person {
     public void setAssignedPatients(List<String> assignedPatients) {
         this.assignedPatients = assignedPatients;
     }
+    @Override
+    public void displayInfo(){
+        super.displayInfo();
+        toString();
+
+
+    }
 }
