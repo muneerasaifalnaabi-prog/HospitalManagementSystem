@@ -35,6 +35,12 @@ public class PatientService {
         }
     }
         public void removePatient(String patientId){
+        Patient p = getPatientById(patientId);
+        if (p.getId().equals(patientId)){
+            patients.remove(p);
+            System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
+        }
+            System.out.println("Pation not found");
 
         }
 
