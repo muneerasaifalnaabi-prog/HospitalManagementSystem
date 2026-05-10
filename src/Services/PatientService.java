@@ -16,6 +16,13 @@ public class PatientService {
             System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
         }
     }
+    public Patient  getPatientById(String patientId){
+        for (Patient p :patients){
+            if (p.getId().equals(patientId)){
+                return p;
+            }
+        }
+    }
     public void editPatient(String patientId, Patient updatedPatient){
 
     }
