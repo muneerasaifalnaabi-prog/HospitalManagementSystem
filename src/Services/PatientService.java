@@ -34,7 +34,7 @@ public class PatientService {
 
         System.out.println("========= Added New Patient =====");
 
-        System.out.println("Enter Patient id :");
+        System.out.println("Enter  id :");
         String id = scanner.nextLine();
         Patient p =getPatientById(id);
         if (p != null) {
@@ -62,6 +62,9 @@ public class PatientService {
         System.out.print("Enter Physical Address: ");
         String address = scanner.nextLine();
 
+        System.out.println("Enter  patientid :");
+        String patientid = scanner.nextLine();
+
         System.out.print("Enter Blood Group (e.g., O+, A-): ");
         String bloodGroup = scanner.nextLine();
 
@@ -74,13 +77,9 @@ public class PatientService {
         System.out.print("Enter Registration Date (YYYY-MM-DD) [Leave empty for today's date]: ");
         LocalDate registrationDate = LocalDate.parse(scanner.nextLine());
 
-
-        System.out.println("Enter Scheduled Appointments");
-        String appointment =scanner.nextLine();
-        List<String> appointments = new ArrayList<>();
-        appointments.add(appointment);
-
-
+        Patient patient = new Patient(id,fname,lname,dateOfBirth,gender,phoneNumber,
+                email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,LocalDate.now(),
+                insuranceId,new ArrayList<>(),new ArrayList<>());
     }
     public Patient  getPatientById(String patientId){
         for (Patient p :patients){
