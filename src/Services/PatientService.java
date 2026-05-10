@@ -43,6 +43,16 @@ public class PatientService {
             System.out.println("Pation not found");
 
         }
+        public List<Patient> searchPatientsByName(String name){
+
+        }
+        public  void displayAllPatients(){
+            System.out.println("===== All Patient =====");
+            for (Patient p :patients){
+                p.displayInfo();
+            }
+
+        }
 
 
     }
