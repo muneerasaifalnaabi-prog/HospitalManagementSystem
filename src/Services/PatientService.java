@@ -5,9 +5,11 @@ import Utiles.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class PatientService {
+    static Scanner scanner = new Scanner(System.in);
     static List<Patient>patients =new ArrayList<>();
 
     public void  addPatient(Patient patient) {
