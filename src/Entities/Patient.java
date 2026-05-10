@@ -28,6 +28,7 @@ public class Patient extends Person{
     @Override
     public void displayInfo(){
         super.displayInfo();
+        toString();
 
 
     }
@@ -44,5 +45,17 @@ public class Patient extends Person{
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patientId='" + patientId + '\'' +
+                ", bloodGroup='" + bloodGroup + '\'' +
+                ", allergies=" + allergies +
+                ", emergencyContact='" + emergencyContact + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", insuranceId='" + insuranceId + '\'' +
+                ", medicalRecords=" + medicalRecords +
+                ", appointments=" + appointments +
+                '}';
+    }
 }
