@@ -32,8 +32,7 @@ public class Patient extends Person{
 
 
     }
-    public void addMedicalRecord(){
-
+    public void addMedicalRecord(String medicalRecord ){
 
     }
     public void addAppointment(){
