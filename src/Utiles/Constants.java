@@ -9,5 +9,6 @@ public static String NOT_RESCHEDULE =" Cannot reschedule a appointment  ";
 public static String RESCHEDULE_SUCCESSFULLY ="reschedule appointment has been updated  ";
 public static String CANCELLED ="appointment has been Cancelled ";
 public static String COMPLETED ="appointment MARKED AS COMPLETED ";
+public static String PATIENT_UPDATED =" Patient has been  updated successfully ";
 
 }

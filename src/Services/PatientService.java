@@ -25,6 +25,15 @@ public class PatientService {
         return null;
     }
     public void editPatient(String patientId, Patient updatedPatient){
+        if (patientId !=null){
+            for (int i =0 ;i<patients.size();i++){
+                if (patients.get(i).getId().equals(patientId)){
+                    patients.set(i,updatedPatient);
+                    System.out.println(Constants.PATIENT_UPDATED);
+                }
+            }
+        }
+
 
     }
 
