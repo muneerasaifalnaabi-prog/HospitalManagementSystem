@@ -103,7 +103,11 @@ public class Doctor extends Person {
         System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
 
     }
-    public void removePatient(Patient rempatient){
+    public void removePatient(Patient rempatientId){
+        if (!rempatientId.getId().isEmpty()){
+            assignedPatients.remove(rempatientId);
+            System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
+        }
 
     }
     public void updateAvailability(){
