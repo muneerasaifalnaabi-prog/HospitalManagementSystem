@@ -1,10 +1,5 @@
 import java.time.LocalDate;
-enum STATUSE{
-    Scheduled,
-    Completed,
-    Cancelled,
-    Rescheduled
-}
+
 public class Appointment {
     private String appointmentId;
     private String patientId;
@@ -15,9 +10,9 @@ public class Appointment {
     private String reason;
     private String notes;
 
-    public Appointment(String appointmentId, String patientId, String doctorId, LocalDate appointmentDate, String appointmentTime, STATUSE status, String reason, String notes) {
-        this.appointmentId = appointmentId;
+    public Appointment(String patientId, String appointmentId, String doctorId, LocalDate appointmentDate, String appointmentTime, String status, String reason, String notes) {
         this.patientId = patientId;
+        this.appointmentId = appointmentId;
         this.doctorId = doctorId;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
@@ -66,11 +61,11 @@ public class Appointment {
         this.appointmentTime = appointmentTime;
     }
 
-    public STATUSE getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(STATUSE status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -89,6 +84,7 @@ public class Appointment {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
     public void  reschedule(){
 
     }
