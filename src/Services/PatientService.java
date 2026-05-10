@@ -146,6 +146,24 @@ public class PatientService {
             }
             return null;
         }
+        public void searchPatients(){
+        System.out.println("Enter Patient Name  to search:");
+        String searchName = scanner.nextLine();
+            System.out.println("Search Results:");
+            List<Patient> searchResults = searchPatientsByName(searchName);
+            if (searchResults != null) {
+                for (Patient p : searchResults) {
+                    p.displayInfo();
+
+                }
+                System.out.println("No matches found");
+                System.out.println("Enter q to quit or enter key to continue");
+                if(scanner.nextLine().equals("q")){
+                    return;
+                }
+                searchPatients();
+            }
+        }
         public  void displayAllPatients(){
             System.out.println("===== All Patient =====");
             for (Patient p :patients){
