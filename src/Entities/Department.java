@@ -1,5 +1,7 @@
 package Entities;
 
+import Utiles.Constants;
+
 import java.util.List;
 
 public class Department {
@@ -79,6 +81,7 @@ public class Department {
     public void assignDoctor(String doctorid){
         if(!doctors.contains(doctorid)){
             doctors.add(doctorid);
+            System.out.println("Doctor" +doctorid + "assigent to"+departmentName);
 
         }
     }
