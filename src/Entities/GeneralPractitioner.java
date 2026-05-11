@@ -1,4 +1,41 @@
 package Entities;
 
-public class GeneralPractitioner {
+import java.time.LocalDate;
+import java.util.List;
+
+public class GeneralPractitioner extends Doctor {
+    private Boolean walkinAvailable;
+    private Boolean homeVisitAvailable;
+    private Boolean vaccinationCertified;
+
+    public GeneralPractitioner(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<String> assignedPatients, Boolean walkinAvailable, Boolean homeVisitAvailable, Boolean vaccinationCertified) {
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, doctorId, specialization, qualification, experienceYears, departmentId, consultationFee, availableSlots, assignedPatients);
+        this.walkinAvailable = walkinAvailable;
+        this.homeVisitAvailable = homeVisitAvailable;
+        this.vaccinationCertified = vaccinationCertified;
+    }
+
+    public Boolean getWalkinAvailable() {
+        return walkinAvailable;
+    }
+
+    public void setWalkinAvailable(Boolean walkinAvailable) {
+        this.walkinAvailable = walkinAvailable;
+    }
+
+    public Boolean getHomeVisitAvailable() {
+        return homeVisitAvailable;
+    }
+
+    public void setHomeVisitAvailable(Boolean homeVisitAvailable) {
+        this.homeVisitAvailable = homeVisitAvailable;
+    }
+
+    public Boolean getVaccinationCertified() {
+        return vaccinationCertified;
+    }
+
+    public void setVaccinationCertified(Boolean vaccinationCertified) {
+        this.vaccinationCertified = vaccinationCertified;
+    }
 }
