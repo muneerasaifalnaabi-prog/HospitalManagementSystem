@@ -148,6 +148,17 @@ public void editNurses(String nurseId) {
     }
 
 }
+public void deleteNurses(String nurseId) {
+    Nurse nurse = getNurseById(nurseId);
+    if (nurse != null) {
+        Nurses.remove(nurse);
+        System.out.println("Nurse Deleted Successfully");
+    }
+    else  {
+        System.out.println("Nurse Deleted Failed");
+    }
+}
+
 
 
 }
