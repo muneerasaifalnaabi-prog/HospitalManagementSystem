@@ -14,8 +14,11 @@ public class DoctorService {
     }
     public Doctor getDoctorById(int id){
         for (Doctor doctor:doctors){
-
+            if (doctor.getDoctorId().equals(id)){
+                return doctor;
+            }
         }
+        return null;
     }
 
     public void addDoctor(Doctor doctor){
