@@ -244,6 +244,20 @@ public class PatientService {
             p.displayInfo();
         }
     }
+    public void addPatient(String firstName, String lastName, String phone){
+        Patient p = new Patient();
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+        p.setPhoneNumber(phone);
+    }
+    public void addPatient(String firstName, String lastName, String phone, String bloodGroup, String email){
+        Patient p = new Patient();
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+        p.setPhoneNumber(phone);
+        p.setBloodGroup(bloodGroup);
+    }
+
 
 
     public void handelPatientServic() {

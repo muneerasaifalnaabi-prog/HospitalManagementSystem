@@ -248,6 +248,20 @@ public class AppointmentService {
        appointment.setAppointmentTime(newTime);
        appointment.setReason(reason);
     }
+    public void displayAppointments(LocalDate date){
+        for (Appointment a : appointments) {
+            System.out.println(a);
+        }
+    }
+    public void displayAppointments(String doctorId, LocalDate startDate, LocalDate endDate){
+        for (Appointment a : appointments) {
+            if (a.getDoctorId().equals(doctorId)) {
+                System.out.println(a);
+
+            }
+        }
+
+    }
 
 
     //i will see later :
