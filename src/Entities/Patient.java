@@ -116,6 +116,14 @@ public class Patient extends Person{
         System.out.println("insuranceId Cannot be empty ");
     }
     public void updateContact(String phone){
+        Patient p = new Patient();
+        p.setPhoneNumber(phone);
+
+    }
+    public void updateContact(String phone, String email){
+        Patient p = new Patient();
+        p.setPhoneNumber(phone);
+        p.setEmail(email);
 
     }
 
