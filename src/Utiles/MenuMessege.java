@@ -25,4 +25,13 @@ public static String DOCTOR_MENU_MESSEGE= """
            5.Display Available Doctors
            5.exit Patient
     """;
+    public static String NURSE_MENU_MESSEGE= """
+           1.Added Nurse 
+           2.edit Nurse
+           3.remove Nurse
+           4.Search Nurses By Department
+           5.Search Nurses By Shift
+           6.Display All Nurses
+           7.exit Nurse
+    """;
 }

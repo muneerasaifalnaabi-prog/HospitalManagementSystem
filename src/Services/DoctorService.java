@@ -292,10 +292,8 @@ public class DoctorService {
     }
 
     public void handelDoctorService() {
-
+        System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
         while (true) {
-            System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
-
             int option = scanner.nextInt();
             scanner.nextLine();
 

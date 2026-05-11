@@ -247,8 +247,10 @@ public class PatientService {
 
     public void handelPatientServic() {
         System.out.println("===== Patient Service =====");
+        System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
+
         while (true) {
-            System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
+
             int option = scanner.nextInt();
             scanner.nextLine();
             switch (option) {
