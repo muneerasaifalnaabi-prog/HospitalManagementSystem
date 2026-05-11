@@ -27,6 +27,9 @@ public class Patient extends Person{
         this.appointments = appointments;
         this.medicalRecords = medicalRecords;
     }
+    public Patient() {
+
+    }
 
     public String getPatientId() {
         return patientId;
