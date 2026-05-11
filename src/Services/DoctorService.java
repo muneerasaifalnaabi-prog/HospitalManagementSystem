@@ -15,6 +15,7 @@ public class DoctorService {
 
     static Scanner scanner = new Scanner(System.in);
     static List<Doctor> doctors = new ArrayList<>();
+    static PatientService patientService = new PatientService();
 
     public void addDoctors() {
 
@@ -247,7 +248,7 @@ public class DoctorService {
         searchDoctors();
     }
 
-    public void displayAllDoctors() {
+    public void displayDoctors() {
 
         System.out.println("===== All Doctors =====");
 
@@ -315,6 +316,24 @@ public void assignPatient(String doctorId, String patientId){
     patient.setId(patientId);
     System.out.println("Assigning Patient");
 }
+//i will see later
+public void assignPatient(String doctorId, List<String> patientIds){
+
+}
+public void displayDoctors(String specialization){
+    System.out.println("===== All Doctors by specialization =====");
+    boolean found =false;
+    for (Doctor d : doctors) {
+        if (d.getSpecialization().toLowerCase().equals(specialization.toLowerCase())) {
+            d.displayInfo();
+            found = true;
+        }
+    }
+    if (!found) {
+        System.out.println("No doctors found");
+    }
+}
+
 
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
