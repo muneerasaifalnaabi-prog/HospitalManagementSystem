@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Doctor;
+import Entities.Patient;
 import Utiles.MenuMessege;
 
 import java.time.LocalDate;
@@ -308,7 +309,12 @@ public class DoctorService {
     public void addDoctor(Doctor doctor){
         doctors.add(doctor);
     }
-
+public void assignPatient(String doctorId, String patientId){
+    Patient patient =new Patient();
+    patient.setId(doctorId);
+    patient.setId(patientId);
+    System.out.println("Assigning Patient");
+}
 
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
