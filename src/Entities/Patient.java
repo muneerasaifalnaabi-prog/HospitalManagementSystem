@@ -124,7 +124,12 @@ public class Patient extends Person{
         Patient p = new Patient();
         p.setPhoneNumber(phone);
         p.setEmail(email);
-
+    }
+    public void updateContact(String phone, String email, String address){
+        Patient p = new Patient();
+        p.setPhoneNumber(phone);
+        p.setEmail(email);
+        p.setAddress(address);
     }
 
     @Override
