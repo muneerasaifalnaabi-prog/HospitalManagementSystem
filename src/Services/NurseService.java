@@ -196,5 +196,25 @@ public List<Nurse> getNursesByShift(String shift) {
     }
     return nurses;
 }
+public void searchNursesByShift() {
+    System.out.println("Enter Shift : ");
+    String shift = scanner.nextLine();
+    List<Nurse> nurses=getNursesByShift(shift);
+    for (Nurse n : nurses) {
+        if (n.getShift().equals(shift)) {
+            n.displayInfo();
+        }
+        else  {
+            System.out.println("Nurse Not Found");
+        }
+    }
+    System.out.println("Enter q to quit ");
+    if (scanner.nextLine().equalsIgnoreCase("q")) {
+        return;
+    }
+    searchNursesByShift();
+}
+
+
 
 }
