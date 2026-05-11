@@ -115,6 +115,9 @@ public class Patient extends Person{
         }
         System.out.println("insuranceId Cannot be empty ");
     }
+    public void updateContact(String phone){
+
+    }
 
     @Override
     public String toString() {

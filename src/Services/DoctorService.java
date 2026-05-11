@@ -337,7 +337,7 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
     System.out.println("===== All Doctors by departmentId =====");
     boolean found =false;
     for (Doctor d : doctors) {
-        if (d.getDepartmentId().equals(departmentId) && d.getAvailableSlots().isEmpty()) {
+        if (d.getDepartmentId().equals(departmentId) && !d.getAvailableSlots().isEmpty()) {
             d.displayInfo();
             found = true;
         }
