@@ -14,4 +14,14 @@ public class MenuMessege {
            5.exit Patient
     """;
 
+
+public static String DOCTOR_MENU_MESSEGE= """
+           1.Added Doctor 
+           2.edit Doctor
+           3.remove Doctor
+           4.Search By Specialization
+           4.Display All Doctors
+           5.Display Available Doctors
+           5.exit Patient
+    """;
 }
