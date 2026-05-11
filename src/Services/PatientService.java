@@ -85,7 +85,7 @@ public class PatientService {
         LocalDate registrationDate = LocalDate.parse(scanner.nextLine());
 
         Patient patient = new Patient(id,fname,lname,dateOfBirth,gender,phoneNumber,
-                email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,LocalDate.now(),
+                email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,registrationDate,
                 insuranceId,new ArrayList<>(),new ArrayList<>());
         return patient;
     }
@@ -140,7 +140,7 @@ public class PatientService {
                     p.displayInfo();
                 }
             }
-            return null;
+            return new ArrayList<>();
         }
         public void searchPatients(){
         System.out.println("Enter Patient Name  to search:");
@@ -167,6 +167,7 @@ public class PatientService {
             }
 
         }
+
 
 
     }
