@@ -169,6 +169,32 @@ public List<Nurse> getNursesByDepartmentId(String departmentId) {
     return nurses;
 }
 
-
+public void searchNursesByDepartment() {
+    System.out.println("Enter Department ID: ");
+    String departmentId = scanner.nextLine();
+    List<Nurse> nurses=getNursesByDepartmentId(departmentId);
+    for (Nurse n : nurses) {
+        if (n.getDepartmentId().equals(departmentId)) {
+            n.displayInfo();
+        }
+        else  {
+            System.out.println("Nurse Not Found");
+        }
+        System.out.println("Enter q to quit ");
+        if (scanner.nextLine().equalsIgnoreCase("q")) {
+            return;
+    }
+        searchNursesByDepartment();
+    }
+}
+public List<Nurse> getNursesByShift(String shift) {
+    List<Nurse> nurses=new ArrayList<>();
+    for (Nurse n : Nurses) {
+        if (n.getShift().equals(shift)) {
+            nurses.add(n);
+        }
+    }
+    return nurses;
+}
 
 }
