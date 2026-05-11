@@ -209,6 +209,19 @@ public class AppointmentService {
         appointment.setDoctorId(doctorId);
         appointment.setAppointmentDate(date);
     }
+    public void createAppointment(String patientId, String doctorId, LocalDate date, String time){
+        System.out.println("===new Appointment ===");
+        Appointment appointment = new Appointment();
+        appointment.setPatientId(patientId);
+        appointment.setDoctorId(doctorId);
+        appointment.setAppointmentDate(date);
+        appointment.setAppointmentTime(time);
+    }
+    public void createAppointment(Appointment appointment){
+        System.out.println("===new Appointment ===");
+        appointments.add(appointment);
+    }
+
     //i will see later :
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
