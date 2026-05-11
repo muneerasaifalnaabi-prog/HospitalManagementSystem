@@ -93,8 +93,14 @@ public class Department {
         }
     }
     //i will complete later
-    public void updateBedAvailability() {
+    public void updateBedAvailability(int beds) {
 
+        if (beds >= 0 && beds <= bedCapacity) {
+            availableBeds = beds;
+            System.out.println("Available beds updated.");
+        } else {
+            System.out.println("Invalid bed count.");
+        }
     }
 }
 
