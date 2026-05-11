@@ -290,6 +290,25 @@ public class DoctorService {
             System.out.println("No available doctors");
         }
     }
+    public void addDoctor(String name, String specialization, String phone){
+        Doctor d =  new Doctor();
+        d.setFirstName(name);
+        d.setSpecialization(specialization);
+        d.setPhoneNumber(phone);
+
+    }
+    public void addDoctor(String name, String specialization, String phone, double consultationFee){
+        Doctor d =  new Doctor();
+        d.setFirstName(name);
+        d.setSpecialization(specialization);
+        d.setPhoneNumber(phone);
+        d.setConsultationFee(consultationFee);
+
+    }
+    public void addDoctor(Doctor doctor){
+        doctors.add(doctor);
+    }
+
 
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);

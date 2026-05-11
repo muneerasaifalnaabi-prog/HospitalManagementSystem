@@ -15,7 +15,7 @@ public class Doctor extends Person {
     private Double consultationFee;
     private List<String> availableSlots;
     private List<String> assignedPatients;
-
+public Doctor(){}
     public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<String> assignedPatients) {
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
         this.doctorId = doctorId;
