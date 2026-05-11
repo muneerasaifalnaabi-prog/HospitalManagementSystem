@@ -1,4 +1,4 @@
-package Utiles;
+package Utils;
 
 public class MenuMessege {
     public static String MAIN_MENU_MESSEGE= """

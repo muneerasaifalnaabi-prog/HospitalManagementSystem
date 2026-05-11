@@ -1,8 +1,9 @@
 package Entities;
 
-import Utiles.Constants;
+import Utils.Constants;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Appointment {
     private String appointmentId;
@@ -121,7 +122,14 @@ public  Appointment(){
     this.notes=notes;
         System.out.println("Notes :"+ notes);
     }
-
+    public void addNotes(String notes, String addedBy){
+       this.notes=notes;
+       System.out.println("Notes :"+ notes + "Added by :"+ addedBy);
+    }
+    public void addNotes(String notes, String addedBy, LocalDateTime timestamp){
+       this.notes=notes;
+       System.out.println("Notes :"+ notes + "Added by :"+ addedBy + "Time :"+ timestamp);
+    }
 
 
     @Override

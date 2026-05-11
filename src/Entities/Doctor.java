@@ -1,6 +1,6 @@
 package Entities;
 
-import Utiles.Constants;
+import Utils.Constants;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -135,10 +135,6 @@ public Doctor(){}
     this.availableSlots.addAll(slots);
     System.out.println("All Availability slot has been added");
     }
-
-
-
-
     @Override
     public String toString() {
         return "Doctor{" +

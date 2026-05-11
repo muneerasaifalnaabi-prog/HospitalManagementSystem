@@ -1,6 +1,6 @@
 package Menu;
 
-import Utiles.MenuMessege;
+import Utils.MenuMessege;
 
 public class Menue implements MenuInterface {
     @Override

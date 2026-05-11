@@ -1,7 +1,7 @@
 package Services;
 
 import Entities.Appointment;
-import Utiles.MenuMessege;
+import Utils.MenuMessege;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

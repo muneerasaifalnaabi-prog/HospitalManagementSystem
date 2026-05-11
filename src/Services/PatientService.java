@@ -1,8 +1,8 @@
 package Services;
 
 import Entities.Patient;
-import Utiles.Constants;
-import Utiles.MenuMessege;
+import Utils.Constants;
+import Utils.MenuMessege;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

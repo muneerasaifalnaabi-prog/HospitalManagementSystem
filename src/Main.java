@@ -1,6 +1,6 @@
 import Menu.Menue;
 import Services.PatientService;
-import Utiles.MenuMessege;
+import Utils.MenuMessege;
 
 
 import java.util.Scanner;

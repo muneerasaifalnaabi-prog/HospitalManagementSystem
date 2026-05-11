@@ -1,7 +1,5 @@
 package Entities;
 
-import Utiles.Constants;
-
 import java.util.List;
 
 public class Department {
