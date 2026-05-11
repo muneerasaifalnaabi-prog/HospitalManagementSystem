@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Appointment;
+import Utiles.MenuMessege;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -198,5 +199,36 @@ public class AppointmentService {
         for (Appointment a : appointments) {
             System.out.println(a);
         }
+
+
     }
+    //i will see later :
+    public void handleAppointmentService(){
+        System.out.println("====Appointment service ====");
+        System.out.println(MenuMessege.APPOINTMENT_MENU_MESSEGE);
+        while (true) {
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1->{
+                    addAppointment();
+                }
+                case 2->{
+                    System.out.println("Enter Appointment ID ");
+                    String appointmentId = scanner.nextLine();
+                    editAppointment(appointmentId);
+                }
+                case 3->{
+                    System.out.println("Enter Appointment ID ");
+                    String appointmentId = scanner.nextLine();
+                    deleteAppointment(appointmentId);
+
+                }
+                case 4->{
+
+                }
+            }
+
+        }
+    }
+
 }
