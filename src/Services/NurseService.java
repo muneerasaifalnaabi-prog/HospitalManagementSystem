@@ -2,6 +2,9 @@ package Services;
 
 import Entities.Nurse;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -107,7 +110,7 @@ public Nurse addNurse() {
 
     public Nurse getNurseById(String nurseId) {
 
-        for (Nurse n : nurses) {
+        for (Nurse n : Nurses) {
 
             if (n.getId().equals(nurseId)) {
                 return n;
