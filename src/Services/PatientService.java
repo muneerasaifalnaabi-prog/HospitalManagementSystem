@@ -2,7 +2,7 @@ package Services;
 
 import Entities.Patient;
 import Utiles.Constants;
-
+import Utiles.MenuMessege;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -246,20 +246,11 @@ public class PatientService {
     }
 
     public void handelPatientServic() {
-
+        System.out.println("===== Patient Service =====");
         while (true) {
-
-            System.out.println("===== Patient Menu =====");
-            System.out.println("1. Add Patient");
-            System.out.println("2. Edit Patient");
-            System.out.println("3. Remove Patient");
-            System.out.println("4. Search Patient");
-            System.out.println("5. Display All Patients");
-            System.out.println("6. Exit");
-
+            System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
             int option = scanner.nextInt();
             scanner.nextLine();
-
             switch (option) {
 
                 case 1 -> addaddPatients();
@@ -289,7 +280,6 @@ public class PatientService {
                     System.out.println("Exit from Application");
                     return;
                 }
-
                 default -> System.out.println("Invalid option");
             }
         }
