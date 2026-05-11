@@ -12,23 +12,7 @@ import java.util.Scanner;
 public class PatientService {
     static Scanner scanner = new Scanner(System.in);
     static List<Patient>patients =new ArrayList<>();
-/* private String patientId ;
-    private String bloodGroup ;
-    private List<String> allergies ;
-    private String emergencyContact ;
-    private LocalDate registrationDate ;
-    private String  insuranceId ;
-    private List<String> medicalRecords;
-    private List<String> appointments;
-    private String id ;
-    private  String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-    private String gender;
-    private String phoneNumber;
-    private String email;
-    private String address;
- */
+
     public void addaddPatients(){
         patients.add(addPatient());
         System.out.println("Press q to quit or enter key to continue");
