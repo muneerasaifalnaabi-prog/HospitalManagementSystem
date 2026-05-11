@@ -1,4 +1,141 @@
 package Services;
 
+import Entities.Department;
+import Entities.Nurse;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class DepartmentService {
+    static Scanner scanner = new Scanner(System.in);
+    static List<Department> departments = new ArrayList<>();
+    public void addDepartments() {
+
+        while (true) {
+
+            Department department = addDepartment();
+
+            if (department != null) {
+
+                departments.add(department);
+
+                System.out.println("Department Added Successfully");
+            }
+
+            System.out.println("Press q to quit");
+
+            if (scanner.nextLine().equalsIgnoreCase("q")) {
+
+                return;
+            }
+        }
+    }
+
+    public Department addDepartment() {
+
+        System.out.println("======= Add New Department =======");
+
+        System.out.println("Enter Department ID:");
+        String departmentId = scanner.nextLine();
+
+        Department existingDepartment = getDepartmentById(departmentId);
+
+        if (existingDepartment != null) {
+
+            System.out.println("Department ID already exists");
+
+            return null;
+        }
+
+        System.out.println("Enter Department Name:");
+        String departmentName = scanner.nextLine();
+
+        System.out.println("Enter Head Doctor ID:");
+        String headDoctorId = scanner.nextLine();
+
+        System.out.println("Enter Bed Capacity:");
+        int bedCapacity = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Enter Available Beds:");
+        int availableBeds = Integer.parseInt(scanner.nextLine());
+
+        Department department = new Department(
+                departmentId,
+                departmentName,
+                headDoctorId,
+                new ArrayList<>(),
+                new ArrayList<Nurse>(),
+                bedCapacity,
+                availableBeds
+        );
+
+        return department;
+    }
+
+
+    public Department getDepartmentById(String departmentId) {
+
+        for (Department d : departments) {
+
+            if (d.getDepartmentId().equals(departmentId)) {
+
+                return d;
+            }
+        }
+
+        return null;
+    }
+    public void editDepartment(String departmentId) {
+        for (Department d : departments) {
+            if (d.getDepartmentId().equals(departmentId)) {
+                System.out.println("Enter new Department Name");
+                String newDepartmentName = scanner.nextLine();
+                d.setDepartmentName(newDepartmentName);
+                System.out.println("Enter new Head Doctor ID");
+                String newHeadDoctorId = scanner.nextLine();
+                d.setHeadDoctorId(newHeadDoctorId);
+                System.out.println("Enter new Bed Capacity");
+                int bedCapacity = Integer.parseInt(scanner.nextLine());
+                d.setBedCapacity(bedCapacity);
+                System.out.println("Enter new Available Beds");
+                int availableBeds = Integer.parseInt(scanner.nextLine());
+                d.setAvailableBeds(availableBeds);
+
+                System.out.println("Department Edited Successfully");
+            }
+            else  {
+                System.out.println("Department doesn't exist");
+            }
+        }
+    }
+    public void deleteDepartment(String departmentId) {
+        for (Department d : departments) {
+            if (d.getDepartmentId().equals(departmentId)) {
+                departments.remove(d);
+                System.out.println("Department Deleted Successfully");
+            } else {
+                System.out.println("Department doesn't exist");
+            }
+        }
+
+
+
+}
+public void displayDepartments() {
+    for (Department d : departments) {
+        System.out.println(d);
+    }
+}
+public void assignDoctorByDepartment(String doctorId,String departmentId) {
+    Department department = getDepartmentById(doctorId);
+    if (department != null) {
+        department.assignDoctor(doctorId);
+        System.out.println("Doctor Assigned Successfully");
+    }
+    else  {
+        System.out.println("Department doesn't exist");
+    }
+}
+
 }
