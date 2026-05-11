@@ -257,7 +257,64 @@ public class PatientService {
         p.setPhoneNumber(phone);
         p.setBloodGroup(bloodGroup);
     }
+    public void addPatient(Patient patient){
+        patients.add(patient);
+        System.out.println(patient);
+    }
+    /*public void searchPatients(String keyword){
+        System.out.println("Enter Patient Name to search:");
+        String searchName = scanner.nextLine();
+        System.out.println("Search Results:");
+        List<Patient> searchResults = searchPatientsByName(searchName);
+        if (!searchResults.isEmpty()) {
+            for (Patient p : searchResults) {
+                p.displayInfo();
+            }
+        }
+        }
 
+     */
+    public void searchPatients(String firstName, String lastName){
+        System.out.println("Enter Patient first and last Name to search:");
+        String fname = scanner.nextLine();
+        String lname = scanner.nextLine();
+        System.out.println("Search Results:");
+        for(Patient p : patients){
+            if (p.getFirstName().toLowerCase().contains(firstName.toLowerCase())&&p.getLastName().toLowerCase().contains(lastName.toLowerCase())){
+                p.displayInfo();
+            }
+        }
+
+    }
+    public void displayPatients(String filter){
+        System.out.println("Filter Results:");
+        Boolean found = false;
+        for (Patient p : patients) {
+            if(p.getBloodGroup().equalsIgnoreCase(filter)||p.getGender().equalsIgnoreCase(filter)|| p.getFirstName().toLowerCase().contains(filter.toLowerCase())) {
+
+                p.displayInfo();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No matches found");
+        }
+    }
+    public void displayPatients(int limit){
+        System.out.println("==== limit Patients ===");
+        if (patients.isEmpty()) {
+            System.out.println("No patients found");
+            return;
+        }
+        int count = 0;
+        for (Patient p : patients) {
+            if (count == limit) {
+                break;
+            }
+            count++;
+            p.displayInfo();
+        }
+    }
 
 
     public void handelPatientServic() {
