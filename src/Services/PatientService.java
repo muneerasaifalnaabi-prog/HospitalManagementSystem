@@ -160,12 +160,43 @@ public class PatientService {
                 searchPatients();
             }
         }
-        public  void displayAllPatients(){
+        public  void displayAllPatients() {
             System.out.println("===== All Patient =====");
-            for (Patient p :patients){
+            for (Patient p : patients) {
                 p.displayInfo();
             }
 
+        }
+        public void handelPatientServic(){
+
+        int option = scanner.nextInt();
+        switch (option){
+            case 1 ->{
+                addaddPatients();
+                handelPatientServic();
+            }
+            case 2 ->{
+                editPatient();
+                handelPatientServic();
+            }
+            case 3 ->{
+                removePatient();
+                handelPatientServic();
+            }
+            case 4 ->{
+                searchPatients();
+                handelPatientServic();
+            }
+            case 5 ->{
+                displayAllPatients();
+                handelPatientServic();
+            }
+            case 6 ->{
+                System.out.println("Exit from Application");
+                return;
+
+            }
+        }
         }
 
 
