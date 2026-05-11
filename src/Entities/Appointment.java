@@ -115,8 +115,13 @@ public  Appointment(){
 
     }
     public  void displayInfo(){
-        toString();
+        System.out.println(this.toString());
     }
+    public void addNotes(String notes){
+    this.notes=notes;
+        System.out.println("Notes :"+ notes);
+    }
+
 
 
     @Override
