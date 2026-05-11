@@ -4,6 +4,8 @@ import Entities.Patient;
 import Utiles.Constants;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,12 +16,19 @@ public class PatientService {
     static List<Patient>patients =new ArrayList<>();
 
     public void addaddPatients(){
-        patients.add(addPatient());
-        System.out.println("Press q to quit or enter key to continue");
-        if(scanner.nextLine().equals("q")){
-            return;
+        while (true) {
+            Patient p = addPatient();
+            if (p != null) {
+                patients.add(p);
+                System.out.println("Patient added successfully.");
+            }
+            System.out.println("Press q to go back to menu or press Enter to add another patient:");
+            if (scanner.nextLine().equalsIgnoreCase("q")) {
+                return;
+            }
         }
-        addaddPatients();
+
+
     }
     public Patient addPatient() {
 
@@ -38,8 +47,24 @@ public class PatientService {
         System.out.print("Enter last Name: ");
         String lname =scanner.nextLine();
 
-        System.out.println("Enter date Of Birth :");
-        LocalDate dateOfBirth = LocalDate.parse(scanner.nextLine());
+        System.out.println("Enter date Of Birth yyyy-MM-dd'T'hh:mm:ss.SX ex 2012-02-22T02:06:58.147Z:");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        LocalDate date = null;
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.print("Enter a date (dd-MM-yyyy): ");
+            String input = scanner.nextLine();
+
+            try {
+                // Parse the input string to LocalDate
+                date = LocalDate.parse(input, formatter);
+                valid = true; // Parsing successful
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format or value. Please try again.");
+            }
+        }
 
         System.out.println("Enter gender");
         String gender =scanner.nextLine();
@@ -68,7 +93,7 @@ public class PatientService {
         System.out.print("Enter Registration Date (YYYY-MM-DD) [Leave empty for today's date]: ");
         LocalDate registrationDate = LocalDate.parse(scanner.nextLine());
 
-        Patient patient = new Patient(id,fname,lname,dateOfBirth,gender,phoneNumber,
+        Patient patient = new Patient(id,fname,lname,date,gender,phoneNumber,
                 email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,registrationDate,
                 insuranceId,new ArrayList<>(),new ArrayList<>());
         return patient;
@@ -100,8 +125,7 @@ public class PatientService {
                    System.out.println("Enter new Insurance ID:");
                    p.setInsuranceId(scanner.nextLine());
 
-                   System.out.println("Enter new Registration Date (YYYY-MM-DD):");
-                   p.setRegistrationDate(LocalDate.parse(scanner.nextLine()));
+
 
                }
            }
@@ -109,7 +133,7 @@ public class PatientService {
     }
         public void removePatient(String patientId){
         Patient p = getPatientById(patientId);
-        if (p.getId().equals(patientId)){
+        if (p != null) {
             patients.remove(p);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
         }
@@ -160,11 +184,11 @@ public class PatientService {
                 handelPatientServic();
             }
             case 2 ->{
-                editPatient();
+                editPatient(addPatient().getPatientId(),  addPatient());
                 handelPatientServic();
             }
             case 3 ->{
-                removePatient();
+                removePatient(addPatient().getPatientId());
                 handelPatientServic();
             }
             case 4 ->{
@@ -180,6 +204,7 @@ public class PatientService {
                 return;
 
             }
+            default ->  System.out.println("Invalid option");
         }
         }
 
