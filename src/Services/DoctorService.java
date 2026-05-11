@@ -333,7 +333,19 @@ public void displayDoctors(String specialization){
         System.out.println("No doctors found");
     }
 }
-
+public void  displayDoctors(String departmentId, boolean showAvailableOnly){
+    System.out.println("===== All Doctors by departmentId =====");
+    boolean found =false;
+    for (Doctor d : doctors) {
+        if (d.getDepartmentId().equals(departmentId) && d.getAvailableSlots().isEmpty()) {
+            d.displayInfo();
+            found = true;
+        }
+    }
+    if (!found) {
+        System.out.println("No doctors found");
+    }
+}
 
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
@@ -363,7 +375,7 @@ public void displayDoctors(String specialization){
 
                 case 4 -> searchDoctors();
 
-                case 5 -> displayAllDoctors();
+                case 5 -> displayDoctors();
 
                 case 6 -> displayAvailableDoctors();
 
