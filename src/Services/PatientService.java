@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class PatientService {
     static Scanner scanner = new Scanner(System.in);
-    static List<Patient>patients =new ArrayList<>();
+    static List<Patient> patients = new ArrayList<>();
 
-    public void addaddPatients(){
+    public void addaddPatients() {
         while (true) {
             Patient p = addPatient();
             if (p != null) {
@@ -23,53 +22,50 @@ public class PatientService {
                 System.out.println("Patient added successfully.");
             }
             System.out.println("Press q to go back to menu or press Enter to add another patient:");
-            if (scanner.nextLine().equalsIgnoreCase("q")) {
+            String choice = scanner.nextLine();
+            if (choice.equalsIgnoreCase("q")) {
                 return;
             }
         }
-
-
     }
-    public Patient addPatient() {
 
+    public Patient addPatient() {
         System.out.println("========= Added New Patient =====");
 
-        System.out.println("Enter  id :");
+        System.out.println("Enter id :");
         String id = scanner.nextLine();
-        Patient p =getPatientById(id);
-        if (p != null) {
-            System.out.println("ID already exit ");
+
+        Patient existing = getPatientById(id);
+        if (existing != null) {
+            System.out.println("ID already exists!");
+            return null;
         }
 
         System.out.print("Enter First Name: ");
-        String fname =scanner.nextLine();
+        String fname = scanner.nextLine();
 
         System.out.print("Enter last Name: ");
-        String lname =scanner.nextLine();
+        String lname = scanner.nextLine();
 
-        System.out.println("Enter date Of Birth yyyy-MM-dd'T'hh:mm:ss.SX ex 2012-02-22T02:06:58.147Z:");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
         LocalDate date = null;
         boolean valid = false;
 
         while (!valid) {
-            System.out.print("Enter a date (dd-MM-yyyy): ");
+            System.out.print("Enter date Of Birth (dd-MM-yyyy): ");
             String input = scanner.nextLine();
-
             try {
-                // Parse the input string to LocalDate
                 date = LocalDate.parse(input, formatter);
-                valid = true; // Parsing successful
+                valid = true;
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format or value. Please try again.");
+                System.out.println("Invalid date format. Please use dd-MM-yyyy.");
             }
         }
 
-        System.out.println("Enter gender");
-        String gender =scanner.nextLine();
+        System.out.println("Enter gender:");
+        String gender = scanner.nextLine();
 
-        System.out.println("phoneNumber");
+        System.out.println("Enter phoneNumber:");
         String phoneNumber = scanner.nextLine();
 
         System.out.print("Enter Email Address: ");
@@ -78,7 +74,7 @@ public class PatientService {
         System.out.print("Enter Physical Address: ");
         String address = scanner.nextLine();
 
-        System.out.println("Enter  patientid :");
+        System.out.println("Enter patient id string:");
         String patientid = scanner.nextLine();
 
         System.out.print("Enter Blood Group (e.g., O+, A-): ");
@@ -91,127 +87,131 @@ public class PatientService {
         String insuranceId = scanner.nextLine();
 
         System.out.print("Enter Registration Date (YYYY-MM-DD) [Leave empty for today's date]: ");
-        LocalDate registrationDate = LocalDate.parse(scanner.nextLine());
+        String regInput = scanner.nextLine();
+        LocalDate registrationDate;
+        if (regInput.isEmpty()) {
+            registrationDate = LocalDate.now();
+        } else {
+            registrationDate = LocalDate.parse(regInput);
+        }
 
-        Patient patient = new Patient(id,fname,lname,date,gender,phoneNumber,
-                email,address,patientid,bloodGroup,new ArrayList<>(),emergencyContact,registrationDate,
-                insuranceId,new ArrayList<>(),new ArrayList<>());
-        return patient;
+        return new Patient(id, fname, lname, date, gender, phoneNumber,
+                email, address, patientid, bloodGroup, new ArrayList<>(), emergencyContact, registrationDate,
+                insuranceId, new ArrayList<>(), new ArrayList<>());
     }
-    public Patient  getPatientById(String patientId){
-        for (Patient p :patients){
-            if (p.getId().equals(patientId)){
+
+    public Patient getPatientById(String patientId) {
+        for (Patient p : patients) {
+            if (p.getId().equals(patientId)) {
                 return p;
             }
         }
         return null;
     }
-    public void editPatient(String patientId, Patient updatedPatient) {
-        if (patientId != null) {
-           for (Patient p : patients) {
-               if (p.getId().equals(patientId)) {
-                   System.out.println("Enter new phone number:");
-                   p.setPhoneNumber(scanner.nextLine());
 
-                   System.out.println("Enter new Email ");
-                   p.setEmail(scanner.nextLine());
+    public void editPatient(String patientId) {
+        Patient p = getPatientById(patientId);
+        if (p != null) {
+            System.out.println("Editing Patient: " + p.getFirstName());
+            System.out.println("Enter new phone number:");
+            p.setPhoneNumber(scanner.nextLine());
 
-                   System.out.println("Enter new Address Line:");
-                   p.setAddress(scanner.nextLine());
+            System.out.println("Enter new Email:");
+            p.setEmail(scanner.nextLine());
 
-                   System.out.println("Enter new Emergency Contact Name:");
-                   p.setEmergencyContact(scanner.nextLine());
+            System.out.println("Enter new Address Line:");
+            p.setAddress(scanner.nextLine());
 
-                   System.out.println("Enter new Insurance ID:");
-                   p.setInsuranceId(scanner.nextLine());
+            System.out.println("Enter new Emergency Contact Name:");
+            p.setEmergencyContact(scanner.nextLine());
 
-
-
-               }
-           }
+            System.out.println("Enter new Insurance ID:");
+            p.setInsuranceId(scanner.nextLine());
+            System.out.println("Patient updated successfully.");
+        } else {
+            System.out.println("Patient not found.");
         }
     }
-        public void removePatient(String patientId){
+
+    public void removePatient(String patientId) {
         Patient p = getPatientById(patientId);
         if (p != null) {
             patients.remove(p);
-            System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
+            System.out.println("Patient removed successfully.");
+        } else {
+            System.out.println("Patient not found");
         }
-            System.out.println("Pation not found");
-
-        }
-        public List<Patient> searchPatientsByName(String name) {
-            System.out.println("Enter Patient Name  to search:");
-            System.out.println("Search Results:");
-            for (Patient p : patients) {
-                if (p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
-                    p.displayInfo();
-                }
-            }
-            return new ArrayList<>();
-        }
-        public void searchPatients(){
-        System.out.println("Enter Patient Name  to search:");
-        String searchName = scanner.nextLine();
-            System.out.println("Search Results:");
-            List<Patient> searchResults = searchPatientsByName(searchName);
-            if (searchResults != null) {
-                for (Patient p : searchResults) {
-                    p.displayInfo();
-
-                }
-                System.out.println("No matches found");
-                System.out.println("Enter q to quit or enter key to continue");
-                if(scanner.nextLine().equals("q")){
-                    return;
-                }
-                searchPatients();
-            }
-        }
-        public  void displayAllPatients() {
-            System.out.println("===== All Patient =====");
-            for (Patient p : patients) {
-                p.displayInfo();
-            }
-
-        }
-        public void handelPatientServic(){
-
-        int option = scanner.nextInt();
-        switch (option){
-            case 1 ->{
-                addaddPatients();
-                handelPatientServic();
-            }
-            case 2 ->{
-                editPatient(addPatient().getPatientId(),  addPatient());
-                handelPatientServic();
-            }
-            case 3 ->{
-                removePatient(addPatient().getPatientId());
-                handelPatientServic();
-            }
-            case 4 ->{
-                searchPatients();
-                handelPatientServic();
-            }
-            case 5 ->{
-                displayAllPatients();
-                handelPatientServic();
-            }
-            case 6 ->{
-                System.out.println("Exit from Application");
-                return;
-
-            }
-            default ->  System.out.println("Invalid option");
-        }
-        }
-
-
-
     }
 
+    public List<Patient> searchPatientsByName(String name) {
+        List<Patient> results = new ArrayList<>();
+        for (Patient p : patients) {
+            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
+                results.add(p);
+            }
+        }
+        return results;
+    }
 
+    public void searchPatients() {
+        System.out.println("Enter Patient Name to search:");
+        String searchName = scanner.nextLine();
+        List<Patient> searchResults = searchPatientsByName(searchName);
 
+        if (!searchResults.isEmpty()) {
+            for (Patient p : searchResults) {
+                p.displayInfo();
+            }
+        } else {
+            System.out.println("No matches found");
+        }
 
+        System.out.println("Enter q to quit or enter key to continue searching:");
+        if (scanner.nextLine().equalsIgnoreCase("q")) {
+            return;
+        }
+        searchPatients();
+    }
+
+    public void displayAllPatients() {
+        System.out.println("===== All Patients =====");
+        if (patients.isEmpty()) {
+            System.out.println("No patients registered.");
+        }
+        for (Patient p : patients) {
+            p.displayInfo();
+        }
+    }
+
+    public void handelPatientServic() {
+        String input = scanner.nextLine();
+        int option;
+        try {
+            option = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+            handelPatientServic();
+            return;
+        }
+
+        switch (option) {
+            case 1 -> addaddPatients();
+            case 2 -> {
+                System.out.println("Enter ID of patient to edit:");
+                editPatient(scanner.nextLine());
+            }
+            case 3 -> {
+                System.out.println("Enter ID of patient to remove:");
+                removePatient(scanner.nextLine());
+            }
+            case 4 -> searchPatients();
+            case 5 -> displayAllPatients();
+            case 6 -> {
+                System.out.println("Exit from Application");
+                return;
+            }
+            default -> System.out.println("Invalid option");
+        }
+        handelPatientServic();
+    }
+}

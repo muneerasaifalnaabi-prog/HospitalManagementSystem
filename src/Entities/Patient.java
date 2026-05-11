@@ -95,7 +95,7 @@ public class Patient extends Person{
     @Override
     public void displayInfo(){
         super.displayInfo();
-        toString();
+        System.out.println(this.toString());
 
     }
     public void addMedicalRecord(String medicalRecord ){

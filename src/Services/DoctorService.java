@@ -26,6 +26,14 @@ public class DoctorService {
         System.out.println("Enter id of Doctor");
         int id=scanner.nextInt();
 
+        System.out.println("Enter Name of Doctor");
+        String name=scanner.next();
+
+        System.out.println("Enter Surname of Doctor");
+        String surname=scanner.next();
+
+        System.out.println();
+
 
     }
     
