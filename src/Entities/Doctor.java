@@ -122,6 +122,13 @@ public Doctor(){}
     public void updateFee(double fee){
     this.consultationFee=fee;
     }
+    public void updateFee(double fee, String reason){
+        this.consultationFee=fee;
+        System.out.println("Fee has been updated"+fee);
+        System.out.println(reason);
+
+
+    }
 
     @Override
     public String toString() {
