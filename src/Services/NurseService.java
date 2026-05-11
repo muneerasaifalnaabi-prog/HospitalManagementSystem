@@ -157,6 +157,16 @@ public void deleteNurses(String nurseId) {
     else  {
         System.out.println("Nurse Deleted Failed");
     }
+
+}
+public List<Nurse> getNursesByDepartmentId(String departmentId) {
+    List<Nurse> nurses=new ArrayList<>();
+    for (Nurse n : Nurses) {
+        if (n.getDepartmentId().equals(departmentId)) {
+            nurses.add(n);
+        }
+    }
+    return nurses;
 }
 
 
