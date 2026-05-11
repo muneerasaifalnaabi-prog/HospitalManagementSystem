@@ -177,12 +177,26 @@ public class AppointmentService {
         }
         return appointmentList;
     }
-    public List<Appointment> rescheduleAppointments(String appointmentId,LocalDate date,String newTime) {
-        List<Appointment> appointmentList = new ArrayList<>();
-        if (appointmentId != null) {
-            appointmentList.reschedule(newDate, newTime);
+    public void rescheduleAppointments(String appointmentId,LocalDate date,String newTime) {
+        Appointment existingAppointment = getAppointmentById(appointmentId);
+        if (existingAppointment != null) {
+            existingAppointment.reschedule(date,newTime);
+        }
+        else {
+            System.out.println("Appointment Not Found");
         }
     }
-
-
+    public void cancelAppointments(String appointmentId,LocalDate date,String newTime) {
+        Appointment existingAppointment = getAppointmentById(appointmentId);
+        if (existingAppointment != null) {
+            existingAppointment.cancel();
+        }
+        else
+            System.out.println("Appointment Not Found");
+    }
+    public void displayAppointments() {
+        for (Appointment a : appointments) {
+            System.out.println(a);
+        }
+    }
 }
