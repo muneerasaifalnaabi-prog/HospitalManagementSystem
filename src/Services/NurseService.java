@@ -120,5 +120,34 @@ public Nurse addNurse() {
         return null;
     }
 
+public void editNurses(String nurseId) {
+    Nurse nurse = getNurseById(nurseId);
+    if (nurse != null) {
+        System.out.println("Enter new phone number: ");
+        String newPhoneNumber = scanner.nextLine();
+        nurse.setPhoneNumber(newPhoneNumber);
+
+        System.out.println("Enter new email: ");
+        String newEmail = scanner.nextLine();
+        nurse.setEmail(newEmail);
+
+        System.out.println("Enter new Department ID: ");
+        String newDepartmentId = scanner.nextLine();
+        nurse.setDepartmentId(newDepartmentId);
+
+        System.out.println("Enter new Shift ID: ");
+        String newShiftId = scanner.nextLine();
+        nurse.setShift(newShiftId);
+        System.out.println("Enter new Qualification: ");
+        String newQualification = scanner.nextLine();
+        nurse.setQualification(newQualification);
+        System.out.println("Nurse Edited Successfully");
+    }
+    else  {
+        System.out.println("Nurse Edited Failed");
+    }
+
+}
+
 
 }
