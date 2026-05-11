@@ -126,9 +126,12 @@ public Doctor(){}
         this.consultationFee=fee;
         System.out.println("Fee has been updated"+fee);
         System.out.println(reason);
-
-
     }
+    public void addAvailability(String slot){
+    availableSlots.add(slot);
+    }
+
+
 
     @Override
     public String toString() {
