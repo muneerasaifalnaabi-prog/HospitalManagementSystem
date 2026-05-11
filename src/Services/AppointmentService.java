@@ -221,6 +221,17 @@ public class AppointmentService {
         System.out.println("===new Appointment ===");
         appointments.add(appointment);
     }
+    public void rescheduleAppointment(String appointmentId, LocalDate newDate){
+        for (Appointment a : appointments) {
+            if (a.getAppointmentId().equals(appointmentId)) {
+                a.setAppointmentDate(newDate);
+                System.out.println("Appointment Updated Successfully to"+newDate);
+                return;
+            }
+        }
+        System.out.println("Appointment not found with ID: " + appointmentId);
+    }
+
 
     //i will see later :
     public void handleAppointmentService(){
