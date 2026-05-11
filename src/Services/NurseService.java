@@ -214,7 +214,15 @@ public void searchNursesByShift() {
     }
     searchNursesByShift();
 }
-
+public void  displayNurses(){
+    System.out.println("Nurse List");
+    if (Nurses.size()==0) {
+        System.out.println("Nurse List is Empty");
+    }
+    for (Nurse n : Nurses) {
+        n.displayInfo();
+    }
+}
 
 
 }
