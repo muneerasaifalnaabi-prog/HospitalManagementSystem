@@ -3,6 +3,7 @@ package Utiles;
 public class MenuMessege {
     public static String MAIN_MENU_MESSEGE= """
             1. Patient Menu
+            2. Doctor Menu
            
             """;
     public static String PATIENT_MENU_MESSEGE= """
