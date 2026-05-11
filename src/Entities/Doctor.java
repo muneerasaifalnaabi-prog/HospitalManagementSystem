@@ -129,7 +129,13 @@ public Doctor(){}
     }
     public void addAvailability(String slot){
     availableSlots.add(slot);
+        System.out.println("Availability slot has been added");
     }
+    public void addAvailability(List<String> slots){
+    this.availableSlots.addAll(slots);
+    System.out.println("All Availability slot has been added");
+    }
+
 
 
 
