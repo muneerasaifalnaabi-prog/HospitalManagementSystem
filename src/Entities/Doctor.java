@@ -118,8 +118,9 @@ public Doctor(){}
     public void updateAvailability(List<String> newslot){
         this.availableSlots=new ArrayList<>(newslot);
         System.out.println("Availability has been updated");
-
-
+    }
+    public void updateFee(double fee){
+    this.consultationFee=fee;
     }
 
     @Override
