@@ -47,7 +47,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setRecordId(String recordId) {
-        this.recordId = recordId;
+        if (HelperUtils.isNotNull(recordId)) {
+            this.recordId = recordId;
+        }
     }
 
     public String getPatientId() {
@@ -55,7 +57,7 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setPatientId(String patientId) {
-        if (HelperUtils.isValidString(patientId)) {
+        if (HelperUtils.isNotNull(patientId)) {
             this.patientId = patientId;
 
         }
