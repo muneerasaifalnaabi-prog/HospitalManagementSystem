@@ -227,6 +227,10 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void scheduleAppointment(Appointment appointment) {
+        if (appointment ==null){
+            System.out.println("Invalid appointment");
+            return;
+        }
 
     }
 
