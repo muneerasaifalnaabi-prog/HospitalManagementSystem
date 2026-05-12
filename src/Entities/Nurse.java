@@ -1,12 +1,13 @@
 package Entities;
 
 import Utils.Constants;
+import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.util.List;
 
 
-public class Nurse extends Person {
+public class Nurse extends Person implements Displayable {
     private String nurseId;
     private String departmentId;
     private String shift;
