@@ -323,6 +323,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public void add(Object entity) {
         if (entity instanceof Appointment appointment){
             appointments.add(appointment);
+            System.out.println("Appointment added successfully");
         }
 
     }
