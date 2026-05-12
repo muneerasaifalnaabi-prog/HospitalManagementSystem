@@ -72,16 +72,18 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setDailyCharges(double dailyCharges) {
         this.dailyCharges = dailyCharges;
     }
-    public long calculateStayDuration(){
+
+    public long calculateStayDuration() {
         if (dischargeDate == null) {
             return ChronoUnit.DAYS.between(admissionDate, LocalDate.now());
         }
 
         return ChronoUnit.DAYS.between(admissionDate, dischargeDate);
     }
-    public Double calculateTotalCharges(){
+
+    public Double calculateTotalCharges() {
         long days = calculateStayDuration();
-        return dailyCharges*days;
+        return dailyCharges * days;
     }
 
     @Override
@@ -97,6 +99,38 @@ public class InPatient extends Patient implements Displayable , Billable {
     @Override
     public void processPayment(double amount) {
 
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println(this.toString());
+
+
+    }
+
+    @Override
+    public void displaySummary() {
+        System.out.println(
+                "InPatient: " + getFirstName() + " " + getLastName() +
+                        ", Room: " + roomNumber +
+                        ", Bed: " + bedNumber +
+                        ", Admission: " + admissionDate +
+                        ", Doctor ID: " + admittingDoctorId
+        );
+
+    }
+
+    @Override
+    public String toString() {
+        return "InPatient{" +
+                "admissionDate=" + admissionDate +
+                ", dischargeDate=" + dischargeDate +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", bedNumber='" + bedNumber + '\'' +
+                ", admittingDoctorId='" + admittingDoctorId + '\'' +
+                ", dailyCharges=" + dailyCharges +
+                '}';
     }
 }
 
