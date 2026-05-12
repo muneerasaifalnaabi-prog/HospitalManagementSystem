@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -22,7 +23,9 @@ public class Surgeon extends Doctor implements Displayable {
     }
 
     public void setSurgeriesPerformed(int surgeriesPerformed) {
-        this.surgeriesPerformed = surgeriesPerformed;
+        if (HelperUtils.isValidNumber(surgeriesPerformed, 0, Integer.MAX_VALUE)) {
+            this.surgeriesPerformed = surgeriesPerformed;
+        }
     }
 
     public List<String> getSurgeryTypes() {
