@@ -1,11 +1,12 @@
 package Entities;
 
 import Utils.Constants;
+import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Appointment {
+public class Appointment implements Displayable {
     private String appointmentId;
     private String patientId;
     private String doctorId;
@@ -118,6 +119,12 @@ public  Appointment(){
     public  void displayInfo(){
         System.out.println(this.toString());
     }
+
+    @Override
+    public void displaySummary() {
+
+    }
+
     public void addNotes(String notes){
     this.notes=notes;
         System.out.println("Notes :"+ notes);
