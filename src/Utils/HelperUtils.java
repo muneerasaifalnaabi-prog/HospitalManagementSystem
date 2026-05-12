@@ -1,5 +1,6 @@
 package Utils;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class HelperUtils {
@@ -29,6 +30,9 @@ public class HelperUtils {
     }
     public static boolean isValidString(String str, String regex) {
         return isNotNull(str) && Pattern.matches(regex, str);
+    }
+    public static String generateId() {
+        return UUID.randomUUID().toString();
     }
 
 
