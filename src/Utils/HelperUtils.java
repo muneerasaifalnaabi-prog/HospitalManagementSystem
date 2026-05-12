@@ -15,6 +15,9 @@ public class HelperUtils {
     public static boolean isNotNull(String str) {
         return  str !=null || !str.isEmpty();
     }
+    public static boolean isValidString(String str) {
+        return isNotNull(str);
+    }
 
 
 }
