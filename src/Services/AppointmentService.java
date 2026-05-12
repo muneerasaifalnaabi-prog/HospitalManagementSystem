@@ -380,6 +380,12 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public void searchById(String id) {
         Appointment appointment =getAppointmentById(id);
 
+        if (appointment != null){
+            System.out.println(appointment);
+        }
+        else{
+            System.out.println("Appointment not found");
+        }
 
     }
 }
