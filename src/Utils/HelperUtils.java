@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
 public class HelperUtils {
     //Null Check Methods
 
-    public Boolean isNull(Object obj) {
+    public static Boolean isNull(Object obj) {
         return obj == null;
     }
 
-    public Boolean isNull(String str) {
+    public static Boolean isNull(String str) {
         return str == null || str.isEmpty();
 
     }
