@@ -96,8 +96,12 @@ public Doctor(){}
     @Override
     public void displayInfo(){
         super.displayInfo();
-        toString();
+        System.out.println(this.toString());
 
+
+    }
+    @Override
+    public void displaySummary(){
 
     }
     public void assignPatient(String patient){
