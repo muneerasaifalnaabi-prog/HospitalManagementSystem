@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Services.PatientService.getPatients;
+
 public class DoctorService {
 
     static Scanner scanner = new Scanner(System.in);
@@ -318,8 +320,32 @@ public void assignPatient(String doctorId, String patientId){
 }
 //i will see later
 public void assignPatient(String doctorId, List<String> patientIds){
+    for (Doctor doctor : doctors){
+        if(doctor.getId().equals(doctorId)){
+            for(Patient p : getPatients()){
+                for(String x : patientIds){
+                    if(p.getId().equals(x)){
+                        doctor.getAssignedPatients().add(String.valueOf(p));
+                        System.out.println("Patient assigned successfully.");
+                    }else{
+                        System.out.println("Patient not assigned successfully.");
+                    }
+
+                }
+
+            }
+
+        }else{
+            System.out.println("Doctor not found");
+        }
+
+
+    }
 
 }
+
+
+
 public void displayDoctors(String specialization){
     System.out.println("===== All Doctors by specialization =====");
     boolean found =false;

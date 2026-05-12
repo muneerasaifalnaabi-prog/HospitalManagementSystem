@@ -14,6 +14,9 @@ public class PatientService {
 
     static Scanner scanner = new Scanner(System.in);
     static List<Patient> patients = new ArrayList<>();
+    public static List<Patient> getPatients(){
+        return patients;
+    }
 
     public void addaddPatients() {
 
