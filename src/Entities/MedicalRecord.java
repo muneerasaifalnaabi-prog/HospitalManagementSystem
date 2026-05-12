@@ -1,8 +1,15 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.time.LocalDate;
 
-public class MedicalRecord {
+public class MedicalRecord implements Displayable {
+    @Override
+    public void displaySummary() {
+
+    }
+
     private String recordId;
     private String patientId;
     private String doctorId;
