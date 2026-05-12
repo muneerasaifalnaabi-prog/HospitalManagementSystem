@@ -378,6 +378,8 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void searchById(String id) {
+        Appointment appointment =getAppointmentById(id);
+
 
     }
 }
