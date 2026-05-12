@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Billable;
 import interfaces.Displayable;
 
@@ -30,7 +31,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setAdmissionDate(LocalDate admissionDate) {
-        this.admissionDate = admissionDate;
+        if (HelperUtils.isNotNull(admissionDate)) {
+            this.admissionDate = admissionDate;
+        }
     }
 
     public LocalDate getDischargeDate() {
@@ -38,7 +41,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setDischargeDate(LocalDate dischargeDate) {
-        this.dischargeDate = dischargeDate;
+        if (HelperUtils.isNotNull(dischargeDate)) {
+            this.dischargeDate = dischargeDate;
+        }
     }
 
     public String getRoomNumber() {
@@ -46,7 +51,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+        if (HelperUtils.isValidString(roomNumber)) {
+            this.roomNumber = roomNumber;
+        }
     }
 
     public String getBedNumber() {
