@@ -4,11 +4,12 @@ public class MenuMessege {
     public static String MAIN_MENU_MESSEGE= """
             1. Patient Management
             2. Doctor Management
-            3. Nurse Menu
-            4. MedicalRecord Menu
-            5. Appointment Menu
-            6. Department Menu
-           
+            3. Nurse Management
+            4. Appointment Management
+            5. Medical Records Management
+            6. Department Management
+            7. Reports and Statistics
+            8. Exit
             """;
     public static String PATIENT_MENU_MESSEGE= """
            1.1 Register New Patient 
