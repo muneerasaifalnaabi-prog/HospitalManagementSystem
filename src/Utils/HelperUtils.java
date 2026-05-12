@@ -18,6 +18,14 @@ public class HelperUtils {
     public static boolean isValidString(String str) {
         return isNotNull(str);
     }
+    public static boolean isValidString(String str, int minLength) {
+        return isNotNull(str) && str.length()<=minLength;
+    }
+    public static boolean isValidString(String str, int minLength, int maxLength) {
+        return isNotNull(str)
+                && str.length() >=minLength && str.length() <= maxLength;
+    }
+
 
 
 }
