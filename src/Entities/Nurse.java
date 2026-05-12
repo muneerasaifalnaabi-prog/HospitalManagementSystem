@@ -97,14 +97,17 @@ public class Nurse extends Person implements Displayable {
                 '}';
     }
     /*====================== */
-    public void  assignPatients(Patient patient){
-        assignedPatients.add(patient);
-        System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
-
+    public void  assignPatients(Patient patient) {
+        if (HelperUtils.isNotNull(patient)) {
+            assignedPatients.add(patient);
+            System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
+        }
     }
-    public void  removePatient(Patient patient){
-        assignedPatients.remove(patient);
-        System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
+    public void  removePatient(Patient patient) {
+        if (HelperUtils.isNotNull(patient) && assignedPatients.contains(patient)) {
+            assignedPatients.remove(patient);
+            System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
+        }
     }
 
 }
