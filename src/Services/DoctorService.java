@@ -314,6 +314,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public void addDoctor(Doctor doctor){
         doctors.add(doctor);
     }
+
 public void assignPatient(String doctorId, String patientId){
     Patient patient =new Patient();
     patient.setId(doctorId);
@@ -422,12 +423,18 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
     public void add(Object entity) {
         if (entity instanceof  Doctor doctor){
             doctors.add(doctor);
+            System.out.println("Doctor added successfully");
         }
+        else {
+        System.out.println("Invalid entity type");
+
+    }
 
     }
 
     @Override
     public void remove(String id) {
+        Doctor doctor =getDoctorById(id);
 
     }
 
