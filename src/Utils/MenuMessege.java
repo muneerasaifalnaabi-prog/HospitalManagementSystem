@@ -38,13 +38,13 @@ public static String DOCTOR_MENU_MESSEGE= """
            2.10 Remove Doctor
     """;
     public static String NURSE_MENU_MESSEGE= """
-           1. Add Nurse 
-           2. edit Nurse
-           3. remove Nurse
-           4. Search Nurses By Department
-           5. Search Nurses By Shift
-           6. Display All Nurses
-           7. exit Nurse
+            3.1 Add Nurse
+            3.2 View All Nurses
+            3.3 View Nurses by Department
+                                  3.4 View Nurses by Shift
+                                  3.5 Assign Nurse to Patient
+                                  3.6 Update Nurse Information
+                                  3.7 Remove Nurse
     """;
     public static String DEPARTMENT_MENU_MESSEGE= """
            1. Add Department 
