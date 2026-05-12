@@ -144,15 +144,17 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         }
     }
     public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
-        List<MedicalRecord> medicalRecords = new ArrayList<>();
+
+        List<MedicalRecord> result = new ArrayList<>();
+
         for (MedicalRecord record : medicalRecords) {
+
             if (record.getPatientId().equals(patientId)) {
-                medicalRecords.add(record);
-                System.out.println("Medical Record added successfully.");
+                result.add(record);
             }
         }
-        return medicalRecords;
 
+        return result;
     }
     public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
         List<MedicalRecord> medicalRecords = new ArrayList<>();
