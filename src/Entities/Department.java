@@ -107,10 +107,12 @@ public class Department implements Displayable {
     }
 
     public void setAvailableBeds(int availableBeds) {
-        this.availableBeds = availableBeds;
+        if (HelperUtils.isPositive(bedCapacity)) {
+            this.availableBeds = availableBeds;
+        }
     }
     public void assignDoctor(String doctorid){
-        if(!doctors.contains(doctorid)){
+        if (HelperUtils.isValidString(doctorid) && !doctors.contains(doctorid)) {
             doctors.add(doctorid);
             System.out.println("Doctor" +doctorid + "assigend to"+departmentName);
 
