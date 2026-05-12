@@ -41,13 +41,13 @@ public class Surgeon extends Doctor implements Displayable {
         this.operationTheatreAccess = operationTheatreAccess;
     }
 
-    public boolean  performSurgery(String surgeryType){
+    public boolean performSurgery(String surgeryType) {
 
-        if(!surgeryTypes.contains(surgeryType)){
+        if (!operationTheatreAccess) {
             return false;
         }
 
-        if(operationTheatreAccess){
+        if (surgeryTypes == null || !surgeryTypes.contains(surgeryType)) {
             return false;
         }
 

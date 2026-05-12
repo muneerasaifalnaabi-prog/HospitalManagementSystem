@@ -98,39 +98,39 @@ public class Patient extends Person implements Displayable {
 
     @Override
     public void displayInfo(){
-        super.displayInfo();
         System.out.println(this.toString());
 
     }
-    public void addMedicalRecord(String medicalRecord ){
+    public void addMedicalRecord(String medicalRecord) {
+        if (medicalRecords == null) {
+            medicalRecords = new java.util.ArrayList<>();
+        }
         medicalRecords.add(medicalRecord);
-
     }
     public void addAppointment(String appointment){
         appointments.add(appointment);
     }
-    public void updateInsurance(String updated){
-        if (!updated.isEmpty()){
-            this.insuranceId=updated;
+    public void updateInsurance(String updated) {
+        if (updated != null && !updated.isEmpty()) {
+            this.insuranceId = updated;
             System.out.println(Constants.INSURANCE_UPDATE_SUCCESSFULLY);
+        } else {
+            System.out.println("Insurance ID cannot be empty");
         }
-        System.out.println("insuranceId Cannot be empty ");
     }
     public void updateContact(String phone){
-        Patient p = new Patient();
-        p.setPhoneNumber(phone);
+        this.setPhoneNumber(phone);
 
     }
     public void updateContact(String phone, String email){
-        Patient p = new Patient();
-        p.setPhoneNumber(phone);
-        p.setEmail(email);
+        
+        this.setPhoneNumber(phone);
+        this.setEmail(email);
     }
     public void updateContact(String phone, String email, String address){
-        Patient p = new Patient();
-        p.setPhoneNumber(phone);
-        p.setEmail(email);
-        p.setAddress(address);
+        this.setPhoneNumber(phone);
+        this.setEmail(email);
+        this.setAddress(address);
     }
 
     @Override
