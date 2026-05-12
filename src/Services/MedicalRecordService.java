@@ -217,15 +217,45 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     @Override
     public void getAll() {
 
-    }
+        if (medicalRecords.isEmpty()) {
+            System.out.println("No medical records found");
+            return;
+        }
 
+        for (MedicalRecord record : medicalRecords) {
+            System.out.println(record);
+        }
+    }
     @Override
     public void search(String keyword) {
 
+        boolean found = false;
+
+        for (MedicalRecord record : medicalRecords) {
+
+            if (record.getPatientId().equalsIgnoreCase(keyword)
+                    || record.getDoctorId().equalsIgnoreCase(keyword)
+                    || record.getDiagnosis().equalsIgnoreCase(keyword)) {
+
+                System.out.println(record);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No records found");
+        }
     }
 
     @Override
     public void searchById(String id) {
 
+        MedicalRecord record = getMedicalRecordById(id);
+
+        if (record != null) {
+            System.out.println(record);
+        } else {
+            System.out.println("Record not found");
+        }
     }
 }
