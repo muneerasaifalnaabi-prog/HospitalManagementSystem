@@ -1,9 +1,11 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.time.LocalDate;
 import java.util.List;
 
-public class Consultant extends Doctor{
+public class Consultant extends Doctor implements Displayable {
    private List<String> consultationTypes;
    private Boolean onlineConsultationAvailable;
    private int consultationDuration;
