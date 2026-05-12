@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -32,7 +33,9 @@ public class Consultant extends Doctor {
     }
 
     public void setOnlineConsultationAvailable(Boolean onlineConsultationAvailable) {
-        this.onlineConsultationAvailable = onlineConsultationAvailable;
+        if (HelperUtils.isNotNull(onlineConsultationAvailable)) {
+            this.onlineConsultationAvailable = onlineConsultationAvailable;
+        }
     }
 
     public int getConsultationDuration() {
