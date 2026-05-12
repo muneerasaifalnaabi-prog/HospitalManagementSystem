@@ -102,6 +102,12 @@ public Doctor(){}
     }
     @Override
     public void displaySummary(){
+        System.out.println(
+                "Doctor: Dr. " + getFirstName() + " " + getLastName() +
+                        ", Specialization: " + specialization +
+                        ", Experience: " + experienceYears + " years" +
+                        ", Fee: " + consultationFee
+        );
 
     }
     public void assignPatient(String patient){
