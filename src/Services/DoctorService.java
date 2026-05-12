@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Department;
 import Entities.Doctor;
 import Entities.Patient;
 import Utils.MenuMessege;
@@ -447,6 +448,14 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
 
     @Override
     public void getAll() {
+        if (doctors.isEmpty()) {
+            System.out.println("No departments found");
+            return;
+        }
+
+        for (Doctor d : doctors) {
+            System.out.println(d);
+        }
 
     }
 
