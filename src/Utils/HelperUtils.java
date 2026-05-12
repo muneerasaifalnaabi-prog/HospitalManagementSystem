@@ -1,5 +1,7 @@
 package Utils;
 
+import java.util.regex.Pattern;
+
 public class HelperUtils {
     public Boolean isNull(Object obj) {
         return obj == null;
@@ -25,6 +27,11 @@ public class HelperUtils {
         return isNotNull(str)
                 && str.length() >=minLength && str.length() <= maxLength;
     }
+    public static boolean isValidString(String str, String regex) {
+        return isNotNull(str) && Pattern.matches(regex, str);
+    }
+
+
 
 
 
