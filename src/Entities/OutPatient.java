@@ -1,9 +1,11 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.time.LocalDate;
 import java.util.List;
 
-public class OutPatient extends Patient {
+public class OutPatient extends Patient implements Displayable {
     private int visitCount;
     private LocalDate lastVisitDate;
     private String preferredDoctorId;
