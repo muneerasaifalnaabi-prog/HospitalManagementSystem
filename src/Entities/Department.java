@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.util.List;
@@ -46,7 +47,9 @@ public class Department implements Displayable {
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+        if (HelperUtils.isValidString(departmentId, 2)) {
+            this.departmentId = departmentId;
+        }
     }
 
     public String getDepartmentName() {
@@ -54,7 +57,9 @@ public class Department implements Displayable {
     }
 
     public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+        if (HelperUtils.isValidString(departmentName, 3)) {
+            this.departmentName = departmentName;
+        }
     }
 
     public String getHeadDoctorId() {
@@ -62,7 +67,9 @@ public class Department implements Displayable {
     }
 
     public void setHeadDoctorId(String headDoctorId) {
-        this.headDoctorId = headDoctorId;
+        if (HelperUtils.isValidString(headDoctorId, 2)) {
+            this.headDoctorId = headDoctorId;
+        }
     }
 
     public List<String> getDoctors() {
@@ -70,7 +77,9 @@ public class Department implements Displayable {
     }
 
     public void setDoctors(List<String> doctors) {
-        this.doctors = doctors;
+        if (HelperUtils.isNotNull(doctors)) {
+            this.doctors = doctors;
+        }
     }
 
     public List<Nurse> getNurses() {
@@ -78,7 +87,9 @@ public class Department implements Displayable {
     }
 
     public void setNurses(List<Nurse> nurses) {
-        this.nurses = nurses;
+        if (HelperUtils.isNotNull(nurses)) {
+            this.nurses = nurses;
+        }
     }
 
     public int getBedCapacity() {
@@ -86,7 +97,9 @@ public class Department implements Displayable {
     }
 
     public void setBedCapacity(int bedCapacity) {
-        this.bedCapacity = bedCapacity;
+        if (HelperUtils.isPositive(bedCapacity)) {
+            this.bedCapacity = bedCapacity;
+        }
     }
 
     public int getAvailableBeds() {
