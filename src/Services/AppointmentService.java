@@ -347,6 +347,14 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void getAll() {
+        if (appointments.isEmpty()) {
+            System.out.println("No appointments found");
+            return;
+        }
+
+        for (Appointment a : appointments) {
+            System.out.println(a);
+        }
 
     }
 
