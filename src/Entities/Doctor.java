@@ -53,7 +53,9 @@ public Doctor(){}
     }
 
     public void setQualification(String qualification) {
-        this.qualification = qualification;
+        if (HelperUtils.isValidString(qualification, 2)) {
+            this.qualification = qualification;
+        }
     }
 
     public int getExperienceYears() {
