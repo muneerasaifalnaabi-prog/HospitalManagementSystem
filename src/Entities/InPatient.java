@@ -114,6 +114,10 @@ public class InPatient extends Patient implements Displayable , Billable {
     @Override
     public void processPayment(double amount) {
         double total =calculateTotalCharges();
+        if (amount>=total){
+            System.out.println("Payment succesful");
+            System.out.println("Change :"+(amount-total));
+        }
 
 
     }
