@@ -2,6 +2,7 @@ package Services;
 
 import Entities.Appointment;
 import Utils.MenuMessege;
+import interfaces.Appointable;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AppointmentService extends BaseService implements Manageable, Searchable {
+public class AppointmentService extends BaseService implements Manageable, Searchable , Appointable {
     static Scanner scanner = new Scanner(System.in);
     static List<Appointment> appointments = new ArrayList<>();
     public void addAppointments() {
@@ -223,6 +224,17 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         System.out.println("===new Appointment ===");
         appointments.add(appointment);
     }
+
+    @Override
+    public void scheduleAppointment(Appointment appointment) {
+
+    }
+
+    @Override
+    public void cancelAppointment(Appointment appointment) {
+
+    }
+
     public void rescheduleAppointment(String appointmentId, LocalDate newDate){
         for (Appointment a : appointments) {
             if (a.getAppointmentId().equals(appointmentId)) {
