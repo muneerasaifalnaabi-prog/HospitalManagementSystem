@@ -1,6 +1,7 @@
 package Entities;
 
 import Utils.Constants;
+import Utils.HelperUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,7 +43,9 @@ public Doctor(){}
     }
 
     public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+        if (HelperUtils.isValidString(specialization, 3)) {
+            this.specialization = specialization;
+        }
     }
 
     public String getQualification() {

@@ -125,10 +125,10 @@ public class Department implements Displayable {
         }
     }
 
-    //i will complete later
+
     public void updateBedAvailability(int beds) {
 
-        if (beds >= 0 && beds <= bedCapacity) {
+        if (HelperUtils.isValidNumber(beds, 0, bedCapacity)) {
             availableBeds = beds;
             System.out.println("Available beds updated.");
         } else {
