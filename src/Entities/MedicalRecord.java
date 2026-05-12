@@ -10,6 +10,7 @@ public class MedicalRecord implements Displayable {
     public void displayInfo() {
         System.out.println(this.toString());
     }
+
     @Override
     public void displaySummary() {
         System.out.println(
@@ -69,7 +70,7 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setDoctorId(String doctorId) {
-        if (HelperUtils.isValidString(doctorId)) {
+        if (HelperUtils.isNotNull(doctorId)) {
             this.doctorId = doctorId;
         }
     }
@@ -79,7 +80,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
+        if (HelperUtils.isValidDate(String.valueOf(visitDate))) {
+            this.visitDate = visitDate;
+        }
     }
 
     public String getDiagnosis() {
@@ -87,7 +90,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
+        if (HelperUtils.isValidString(diagnosis)) {
+            this.diagnosis = diagnosis;
+        }
     }
 
     public String getPrescription() {
@@ -95,7 +100,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setPrescription(String prescription) {
-        this.prescription = prescription;
+        if (HelperUtils.isValidString(prescription)) {
+            this.prescription = prescription;
+        }
     }
 
     public String getTestResults() {
@@ -103,7 +110,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setTestResults(String testResults) {
-        this.testResults = testResults;
+        if (HelperUtils.isValidString(testResults)) {
+            this.testResults = testResults;
+        }
     }
 
     public String getNotes() {
@@ -111,8 +120,12 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setNotes(String notes) {
+        if (HelperUtils.isValidString(notes)) {
+
+        }
         this.notes = notes;
     }
+
 
     @Override
     public String toString() {
