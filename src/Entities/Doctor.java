@@ -1,12 +1,13 @@
 package Entities;
 
 import Utils.Constants;
+import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements Displayable {
     private String doctorId;
     private String specialization;
     private String qualification;

@@ -1,8 +1,20 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.util.List;
 
-public class Department {
+public class Department implements Displayable {
+    @Override
+    public void displayInfo() {
+
+    }
+
+    @Override
+    public void displaySummary() {
+
+    }
+
     private String departmentId;
     private String departmentName;
     private String headDoctorId;
