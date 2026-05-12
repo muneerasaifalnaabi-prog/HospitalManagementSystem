@@ -316,36 +316,48 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         doctors.add(doctor);
     }
 
-public void assignPatient(String doctorId, String patientId){
-    Patient patient =new Patient();
-    patient.setId(doctorId);
-    patient.setId(patientId);
-    System.out.println("Assigning Patient");
-}
-//i will see later
-public void assignPatient(String doctorId, List<String> patientIds){
-    for (Doctor doctor : doctors){
-        if(doctor.getId().equals(doctorId)){
-            for(Patient p : getPatients()){
-                for(String x : patientIds){
-                    if(p.getId().equals(x)){
-                        doctor.getAssignedPatients().add(String.valueOf(p));
-                        System.out.println("Patient assigned successfully.");
-                    }else{
-                        System.out.println("Patient not assigned successfully.");
-                    }
+    public void assignPatient(String doctorId, String patientId) {
 
-                }
+        Doctor doctor = getDoctorById(doctorId);
 
-            }
-
-        }else{
+        if (doctor == null) {
             System.out.println("Doctor not found");
+            return;
         }
 
+        for (Patient p : patientService.getPatients()) {
 
+            if (p.getId().equals(patientId)) {
+
+                doctor.getAssignedPatients().add(patientId);
+                System.out.println("Patient assigned successfully");
+                return;
+            }
+        }
+
+        System.out.println("Patient not found");
+    }
+//i will see later
+public void assignPatient(String doctorId, List<String> patientIds) {
+
+    Doctor doctor = getDoctorById(doctorId);
+
+    if (doctor == null) {
+        System.out.println("Doctor not found");
+        return;
     }
 
+    for (String patientId : patientIds) {
+
+        for (Patient p : patientService.getPatients()) {
+
+            if (p.getId().equals(patientId)) {
+                doctor.getAssignedPatients().add(patientId);
+                System.out.println("Patient assigned: " + patientId);
+                break;
+            }
+        }
+    }
 }
 
 
