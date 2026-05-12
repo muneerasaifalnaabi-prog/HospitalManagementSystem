@@ -6,7 +6,18 @@ import java.time.LocalDate;
 
 public class MedicalRecord implements Displayable {
     @Override
+    public void displayInfo() {
+        System.out.println(this.toString());
+    }
+    @Override
     public void displaySummary() {
+        System.out.println(
+                "Medical Record ID: " + recordId +
+                        ", Patient ID: " + patientId +
+                        ", Doctor ID: " + doctorId +
+                        ", Visit Date: " + visitDate +
+                        ", Diagnosis: " + diagnosis
+        );
 
     }
 
@@ -92,10 +103,6 @@ public class MedicalRecord implements Displayable {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-    public void displayInfo(){
-        toString();
-
     }
 
     @Override
