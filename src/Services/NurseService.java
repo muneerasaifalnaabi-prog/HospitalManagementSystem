@@ -228,21 +228,59 @@ public void  displayNurses(){
     @Override
     public void add(Object entity) {
 
+        if (entity instanceof Nurse nurse) {
+            Nurses.add(nurse);
+            System.out.println("Nurse added successfully");
+        } else {
+            System.out.println("Invalid entity type");
+        }
     }
 
     @Override
     public void remove(String id) {
 
+        Nurse nurse = getNurseById(id);
+
+        if (nurse != null) {
+            Nurses.remove(nurse);
+            System.out.println("Nurse removed successfully");
+        } else {
+            System.out.println("Nurse not found");
+        }
     }
 
     @Override
     public void getAll() {
 
+        if (Nurses.isEmpty()) {
+            System.out.println("No nurses found");
+            return;
+        }
+
+        for (Nurse n : Nurses) {
+            System.out.println(n);
+        }
     }
 
     @Override
     public void search(String keyword) {
 
+        boolean found = false;
+
+        for (Nurse n : Nurses) {
+
+            if (n.getFirstName().equalsIgnoreCase(keyword)
+                    || n.getDepartmentId().equalsIgnoreCase(keyword)
+                    || n.getShift().equalsIgnoreCase(keyword)) {
+
+                System.out.println(n);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No nurses found");
+        }
     }
 
     @Override
