@@ -333,6 +333,8 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void remove(String id) {
+        Appointment appointment = new Appointment();
+
 
     }
 
