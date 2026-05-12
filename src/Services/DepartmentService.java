@@ -89,59 +89,67 @@ public class DepartmentService extends BaseService implements Manageable, Search
         return null;
     }
     public void editDepartment(String departmentId) {
-        for (Department d : departments) {
-            if (d.getDepartmentId().equals(departmentId)) {
-                System.out.println("Enter new Department Name");
-                String newDepartmentName = scanner.nextLine();
-                d.setDepartmentName(newDepartmentName);
-                System.out.println("Enter new Head Doctor ID");
-                String newHeadDoctorId = scanner.nextLine();
-                d.setHeadDoctorId(newHeadDoctorId);
-                System.out.println("Enter new Bed Capacity");
-                int bedCapacity = Integer.parseInt(scanner.nextLine());
-                d.setBedCapacity(bedCapacity);
-                System.out.println("Enter new Available Beds");
-                int availableBeds = Integer.parseInt(scanner.nextLine());
-                d.setAvailableBeds(availableBeds);
 
-                System.out.println("Department Edited Successfully");
-            }
-            else  {
-                System.out.println("Department doesn't exist");
-            }
+        Department department = getDepartmentById(departmentId);
+
+        if (department != null) {
+
+            System.out.println("Enter new Department Name");
+            department.setDepartmentName(scanner.nextLine());
+
+            System.out.println("Enter new Head Doctor ID");
+            department.setHeadDoctorId(scanner.nextLine());
+
+            System.out.println("Enter new Bed Capacity");
+            department.setBedCapacity(Integer.parseInt(scanner.nextLine()));
+
+            System.out.println("Enter new Available Beds");
+            department.setAvailableBeds(Integer.parseInt(scanner.nextLine()));
+
+            System.out.println("Department Edited Successfully");
+
+        } else {
+            System.out.println("Department doesn't exist");
         }
     }
     public void deleteDepartment(String departmentId) {
-        for (Department d : departments) {
-            if (d.getDepartmentId().equals(departmentId)) {
-                departments.remove(d);
-                System.out.println("Department Deleted Successfully");
-            } else {
-                System.out.println("Department doesn't exist");
-            }
+
+        Department department = getDepartmentById(departmentId);
+
+        if (department != null) {
+            departments.remove(department);
+            System.out.println("Department Deleted Successfully");
+        } else {
+            System.out.println("Department doesn't exist");
         }
-
-
-
-}
+    }
 public void displayDepartments() {
     for (Department d : departments) {
         System.out.println(d);
     }
 }
-public void assignDoctorByDepartment(String doctorId,String departmentId) {
-    Department department = getDepartmentById(doctorId);
-    if (department != null) {
-        department.assignDoctor(doctorId);
-        System.out.println("Doctor Assigned Successfully");
+    public void assignDoctorByDepartment(String doctorId, String departmentId) {
+
+        Department department = getDepartmentById(departmentId);
+
+        if (department != null) {
+            department.assignDoctor(doctorId);
+            System.out.println("Doctor Assigned Successfully");
+        } else {
+            System.out.println("Department doesn't exist");
+        }
     }
-    else  {
-        System.out.println("Department doesn't exist");
-    }
-}
 
     @Override
     public void add(Object entity) {
+        if (entity instanceof Department department){
+            departments.add(department);
+            System.out.println("Department added successfully");
+        }
+        else {
+            System.out.println("Invalid entity type");
+
+        }
 
     }
 
