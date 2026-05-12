@@ -360,6 +360,19 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void search(String keyword) {
+        boolean found =false;
+        for (Appointment a :appointments){
+            if (a.getPatientId().equalsIgnoreCase(keyword)
+                    || a.getDoctorId().equalsIgnoreCase(keyword)
+                    || a.getStatus().equalsIgnoreCase(keyword)
+            ){
+                System.out.println(a);
+                found =true;
+            }
+        }
+        if (!found){
+            System.out.println("No matching appointments found");
+        }
 
     }
 
