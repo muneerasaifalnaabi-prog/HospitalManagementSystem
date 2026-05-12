@@ -22,7 +22,9 @@ public class Consultant extends Doctor {
     }
 
     public void setConsultationTypes(List<String> consultationTypes) {
-        this.consultationTypes = consultationTypes;
+        if (HelperUtils.isNotNull(consultationTypes)) {
+            this.consultationTypes = consultationTypes;
+        }
     }
 
     public Boolean getOnlineConsultationAvailable() {
