@@ -435,6 +435,13 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
     @Override
     public void remove(String id) {
         Doctor doctor =getDoctorById(id);
+        if (doctor !=null){
+            doctors.remove(doctor);
+            System.out.println("doctor removed successfully");
+        }
+        else {
+            System.out.println("doctor not found");
+        }
 
     }
 
