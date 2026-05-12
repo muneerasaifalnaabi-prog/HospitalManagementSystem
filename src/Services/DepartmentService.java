@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Appointment;
 import Entities.Department;
 import Entities.Nurse;
 import interfaces.Manageable;
@@ -155,16 +156,33 @@ public void displayDepartments() {
 
     @Override
     public void remove(String id) {
+        Department department =getDepartmentById(id);
+        if (department !=null){
+            departments.remove(department);
+            System.out.println("department removed successfully");
+        }
+        else {
+            System.out.println("department not found");
+        }
 
     }
 
     @Override
     public void getAll() {
+        if (departments.isEmpty()) {
+            System.out.println("No departments found");
+            return;
+        }
+
+        for (Department a : departments) {
+            System.out.println(a);
+        }
 
     }
 
     @Override
     public void search(String keyword) {
+
 
     }
 
