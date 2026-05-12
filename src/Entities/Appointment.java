@@ -116,14 +116,24 @@ public  Appointment(){
         System.out.println(Constants.COMPLETED);
 
     }
+    @Override
     public  void displayInfo(){
         System.out.println(this.toString());
     }
 
     @Override
     public void displaySummary() {
+        System.out.println(
+                "Appintment ID" +appointmentId +
+                        "Patient Id "+patientId +
+                        "Doctor Id " +doctorId +
+                        "Date " + appointmentDate +
+                        "Status " + status
+        );
 
     }
+
+
 
     public void addNotes(String notes){
     this.notes=notes;
