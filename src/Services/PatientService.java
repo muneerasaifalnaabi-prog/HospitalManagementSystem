@@ -3,6 +3,9 @@ package Services;
 import Entities.Patient;
 import Utils.Constants;
 import Utils.MenuMessege;
+import interfaces.Manageable;
+import interfaces.Searchable;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PatientService {
+public class PatientService extends BaseService implements Manageable, Searchable {
 
     static Scanner scanner = new Scanner(System.in);
     static List<Patient> patients = new ArrayList<>();
@@ -360,5 +363,30 @@ public class PatientService {
                 default -> System.out.println("Invalid option");
             }
         }
+    }
+
+    @Override
+    public void add(Object entity) {
+
+    }
+
+    @Override
+    public void remove(String id) {
+
+    }
+
+    @Override
+    public void getAll() {
+
+    }
+
+    @Override
+    public void search(String keyword) {
+
+    }
+
+    @Override
+    public void searchById(String id) {
+
     }
 }
