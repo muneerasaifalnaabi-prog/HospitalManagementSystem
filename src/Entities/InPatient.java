@@ -95,6 +95,19 @@ public class InPatient extends Patient implements Displayable , Billable {
 
     @Override
     public void generateBill() {
+        long days = calculateStayDuration();
+        double total = calculateTotalCharges();
+
+        System.out.println("===== HOSPITAL BILL =====");
+        System.out.println("Patient ID: " + getPatientId());
+        System.out.println("Admission Date: " + admissionDate);
+        System.out.println("Discharge Date: " + dischargeDate);
+        System.out.println("Days Stayed: " + days);
+        System.out.println("Room Number: " + roomNumber);
+        System.out.println("Bed Number: " + bedNumber);
+        System.out.println("Daily Charges: " + dailyCharges);
+        System.out.println("TOTAL AMOUNT: " + total);
+        System.out.println("=========================");
 
     }
 
