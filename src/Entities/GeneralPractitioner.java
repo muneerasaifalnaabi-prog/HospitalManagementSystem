@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -22,7 +23,9 @@ public class GeneralPractitioner extends Doctor {
     }
 
     public void setWalkinAvailable(Boolean walkinAvailable) {
-        this.walkinAvailable = walkinAvailable;
+        if (HelperUtils.isNotNull(walkinAvailable)) {
+            this.walkinAvailable = walkinAvailable;
+        }
     }
 
     public Boolean getHomeVisitAvailable() {

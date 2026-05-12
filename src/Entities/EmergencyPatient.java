@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -24,7 +25,11 @@ public class EmergencyPatient extends InPatient {
     }
 
     public void setEmergencyType(String emergencyType) {
-        this.emergencyType = emergencyType;
+        if (HelperUtils.isValidString(emergencyType)) {
+            this.emergencyType = emergencyType;
+        } else {
+            System.out.println("InValid input");
+        }
     }
 
     public String getArrivalMode() {
@@ -32,7 +37,9 @@ public class EmergencyPatient extends InPatient {
     }
 
     public void setArrivalMode(String arrivalMode) {
-        this.arrivalMode = arrivalMode;
+        if (HelperUtils.isValidString(arrivalMode)) {
+            this.arrivalMode = arrivalMode;
+        }
     }
 
     public int getTriageLevel() {
@@ -40,8 +47,11 @@ public class EmergencyPatient extends InPatient {
     }
 
     public void setTriageLevel(int triageLevel) {
-        if (triageLevel >=1 && triageLevel <= 5) {
+        if (HelperUtils.isValidNumber(triageLevel, 1, 5)) {
             this.triageLevel = triageLevel;
+        }
+        else {
+            System.out.println("invalid input");
         }
 
     }
@@ -66,7 +76,9 @@ public class EmergencyPatient extends InPatient {
     }
 
     public void setAdmittedViaER(Boolean admittedViaER) {
-        this.admittedViaER = admittedViaER;
+        if (HelperUtils.isNotNull(admittedViaER)) {
+            this.admittedViaER = admittedViaER;
+        }
     }
 
     @Override
