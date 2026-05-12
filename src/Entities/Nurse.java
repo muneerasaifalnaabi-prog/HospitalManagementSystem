@@ -1,6 +1,7 @@
 package Entities;
 
 import Utils.Constants;
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -28,7 +29,9 @@ public class Nurse extends Person implements Displayable {
     }
 
     public void setNurseId(String nurseId) {
-        this.nurseId = nurseId;
+        if (HelperUtils.isNotNull(nurseId)) {
+            this.nurseId = nurseId;
+        }
     }
 
     public String getDepartmentId() {
