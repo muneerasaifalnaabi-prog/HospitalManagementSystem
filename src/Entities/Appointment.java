@@ -35,7 +35,9 @@ public  Appointment(){
     }
 
     public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
+        if (HelperUtils.isNotNull(appointmentId)) {
+            this.appointmentId = appointmentId;
+        }
     }
 
     public String getPatientId() {
@@ -43,15 +45,18 @@ public  Appointment(){
     }
 
     public void setPatientId(String patientId) {
-        this.patientId = patientId;
+        if (HelperUtils.isNotNull(patientId)) {
+            this.patientId = patientId;
+        }
     }
-
     public String getDoctorId() {
         return doctorId;
     }
 
     public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+        if (HelperUtils.isNotNull(doctorId)) {
+            this.doctorId = doctorId;
+        }
     }
 
     public LocalDate getAppointmentDate() {
