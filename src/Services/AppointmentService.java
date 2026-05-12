@@ -2,6 +2,8 @@ package Services;
 
 import Entities.Appointment;
 import Utils.MenuMessege;
+import interfaces.Manageable;
+import interfaces.Searchable;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AppointmentService  {
+public class AppointmentService extends BaseService implements Manageable, Searchable {
     static Scanner scanner = new Scanner(System.in);
     static List<Appointment> appointments = new ArrayList<>();
     public void addAppointments() {
@@ -293,4 +295,28 @@ public class AppointmentService  {
         }
     }
 
+    @Override
+    public void add(Object entity) {
+
+    }
+
+    @Override
+    public void remove(String id) {
+
+    }
+
+    @Override
+    public void getAll() {
+
+    }
+
+    @Override
+    public void search(String keyword) {
+
+    }
+
+    @Override
+    public void searchById(String id) {
+
+    }
 }
