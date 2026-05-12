@@ -61,7 +61,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setBedNumber(String bedNumber) {
-        this.bedNumber = bedNumber;
+        if (HelperUtils.isValidString(bedNumber)) {
+            this.bedNumber = bedNumber;
+        }
     }
 
     public String getAdmittingDoctorId() {
@@ -69,7 +71,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setAdmittingDoctorId(String admittingDoctorId) {
-        this.admittingDoctorId = admittingDoctorId;
+        if (HelperUtils.isValidString(admittingDoctorId)) {
+            this.admittingDoctorId = admittingDoctorId;
+        }
     }
 
     public double getDailyCharges() {
@@ -77,7 +81,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public void setDailyCharges(double dailyCharges) {
-        this.dailyCharges = dailyCharges;
+        if (HelperUtils.isPositive(dailyCharges)) {
+            this.dailyCharges = dailyCharges;
+        }
     }
 
     public long calculateStayDuration() {
