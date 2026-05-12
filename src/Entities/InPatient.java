@@ -113,6 +113,8 @@ public class InPatient extends Patient implements Displayable , Billable {
 
     @Override
     public void processPayment(double amount) {
+        double total =calculateTotalCharges();
+
 
     }
 
