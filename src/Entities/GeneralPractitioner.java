@@ -5,7 +5,7 @@ import interfaces.Displayable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class GeneralPractitioner extends Doctor implements Displayable {
+public class GeneralPractitioner extends Doctor {
     private Boolean walkinAvailable;
     private Boolean homeVisitAvailable;
     private Boolean vaccinationCertified;

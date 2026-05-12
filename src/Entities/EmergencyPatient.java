@@ -5,7 +5,7 @@ import interfaces.Displayable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class EmergencyPatient extends InPatient implements Displayable {
+public class EmergencyPatient extends InPatient  {
     private String emergencyType;
     private String arrivalMode;
     private int triageLevel;
