@@ -41,16 +41,21 @@ public class Surgeon extends Doctor implements Displayable {
     }
 
     public void setOperationTheatreAccess(Boolean operationTheatreAccess) {
-        this.operationTheatreAccess = operationTheatreAccess;
+        if (HelperUtils.isNotNull(operationTheatreAccess)) {
+            this.operationTheatreAccess = operationTheatreAccess;
+        }
     }
 
     public boolean performSurgery(String surgeryType) {
+        if (HelperUtils.isNull(surgeryType)) {
+            return false;
+        }
 
         if (!operationTheatreAccess) {
             return false;
         }
 
-        if (surgeryTypes == null || !surgeryTypes.contains(surgeryType)) {
+        if (HelperUtils.isNull(surgeryTypes) || !surgeryTypes.contains(surgeryType)) {
             return false;
         }
 
