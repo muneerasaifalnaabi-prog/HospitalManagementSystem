@@ -321,6 +321,9 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void add(Object entity) {
+        if (entity instanceof Appointment appointment){
+            appointments.add(appointment);
+        }
 
     }
 
