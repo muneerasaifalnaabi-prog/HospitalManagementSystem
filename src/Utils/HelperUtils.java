@@ -5,7 +5,7 @@ public class HelperUtils {
         return obj==null;
     }
     public Boolean isNull(String str ){
-        if (str.isEmpty()&& str.equals(null)){
+        if (str.isEmpty()|| str.equals(null)){
             return true;
         }
         return false;
