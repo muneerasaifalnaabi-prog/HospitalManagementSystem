@@ -69,6 +69,12 @@ public class Consultant extends Doctor {
     }
     @Override
     public void displaySummary(){
+        System.out.println(
+                "Consultant: Dr. " + getFirstName() + " " + getLastName() +
+                        ", Specialization: " + getSpecialization() +
+                        ", Duration: " + consultationDuration + " minutes" +
+                        ", Online Available: " + onlineConsultationAvailable
+        );
 
     }
 
