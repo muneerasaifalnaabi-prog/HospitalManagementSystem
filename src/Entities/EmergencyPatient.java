@@ -1,9 +1,11 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.time.LocalDate;
 import java.util.List;
 
-public class EmergencyPatient extends InPatient{
+public class EmergencyPatient extends InPatient implements Displayable {
     private String emergencyType;
     private String arrivalMode;
     private int triageLevel;
