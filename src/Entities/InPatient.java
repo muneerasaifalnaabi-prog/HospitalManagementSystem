@@ -1,12 +1,13 @@
 package Entities;
 
+import interfaces.Billable;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class InPatient extends Patient implements Displayable {
+public class InPatient extends Patient implements Displayable , Billable {
     private LocalDate admissionDate;
     private LocalDate dischargeDate;
     private String roomNumber;
@@ -82,5 +83,20 @@ public class InPatient extends Patient implements Displayable {
         long days = calculateStayDuration();
         return dailyCharges*days;
     }
+
+    @Override
+    public void calculateCharges() {
+
     }
+
+    @Override
+    public void generateBill() {
+
+    }
+
+    @Override
+    public void processPayment(double amount) {
+
+    }
+}
 
