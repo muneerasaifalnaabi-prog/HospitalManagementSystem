@@ -109,38 +109,39 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         return null;
     }
-    public void editMedicalRecord(MedicalRecord record) {
-        MedicalRecord editedRecord = getMedicalRecordById(record.getRecordId());
-        if (editedRecord != null) {
+    public void editMedicalRecord(String recordId) {
+
+        MedicalRecord record = getMedicalRecordById(recordId);
+
+        if (record != null) {
+
             System.out.println("Enter new Diagnosis:");
-            String diagnosis = scanner.nextLine();
-            record.setDiagnosis(diagnosis);
+            record.setDiagnosis(scanner.nextLine());
+
             System.out.println("Enter new Prescription:");
-            String prescription = scanner.nextLine();
-            record.setPrescription(prescription);
-            System.out.println("Enter New Test Results:");
-            String testResults = scanner.nextLine();
-            record.setTestResults(testResults);
+            record.setPrescription(scanner.nextLine());
 
-            System.out.println("Enter new Notes");
-            String notes = scanner.nextLine();
-            record.setNotes(notes);
+            System.out.println("Enter new Test Results:");
+            record.setTestResults(scanner.nextLine());
 
-            System.out.println("Medical Record added successfully.");
-        }
-        else  {
+            System.out.println("Enter new Notes:");
+            record.setNotes(scanner.nextLine());
+
+            System.out.println("Medical Record updated successfully.");
+
+        } else {
             System.out.println("Record Not Found");
         }
     }
     public void deleteMedicalRecord(String recordId) {
-        for (MedicalRecord record : medicalRecords) {
-            if (record.getRecordId().equals(recordId)) {
-                medicalRecords.remove(record);
-                System.out.println("Medical Record deleted successfully.");
-            }
-            else  {
-                System.out.println("Record Not Found");
-            }
+
+        MedicalRecord record = getMedicalRecordById(recordId);
+
+        if (record != null) {
+            medicalRecords.remove(record);
+            System.out.println("Medical Record deleted successfully.");
+        } else {
+            System.out.println("Record Not Found");
         }
     }
     public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
@@ -157,25 +158,29 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         return result;
     }
     public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
-        List<MedicalRecord> medicalRecords = new ArrayList<>();
+
+        List<MedicalRecord> result = new ArrayList<>();
+
         for (MedicalRecord record : medicalRecords) {
+
             if (record.getDoctorId().equals(doctorId)) {
-                medicalRecords.add(record);
-                System.out.println("Medical Record added successfully.");
+                result.add(record);
             }
         }
-        return medicalRecords;
+
+        return result;
     }
     public void displayPatientHistory(String patientId) {
-        List<MedicalRecord> medicalRecords = getMedicalRecordsByPatientId(patientId);
-        if (medicalRecords.isEmpty()) {
+
+        List<MedicalRecord> records = getMedicalRecordsByPatientId(patientId);
+
+        if (records.isEmpty()) {
             System.out.println("No medical records found");
             return;
         }
-        for (MedicalRecord record : medicalRecords) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                System.out.println(medicalRecords);
-            }
+
+        for (MedicalRecord record : records) {
+            System.out.println(record);
         }
     }
     public void displayAllMedicalRecords() {
@@ -188,11 +193,25 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     @Override
     public void add(Object entity) {
 
+        if (entity instanceof MedicalRecord record) {
+            medicalRecords.add(record);
+            System.out.println("Medical record added successfully");
+        } else {
+            System.out.println("Invalid entity type");
+        }
     }
 
     @Override
     public void remove(String id) {
 
+        MedicalRecord record = getMedicalRecordById(id);
+
+        if (record != null) {
+            medicalRecords.remove(record);
+            System.out.println("Medical record removed successfully");
+        } else {
+            System.out.println("Record not found");
+        }
     }
 
     @Override
