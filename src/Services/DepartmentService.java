@@ -182,7 +182,19 @@ public void displayDepartments() {
 
     @Override
     public void search(String keyword) {
+        boolean found =false;
 
+        for (Department d : departments){
+            if (d.getDepartmentName().equalsIgnoreCase(keyword)
+                    || d.getDepartmentId().equalsIgnoreCase(keyword)) {
+
+                System.out.println(d);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No department found");
+        }
 
     }
 
