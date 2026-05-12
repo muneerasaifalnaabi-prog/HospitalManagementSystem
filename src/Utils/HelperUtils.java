@@ -74,6 +74,10 @@ public class HelperUtils {
     public static boolean isFutureDate(Date date) {
         return date != null && date.after(new Date());
     }
+    public static boolean isPastDate(Date date) {
+        return date != null && date.before(new Date());
+    }
+
 
 
 
