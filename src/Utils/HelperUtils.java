@@ -65,6 +65,16 @@ public class HelperUtils {
             return false;
         }
     }
+    public static boolean isValidDate(Date date, Date minDate, Date maxDate) {
+        if (date == null) return false;
+        return date.after(minDate) && date.before(maxDate);
+    }
+
+    //Numeric Validation Methods
+    public static boolean isFutureDate(Date date) {
+        return date != null && date.after(new Date());
+    }
+
 
 
 
