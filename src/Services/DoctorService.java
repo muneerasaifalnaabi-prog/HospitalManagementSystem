@@ -153,7 +153,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         for (Doctor d : doctors) {
 
-            if (d.getId().equals(doctorId)) {
+            if (d.getDoctorId().equals(doctorId)) {
                 return d;
             }
         }
@@ -310,6 +310,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         d.setSpecialization(specialization);
         d.setPhoneNumber(phone);
         d.setConsultationFee(consultationFee);
+        doctors.add(d);
 
     }
     public void addDoctor(Doctor doctor){
@@ -375,20 +376,25 @@ public void displayDoctors(String specialization){
         System.out.println("No doctors found");
     }
 }
-public void  displayDoctors(String departmentId, boolean showAvailableOnly){
-    System.out.println("===== All Doctors by departmentId =====");
-    boolean found =false;
-    for (Doctor d : doctors) {
-        if (d.getDepartmentId().equals(departmentId) && !d.getAvailableSlots().isEmpty()) {
-            d.displayInfo();
-            found = true;
+    public void displayDoctors(String departmentId, boolean showAvailableOnly) {
+
+        boolean found = false;
+
+        for (Doctor d : doctors) {
+
+            boolean matchDept = d.getDepartmentId().equals(departmentId);
+            boolean matchAvailability = !showAvailableOnly || !d.getAvailableSlots().isEmpty();
+
+            if (matchDept && matchAvailability) {
+                d.displayInfo();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No doctors found");
         }
     }
-    if (!found) {
-        System.out.println("No doctors found");
-    }
-}
-
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
         while (true) {
@@ -461,7 +467,7 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
     @Override
     public void getAll() {
         if (doctors.isEmpty()) {
-            System.out.println("No departments found");
+            System.out.println("No Doctor found");
             return;
         }
 
