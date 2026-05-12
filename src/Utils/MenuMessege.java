@@ -2,8 +2,8 @@ package Utils;
 
 public class MenuMessege {
     public static String MAIN_MENU_MESSEGE= """
-            1. Patient Menu
-            2. Doctor Menu
+            1. Patient Management
+            2.  Doctor Management
             3. Nurse Menu
             4. MedicalRecord Menu
             5. Appointment Menu
@@ -11,23 +11,30 @@ public class MenuMessege {
            
             """;
     public static String PATIENT_MENU_MESSEGE= """
-           1. Add Patient 
-           2. edit Patient
-           3. remove Patient
-           4. Search Patient
-           4. display All Patients
-           5. exit Patient
+           1.1 Register New Patient 
+           1.2 Register InPatient
+           1.3 Register OutPatient
+           1.4 Register Emergency Patient
+           1.5 View All Patients
+           1.6 Search Patient
+           1.7 Update Patient Information
+           1.8 Remove Patient
+           1.9 View Patient Medical History
+            
     """;
 
 
 public static String DOCTOR_MENU_MESSEGE= """
-           1. Add Doctor 
-           2. edit Doctor
-           3. remove Doctor
-           4. Search By Specialization
-           4. Display All Doctors
-           5. Display Available Doctors
-           5. exit Patient
+           2.1 Add Doctor
+           2.2 Add Surgeon
+                               2.3 Add Consultant
+                               2.4 Add General Practitioner
+                               2.5 View All Doctors
+                               2.6 Search Doctor by Specialization
+                               2.7 View Available Doctors
+                               2.8 Assign Patient to Doctor
+                               2.9 Update Doctor Information
+                               2.10 Remove Doctor
     """;
     public static String NURSE_MENU_MESSEGE= """
            1. Add Nurse 
