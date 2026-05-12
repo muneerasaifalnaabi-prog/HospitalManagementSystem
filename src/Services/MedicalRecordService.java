@@ -1,6 +1,8 @@
 package Services;
 
 import Entities.MedicalRecord;
+import interfaces.Manageable;
+import interfaces.Searchable;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MedicalRecordService {
+public class MedicalRecordService extends BaseService implements Manageable, Searchable {
     static Scanner scanner = new Scanner(System.in);
     static List<MedicalRecord> medicalRecords = new ArrayList<>();
 
@@ -181,4 +183,28 @@ public class MedicalRecordService {
     }
 
 
+    @Override
+    public void add(Object entity) {
+
+    }
+
+    @Override
+    public void remove(String id) {
+
+    }
+
+    @Override
+    public void getAll() {
+
+    }
+
+    @Override
+    public void search(String keyword) {
+
+    }
+
+    @Override
+    public void searchById(String id) {
+
+    }
 }
