@@ -115,15 +115,13 @@ public Doctor(){}
         System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
 
     }
-    public void removePatient(String rempatientId){
-        if (!rempatientId.equals(null)){
+    public void removePatient(String rempatientId) {
+        if (assignedPatients.contains(rempatientId)) {
             assignedPatients.remove(rempatientId);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
-        }
-        else {
+        } else {
             System.out.println("Patient not found in list");
         }
-
     }
     public void updateAvailability(List<String> newslot){
         this.availableSlots=new ArrayList<>(newslot);
