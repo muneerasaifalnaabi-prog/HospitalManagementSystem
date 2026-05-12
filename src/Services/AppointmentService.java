@@ -337,7 +337,10 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
         if (appointment !=null){
             appointments.remove(appointment);
-
+            System.out.println("Appointment removed successfully");
+        }
+        else {
+            System.out.println("Appointment not found");
         }
 
     }
