@@ -57,4 +57,28 @@ public class GeneralPractitioner extends Doctor {
         System.out.println("Doctor is not certified to administer vaccines.");
         return;
     }
+    @Override
+    public void displayInfo(){
+        System.out.println(this.toString());
+
+
+    }
+    @Override
+    public void displaySummary(){
+        System.out.println(
+                "General Practitioner: Dr. " + getFirstName() + " " + getLastName() +
+                        ", Walk-in: " + walkinAvailable +
+                        ", Home Visit: " + homeVisitAvailable +
+                        ", Vaccination Certified: " + vaccinationCertified
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralPractitioner{" +
+                "walkinAvailable=" + walkinAvailable +
+                ", homeVisitAvailable=" + homeVisitAvailable +
+                ", vaccinationCertified=" + vaccinationCertified +
+                '}';
+    }
 }
