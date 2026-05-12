@@ -41,6 +41,10 @@ public class HelperUtils {
     public static String generateId(String prefix) {
         return prefix + "-" + (int)(Math.random() * 100000);
     }
+    public static String generateId(String prefix, int length) {
+        String num = String.valueOf((long)(Math.random() * Math.pow(10, length)));
+        return prefix + "-" + num;
+    }
 
 
 
