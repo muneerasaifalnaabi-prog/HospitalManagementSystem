@@ -63,4 +63,13 @@ public class Consultant extends Doctor {
         System.out.println("Second Opinion Second opinion: further evaluation required / confirmed / alternative diagnosis suggested.");
 
     }
+
+    @Override
+    public String toString() {
+        return "Consultant{" +
+                "consultationTypes=" + consultationTypes +
+                ", onlineConsultationAvailable=" + onlineConsultationAvailable +
+                ", consultationDuration=" + consultationDuration +
+                '}';
+    }
 }
