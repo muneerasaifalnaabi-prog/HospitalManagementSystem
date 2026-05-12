@@ -75,6 +75,13 @@ public static String DOCTOR_MENU_MESSEGE= """
            5.6 Delete Medical Record
            5.7 Generate Patient History Report
     """;
+    public static String REPORT_MENU_MESSEGE= """
+            7.1 Daily Appointments Report
+            7.2 Doctor Performance Report
+            7.3 Department Occupancy Report
+            7.4 Patient Statistics
+            7.5 Emergency Cases Report
+    """;
 
 }
 
