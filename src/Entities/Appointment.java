@@ -74,7 +74,9 @@ public  Appointment(){
     }
 
     public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
+        if (HelperUtils.isNotNull(appointmentTime)) {
+            this.appointmentTime = appointmentTime;
+        }
     }
 
     public String getStatus() {
@@ -82,7 +84,9 @@ public  Appointment(){
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if (HelperUtils.isNotNull(status)) {
+            this.status = status;
+        }
     }
 
     public String getReason() {
@@ -90,7 +94,9 @@ public  Appointment(){
     }
 
     public void setReason(String reason) {
-        this.reason = reason;
+        if (HelperUtils.isNotNull(reason)) {
+            this.reason = reason;
+        }
     }
 
     public String getNotes() {
@@ -98,7 +104,9 @@ public  Appointment(){
     }
 
     public void setNotes(String notes) {
-        this.notes = notes;
+        if (HelperUtils.isNotNull(notes)) {
+            this.notes = notes;
+        }
     }
 
     public void  reschedule(LocalDate newDate, String newTime){
