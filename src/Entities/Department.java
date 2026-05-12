@@ -103,11 +103,10 @@ public class Department implements Displayable {
 
         }
     }
-    public void assignNurse(String nurseid) {
-        if(!nurses.contains(nurseid)){
-            doctors.add(nurseid);
-            System.out.println("Nurse" +nurseid + "assigend to"+departmentName);
-
+    public void assignNurse(Nurse nurse) {
+        if (!nurses.contains(nurse)) {
+            nurses.add(nurse);
+            System.out.println("Nurse assigned to " + departmentName);
         }
     }
 
