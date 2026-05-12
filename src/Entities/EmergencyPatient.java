@@ -45,6 +45,23 @@ public class EmergencyPatient extends InPatient {
         }
 
     }
+    @Override
+    public void displayInfo(){
+        super.displayInfo();
+        System.out.println(this.toString());
+
+    }
+    @Override
+    public void displaySummary(){
+        System.out.println(
+                "Emergency Patient: " + getFirstName() + " " + getLastName() +
+                        ", Emergency Type: " + emergencyType +
+                        ", Triage Level: " + triageLevel +
+                        ", Arrival Mode: " + arrivalMode +
+                        ", ER Admission: " + admittedViaER
+        );
+
+    }
 
     public Boolean getAdmittedViaER() {
         return admittedViaER;
@@ -52,5 +69,15 @@ public class EmergencyPatient extends InPatient {
 
     public void setAdmittedViaER(Boolean admittedViaER) {
         this.admittedViaER = admittedViaER;
+    }
+
+    @Override
+    public String toString() {
+        return "EmergencyPatient{" +
+                "emergencyType='" + emergencyType + '\'' +
+                ", arrivalMode='" + arrivalMode + '\'' +
+                ", triageLevel=" + triageLevel +
+                ", admittedViaER=" + admittedViaER +
+                '}';
     }
 }
