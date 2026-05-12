@@ -1,5 +1,6 @@
 package Utils;
 
+import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,16 @@ public class HelperUtils {
         String num = String.valueOf((long)(Math.random() * Math.pow(10, length)));
         return prefix + "-" + num;
     }
+    public static String generateId(String prefix, String suffix) {
+        return prefix + "-" + (int)(Math.random() * 100000) + "-" + suffix;
+    }
+    //Date Validation Methods
+    public static boolean isValidDate(Date date){
+        return date != null;
+    }
+
+
+
 
 
 
