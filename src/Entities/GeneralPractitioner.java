@@ -43,7 +43,9 @@ public class GeneralPractitioner extends Doctor {
     }
 
     public void setVaccinationCertified(Boolean vaccinationCertified) {
-        this.vaccinationCertified = vaccinationCertified;
+        if (HelperUtils.isNotNull(vaccinationCertified)) {
+            this.vaccinationCertified = vaccinationCertified;
+        }
     }
     /*public void scheduleHomeVisit(String patientName ,String address){
         if (!homeVisitAvailable){
@@ -53,6 +55,11 @@ public class GeneralPractitioner extends Doctor {
         homeVisitAvailable
     }*/
     public void  administerVaccine(String patientName ,String vaccineNmae){
+        if (!HelperUtils.isValidString(patientName)
+                || !HelperUtils.isValidString(vaccineNmae)) {
+            System.out.println("Invalid input");
+            return;
+        }
         if (vaccinationCertified){
             System.out.println("Vaccination certified for "+patientName+" is approved");
             System.out.println("Doctor :" +getFirstName() + "is reviewing the diagnosis...");
