@@ -232,6 +232,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             return;
         }
         appointments.add(appointment);
+        System.out.println("Appointment scheduled successfully");
 
     }
 
