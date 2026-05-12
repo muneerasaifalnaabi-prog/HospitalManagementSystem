@@ -1,9 +1,11 @@
 package Entities;
 
+import interfaces.Displayable;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Displayable {
     private String id ;
     private  String firstName;
     private String lastName;
@@ -91,6 +93,11 @@ public class Person {
         this.address = address;
     }
     public  void displayInfo(){
+
+    }
+
+    @Override
+    public void displaySummary() {
 
     }
 
