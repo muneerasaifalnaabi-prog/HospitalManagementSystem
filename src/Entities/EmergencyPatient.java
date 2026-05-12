@@ -47,9 +47,7 @@ public class EmergencyPatient extends InPatient {
     }
     @Override
     public void displayInfo(){
-        super.displayInfo();
         System.out.println(this.toString());
-
     }
     @Override
     public void displaySummary(){
