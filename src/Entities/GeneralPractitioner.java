@@ -33,7 +33,9 @@ public class GeneralPractitioner extends Doctor {
     }
 
     public void setHomeVisitAvailable(Boolean homeVisitAvailable) {
-        this.homeVisitAvailable = homeVisitAvailable;
+        if (HelperUtils.isNotNull(homeVisitAvailable)) {
+            this.homeVisitAvailable = homeVisitAvailable;
+        }
     }
 
     public Boolean getVaccinationCertified() {
