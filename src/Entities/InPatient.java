@@ -88,6 +88,8 @@ public class InPatient extends Patient implements Displayable , Billable {
 
     @Override
     public void calculateCharges() {
+        double total =calculateTotalCharges();
+        System.out.println("Total Of Chargs "+total);
 
     }
 
