@@ -55,17 +55,21 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setPatientId(String patientId) {
-        if (HelperUtils.isValidString(recordId)) {
+        if (HelperUtils.isValidString(patientId)) {
             this.patientId = patientId;
+
         }
     }
+
 
     public String getDoctorId() {
         return doctorId;
     }
 
     public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+        if (HelperUtils.isValidString(doctorId)) {
+            this.doctorId = doctorId;
+        }
     }
 
     public LocalDate getVisitDate() {
