@@ -87,10 +87,9 @@ public class InPatient extends Patient implements Displayable , Billable {
     }
 
     public long calculateStayDuration() {
-        if (dischargeDate == null) {
+        if (HelperUtils.isNull(dischargeDate)) {
             return ChronoUnit.DAYS.between(admissionDate, LocalDate.now());
         }
-
         return ChronoUnit.DAYS.between(admissionDate, dischargeDate);
     }
 
@@ -126,6 +125,10 @@ public class InPatient extends Patient implements Displayable , Billable {
 
     @Override
     public void processPayment(double amount) {
+        if (!HelperUtils.isPositive(amount)) {
+            System.out.println("invalid input");
+            return;
+        }
         double total =calculateTotalCharges();
         if (amount>=total){
             System.out.println("Payment succesful");
