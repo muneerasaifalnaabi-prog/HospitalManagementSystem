@@ -39,7 +39,9 @@ public class Nurse extends Person implements Displayable {
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+        if (HelperUtils.isNotNull(departmentId)) {
+            this.departmentId = departmentId;
+        }
     }
 
     public String getShift() {
@@ -47,7 +49,9 @@ public class Nurse extends Person implements Displayable {
     }
 
     public void setShift(String shift) {
-        this.shift = shift;
+        if (HelperUtils.isValidString(shift)) {
+            this.shift = shift;
+        }
     }
 
     public String getQualification() {
@@ -55,7 +59,9 @@ public class Nurse extends Person implements Displayable {
     }
 
     public void setQualification(String qualification) {
-        this.qualification = qualification;
+        if (HelperUtils.isValidString(qualification)) {
+            this.qualification = qualification;
+        }
     }
 
     public List<Patient> getAssignedPatients() {
