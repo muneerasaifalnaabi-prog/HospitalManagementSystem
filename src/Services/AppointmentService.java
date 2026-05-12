@@ -243,6 +243,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             return;
         }
         appointment.setStatus("Cancelled");
+        System.out.println("Appointment cancelled successfully");
 
     }
 
