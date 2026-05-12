@@ -2,11 +2,12 @@ package Entities;
 
 
 import Utils.Constants;
+import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class Patient extends Person{
+public class Patient extends Person implements Displayable {
     private String patientId ;
     private String bloodGroup ;
     private List<String> allergies ;
