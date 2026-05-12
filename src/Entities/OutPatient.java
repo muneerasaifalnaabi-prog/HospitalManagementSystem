@@ -49,4 +49,9 @@ public class OutPatient extends Patient implements Displayable {
         visitCount++;
         System.out.println("Updated visitCount:" +visitCount);
     }
+    @Override
+    public void displayInfo() {
+        System.out.println(this.toString());
+    }
+
 }
