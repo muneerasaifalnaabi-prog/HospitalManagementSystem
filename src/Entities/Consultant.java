@@ -43,9 +43,19 @@ public class Consultant extends Doctor {
     }
 
     public void setConsultationDuration(int consultationDuration) {
-        this.consultationDuration = consultationDuration;
+        if (HelperUtils.isPositive(consultationDuration)) {
+            this.consultationDuration = consultationDuration;
+        }
     }
     public void scheduleConsultation(String type){
+        if (!HelperUtils.isValidString(type)) {
+            System.out.println("Invalid consultation type");
+            return;
+        }
+
+        if (HelperUtils.isNotNull(consultationTypes)) {
+            consultationTypes.add(type);
+        }
         consultationTypes.add(type);
         System.out.println("Consultation scheduled for " + type);
         System.out.println("Doctor :" +getFirstName());
@@ -63,6 +73,10 @@ public class Consultant extends Doctor {
 
     }
     public void provideSecondOpinion(String diagnosis){
+        if (!HelperUtils.isValidString(diagnosis)) {
+            System.out.println("Invalid diagnosis");
+            return;
+        }
         System.out.println("Doctor :" +getFirstName() + "is reviewing the diagnosis...");
         System.out.println("Original Diagnosis :" +diagnosis);
         System.out.println("Second Opinion Second opinion: further evaluation required / confirmed / alternative diagnosis suggested.");
