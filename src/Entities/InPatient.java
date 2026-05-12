@@ -118,6 +118,10 @@ public class InPatient extends Patient implements Displayable , Billable {
             System.out.println("Payment succesful");
             System.out.println("Change :"+(amount-total));
         }
+        else {
+            System.out.println("Payment failed");
+
+        }
 
 
     }
