@@ -63,7 +63,9 @@ public Doctor(){}
     }
 
     public void setExperienceYears(int experienceYears) {
-        this.experienceYears = experienceYears;
+        if (HelperUtils.isPositive(experienceYears)) {
+            this.experienceYears = experienceYears;
+        }
     }
 
     public String getDepartmentId() {
@@ -71,7 +73,9 @@ public Doctor(){}
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+        if (HelperUtils.isValidString(departmentId, 2)) {
+            this.departmentId = departmentId;
+        }
     }
 
     public Double getConsultationFee() {
@@ -79,7 +83,9 @@ public Doctor(){}
     }
 
     public void setConsultationFee(Double consultationFee) {
-        this.consultationFee = consultationFee;
+        if (HelperUtils.isPositive(consultationFee)) {
+            this.consultationFee = consultationFee;
+        }
     }
 
     public List<String> getAvailableSlots() {
