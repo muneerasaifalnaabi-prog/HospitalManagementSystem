@@ -473,11 +473,32 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
 
     @Override
     public void search(String keyword) {
+        boolean found = false;
 
+        for (Doctor d : doctors) {
+
+            if (d.getFirstName().equalsIgnoreCase(keyword)
+                    || d.getSpecialization().equalsIgnoreCase(keyword)
+                    || d.getDepartmentId().equalsIgnoreCase(keyword)) {
+
+                System.out.println(d);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No doctors found");
+        }
     }
 
     @Override
     public void searchById(String id) {
+        Doctor doctor = getDoctorById(id);
 
+        if (doctor != null) {
+            System.out.println(doctor);
+        } else {
+            System.out.println("Doctor not found");
+        }
     }
 }
