@@ -69,12 +69,16 @@ public class Surgeon extends Doctor implements Displayable {
     }
     public void displaySurgeonInfo(){
         System.out.println("Surgeon info");
-        super.displayInfo();
         System.out.println(this.toString());
     }
 
     @Override
     public void displaySummary() {
-
+        System.out.println(
+                "Surgeon: " + getFirstName() + " " + getLastName() +
+                        ", Surgeries: " + surgeriesPerformed +
+                        ", Operation Theatre Access: " + operationTheatreAccess +
+                        ", Surgery Types: " + surgeryTypes
+        );
     }
 }
