@@ -1,6 +1,7 @@
 package Entities;
 
 import Utils.Constants;
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -94,7 +95,8 @@ public  Appointment(){
     }
 
     public void  reschedule(LocalDate newDate, String newTime){
-        if (status.equals("Completed") || status.equals("Cancelled")){
+
+        if (HelperUtils.isNotNull(status) && status.equals("Completed") || status.equals("Cancelled")){
             System.out.println(Constants.NOT_RESCHEDULE);
         }
         this.appointmentDate=newDate;
@@ -105,7 +107,7 @@ public  Appointment(){
 
     }
     public void  cancel(){
-        if (!status.equals("Completed")){
+        if (HelperUtils.isNotNull(status) && !status.equals("Completed")){
             this.status="Cancelled";
             System.out.println(Constants.CANCELLED);
         }
