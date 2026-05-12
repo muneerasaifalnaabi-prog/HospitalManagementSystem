@@ -65,12 +65,18 @@ public class Nurse extends Person implements Displayable {
 
     @Override
     public void displayInfo(){
-        super.displayInfo();
-        toString();
-
-
+        System.out.println(this.toString());
     }
-
+    @Override
+    public void displaySummary() {
+        System.out.println(
+                "Nurse: " + getFirstName() + " " + getLastName() +
+                        ", ID: " + nurseId +
+                        ", Department: " + departmentId +
+                        ", Shift: " + shift +
+                        ", Patients: " + assignedPatients.size()
+        );
+    }
     @Override
     public String toString() {
         return "Nurse{" +
