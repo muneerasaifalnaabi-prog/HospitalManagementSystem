@@ -64,7 +64,9 @@ public  Appointment(){
     }
 
     public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
+        if (HelperUtils.isNotNull(appointmentDate)) {
+            this.appointmentDate = appointmentDate;
+        }
     }
 
     public String getAppointmentTime() {
