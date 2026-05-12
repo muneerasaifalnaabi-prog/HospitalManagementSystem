@@ -47,13 +47,13 @@ public static String DOCTOR_MENU_MESSEGE= """
             3.7 Remove Nurse
     """;
     public static String DEPARTMENT_MENU_MESSEGE= """
-           1. Add Department 
-           2. edit Department
-           3. remove Department
-           4. Search Department By id
-           5. Display All Departments
-           6. Assign Doctor To Department
-           7. exit Department
+           6.1 Add Department
+           6.2 View All Departments
+           6.3 View Department Details
+           6.4 Assign Doctor to Department
+           6.5 Assign Nurse to Department
+           6.6 Update Department Information
+           6.7 View Department Statistics
     """;
     public static String APPOINTMENT_MENU_MESSEGE= """
              4.1 Schedule New Appointment
@@ -64,7 +64,7 @@ public static String DOCTOR_MENU_MESSEGE= """
              4.6 Reschedule Appointment
              4.7 Cancel Appointment
              4.8 Complete Appointment
-             4.9 View Upcoming Appointment
+             4.9 View Upcoming Appointments
             """;
     public static String MEDICALRECORD_MENU_MESSEGE= """
            5.1 Create Medical Record
