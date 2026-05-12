@@ -13,6 +13,13 @@ public class Department implements Displayable {
 
     @Override
     public void displaySummary() {
+        System.out.println(
+                "Department: " + departmentName +
+                        ", Head Doctor ID: " + headDoctorId +
+                        ", Doctors Count: " + doctors.size() +
+                        ", Nurses Count: " + nurses.size() +
+                        ", Available Beds: " + availableBeds + "/" + bedCapacity
+        );
 
     }
 
