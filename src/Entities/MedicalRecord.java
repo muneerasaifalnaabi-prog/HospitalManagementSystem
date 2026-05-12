@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -54,7 +55,9 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setPatientId(String patientId) {
-        this.patientId = patientId;
+        if (HelperUtils.isValidString(recordId)) {
+            this.patientId = patientId;
+        }
     }
 
     public String getDoctorId() {
