@@ -119,7 +119,7 @@ public class Department implements Displayable {
         }
     }
     public void assignNurse(Nurse nurse) {
-        if (!nurses.contains(nurse)) {
+        if (HelperUtils.isNotNull(nurse) && !nurses.contains(nurse)) {
             nurses.add(nurse);
             System.out.println("Nurse assigned to " + departmentName);
         }
