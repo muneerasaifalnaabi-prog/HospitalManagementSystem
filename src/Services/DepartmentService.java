@@ -200,6 +200,14 @@ public void displayDepartments() {
 
     @Override
     public void searchById(String id) {
+        Department department =getDepartmentById(id);
+
+        if (department != null){
+            System.out.println(department);
+        }
+        else {
+            System.out.println("Department not found");
+        }
 
     }
 }

@@ -420,6 +420,9 @@ public void  displayDoctors(String departmentId, boolean showAvailableOnly){
 
     @Override
     public void add(Object entity) {
+        if (entity instanceof  Doctor doctor){
+            doctors.add(doctor);
+        }
 
     }
 
