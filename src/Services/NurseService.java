@@ -286,5 +286,12 @@ public void  displayNurses(){
     @Override
     public void searchById(String id) {
 
+        Nurse nurse = getNurseById(id);
+
+        if (nurse != null) {
+            System.out.println(nurse);
+        } else {
+            System.out.println("Nurse not found");
+        }
     }
 }
