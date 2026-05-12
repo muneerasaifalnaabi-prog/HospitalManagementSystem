@@ -158,13 +158,18 @@ public Doctor(){}
             System.out.println(reason);
         }
     }
-    public void addAvailability(String slot){
-    availableSlots.add(slot);
-        System.out.println("Availability slot has been added");
+    public void addAvailability(String slot) {
+        if (HelperUtils.isValidString(slot)) {
+            availableSlots.add(slot);
+            System.out.println("Availability slot has been added");
+        }
     }
-    public void addAvailability(List<String> slots){
-    this.availableSlots.addAll(slots);
-    System.out.println("All Availability slot has been added");
+
+    public void addAvailability(List<String> slots) {
+        if (HelperUtils.isNotNull(slots)) {
+            this.availableSlots.addAll(slots);
+            System.out.println("All Availability slot has been added");
+        }
     }
     @Override
     public String toString() {
