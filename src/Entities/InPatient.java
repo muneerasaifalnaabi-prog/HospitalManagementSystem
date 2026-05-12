@@ -120,6 +120,7 @@ public class InPatient extends Patient implements Displayable , Billable {
         }
         else {
             System.out.println("Payment failed");
+            System.out.println("Remainig amount :"+(total-amount));
 
         }
 
