@@ -93,7 +93,9 @@ public Doctor(){}
     }
 
     public void setAvailableSlots(List<String> availableSlots) {
-        this.availableSlots = availableSlots;
+        if (HelperUtils.isNotNull(availableSlots)) {
+            this.availableSlots = availableSlots;
+        }
     }
 
     public List<String> getAssignedPatients() {
@@ -101,8 +103,10 @@ public Doctor(){}
     }
 
     public void setAssignedPatients(List<String> assignedPatients) {
-        this.assignedPatients = assignedPatients;
-    }
+        if (HelperUtils.isNotNull(assignedPatients)) {
+            this.assignedPatients = assignedPatients;
+        }
+}
 
     @Override
     public void displayInfo(){
@@ -121,30 +125,38 @@ public Doctor(){}
         );
 
     }
-    public void assignPatient(String patient){
-        assignedPatients.add(patient);
-        System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
+    public void assignPatient(String patient) {
+        if (HelperUtils.isValidString(patient, 2)) {
+            assignedPatients.add(patient);
+            System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
 
+        }
     }
     public void removePatient(String rempatientId) {
-        if (assignedPatients.contains(rempatientId)) {
+        if (HelperUtils.isValidString(rempatientId) && assignedPatients.contains(rempatientId)) {
             assignedPatients.remove(rempatientId);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
         } else {
             System.out.println("Patient not found in list");
         }
     }
-    public void updateAvailability(List<String> newslot){
-        this.availableSlots=new ArrayList<>(newslot);
-        System.out.println("Availability has been updated");
+    public void updateAvailability(List<String> newslot) {
+        if (HelperUtils.isNotNull(newslot)) {
+            this.availableSlots = new ArrayList<>(newslot);
+            System.out.println("Availability has been updated");
+        }
     }
-    public void updateFee(double fee){
-    this.consultationFee=fee;
+    public void updateFee(double fee) {
+        if (HelperUtils.isPositive(fee)) {
+            this.consultationFee = fee;
+        }
     }
-    public void updateFee(double fee, String reason){
-        this.consultationFee=fee;
-        System.out.println("Fee has been updated"+fee);
-        System.out.println(reason);
+    public void updateFee(double fee, String reason) {
+        if (HelperUtils.isPositive(fee) && HelperUtils.isValidString(reason)) {
+            this.consultationFee = fee;
+            System.out.println("Fee has been updated" + fee);
+            System.out.println(reason);
+        }
     }
     public void addAvailability(String slot){
     availableSlots.add(slot);
