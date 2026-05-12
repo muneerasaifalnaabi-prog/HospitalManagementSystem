@@ -231,6 +231,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             System.out.println("Invalid appointment");
             return;
         }
+        appointments.add(appointment);
 
     }
 
