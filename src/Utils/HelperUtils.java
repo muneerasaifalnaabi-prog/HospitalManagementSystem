@@ -2,6 +2,8 @@ package Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -70,13 +72,23 @@ public class HelperUtils {
         return date.after(minDate) && date.before(maxDate);
     }
 
-    //Numeric Validation Methods
     public static boolean isFutureDate(Date date) {
         return date != null && date.after(new Date());
     }
     public static boolean isPastDate(Date date) {
         return date != null && date.before(new Date());
     }
+    public static boolean isToday(Date date) {
+        if (date==null ) return false;
+        LocalDate input = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return input.equals(LocalDate.now());
+    }
+    //Numeric Validation Methods
+    public static boolean isValidNumber(int num, int min, int max) {
+        return  num >= min && num <= max;
+    }
+
+
 
 
 
