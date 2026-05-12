@@ -7,6 +7,7 @@ import java.util.List;
 public class Department implements Displayable {
     @Override
     public void displayInfo() {
+        System.out.println(this.toString());
 
     }
 
@@ -102,6 +103,7 @@ public class Department implements Displayable {
 
         }
     }
+
     //i will complete later
     public void updateBedAvailability(int beds) {
 
@@ -111,6 +113,19 @@ public class Department implements Displayable {
         } else {
             System.out.println("Invalid bed count.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "departmentId='" + departmentId + '\'' +
+                ", departmentName='" + departmentName + '\'' +
+                ", headDoctorId='" + headDoctorId + '\'' +
+                ", doctors=" + doctors +
+                ", nurses=" + nurses +
+                ", bedCapacity=" + bedCapacity +
+                ", availableBeds=" + availableBeds +
+                '}';
     }
 }
 
