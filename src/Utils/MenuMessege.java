@@ -41,10 +41,10 @@ public static String DOCTOR_MENU_MESSEGE= """
             3.1 Add Nurse
             3.2 View All Nurses
             3.3 View Nurses by Department
-                                  3.4 View Nurses by Shift
-                                  3.5 Assign Nurse to Patient
-                                  3.6 Update Nurse Information
-                                  3.7 Remove Nurse
+            3.4 View Nurses by Shift
+            3.5 Assign Nurse to Patient
+            3.6 Update Nurse Information
+            3.7 Remove Nurse
     """;
     public static String DEPARTMENT_MENU_MESSEGE= """
            1. Add Department 
@@ -56,26 +56,24 @@ public static String DOCTOR_MENU_MESSEGE= """
            7. exit Department
     """;
     public static String APPOINTMENT_MENU_MESSEGE= """
-             1. Add Appointment
-             2. Edit Appointment
-             3. Delete Appointment
-             4. Display All Appointments
-             5. Search By Patient ID
-             6. Search By Doctor ID
-             7. Search By Date
-             8. Reschedule Appointment
-             9. Cancel Appointment
-             10. Exit
+             4.1 Schedule New Appointment
+             4.2 View All Appointments
+             4.3 View Appointments by Patient
+             4.4 View Appointments by Doctor
+             4.5 View Appointments by Date
+             4.6 Reschedule Appointment
+             4.7 Cancel Appointment
+             4.8 Complete Appointment
+             4.9 View Upcoming Appointment
             """;
     public static String MEDICALRECORD_MENU_MESSEGE= """
-           1. Add Medical Record 
-           2. edit Medical Record
-           3. remove Medical Record
-           4. Search By Patient ID
-           5. Search By Doctor ID
-           6. Display Patient History
-           7. Display All Medical Records
-           8. exit Medical Record
+           5.1 Create Medical Record
+           5.2 View All Records
+           5.3 View Records by Patient
+           5.4 View Records by Doctor
+           5.5 Update Medical Record
+           5.6 Delete Medical Record
+           5.7 Generate Patient History Report
     """;
 
 }
