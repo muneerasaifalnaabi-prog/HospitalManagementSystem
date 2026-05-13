@@ -51,6 +51,14 @@ public class ReportService {
            System.out.println("Doctor Information in Details");
            List<Appointment> doctorAppointments = appointmentService.getAppointmentsByDoctor(doctorId);
            List<MedicalRecord> records =medicalRecordService.getMedicalRecordsByDoctorId(doctorId);
+           int completed =0;
+           for (Appointment a :doctorAppointments){
+               if (a.getStatus().equalsIgnoreCase("Completed")){
+                   completed++;
+               }
+           }
+           System.out.println("Doctor name :" + doctor.getFirstName() + " " + doctor.getLastName() );
+
        }
 
 
