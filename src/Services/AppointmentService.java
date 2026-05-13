@@ -286,10 +286,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                     handleAppointmentService();
                 }
                 case 3->{
-                    System.out.println("Enter Appointment ID ");
-                    String appointmentId = scanner.nextLine();
-                    deleteAppointment(appointmentId);
-
                 }
                 case 4->{
 
