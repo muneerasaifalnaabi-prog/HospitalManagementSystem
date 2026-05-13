@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.EmergencyPatient;
 import Entities.InPatient;
 import Entities.OutPatient;
 import Entities.Patient;
@@ -208,6 +209,18 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     public void registerEmergencyPatient(){
         System.out.println("EmergencyPatient registration");
         addPatient();
+        EmergencyPatient emergencyPatient = new EmergencyPatient();
+
+        /*
+         private String emergencyType;
+    private String arrivalMode;
+    private int triageLevel;
+    private Boolean admittedViaER;
+
+         */
+        String emergencyType = InputHandler.getStringInput("Emergency Type");
+        emergencyPatient.setEmergencyType(emergencyType);
+
 
 
     }
