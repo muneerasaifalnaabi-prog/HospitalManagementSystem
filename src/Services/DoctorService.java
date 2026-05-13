@@ -1,9 +1,6 @@
 package Services;
 
-import Entities.Consultant;
-import Entities.Doctor;
-import Entities.Patient;
-import Entities.Surgeon;
+import Entities.*;
 import Utils.HelperUtils;
 import Utils.InputHandler;
 import Utils.MenuMessege;
@@ -315,6 +312,11 @@ public void displayDoctors(String specialization){
         consultant.setConsultationDuration(InputHandler.getIntInput("Enter duration"));
         consultant.setOnlineConsultationAvailable(true);
     }
+    public void addGeneralPrescription() {
+        System.out.println("===== Add General Prescription =====");
+        addDoctor();
+        GeneralPractitioner generalPractitioner=new GeneralPractitioner();
+    }
 
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
@@ -331,11 +333,14 @@ public void displayDoctors(String specialization){
                 case 3 -> {
                     addConsultation();
                     handelDoctorService();
+                }
 
+                case 4 ->{
+                    addGeneralPrescription();
+                    handelDoctorService();
 
                 }
 
-                case 4 -> searchDoctors();
 
                 case 5 -> displayDoctors();
 
