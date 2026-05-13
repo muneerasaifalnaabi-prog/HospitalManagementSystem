@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Nurse;
+import Utils.HelperUtils;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -33,8 +34,9 @@ public void addNurses(){
 public Nurse addNurse() {
         System.out.println("========= Added New Nurse =====");
 
-        System.out.println("Enter id:");
-        String id = scanner.nextLine();
+    String id = HelperUtils.generateId("NURSE");
+
+    System.out.println("Generated ID: " + id);
 
         Nurse existNurse = getNurseById(id);
 
@@ -124,7 +126,7 @@ public Nurse addNurse() {
 
 public void editNurses(String nurseId) {
     Nurse nurse = getNurseById(nurseId);
-    if (nurse != null) {
+    if (HelperUtils.isNotNull(nurse)) {
         System.out.println("Enter new phone number: ");
         String newPhoneNumber = scanner.nextLine();
         nurse.setPhoneNumber(newPhoneNumber);
