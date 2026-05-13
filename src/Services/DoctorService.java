@@ -358,6 +358,10 @@ public void displayDoctors(String specialization){
                     editDoctor(InputHandler.getStringInput("Enter Doctor Id to edit"));
                     handelDoctorService();
                 }
+                case 10 -> {
+                    removeDoctor(InputHandler.getStringInput("Enter Doctor Id to remove"));
+                    handelDoctorService();
+                }
                 default -> System.out.println("Invalid option");
             }
         }
