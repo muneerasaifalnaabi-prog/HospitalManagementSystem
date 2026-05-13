@@ -203,4 +203,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             System.out.println("Record not found");
         }
     }
+    public void MedicalRecordHandler(){
+        System.out.println();
+    }
 }
