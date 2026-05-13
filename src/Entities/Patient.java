@@ -2,6 +2,7 @@ package Entities;
 
 
 import Utils.Constants;
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -45,7 +46,9 @@ public class Patient extends Person implements Displayable {
     }
 
     public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
+        if (HelperUtils.isNotNull(bloodGroup)) {
+            this.bloodGroup = bloodGroup;
+        }
     }
 
     public List<String> getAllergies() {
@@ -61,7 +64,9 @@ public class Patient extends Person implements Displayable {
     }
 
     public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
+        if (HelperUtils.isNotNull(emergencyContact)) {
+            this.emergencyContact = emergencyContact;
+        }
     }
 
     public LocalDate getRegistrationDate() {

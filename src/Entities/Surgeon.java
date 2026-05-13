@@ -63,7 +63,11 @@ public class Surgeon extends Doctor implements Displayable {
         return true;
     }
     public void updateSurgeryCount() {
-        surgeriesPerformed++;
+        if (HelperUtils.isPositive(surgeriesPerformed)) {
+            surgeriesPerformed++;
+        } else {
+            surgeriesPerformed = 1;
+        }
         System.out.println("Total surgeries performed: " + surgeriesPerformed);
     }
 
