@@ -239,7 +239,11 @@ public void displayDepartments() {
                 displayDepartments();
                 DepartmentHandler();
             }
-            case 3->{}
+            case 3->{
+                displayDepartments();
+                DepartmentHandler();
+            }
+            case 4->{}
         }
     }
 }
