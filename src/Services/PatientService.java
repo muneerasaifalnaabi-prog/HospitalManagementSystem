@@ -273,6 +273,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             }
             case 9->{
                 MedicalRecord m = new MedicalRecord();
+                m.displayInfo();
                 HadlerPatient();
             }
             default -> {
