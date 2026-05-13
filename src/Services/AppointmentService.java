@@ -232,10 +232,13 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     public void rescheduleAppointments(String appointmentId,LocalDate date,String newTime) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
-        if (existingAppointment != null) {
-            existingAppointment.reschedule(date,newTime);
+
+        if (HelperUtils.isNotNull(existingAppointment)) {
+
+            existingAppointment.reschedule(date, newTime);
         }
         else {
+
             System.out.println("Appointment Not Found");
         }
     }
