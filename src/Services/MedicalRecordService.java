@@ -209,6 +209,14 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         System.out.println(MenuMessege.MEDICALRECORD_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
+            case 1 ->{
+                addMedicalRecord();
+                MedicalRecordHandler();
+            }
+            case 2 ->{
+                displayAllMedicalRecords();
+                MedicalRecordHandler();
+            }
 
         }
     }
