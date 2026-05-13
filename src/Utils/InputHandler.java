@@ -24,6 +24,10 @@ public class InputHandler {
         }
     }
     public static int getIntInput(String prompt) {
+        System.out.println(prompt);
+        String input = scanner.nextLine();
+        double num = Double.parseDouble(input);
+
 
     }
 }
