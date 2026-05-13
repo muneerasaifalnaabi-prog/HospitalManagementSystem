@@ -174,7 +174,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
     public void registerInPatient(){
         System.out.println("InPatient registration");
-        addPatient();
+        addaddPatients();
         LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
         LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
         String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
@@ -192,6 +192,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
+        addaddPatients();
     }
     public void registerEmergencyPatient(){
         System.out.println("EmergencyPatient registration");
