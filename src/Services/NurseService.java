@@ -97,12 +97,12 @@ public void editNurses(String nurseId) {
         String newDepartmentId = InputHandler.getStringInput("New Department ID");
         nurse.setDepartmentId(newDepartmentId);
 
-        System.out.println("Enter new Shift ID: ");
-        String newShiftId = scanner.nextLine();
+        String newShiftId = InputHandler.getStringInput("New Shift ID");
         nurse.setShift(newShiftId);
-        System.out.println("Enter new Qualification: ");
-        String newQualification = scanner.nextLine();
+
+        String newQualification =InputHandler.getStringInput("New Qualification");
         nurse.setQualification(newQualification);
+
         System.out.println("Nurse Edited Successfully");
     }
     else  {
