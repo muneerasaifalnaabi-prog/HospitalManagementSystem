@@ -202,6 +202,11 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             System.out.println(p);
         }
     }
+    public void registerInPatient(){
+        System.out.println("InPatient registration");
+        addaddPatients();
+
+    }
     public void HadlerPatient(){
         System.out.println("====== Patient Management =======");
         System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
@@ -209,28 +214,44 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         switch (choice) {
             case 1->{
                 addaddPatients();
+                HadlerPatient();
             }
             case 2->{
-                //registerInPatient();
+                registerInPatient();
+                HadlerPatient();
             }
             case 3->{
                 //registerOutPatient();
+                HadlerPatient();
             }
             case 4->{
                 //registerEmergencyPatient();
+                HadlerPatient();
             }
             case 5->{
                 displayAllPatients();
+                HadlerPatient();
             }
             case 6->{
                 //searchPatientsHandler();
+                HadlerPatient();
             }
             case 7->{
                 //updatePatientHandler();
+                HadlerPatient();
             }
             case 8->{
                // removePatientHandler();
+                HadlerPatient();
             }
+            case 9->{
+                //viewPatientMedicalHistory();
+                HadlerPatient();
+            }
+            default -> {
+                System.out.println("Invalid choice. Please try again.");
+            }
+
 
         }
     }
