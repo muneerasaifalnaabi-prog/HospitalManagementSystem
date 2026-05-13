@@ -276,6 +276,8 @@ public void  displayNurses(){
             }
             case 5 ->{
                 //assign nurse to patient
+                Patient p = new Patient();
+                assignNuresToPatient(String.valueOf(p));
                 NurseHandler();
             }
             case 6 ->{
@@ -284,6 +286,7 @@ public void  displayNurses(){
             }
             case 7 ->{
                 deleteNurses(InputHandler.getStringInput("Nurse ID to delete"));
+                NurseHandler();
             }
 
         }
