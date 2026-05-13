@@ -196,11 +196,6 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         System.out.println("OutPatient registration");
         addaddPatients();
         OutPatient outPatient = new OutPatient();
-        /*
-         private int visitCount;
-    private LocalDate lastVisitDate;
-    private String preferredDoctorId;
-         */
         LocalDate lastVisitDate = InputHandler.getLocalDateInput("Enter Last Visit");
         outPatient.setLastVisitDate(lastVisitDate);
         String patientId = InputHandler.getStringInput("Enter Patient ID: ");
@@ -210,30 +205,14 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         System.out.println("EmergencyPatient registration");
         addPatient();
         EmergencyPatient emergencyPatient = new EmergencyPatient();
-
-        /*
-         private String emergencyType;
-    private String arrivalMode;
-    private int triageLevel;
-    private Boolean admittedViaER;
-
-         */
         String emergencyType = InputHandler.getStringInput("Emergency Type");
         emergencyPatient.setEmergencyType(emergencyType);
         String arrivalMode = InputHandler.getStringInput("Arrival Mode");
         emergencyPatient.setArrivalMode(arrivalMode);
-
-
-
-
+        int triageLevel = InputHandler.getIntInput("Triage Level");
+        emergencyPatient.setTriageLevel(triageLevel);
     }
-    public void viewPatientMedicalHistory(){
-        String patientId =  InputHandler.getStringInput("Enter Patient ID: ");
-        Patient patient = getPatientById(patientId);
-        if (HelperUtils.isNotNull(patient)) {
-
-
-        }
+    public void searchPatientsHandler(){
 
     }
     public void HadlerPatient(){
@@ -284,4 +263,5 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
         }
     }
+
 }
