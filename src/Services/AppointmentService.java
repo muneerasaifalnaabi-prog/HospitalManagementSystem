@@ -304,9 +304,10 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             if (a.getAppointmentDate().isAfter(date) || a.getAppointmentDate().equals(date)) {
                 System.out.println(a);
                 found = true;
-
             }
-
+        }
+        if (!found) {
+            System.out.println("No upcoming appointment");
         }
     }
 
