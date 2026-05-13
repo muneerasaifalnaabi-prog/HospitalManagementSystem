@@ -134,21 +134,23 @@ public class Patient extends Person implements Displayable {
     }
 
     public void updateInsurance(String updated) {
-        if (updated != null && !updated.isEmpty()) {
+        if (HelperUtils.isNotNull(updated)) {
             this.insuranceId = updated;
             System.out.println(Constants.INSURANCE_UPDATE_SUCCESSFULLY);
         } else {
             System.out.println("Insurance ID cannot be empty");
         }
     }
-    public void updateContact(String phone){
-        this.setPhoneNumber(phone);
+    public void updateContact(String phone) {
+        if (HelperUtils.isNotNull(phone)) {
+            this.setPhoneNumber(phone);
 
+        }
     }
     public void updateContact(String phone, String email){
-        
-        this.setPhoneNumber(phone);
-        this.setEmail(email);
+
+        if (HelperUtils.isNotNull(phone)) this.setPhoneNumber(phone);
+        if (HelperUtils.isNotNull(email)) this.setEmail(email);
     }
     public void updateContact(String phone, String email, String address){
         this.setPhoneNumber(phone);
