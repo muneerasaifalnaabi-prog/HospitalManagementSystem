@@ -168,11 +168,9 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         Appointment existingAppointment = getAppointmentById(appointmentId);
 
         if (HelperUtils.isNotNull(existingAppointment)) {
-
             existingAppointment.reschedule(date, newTime);
         }
         else {
-
             System.out.println("Appointment Not Found");
         }
     }
@@ -188,8 +186,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         for (Appointment a : appointments) {
             System.out.println(a);
         }
-
-
     }
     public void createAppointment(String patientId, String doctorId, LocalDate date){
         System.out.println("===new Appointment ===");
@@ -276,20 +272,18 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     }
 
 
-    //i will see later :
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
         System.out.println(MenuMessege.APPOINTMENT_MENU_MESSEGE);
-        while (true) {
-            int choice = scanner.nextInt();
+            int choice = InputHandler.getIntInput("Enter choice");
             switch (choice) {
                 case 1->{
-                    addAppointment();
+                    scheduleAppointment(appointments.get(0));
+                    handleAppointmentService();
                 }
                 case 2->{
-                    System.out.println("Enter Appointment ID ");
-                    String appointmentId = scanner.nextLine();
-                    editAppointment(appointmentId);
+                    displayAppointments();
+                    handleAppointmentService();
                 }
                 case 3->{
                     System.out.println("Enter Appointment ID ");
