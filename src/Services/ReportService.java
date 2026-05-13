@@ -90,6 +90,8 @@ public class ReportService {
         for (Appointment a :AppointmentService.appointments){
             System.out.println("Total Patient :" +a.getPatientId());
             System.out.println("Total Appointment :" +totalAppointments);
+            System.out.println("Total Medical Records :" +totalMedicalRecords);
+
         }
     }
 
