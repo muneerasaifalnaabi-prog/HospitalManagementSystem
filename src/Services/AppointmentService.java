@@ -286,14 +286,32 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                     handleAppointmentService();
                 }
                 case 3->{
+
                 }
                 case 4->{
 
                 }
+                case 5->{
+
+                }
+                case 6->{
+                    rescheduleAppointment(InputHandler.getStringInput("Enter appointment Id"),InputHandler.getLocalDateInput("Enter New Date"));
+                    handleAppointmentService();
+                }
+                case 7->{
+                    createAppointment(appointments.get(0));
+                    handleAppointmentService();
+                }
+                case 8->{
+
+                }
+                case 9->{
+
+                }
+                default -> System.out.println("Invalid choice");
             }
 
         }
-    }
 
     @Override
     public void add(Object entity) {

@@ -223,6 +223,8 @@ public void displayDepartments() {
         else {
             System.out.println("Department not found");
         }
-
+    }
+    public void DepartmentHandler(){
+        System.out.println("==== Department Management ===");
     }
 }
