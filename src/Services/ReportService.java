@@ -85,6 +85,12 @@ public class ReportService {
     }
     public void patientStatisticsReport() {
         System.out.println("====Patient Statistics Report=====");
+        int totalAppointments =AppointmentService.appointments.size();
+        int totalMedicalRecords =medicalRecordService.medicalRecords.size();
+        for (Appointment a :AppointmentService.appointments){
+            System.out.println("Total Patient :" +a.getPatientId());
+            System.out.println("Total Appointment :" +totalAppointments);
+        }
     }
 
 }
