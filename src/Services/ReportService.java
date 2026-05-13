@@ -58,6 +58,10 @@ public class ReportService {
                }
            }
            System.out.println("Doctor name :" + doctor.getFirstName() + " " + doctor.getLastName() );
+           System.out.println("Specialization  :" + doctor.getSpecialization());
+           System.out.println("Total Appointment :" + doctorAppointments.size());
+           System.out.println("Total Complete :" + completed);
+           System.out.println("Medical Records Created :" + records.size());
 
        }
 
