@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.InPatient;
+import Entities.OutPatient;
 import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
@@ -193,10 +194,22 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
         addaddPatients();
+        OutPatient outPatient = new OutPatient();
+        /*
+         private int visitCount;
+    private LocalDate lastVisitDate;
+    private String preferredDoctorId;
+         */
+        LocalDate lastVisitDate = InputHandler.getLocalDateInput("Enter Last Visit");
+        outPatient.setLastVisitDate(lastVisitDate);
+        String patientId = InputHandler.getStringInput("Enter Patient ID: ");
+        outPatient.setPatientId(patientId);
     }
     public void registerEmergencyPatient(){
         System.out.println("EmergencyPatient registration");
         addPatient();
+
+
     }
     public void viewPatientMedicalHistory(){
         String patientId =  InputHandler.getStringInput("Enter Patient ID: ");

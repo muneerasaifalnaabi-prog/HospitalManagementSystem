@@ -17,6 +17,9 @@ public class OutPatient extends Patient implements Displayable {
         this.preferredDoctorId = preferredDoctorId;
     }
 
+    public OutPatient() {
+    }
+
     public int getVisitCount() {
         return visitCount;
     }
