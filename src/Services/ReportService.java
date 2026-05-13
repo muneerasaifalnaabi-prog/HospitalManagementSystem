@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Appointment;
+import Entities.Doctor;
 import Utils.InputHandler;
 
 import java.time.LocalDate;
@@ -35,13 +36,15 @@ public class ReportService {
             if (a.getStatus().equalsIgnoreCase("Cancelled")){
                 cancelled++;
             }
-            System.out.println("Doctor :"+a.getDoctorId()+"/n Appointment :"+totalAppointment +"/n Complete :"+totalComplete +"/n cancelled :"+cancelled);
+            System.out.println("Appointment :"+a.getAppointmentId()+"/n Appointment :"+totalAppointment +"/n Complete :"+totalComplete +"/n cancelled :"+cancelled);
         }
 
     }
     public void DoctorPerformanceReport() {
         System.out.println("====Doctor Performance Report=====");
        String doctorId = InputHandler.getStringInput("Enter Doctor ID");
+       Doctor doctor = doctorService.getDoctorById(doctorId);
+
 
     }
 
