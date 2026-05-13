@@ -72,11 +72,8 @@ public Nurse addNurse() {
         String address = InputHandler.getStringInput("Address");
         String nurseId = InputHandler.getStringInput("Nurse ID");
         String departmentId = InputHandler.getStringInput("Department ID");
-
-        String shift = scanner.nextLine();
-
-        System.out.print("Enter Qualification: ");
-        String qualification = scanner.nextLine();
+        String shift = InputHandler.getStringInput("Shift");
+        String qualification =InputHandler.getStringInput("Qualification");
 
         Nurse nurse = new Nurse(
                 id,
