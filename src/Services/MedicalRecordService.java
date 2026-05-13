@@ -139,7 +139,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         MedicalRecord record = getMedicalRecordById(recordId);
 
-        if (record != null) {
+        if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
             System.out.println("Medical Record deleted successfully.");
         } else {
@@ -208,7 +208,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         MedicalRecord record = getMedicalRecordById(id);
 
-        if (record != null) {
+        if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
             System.out.println("Medical record removed successfully");
         } else {
