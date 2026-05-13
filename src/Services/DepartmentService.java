@@ -248,7 +248,12 @@ public void displayDepartments() {
                 DepartmentHandler();
             }
             case 5->{
+                //assignNurseByDept
 
+            }
+            case 6->{
+                getAll();
+                DepartmentHandler();
             }
         }
     }
