@@ -63,10 +63,10 @@ public class ReportService {
            System.out.println("Total Complete :" + completed);
            System.out.println("Medical Records Created :" + records.size());
            System.out.println("Assigned Patients :"+ doctor.getAssignedPatients());
-
        }
-
-
+    }
+    public void departmentOccupancyReport() {
+        System.out.println("====Department Occupancy Report=====");
     }
 
 }
