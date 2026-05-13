@@ -198,9 +198,7 @@ public void  displayNurses(){
 
     @Override
     public void remove(String id) {
-
         Nurse nurse = getNurseById(id);
-
         if (HelperUtils.isNotNull(nurse)) {
             Nurses.remove(nurse);
             System.out.println("Nurse removed successfully");
@@ -211,12 +209,10 @@ public void  displayNurses(){
 
     @Override
     public void getAll() {
-
         if (Nurses.isEmpty()) {
             System.out.println("No nurses found");
             return;
         }
-
         for (Nurse n : Nurses) {
             System.out.println(n);
         }
@@ -226,9 +222,7 @@ public void  displayNurses(){
     public void search(String keyword) {
 
         boolean found = false;
-
         for (Nurse n : Nurses) {
-
             if (n.getFirstName().equalsIgnoreCase(keyword)
                     || n.getDepartmentId().equalsIgnoreCase(keyword)
                     || n.getShift().equalsIgnoreCase(keyword)) {
