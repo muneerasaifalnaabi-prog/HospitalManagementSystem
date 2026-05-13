@@ -342,12 +342,13 @@ public void displayDoctors(String specialization){
                     displayDoctors();
                     handelDoctorService();
                 }
-                case 6 ->
-
+                case 6 -> {
+                    searchDoctorsBySpecialization(InputHandler.getStringInput("Enter specialization to search"));
+                    handelDoctorService();
+                }
                 case 7 -> {
-
-                    System.out.println("Exit from Application");
-                    return;
+                    displayAvailableDoctors();
+                    handelDoctorService();
                 }
 
                 default -> System.out.println("Invalid option");
