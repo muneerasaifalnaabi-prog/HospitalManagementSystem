@@ -53,25 +53,6 @@ public class InputHandler {
             }
         }
     }
-
-    public static Date getDateInput(String prompt) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        sdf.setLenient(false);
-        while (true) {
-            System.out.print(prompt);
-            String dateStr = scanner.nextLine();
-            if (!HelperUtils.isValidDate(dateStr)) {
-                System.out.println("Please enter a valid date in dd-MM-yyyy format");
-                continue;
-            }
-            try {
-                return sdf.parse(dateStr);
-            } catch (ParseException e) {
-                System.out.println("Please enter a valid date");
-            }
-        }
-    }
-
     public static boolean getConfirmation(String prompt) {
         while (true) {
             System.out.print(prompt + " (yes/no): ");
