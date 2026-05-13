@@ -108,6 +108,10 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         Patient p = getPatientById(patientId);
         if (HelperUtils.isNotNull(p)) {
             patients.remove(p);
+            System.out.println("Patient removed successfully");
+        }
+        else  {
+            System.out.println("Patient not found");
         }
     }
 
