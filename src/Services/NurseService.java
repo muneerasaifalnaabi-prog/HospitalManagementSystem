@@ -68,18 +68,9 @@ public Nurse addNurse() {
         }
 
         String gender = InputHandler.getStringInput("Gender");
-
-        System.out.println("Enter phone number:");
-        String phoneNumber = scanner.nextLine();
-
-        System.out.print("Enter Email Address: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter Physical Address: ");
-        String address = scanner.nextLine();
-
-        System.out.println("Enter nurse id:");
-        String nurseId = scanner.nextLine();
+        String phoneNumber = InputHandler.getStringInput("Phone Number");
+        String address = InputHandler.getStringInput("Address");
+        String nurseId = InputHandler.getStringInput("Nurse ID");
 
         System.out.print("Enter Department ID: ");
         String departmentId = scanner.nextLine();
