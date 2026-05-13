@@ -301,6 +301,9 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         LocalDate date = LocalDate.now();
         boolean found = false;
         for (Appointment a : appointments) {
+            if (a.getAppointmentDate().isAfter(date) || a.getAppointmentDate().equals(date)) {
+
+            }
 
         }
     }
