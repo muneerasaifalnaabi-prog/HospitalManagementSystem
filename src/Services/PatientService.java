@@ -90,14 +90,19 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     public void editPatient(String patientId) {
         Patient p = getPatientById(patientId);
-        if (p != null) {
-            p.setPhoneNumber(scanner.nextLine());
-            p.setEmail(scanner.nextLine());
-            p.setAddress(scanner.nextLine());
-            p.setEmergencyContact(scanner.nextLine());
-            p.setInsuranceId(scanner.nextLine());
+        if (HelperUtils.isNotNull(p)) {
+            p.setPhoneNumber(InputHandler.getStringInput("Enter phone: "));
+            p.setEmail(InputHandler.getStringInput("Enter email: "));
+            p.setAddress(InputHandler.getStringInput("Enter address: "));
+            p.setEmergencyContact(InputHandler.getStringInput("Enter emergency contact: "));
+            p.setInsuranceId(InputHandler.getStringInput("Enter insurance id: "));
+
+            System.out.println("Patient updated successfully");
+        } else {
+            System.out.println("Patient not found");
         }
     }
+
 
     public void removePatient(String patientId) {
         Patient p = getPatientById(patientId);
