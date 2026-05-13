@@ -96,25 +96,18 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     }
 
     public Doctor getDoctorById(String doctorId) {
-
         for (Doctor d : doctors) {
-
             if (d.getDoctorId().equals(doctorId)) {
                 return d;
             }
         }
-
         return null;
     }
 
     public void editDoctor(String doctorId) {
-
         Doctor d = getDoctorById(doctorId);
-
         if (HelperUtils.isNull(d)) {
-
-            System.out.println("Enter new phone number:");
-            d.setPhoneNumber(scanner.nextLine());
+            d.setPhoneNumber(InputHandler.getStringInput("Enter new Phone Number"));
 
             System.out.println("Enter new Email:");
             d.setEmail(scanner.nextLine());
