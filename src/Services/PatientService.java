@@ -174,24 +174,22 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
     public void registerInPatient(){
         System.out.println("InPatient registration");
-        Patient p = new InPatient();
         addPatient();
-        /*
-        private LocalDate admissionDate;
-    private LocalDate dischargeDate;
-    private String roomNumber;
-    private String bedNumber;
-    private String admittingDoctorId;
-    private double dailyCharges;
-         */
-        System.out.println("Enter admission date:");
         LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
         LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
         String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
         String bedNumber = InputHandler.getStringInput("Enter Bed Number: ");
-
-
+        double dailyCharges = InputHandler.getDoubleInput("Daily Charges: ");
+        String admittingDoctorId = InputHandler.getStringInput("Enter Admitting Doctor ID: ");
+        InPatient inPatient = new InPatient();
+        inPatient.setAdmissionDate(admissionDate);
+        inPatient.setDischargeDate(dischargeDate);
+        inPatient.setRoomNumber(roomNumber);
+        inPatient.setBedNumber(bedNumber);
+        inPatient.setDailyCharges(dailyCharges);
+        inPatient.setAdmittingDoctorId(admittingDoctorId);
     }
+
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
     }
