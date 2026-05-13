@@ -33,13 +33,12 @@ public void addNurses(){
 }
 
 public Nurse addNurse() {
-        System.out.println("========= Added New Nurse =====");
+    System.out.println("========= Added New Nurse =====");
 
     String id = HelperUtils.generateId("NURSE");
-
     System.out.println("Generated ID: " + id);
 
-        Nurse existNurse = getNurseById(id);
+    Nurse existNurse = getNurseById(id);
 
         if (HelperUtils.isNotNull(existNurse)) {
             System.out.println("ID already exists");
@@ -77,14 +76,12 @@ public Nurse addNurse() {
     }
 
     public Nurse getNurseById(String nurseId) {
-
         for (Nurse n : Nurses) {
 
             if (n.getId().equals(nurseId)) {
                 return n;
             }
         }
-
         return null;
     }
 
