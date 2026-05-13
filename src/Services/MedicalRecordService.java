@@ -231,6 +231,9 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             case 6 ->{
                 deleteMedicalRecord(InputHandler.getStringInput("Enter Medical Record to delete: "));
             }
+            case 7 ->{
+                displayPatientHistory(InputHandler.getStringInput("Enter PatientId to search for Medical Records History: "));
+            }
 
         }
     }
