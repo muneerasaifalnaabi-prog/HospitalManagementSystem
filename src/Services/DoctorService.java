@@ -500,7 +500,6 @@ public void displayDoctors(String specialization){
             System.out.println("No doctors found");
         }
     }
-
     @Override
     public void searchById(String id) {
         Doctor doctor = getDoctorById(id);
