@@ -26,6 +26,14 @@ public class ReportService {
     }
     public void DoctorPerformanceReport() {
         System.out.println("====Doctor Performance Report=====");
+       String doctorId = InputHandler.getStringInput("Enter Doctor ID");
+        int totalAppointment =0;
+        for (Appointment a :AppointmentService.appointments){
+            if (a.getDoctorId().equals(doctorId)){
+                totalAppointment++;
+            }
+            System.out.println("Doctor :"+a.getDoctorId()+" Appointment :"+totalAppointment);
+        }
     }
 
 }
