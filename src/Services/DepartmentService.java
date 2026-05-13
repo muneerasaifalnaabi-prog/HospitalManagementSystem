@@ -235,6 +235,11 @@ public void displayDepartments() {
                 addDepartment();
                 DepartmentHandler();
             }
+            case 2->{
+                displayDepartments();
+                DepartmentHandler();
+            }
+            case 3->{}
         }
     }
 }
