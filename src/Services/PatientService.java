@@ -170,7 +170,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     @Override
     public void remove(String id) {
         Patient p = getPatientById(id);
-        if (p != null) {
+        if (HelperUtils.isNotNull(p)) {
             patients.remove(p);
         }
     }
