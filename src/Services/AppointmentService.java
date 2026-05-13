@@ -58,14 +58,9 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         System.out.println("Enter Doctor ID:");
         String doctorId = InputHandler.getStringInput("Doctor ID");
         LocalDate appointmentDate = InputHandler.getLocalDateInput("Date of Appointment");
-        System.out.println("Enter Appointment Time:");
-        String appointmentTime = scanner.nextLine();
-
-        System.out.println("Enter Status:");
-        String status = scanner.nextLine();
-
-        System.out.println("Enter Reason:");
-        String reason = scanner.nextLine();
+        String appointmentTime = InputHandler.getStringInput("Time of Appointment");
+        String status = InputHandler.getStringInput("Status");
+        String reason = InputHandler.getStringInput("Reason");
 
         System.out.println("Enter Notes:");
         String notes = scanner.nextLine();
