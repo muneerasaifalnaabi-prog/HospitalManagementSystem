@@ -1,6 +1,5 @@
 package Services;
 
-import Entities.Department;
 import Entities.Doctor;
 import Entities.Patient;
 import Entities.Surgeon;
@@ -11,13 +10,9 @@ import interfaces.Manageable;
 import interfaces.Searchable;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static Services.PatientService.getPatients;
 
 public class DoctorService extends  BaseService implements Manageable, Searchable {
 
@@ -306,6 +301,12 @@ public void displayDoctors(String specialization){
             System.out.println("No doctors found");
         }
     }
+    public void addSurgeon() {
+        System.out.println("===== Add Surgeon =====");
+        Surgeon s = new Surgeon();
+
+    }
+
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
@@ -320,6 +321,7 @@ public void displayDoctors(String specialization){
                     handelDoctorService();
                 }
                 case 3 -> {
+
                 }
 
                 case 4 -> searchDoctors();
