@@ -82,9 +82,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             record.setDiagnosis(InputHandler.getStringInput("Enter Diagnosis: "));
             record.setPrescription(InputHandler.getStringInput("Enter Prescription: "));
             record.setTestResults(InputHandler.getStringInput("Enter Test Results: "));
-
-            System.out.println("Enter new Notes:");
-            record.setNotes(scanner.nextLine());
+            record.setNotes(InputHandler.getStringInput("Enter Notes: "));
 
             System.out.println("Medical Record updated successfully.");
 
