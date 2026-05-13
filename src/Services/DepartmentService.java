@@ -255,6 +255,7 @@ public void displayDepartments() {
                 getAll();
                 DepartmentHandler();
             }
+            default -> System.out.println("Invalid choice");
         }
     }
 }
