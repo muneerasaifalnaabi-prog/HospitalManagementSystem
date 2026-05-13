@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.MedicalRecord;
+import Utils.HelperUtils;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -38,8 +39,9 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         System.out.println("========= Added New Medical Record =====");
 
-        System.out.println("Enter Record ID:");
-        String recordId = scanner.nextLine();
+        String recordId = HelperUtils.generateId("MR");
+
+        System.out.println("Generated Record ID: " + recordId);
 
         MedicalRecord existRecord = getMedicalRecordById(recordId);
 
@@ -113,7 +115,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         MedicalRecord record = getMedicalRecordById(recordId);
 
-        if (record != null) {
+        if (HelperUtils.isNotNull(record)) {
 
             System.out.println("Enter new Diagnosis:");
             record.setDiagnosis(scanner.nextLine());
