@@ -2,6 +2,7 @@ package Services;
 
 import Entities.MedicalRecord;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -23,9 +24,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
                 medicalRecords.add(record);
                 System.out.println("Medical Record added successfully.");
             }
-
             System.out.println("Press q to go back to menu or press Enter to add another record:");
-
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 return;
             }
@@ -33,55 +32,25 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     }
 
     public MedicalRecord addMedicalRecord() {
-
         System.out.println("========= Added New Medical Record =====");
 
         String recordId = HelperUtils.generateId("MR");
-
         System.out.println("Generated Record ID: " + recordId);
 
         MedicalRecord existRecord = getMedicalRecordById(recordId);
 
-        if (existRecord != null) {
+        if (HelperUtils.isNotNull(existRecord)) {
             System.out.println("Record ID already exists");
             return null;
         }
 
-        System.out.println("Enter Patient ID:");
-        String patientId = scanner.nextLine();
-
-        System.out.println("Enter Doctor ID:");
-        String doctorId = scanner.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        LocalDate visitDate = null;
-        boolean valid = false;
-
-        while (!valid) {
-
-            System.out.print("Enter Visit Date (dd-MM-yyyy): ");
-            String input = scanner.nextLine();
-
-            try {
-                visitDate = LocalDate.parse(input, formatter);
-                valid = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format or value. Please try again.");
-            }
-        }
-
-        System.out.println("Enter Diagnosis:");
-        String diagnosis = scanner.nextLine();
-
-        System.out.println("Enter Test Results:");
-        String testResults = scanner.nextLine();
-
-        System.out.println("Enter Prescription:");
-        String prescription = scanner.nextLine();
-
-        System.out.println("Enter Notes:");
-        String notes = scanner.nextLine();
+        String patientId = InputHandler.getStringInput("Enter Patient ID: ");
+        String doctorId = InputHandler.getStringInput("Enter Doctor ID: ");
+        LocalDate visitDate = InputHandler.getLocalDateInput("Enter Visit Date: ");
+        String diagnosis = InputHandler.getStringInput("Enter Diagnosis: ");
+        String testResults =InputHandler.getStringInput("Enter Test Results: ");
+        String prescription = InputHandler.getStringInput("Enter Prescription: ");
+        String notes = InputHandler.getStringInput("Enter Notes: ");
 
         MedicalRecord medicalRecord = new MedicalRecord(
                 recordId,
