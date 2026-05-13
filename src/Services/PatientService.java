@@ -47,74 +47,30 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
         System.out.println("========= Added New Patient =====");
 
-        String id  = HelperUtils.generateId("Patient");
+        String id = HelperUtils.generateId("PAT");
 
-        Patient existPatient = getPatientById(id);
-
-        if (existPatient != null) {
+        if (HelperUtils.isNotNull(getPatientById(id))) {
             System.out.println("ID already exists");
             return null;
         }
 
-        System.out.print("Enter First Name: ");
-        String fname = scanner.nextLine();
+        String fname = InputHandler.getStringInput("Enter First Name: ");
+        String lname = InputHandler.getStringInput("Enter Last Name: ");
 
-        System.out.print("Enter Last Name: ");
-        String lname = scanner.nextLine();
+        LocalDate dob = InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy): ");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String gender = InputHandler.getStringInput("Enter gender: ");
+        String phone = InputHandler.getStringInput("Enter phone: ");
+        String email = InputHandler.getStringInput("Enter email: ");
+        String address = InputHandler.getStringInput("Enter address: ");
 
-        LocalDate date = null;
-        boolean valid = false;
+        String patientId = InputHandler.getStringInput("Enter patient id: ");
+        String bloodGroup = InputHandler.getStringInput("Enter blood group: ");
+        String emergency = InputHandler.getStringInput("Enter emergency contact: ");
+        String insurance = InputHandler.getStringInput("Enter insurance id: ");
 
-        while (!valid) {
-            System.out.print("Enter Date Of Birth (dd-MM-yyyy): ");
-            String input = scanner.nextLine();
-            try {
-                date = LocalDate.parse(input, formatter);
-                valid = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format or value. Please try again.");
-            }
-        }
+        LocalDate regDate = InputHandler.getLocalDateInput("Enter registration date: ");
 
-        System.out.println("Enter gender:");
-        String gender = scanner.nextLine();
-
-        System.out.println("Enter phone number:");
-        String phoneNumber = scanner.nextLine();
-
-        System.out.print("Enter Email Address: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter Physical Address: ");
-        String address = scanner.nextLine();
-
-        System.out.println("Enter patient id:");
-        String patientid = scanner.nextLine();
-
-        System.out.print("Enter Blood Group:");
-        String bloodGroup = scanner.nextLine();
-
-        System.out.print("Enter Emergency Contact:");
-        String emergencyContact = scanner.nextLine();
-
-        System.out.print("Enter Insurance ID:");
-        String insuranceId = scanner.nextLine();
-
-        LocalDate registrationDate = null;
-        boolean validReg = false;
-
-        while (!validReg) {
-            System.out.print("Enter Registration Date (dd-MM-yyyy): ");
-            String input = scanner.nextLine();
-            try {
-                registrationDate = LocalDate.parse(input, formatter);
-                validReg = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format. Try again:");
-            }
-        }
 
         return new Patient(
                 id, fname, lname, date, gender, phoneNumber, email, address,
@@ -209,8 +165,18 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
     public void registerInPatient(){
         System.out.println("InPatient registration");
-        Patient p = new InPatient()
+        Patient p = new InPatient();
         addPatient();
+        /*
+        private LocalDate admissionDate;
+    private LocalDate dischargeDate;
+    private String roomNumber;
+    private String bedNumber;
+    private String admittingDoctorId;
+    private double dailyCharges;
+         */
+        System.out.println("Enter admission date:");
+        String admissionDate = scanner.nextLine();
     }
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
