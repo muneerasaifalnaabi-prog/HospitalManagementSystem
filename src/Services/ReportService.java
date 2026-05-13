@@ -24,5 +24,8 @@ public class ReportService {
        }
 
     }
+    public void DoctorPerformanceReport() {
+        System.out.println("====Doctor Performance Report=====");
+    }
 
 }
