@@ -262,6 +262,12 @@ public void  displayNurses(){
                 displayNurses();
                 NurseHandler();
             }
+            case 3 ->{
+                getNursesByDepartmentId(InputHandler.getStringInput("Department ID"));
+            }
+            case 4 ->{
+
+            }
 
         }
     }
