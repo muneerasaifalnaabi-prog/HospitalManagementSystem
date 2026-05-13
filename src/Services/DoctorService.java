@@ -55,11 +55,8 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         String gender = InputHandler.getStringInput("Gender");
         String phone = InputHandler.getStringInput("Phone Number");
         String email = InputHandler.getStringInput("Email");
-
-        String address = scanner.nextLine();
-
-        System.out.println("Enter doctor id:");
-        String doctorId = scanner.nextLine();
+        String address = InputHandler.getStringInput("Address");
+        String doctorId =InputHandler.getStringInput("Doctor ID");
 
         System.out.print("Enter Specialization: ");
         String specialization = scanner.nextLine();
