@@ -3,6 +3,7 @@ package Services;
 import Entities.MedicalRecord;
 import Utils.HelperUtils;
 import Utils.InputHandler;
+import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -204,6 +205,11 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         }
     }
     public void MedicalRecordHandler(){
-        System.out.println();
+        System.out.println("==== Medeical Record Handler ===");
+        System.out.println(MenuMessege.MEDICALRECORD_MENU_MESSEGE);
+        int choice = InputHandler.getIntInput("Enter choice: ");
+        switch (choice) {
+
+        }
     }
 }
