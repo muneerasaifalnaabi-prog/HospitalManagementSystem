@@ -219,6 +219,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             }
             case 3 ->{
                 getMedicalRecordsByPatientId(InputHandler.getStringInput("Enter PatientId to search for Medical Records: "));
+                MedicalRecordHandler();
             }
 
         }
