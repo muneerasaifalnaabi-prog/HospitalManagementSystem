@@ -59,14 +59,8 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         String doctorId =InputHandler.getStringInput(" Enter Doctor ID");
         String specialization = InputHandler.getStringInput("Enter Specialization");
         String qualification =InputHandler.getStringInput("Enter Qualification");
-
-        System.out.print("Enter Experience Years: ");
-        int experienceYears = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.print("Enter Department ID: ");
-        String departmentId = scanner.nextLine();
-
+        int experienceYears =InputHandler.getIntInput("Enter Experience Years");
+        String departmentId =InputHandler.getStringInput("Enter Department ID");
         System.out.print("Enter Consultation Fee: ");
         Double consultationFee = scanner.nextDouble();
         scanner.nextLine();
