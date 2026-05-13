@@ -254,7 +254,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         MedicalRecord record = getMedicalRecordById(id);
 
-        if (record != null) {
+        if (HelperUtils.isNotNull(record)) {
             System.out.println(record);
         } else {
             System.out.println("Record not found");
