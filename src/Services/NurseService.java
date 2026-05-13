@@ -88,16 +88,13 @@ public Nurse addNurse() {
 public void editNurses(String nurseId) {
     Nurse nurse = getNurseById(nurseId);
     if (HelperUtils.isNotNull(nurse)) {
-
         String newPhoneNumber =InputHandler.getStringInput("New Phone Number");
         nurse.setPhoneNumber(newPhoneNumber);
 
-        System.out.println("Enter new email: ");
-        String newEmail = scanner.nextLine();
+        String newEmail =InputHandler.getStringInput("New Email");
         nurse.setEmail(newEmail);
 
-        System.out.println("Enter new Department ID: ");
-        String newDepartmentId = scanner.nextLine();
+        String newDepartmentId = InputHandler.getStringInput("New Department ID");
         nurse.setDepartmentId(newDepartmentId);
 
         System.out.println("Enter new Shift ID: ");
