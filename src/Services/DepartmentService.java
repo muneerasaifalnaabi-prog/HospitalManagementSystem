@@ -243,7 +243,13 @@ public void displayDepartments() {
                 displayDepartments();
                 DepartmentHandler();
             }
-            case 4->{}
+            case 4->{
+                assignDoctorByDepartment(departments.get(0).getDepartmentId(), departments.get(1).getDepartmentId());
+                DepartmentHandler();
+            }
+            case 5->{
+
+            }
         }
     }
 }
