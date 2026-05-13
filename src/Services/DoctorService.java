@@ -4,6 +4,7 @@ import Entities.Department;
 import Entities.Doctor;
 import Entities.Patient;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
@@ -43,38 +44,14 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         System.out.println("Generated System ID: " + id);
 
         Doctor existDoctor = getDoctorById(id);
-
-
         if (HelperUtils.isNotNull(existDoctor)) {
             System.out.println("ID already exists");
             return null;
         }
 
-        System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
-
-        System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        LocalDate date = null;
-        boolean valid = false;
-
-        while (!valid) {
-
-            System.out.print("Enter Date Of Birth (dd-MM-yyyy): ");
-            String input = scanner.nextLine();
-
-            try {
-                date = LocalDate.parse(input, formatter);
-                valid = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format or value. Please try again.");
-            }
-        }
-
-        System.out.println("Enter gender:");
+        String firstName = InputHandler.getStringInput("First Name");
+        String lastName = InputHandler.getStringInput("Last Name");
+        LocalDate dob = InputHandler.getLocalDateInput("Enter DOB dd-mm-yyyy ");
         String gender = scanner.nextLine();
 
         System.out.println("Enter phone number:");
