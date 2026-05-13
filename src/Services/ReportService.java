@@ -95,6 +95,20 @@ public class ReportService {
     }
     public void emergencyPatientsReport() {
         System.out.println("====Emergency Patients Report=====");
+        boolean found = false;
+        for (Appointment a :AppointmentService.appointments){
+            if (a.getReason().equalsIgnoreCase("Emergency")){
+                System.out.println("Emergency Patient Information in Details");
+                a.displayInfo();
+                System.out.println("Summary of Emergency Patient Information ");
+                a.displaySummary();
+                found = true;
+            }
+        }
+        if (!found){
+            System.out.println("Emergency Patient cases Found");
+        }
     }
+
 
 }
