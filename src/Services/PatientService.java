@@ -213,6 +213,22 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         emergencyPatient.setTriageLevel(triageLevel);
     }
     public void searchPatientsHandler(){
+        System.out.println("Patients search");
+        System.out.println("""
+                1.Search Patient by any keyword
+                2.search Patient by name 
+                3.search by id
+                """);
+        int choice = InputHandler.getIntInput("Enter choice: ");
+        switch (choice) {
+            case 1 ->{
+                String keyword = InputHandler.getStringInput("Enter keyword: ");
+                search(keyword);
+            }
+            case 2 ->{
+               searchPatientsByName(InputHandler.getStringInput("Enter name: "));
+            }
+        }
 
     }
     public void HadlerPatient(){
