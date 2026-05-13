@@ -6,6 +6,7 @@ import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Patient extends Person implements Displayable {
@@ -74,7 +75,9 @@ public class Patient extends Person implements Displayable {
     }
 
     public void setRegistrationDate(LocalDate registrationDate) {
-        this.registrationDate = registrationDate;
+        if (HelperUtils.isNotNull(registrationDate)) {
+            this.registrationDate = registrationDate;
+        }
     }
 
     public String getInsuranceId() {
@@ -82,7 +85,9 @@ public class Patient extends Person implements Displayable {
     }
 
     public void setInsuranceId(String insuranceId) {
-        this.insuranceId = insuranceId;
+        if (HelperUtils.isNotNull(insuranceId)) {
+            this.insuranceId = insuranceId;
+        }
     }
 
     public List<String> getMedicalRecords() {
@@ -98,8 +103,11 @@ public class Patient extends Person implements Displayable {
     }
 
     public void setAppointments(List<String> appointments) {
-        this.appointments = appointments;
+        this.appointments = HelperUtils.isNotNull(appointments)
+                ? appointments
+                : new ArrayList<>();
     }
+
 
     @Override
     public void displayInfo(){
@@ -107,10 +115,13 @@ public class Patient extends Person implements Displayable {
 
     }
     public void addMedicalRecord(String medicalRecord) {
-        if (medicalRecords == null) {
-            medicalRecords = new java.util.ArrayList<>();
+        if (HelperUtils.isNull(medicalRecords)) {
+            medicalRecords = new ArrayList<>();
         }
-        medicalRecords.add(medicalRecord);
+
+        if (HelperUtils.isNotNull(medicalRecord)) {
+            medicalRecords.add(medicalRecord);
+        }
     }
     public void addAppointment(String appointment){
         appointments.add(appointment);
