@@ -2,6 +2,7 @@ package Services;
 
 import Entities.Patient;
 import Utils.Constants;
+import Utils.HelperUtils;
 import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
@@ -40,8 +41,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
         System.out.println("========= Added New Patient =====");
 
-        System.out.println("Enter id :");
-        String id = scanner.nextLine();
+        String id  = HelperUtils.generateId("Patient");
 
         Patient existPatient = getPatientById(id);
 
@@ -196,7 +196,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     @Override
     public void searchById(String id) {
         Patient p = getPatientById(id);
-        if (p != null) {
+        if (HelperUtils.isNotNull(p)) {
             System.out.println(p);
         }
     }
