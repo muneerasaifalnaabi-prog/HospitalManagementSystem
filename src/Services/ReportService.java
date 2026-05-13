@@ -28,6 +28,8 @@ public class ReportService {
         System.out.println("====Doctor Performance Report=====");
        String doctorId = InputHandler.getStringInput("Enter Doctor ID");
         int totalAppointment =0;
+        int totalComplete =0;
+        int cancelled =0;
         for (Appointment a :AppointmentService.appointments){
             if (a.getDoctorId().equals(doctorId)){
                 totalAppointment++;
