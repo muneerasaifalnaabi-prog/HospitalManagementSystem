@@ -311,14 +311,9 @@ public void displayDoctors(String specialization){
             switch (choice) {
                 case 1 -> {
                     addDoctors();
+                    handelDoctorService();
                 }
-
                 case 2 -> {
-
-                    System.out.println("Enter Doctor ID:");
-                    String id = scanner.nextLine();
-
-                    editDoctor(id);
                 }
 
                 case 3 -> {
