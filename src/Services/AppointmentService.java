@@ -61,9 +61,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         String appointmentTime = InputHandler.getStringInput("Time of Appointment");
         String status = InputHandler.getStringInput("Status");
         String reason = InputHandler.getStringInput("Reason");
-
-        System.out.println("Enter Notes:");
-        String notes = scanner.nextLine();
+        String notes =InputHandler.getStringInput("Notes");
 
         Appointment appointment = new Appointment(
                 patientId,
@@ -75,7 +73,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                 reason,
                 notes
         );
-
         return appointment;
     }
 
@@ -97,43 +94,22 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         Appointment existingAppointment = getAppointmentById(appointment);
 
         if (HelperUtils.isNull(existingAppointment)) {
-
             System.out.println("Appointment Not Found");
-
             return;
         }
-
-        System.out.println("Enter new Appointment Time:");
-
-        String newAppointmentTime = scanner.nextLine();
-
+        String newAppointmentTime = InputHandler.getStringInput("Enter new Time of Appointment");
         if (HelperUtils.isValidString(newAppointmentTime)) {
-
             existingAppointment.setAppointmentTime(newAppointmentTime);
         }
-
-        System.out.println("Enter new Status:");
-
-        String newStatus = scanner.nextLine();
-
+        String newStatus = InputHandler.getStringInput("Enter new Status of Appointment");
         if (HelperUtils.isValidString(newStatus)) {
-
             existingAppointment.setStatus(newStatus);
         }
-
-        System.out.println("Enter new Reason:");
-
-        String newReason = scanner.nextLine();
-
+        String newReason = InputHandler.getStringInput("Enter new Reason of Appointment");
         if (HelperUtils.isValidString(newReason)) {
-
             existingAppointment.setReason(newReason);
         }
-
-        System.out.println("Enter new Notes:");
-
-        String newNotes = scanner.nextLine();
-
+        String newNotes = InputHandler.getStringInput("Enter new Notes of Appointment");
         existingAppointment.setNotes(newNotes);
 
         System.out.println("Appointment Edited Successfully");
