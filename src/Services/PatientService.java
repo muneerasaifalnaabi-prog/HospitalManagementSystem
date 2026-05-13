@@ -207,6 +207,15 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
+            case 1->{
+                addaddPatients();
+            }
+            case 2->{
+                //registerInPatient();
+            }
+            case 3->{
+
+            }
 
         }
     }
