@@ -37,6 +37,9 @@ public class ReportService {
             if (a.getStatus().equalsIgnoreCase("Completed")){
                 totalComplete++;
             }
+            if (a.getStatus().equalsIgnoreCase("Cancelled")){
+                cancelled++;
+            }
             System.out.println("Doctor :"+a.getDoctorId()+" Appointment :"+totalAppointment);
         }
     }
