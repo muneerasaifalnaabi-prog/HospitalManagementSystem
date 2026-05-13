@@ -276,6 +276,7 @@ public void  displayNurses(){
             }
             case 5 ->{
                 //assign nurse to patient
+                NurseHandler();
             }
             case 6 ->{
                 editNurses(InputHandler.getStringInput("Nurse ID to update"));
