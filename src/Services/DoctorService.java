@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Consultant;
 import Entities.Doctor;
 import Entities.Patient;
 import Entities.Surgeon;
@@ -309,6 +310,10 @@ public void displayDoctors(String specialization){
     }
     public void addConsultation() {
         System.out.println("===== Add Consultation =====");
+        addDoctor();
+        Consultant consultant = new Consultant();
+        consultant.setConsultationDuration(InputHandler.getIntInput("Enter duration"));
+        consultant.setOnlineConsultationAvailable(true);
     }
 
     public void handelDoctorService() {
@@ -324,6 +329,8 @@ public void displayDoctors(String specialization){
                     handelDoctorService();
                 }
                 case 3 -> {
+                    addConsultation();
+                    handelDoctorService();
 
 
                 }

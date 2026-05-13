@@ -18,6 +18,9 @@ public class Consultant extends Doctor {
         this.onlineConsultationAvailable = onlineConsultationAvailable;
     }
 
+    public Consultant() {
+    }
+
     public List<String> getConsultationTypes() {
         return consultationTypes;
     }
