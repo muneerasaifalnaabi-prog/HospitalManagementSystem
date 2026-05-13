@@ -244,7 +244,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     }
     public void cancelAppointments(String appointmentId,LocalDate date,String newTime) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
-        if (existingAppointment != null) {
+        if (HelperUtils.isNotNull(existingAppointment)) {
             existingAppointment.cancel();
         }
         else
@@ -279,7 +279,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void scheduleAppointment(Appointment appointment) {
-        if (appointment ==null){
+        if (HelperUtils.isNull(appointment)) {
             System.out.println("Invalid appointment");
             return;
         }
@@ -290,7 +290,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     @Override
     public void cancelAppointment(Appointment appointment) {
-        if (appointment ==null){
+        if (HelperUtils.isNull(appointment)) {
             System.out.println("appointment not found");
             return;
         }
