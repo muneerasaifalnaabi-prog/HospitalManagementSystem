@@ -17,12 +17,9 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     static List<MedicalRecord> medicalRecords = new ArrayList<>();
 
     public void addMedicalRecords() {
-
         while (true) {
-
             MedicalRecord record = addMedicalRecord();
-
-            if (record != null) {
+            if (HelperUtils.isNotNull(record)) {
                 medicalRecords.add(record);
                 System.out.println("Medical Record added successfully.");
             }
