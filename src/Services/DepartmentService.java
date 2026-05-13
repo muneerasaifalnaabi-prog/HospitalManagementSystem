@@ -134,12 +134,24 @@ public void displayDepartments() {
 }
     public void assignDoctorByDepartment(String doctorId, String departmentId) {
 
+        if (HelperUtils.isNull(doctorId)
+                || HelperUtils.isNull(departmentId)) {
+
+            System.out.println("Invalid Input");
+
+            return;
+        }
+
         Department department = getDepartmentById(departmentId);
 
-        if (department != null) {
+        if (HelperUtils.isNotNull(department)) {
+
             department.assignDoctor(doctorId);
+
             System.out.println("Doctor Assigned Successfully");
-        } else {
+        }
+        else {
+
             System.out.println("Department doesn't exist");
         }
     }
