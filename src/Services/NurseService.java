@@ -252,5 +252,9 @@ public void  displayNurses(){
     public void NurseHandler(){
         System.out.println("==== Nurse Management ===");
         System.out.println(MenuMessege.NURSE_MENU_MESSEGE);
+        int choice = InputHandler.getIntInput("Enter choice");
+        switch (choice) {
+
+        }
     }
 }
