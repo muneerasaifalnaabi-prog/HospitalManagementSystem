@@ -2,9 +2,12 @@ package Services;
 
 import Entities.Appointment;
 import Entities.Doctor;
+import Entities.MedicalRecord;
+import Utils.HelperUtils;
 import Utils.InputHandler;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ReportService {
     AppointmentService appointmentService = new AppointmentService();
@@ -44,6 +47,11 @@ public class ReportService {
         System.out.println("====Doctor Performance Report=====");
        String doctorId = InputHandler.getStringInput("Enter Doctor ID");
        Doctor doctor = doctorService.getDoctorById(doctorId);
+       if (HelperUtils.isNotNull(doctor)){
+           System.out.println("Doctor Information in Details");
+           List<Appointment> doctorAppointments = appointmentService.getAppointmentsByDoctor(doctorId);
+           List<MedicalRecord> records =medicalRecordService.getMedicalRecordsByDoctorId(doctorId);
+       }
 
 
     }
