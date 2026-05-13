@@ -288,7 +288,10 @@ public void  displayNurses(){
                 deleteNurses(InputHandler.getStringInput("Nurse ID to delete"));
                 NurseHandler();
             }
-
+            default ->{
+                System.out.println("Invalid choice");
+            }
         }
+
     }
 }
