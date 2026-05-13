@@ -197,6 +197,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     public void searchById(String id) {
         Patient p = getPatientById(id);
         if (HelperUtils.isNotNull(p)) {
+
             System.out.println(p);
         }
     }
