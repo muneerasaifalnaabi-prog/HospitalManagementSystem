@@ -104,7 +104,6 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
 
         List<MedicalRecord> result = new ArrayList<>();
-
         for (MedicalRecord record : medicalRecords) {
 
             if (record.getPatientId().equals(patientId)) {
@@ -128,14 +127,11 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         return result;
     }
     public void displayPatientHistory(String patientId) {
-
         List<MedicalRecord> records = getMedicalRecordsByPatientId(patientId);
-
         if (records.isEmpty()) {
             System.out.println("No medical records found");
             return;
         }
-
         for (MedicalRecord record : records) {
             System.out.println(record);
         }
@@ -162,7 +158,6 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public void remove(String id) {
 
         MedicalRecord record = getMedicalRecordById(id);
-
         if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
             System.out.println("Medical record removed successfully");
@@ -178,10 +173,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             System.out.println("No medical records found");
             return;
         }
-
-        for (MedicalRecord record : medicalRecords) {
-            System.out.println(record);
-        }
+        displayAllMedicalRecords();
     }
     @Override
     public void search(String keyword) {
