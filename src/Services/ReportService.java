@@ -6,6 +6,10 @@ import Utils.InputHandler;
 import java.time.LocalDate;
 
 public class ReportService {
+    AppointmentService appointmentService = new AppointmentService();
+    DoctorService doctorService = new DoctorService();
+    DepartmentService departmentService = new DepartmentService();
+    MedicalRecordService medicalRecordService = new MedicalRecordService();
     public void DailyAppointmentsReport() {
         System.out.println("====Daily Appointments Report=====");
         LocalDate localDate = InputHandler.getLocalDateInput("Enter Daily Appointment Date");
