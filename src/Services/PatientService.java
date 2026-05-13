@@ -188,6 +188,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
         LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
         String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
+        String bedNumber = InputHandler.getStringInput("Enter Bed Number: ");
 
 
     }
