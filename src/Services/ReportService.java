@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Appointment;
+import Entities.Department;
 import Entities.Doctor;
 import Entities.MedicalRecord;
 import Utils.HelperUtils;
@@ -67,6 +68,20 @@ public class ReportService {
     }
     public void departmentOccupancyReport() {
         System.out.println("====Department Occupancy Report=====");
+        if (DepartmentService.departments.isEmpty()) {
+            System.out.println("Department Not Found");
+            return;
+        }
+        for (Department department :DepartmentService.departments){
+            int occupiedBeds = department.getBedCapacity() - department.getAvailableBeds();
+            System.out.println("Department Occupancy Information in Details");
+            department.displayInfo();
+            System.out.println("Summary of Department Occupancy Information ");
+            department.displaySummary();
+            System.out.println("Bed Capacity :" + department.getBedCapacity());
+            System.out.println("Available Bed Capacity :" + department.getAvailableBeds());
+            System.out.println("Total Bed Capacity :" + department.getBedCapacity());
+        }
     }
 
 }
