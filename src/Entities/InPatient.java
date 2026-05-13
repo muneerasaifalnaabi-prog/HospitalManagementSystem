@@ -26,6 +26,9 @@ public class InPatient extends Patient implements Displayable , Billable {
         this.dailyCharges = dailyCharges;
     }
 
+    public InPatient() {
+    }
+
     public LocalDate getAdmissionDate() {
         return admissionDate;
     }

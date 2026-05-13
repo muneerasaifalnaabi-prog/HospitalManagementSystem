@@ -207,7 +207,27 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             System.out.println(p);
         }
     }
+    public void registerInPatient(){
+        System.out.println("InPatient registration");
+        Patient p = new InPatient()
+        addPatient();
+    }
+    public void registerOutPatient(){
+        System.out.println("OutPatient registration");
+    }
+    public void registerEmergencyPatient(){
+        System.out.println("EmergencyPatient registration");
+        addPatient();
+    }
+    public void viewPatientMedicalHistory(){
+        String patientId =  InputHandler.getStringInput("Enter Patient ID: ");
+        Patient patient = getPatientById(patientId);
+        if (HelperUtils.isNotNull(patient)) {
 
+
+        }
+
+    }
     public void HadlerPatient(){
         System.out.println("====== Patient Management =======");
         System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
