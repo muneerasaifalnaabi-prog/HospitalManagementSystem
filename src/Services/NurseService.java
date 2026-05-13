@@ -272,6 +272,7 @@ public void  displayNurses(){
             }
             case 4 ->{
                 getNursesByShift(InputHandler.getStringInput("Shift ID"));
+                NurseHandler();
             }
             case 5 ->{
                 //assign nurse to patient
