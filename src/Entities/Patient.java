@@ -124,8 +124,15 @@ public class Patient extends Person implements Displayable {
         }
     }
     public void addAppointment(String appointment){
-        appointments.add(appointment);
+        if (HelperUtils.isNull(appointments)) {
+            appointments = new ArrayList<>();
+        }
+
+        if (HelperUtils.isNotNull(appointment)) {
+            appointments.add(appointment);
+        }
     }
+
     public void updateInsurance(String updated) {
         if (updated != null && !updated.isEmpty()) {
             this.insuranceId = updated;
