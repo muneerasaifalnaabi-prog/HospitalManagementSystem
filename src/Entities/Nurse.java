@@ -24,6 +24,9 @@ public class Nurse extends Person implements Displayable {
         this.assignedPatients = assignedPatients;
     }
 
+    public Nurse() {
+    }
+
     public String getNurseId() {
         return nurseId;
     }

@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Nurse;
+import Entities.Patient;
 import Utils.HelperUtils;
 import Utils.InputHandler;
 import Utils.MenuMessege;
@@ -249,6 +250,12 @@ public void  displayNurses(){
             System.out.println("Nurse not found");
         }
     }
+    public void assignNuresToPatient(String patientId) {
+        Nurse nurse = getNurseById(patientId);
+        if (HelperUtils.isNotNull(nurse)) {
+
+        }
+    }
     public void NurseHandler(){
         System.out.println("==== Nurse Management ===");
         System.out.println(MenuMessege.NURSE_MENU_MESSEGE);
@@ -267,6 +274,15 @@ public void  displayNurses(){
             }
             case 4 ->{
                 getNursesByShift(InputHandler.getStringInput("Shift ID"));
+            }
+            case 5 ->{
+                //assign nurse to patient
+            }
+            case 6 ->{
+                editNurses(InputHandler.getStringInput("Nurse ID to update"));
+            }
+            case 7 ->{
+                deleteNurses(InputHandler.getStringInput("Nurse ID to delete"));
             }
 
         }
