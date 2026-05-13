@@ -354,6 +354,10 @@ public void displayDoctors(String specialization){
                     assignPatient(InputHandler.getStringInput("Enter Doctor Id"), InputHandler.getStringInput("Enter Patient Id"));
                     handelDoctorService();
                 }
+                case 9 -> {
+                    editDoctor(InputHandler.getStringInput("Enter Doctor Id to edit"));
+                    handelDoctorService();
+                }
                 default -> System.out.println("Invalid option");
             }
         }
