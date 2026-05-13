@@ -3,6 +3,7 @@ package Services;
 import Entities.Department;
 import Entities.Doctor;
 import Entities.Patient;
+import Entities.Surgeon;
 import Utils.HelperUtils;
 import Utils.InputHandler;
 import Utils.MenuMessege;
@@ -314,14 +315,11 @@ public void displayDoctors(String specialization){
                     handelDoctorService();
                 }
                 case 2 -> {
+                    //Surgeon surgeon= new Surgeon();
+                    //add surgeon
+                    handelDoctorService();
                 }
-
                 case 3 -> {
-
-                    System.out.println("Enter Doctor ID:");
-                    String id = scanner.nextLine();
-
-                    removeDoctor(id);
                 }
 
                 case 4 -> searchDoctors();

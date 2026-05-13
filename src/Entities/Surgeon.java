@@ -18,6 +18,9 @@ public class Surgeon extends Doctor implements Displayable {
         this.operationTheatreAccess = operationTheatreAccess;
     }
 
+    public Surgeon() {
+    }
+
     public int getSurgeriesPerformed() {
         return surgeriesPerformed;
     }
