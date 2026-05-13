@@ -34,6 +34,9 @@ public class ReportService {
             if (a.getDoctorId().equals(doctorId)){
                 totalAppointment++;
             }
+            if (a.getStatus().equalsIgnoreCase("Completed")){
+                totalComplete++;
+            }
             System.out.println("Doctor :"+a.getDoctorId()+" Appointment :"+totalAppointment);
         }
     }
