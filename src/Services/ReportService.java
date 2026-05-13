@@ -123,6 +123,21 @@ public class ReportService {
                 DoctorPerformanceReport();
                 ReportHandler();
             }
+            case 3 ->{
+                departmentOccupancyReport();
+                ReportHandler();
+            }
+            case 4 ->{
+                patientStatisticsReport();
+                ReportHandler();
+            }
+            case 5 ->{
+                emergencyPatientsReport();
+                ReportHandler();
+            }
+            default ->{
+                System.out.println("Invalid choice");
+            }
         }
     }
 }
