@@ -114,6 +114,15 @@ public class ReportService {
         System.out.println("====Report Handler=====");
         System.out.println(MenuMessege.REPORT_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
-        switch (choice){}
+        switch (choice){
+            case 1 ->{
+                DailyAppointmentsReport();
+                ReportHandler();
+            }
+            case 2 ->{
+                DoctorPerformanceReport();
+                ReportHandler();
+            }
+        }
     }
 }
