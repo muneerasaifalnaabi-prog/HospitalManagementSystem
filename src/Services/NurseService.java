@@ -266,7 +266,7 @@ public void  displayNurses(){
                 getNursesByDepartmentId(InputHandler.getStringInput("Department ID"));
             }
             case 4 ->{
-
+                getNursesByShift(InputHandler.getStringInput("Shift ID"));
             }
 
         }
