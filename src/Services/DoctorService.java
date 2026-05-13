@@ -303,8 +303,12 @@ public void displayDoctors(String specialization){
     }
     public void addSurgeon() {
         System.out.println("===== Add Surgeon =====");
+        addDoctor();
         Surgeon s = new Surgeon();
-
+        s.setSurgeriesPerformed(InputHandler.getIntInput("Enter surgery number"));
+    }
+    public void addConsultation() {
+        System.out.println("===== Add Consultation =====");
     }
 
     public void handelDoctorService() {
@@ -316,11 +320,11 @@ public void displayDoctors(String specialization){
                     handelDoctorService();
                 }
                 case 2 -> {
-                    //Surgeon surgeon= new Surgeon();
-                    //add surgeon
+                    addSurgeon();
                     handelDoctorService();
                 }
                 case 3 -> {
+
 
                 }
 
