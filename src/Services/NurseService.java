@@ -154,7 +154,7 @@ public void editNurses(String nurseId) {
 }
 public void deleteNurses(String nurseId) {
     Nurse nurse = getNurseById(nurseId);
-    if (nurse != null) {
+    if (HelperUtils.isNotNull(nurse)) {
         Nurses.remove(nurse);
         System.out.println("Nurse Deleted Successfully");
     }
