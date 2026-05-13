@@ -338,7 +338,6 @@ public void displayDoctors(String specialization){
                 case 4 ->{
                     addGeneralPrescription();
                     handelDoctorService();
-
                 }
 
 
