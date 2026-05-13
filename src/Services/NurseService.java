@@ -48,25 +48,7 @@ public Nurse addNurse() {
         String fname = InputHandler.getStringInput("First Name");
         String lname = InputHandler.getStringInput("Last Name");
         String email = InputHandler.getStringInput("Email");
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        LocalDate date = null;
-        boolean valid = false;
-
-        while (!valid) {
-
-            System.out.print("Enter Date Of Birth (dd-MM-yyyy): ");
-            String input = scanner.nextLine();
-
-            try {
-                date = LocalDate.parse(input, formatter);
-                valid = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format or value. Please try again.");
-            }
-        }
-
+        LocalDate dob =InputHandler.getLocalDateInput("Enter DOB dd-MM-yyyy");
         String gender = InputHandler.getStringInput("Gender");
         String phoneNumber = InputHandler.getStringInput("Phone Number");
         String address = InputHandler.getStringInput("Address");
@@ -79,7 +61,7 @@ public Nurse addNurse() {
                 id,
                 fname,
                 lname,
-                date,
+                dob,
                 gender,
                 phoneNumber,
                 email,
