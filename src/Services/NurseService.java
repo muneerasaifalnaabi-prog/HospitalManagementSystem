@@ -280,6 +280,7 @@ public void  displayNurses(){
             }
             case 6 ->{
                 editNurses(InputHandler.getStringInput("Nurse ID to update"));
+                NurseHandler();
             }
             case 7 ->{
                 deleteNurses(InputHandler.getStringInput("Nurse ID to delete"));
