@@ -57,19 +57,19 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         String fname = InputHandler.getStringInput("Enter First Name: ");
         String lname = InputHandler.getStringInput("Enter Last Name: ");
 
-        LocalDate dob = InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy): ");
+        LocalDate date = InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy): ");
 
         String gender = InputHandler.getStringInput("Enter gender: ");
-        String phone = InputHandler.getStringInput("Enter phone: ");
+        String phoneNumber = InputHandler.getStringInput("Enter phone: ");
         String email = InputHandler.getStringInput("Enter email: ");
         String address = InputHandler.getStringInput("Enter address: ");
 
-        String patientId = InputHandler.getStringInput("Enter patient id: ");
+        String patientid = InputHandler.getStringInput("Enter patient id: ");
         String bloodGroup = InputHandler.getStringInput("Enter blood group: ");
-        String emergency = InputHandler.getStringInput("Enter emergency contact: ");
-        String insurance = InputHandler.getStringInput("Enter insurance id: ");
+        String emergencyContact = InputHandler.getStringInput("Enter emergency contact: ");
+        String insuranceId = InputHandler.getStringInput("Enter insurance id: ");
 
-        LocalDate regDate = InputHandler.getLocalDateInput("Enter registration date: ");
+        LocalDate registrationDate = InputHandler.getLocalDateInput("Enter registration date: ");
 
 
         return new Patient(
