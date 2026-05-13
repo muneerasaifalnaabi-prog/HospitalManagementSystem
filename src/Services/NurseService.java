@@ -46,9 +46,8 @@ public Nurse addNurse() {
             return null;
         }
         String fname = InputHandler.getStringInput("First Name");
-
-        System.out.print("Enter Last Name: ");
-        String lname = scanner.nextLine();
+        String lname = InputHandler.getStringInput("Last Name");
+        String email = InputHandler.getStringInput("Email");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -68,8 +67,7 @@ public Nurse addNurse() {
             }
         }
 
-        System.out.println("Enter gender:");
-        String gender = scanner.nextLine();
+        String gender = InputHandler.getStringInput("Gender");
 
         System.out.println("Enter phone number:");
         String phoneNumber = scanner.nextLine();
