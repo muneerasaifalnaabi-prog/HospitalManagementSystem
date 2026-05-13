@@ -61,21 +61,13 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         String qualification =InputHandler.getStringInput("Enter Qualification");
         int experienceYears =InputHandler.getIntInput("Enter Experience Years");
         String departmentId =InputHandler.getStringInput("Enter Department ID");
-        System.out.print("Enter Consultation Fee: ");
-        Double consultationFee = scanner.nextDouble();
-        scanner.nextLine();
+        Double consultationFee =InputHandler.getDoubleInput("Enter Consultation Fee");
 
         List<String> availableSlots = new ArrayList<>();
-
         while (true) {
-
-            System.out.print("Enter Available Slot: ");
-            String slot = scanner.nextLine();
-
+            String slot = InputHandler.getStringInput(" Enter Slot Number");
             availableSlots.add(slot);
-
             System.out.println("Press q to stop adding slots or press Enter to continue:");
-
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 break;
             }
@@ -85,7 +77,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
                 id,
                 firstName,
                 lastName,
-                date,
+                dob,
                 gender,
                 phone,
                 email,
