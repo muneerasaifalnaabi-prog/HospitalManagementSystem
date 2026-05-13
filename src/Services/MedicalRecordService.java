@@ -80,12 +80,8 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         MedicalRecord record = getMedicalRecordById(recordId);
         if (HelperUtils.isNotNull(record)) {
             record.setDiagnosis(InputHandler.getStringInput("Enter Diagnosis: "));
-
-            System.out.println("Enter new Prescription:");
-            record.setPrescription(scanner.nextLine());
-
-            System.out.println("Enter new Test Results:");
-            record.setTestResults(scanner.nextLine());
+            record.setPrescription(InputHandler.getStringInput("Enter Prescription: "));
+            record.setTestResults(InputHandler.getStringInput("Enter Test Results: "));
 
             System.out.println("Enter new Notes:");
             record.setNotes(scanner.nextLine());
