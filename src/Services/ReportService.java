@@ -83,5 +83,8 @@ public class ReportService {
             System.out.println("Total Bed Capacity :" + department.getBedCapacity());
         }
     }
+    public void patientStatisticsReport() {
+        System.out.println("====Patient Statistics Report=====");
+    }
 
 }
