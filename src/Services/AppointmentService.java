@@ -137,35 +137,61 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     }
     public void editAppointment(String appointment) {
         Appointment existingAppointment = getAppointmentById(appointment);
-        if (existingAppointment != null) {
-            System.out.println("Enter new Appointment Time (dd-MM-yyyy):");
-            String newAppointmentTime = scanner.nextLine();
-            existingAppointment.setAppointmentTime(newAppointmentTime);
 
-            System.out.println("Enter new Status:");
-            String newStatus = scanner.nextLine();
-            existingAppointment.setStatus(newStatus);
-            System.out.println("Enter new Reason:");
-            String newReason = scanner.nextLine();
-            existingAppointment.setReason(newReason);
-            System.out.println("Enter new Notes:");
-            String newNotes = scanner.nextLine();
-            existingAppointment.setNotes(newNotes);
-            System.out.println("Appointment Edited Successfully");
-        }
-        else  {
+        if (HelperUtils.isNull(existingAppointment)) {
+
             System.out.println("Appointment Not Found");
+
+            return;
         }
+
+        System.out.println("Enter new Appointment Time:");
+
+        String newAppointmentTime = scanner.nextLine();
+
+        if (HelperUtils.isValidString(newAppointmentTime)) {
+
+            existingAppointment.setAppointmentTime(newAppointmentTime);
+        }
+
+        System.out.println("Enter new Status:");
+
+        String newStatus = scanner.nextLine();
+
+        if (HelperUtils.isValidString(newStatus)) {
+
+            existingAppointment.setStatus(newStatus);
+        }
+
+        System.out.println("Enter new Reason:");
+
+        String newReason = scanner.nextLine();
+
+        if (HelperUtils.isValidString(newReason)) {
+
+            existingAppointment.setReason(newReason);
+        }
+
+        System.out.println("Enter new Notes:");
+
+        String newNotes = scanner.nextLine();
+
+        existingAppointment.setNotes(newNotes);
+
+        System.out.println("Appointment Edited Successfully");
     }
     public void deleteAppointment(String appointmentId) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
-        if (existingAppointment != null) {
+
+        if (HelperUtils.isNotNull(existingAppointment)) {
+
             appointments.remove(existingAppointment);
+
             System.out.println("Appointment Deleted Successfully");
         }
         else {
-            System.out.println("Appointment Not Found");
 
+            System.out.println("Appointment Not Found");
         }
     }
     public List<Appointment> getAppointmentsByPatient(String patient) {
@@ -188,13 +214,22 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     }
     public List<Appointment> getAppointmentsByDate(LocalDate date){
         List<Appointment> appointmentList = new ArrayList<>();
+
+        if (HelperUtils.isNull(date)) {
+            return appointmentList;
+        }
+
         for (Appointment a : appointments) {
+
             if (a.getAppointmentDate().equals(date)) {
+
                 appointmentList.add(a);
             }
         }
+
         return appointmentList;
     }
+
     public void rescheduleAppointments(String appointmentId,LocalDate date,String newTime) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
         if (existingAppointment != null) {
