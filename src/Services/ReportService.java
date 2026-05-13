@@ -6,6 +6,7 @@ import Entities.Doctor;
 import Entities.MedicalRecord;
 import Utils.HelperUtils;
 import Utils.InputHandler;
+import Utils.MenuMessege;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -109,6 +110,10 @@ public class ReportService {
             System.out.println("Emergency Patient cases Found");
         }
     }
-
-
+    public void ReportHandler(){
+        System.out.println("====Report Handler=====");
+        System.out.println(MenuMessege.REPORT_MENU_MESSEGE);
+        int choice = InputHandler.getIntInput("Enter choice");
+        switch (choice){}
+    }
 }
