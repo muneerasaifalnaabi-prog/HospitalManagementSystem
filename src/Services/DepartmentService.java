@@ -98,7 +98,7 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
         Department department = getDepartmentById(departmentId);
 
-        if (HelperUtils.isNull(department)) {
+        if (HelperUtils.isNotNull(department)) {
 
             System.out.println("Enter new Department Name");
             department.setDepartmentName(scanner.nextLine());
@@ -158,6 +158,8 @@ public void displayDepartments() {
         }
     }
 
+
+
     @Override
     public void add(Object entity) {
         if (entity instanceof Department department){
@@ -214,6 +216,32 @@ public void displayDepartments() {
         }
 
     }
+    public void assignNurseByDepartment() {
+
+        String departmentId = InputHandler.getStringInput("Enter Department ID: ");
+
+        Department department = getDepartmentById(departmentId);
+
+        if (HelperUtils.isNull(department)) {
+            System.out.println("Department not found");
+            return;
+        }
+
+        String nurseId = InputHandler.getStringInput("Enter Nurse ID: ");
+
+        NurseService nurseService = new NurseService();
+
+        Nurse nurse = nurseService.getNurseById(nurseId);
+
+        if (HelperUtils.isNull(nurse)) {
+            System.out.println("Nurse not found");
+            return;
+        }
+
+        department.getNurses().add(nurse);
+
+        System.out.println("Nurse assigned successfully");
+    }
 
     @Override
     public void searchById(String id) {
@@ -232,7 +260,7 @@ public void displayDepartments() {
         int choice = InputHandler.getIntInput("Enter choice");
         switch (choice){
             case 1->{
-                addDepartment();
+                addDepartments();
                 DepartmentHandler();
             }
             case 2->{
@@ -248,8 +276,8 @@ public void displayDepartments() {
                 DepartmentHandler();
             }
             case 5->{
-                //assignNurseByDept
-
+                assignNurseByDepartment();
+                DepartmentHandler();
             }
             case 6->{
                 getAll();
