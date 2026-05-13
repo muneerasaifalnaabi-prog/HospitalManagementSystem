@@ -141,9 +141,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public List<Doctor> searchDoctorsBySpecialization(String specialization) {
 
         List<Doctor> results = new ArrayList<>();
-
         for (Doctor d : doctors) {
-
             if (d.getSpecialization().toLowerCase().contains(specialization.toLowerCase())) {
                 results.add(d);
             }
@@ -154,15 +152,10 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
     public void searchDoctors() {
 
-        System.out.println("Enter specialization to search:");
-        String specialization = scanner.nextLine();
-
+        String specialization = InputHandler.getStringInput(" Enter Specialization to search");
         System.out.println("Search Results:");
-
         List<Doctor> searchResults = searchDoctorsBySpecialization(specialization);
-
         if (!searchResults.isEmpty()) {
-
             for (Doctor d : searchResults) {
                 d.displayInfo();
             }
@@ -170,9 +163,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         } else {
             System.out.println("No matches found");
         }
-
         System.out.println("Enter q to quit or press Enter to continue");
-
         if (scanner.nextLine().equalsIgnoreCase("q")) {
             return;
         }
@@ -181,9 +172,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     }
 
     public void displayDoctors() {
-
         System.out.println("===== All Doctors =====");
-
         if (doctors.isEmpty()) {
             System.out.println("No doctors found");
             return;
@@ -195,11 +184,8 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     }
 
     public List<Doctor> getAvailableDoctors() {
-
         List<Doctor> availableDoctors = new ArrayList<>();
-
         for (Doctor d : doctors) {
-
             if (!d.getAvailableSlots().isEmpty()) {
                 availableDoctors.add(d);
             }
@@ -211,11 +197,8 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public void displayAvailableDoctors() {
 
         System.out.println("===== Available Doctors =====");
-
         List<Doctor> availableDoctors = getAvailableDoctors();
-
         if (!availableDoctors.isEmpty()) {
-
             for (Doctor d : availableDoctors) {
                 d.displayInfo();
             }
@@ -324,13 +307,11 @@ public void displayDoctors(String specialization){
     }
     public void handelDoctorService() {
         System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
-        while (true) {
-            int option = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (option) {
-
-                case 1 -> addDoctors();
+        int choice = InputHandler.getIntInput("Enter choice");
+            switch (choice) {
+                case 1 -> {
+                    addDoctors();
+                }
 
                 case 2 -> {
 
