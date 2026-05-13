@@ -185,7 +185,11 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     private double dailyCharges;
          */
         System.out.println("Enter admission date:");
-        String admissionDate = scanner.nextLine();
+        LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
+        LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
+        String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
+
+
     }
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
@@ -229,15 +233,15 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 HadlerPatient();
             }
             case 6->{
-                //searchPatientsHandler();
+                searchPatientsHandler();
                 HadlerPatient();
             }
             case 7->{
-                //updatePatientHandler();
+                updatePatientHandler();
                 HadlerPatient();
             }
             case 8->{
-               // removePatientHandler();
+               removePatientHandler();
                 HadlerPatient();
             }
             case 9->{
