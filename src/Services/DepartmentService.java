@@ -172,7 +172,7 @@ public void displayDepartments() {
     @Override
     public void remove(String id) {
         Department department =getDepartmentById(id);
-        if (department !=null){
+        if (HelperUtils.isNotNull(department)) {
             departments.remove(department);
             System.out.println("department removed successfully");
         }
@@ -217,7 +217,7 @@ public void displayDepartments() {
     public void searchById(String id) {
         Department department =getDepartmentById(id);
 
-        if (department != null){
+        if (HelperUtils.isNotNull(department)) {
             System.out.println(department);
         }
         else {

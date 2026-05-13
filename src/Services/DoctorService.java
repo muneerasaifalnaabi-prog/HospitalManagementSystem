@@ -3,6 +3,7 @@ package Services;
 import Entities.Department;
 import Entities.Doctor;
 import Entities.Patient;
+import Utils.HelperUtils;
 import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
@@ -45,8 +46,11 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         System.out.println("========= Added New Doctor =====");
 
-        System.out.println("Enter id:");
-        String id = scanner.nextLine();
+        System.out.println("========= Added New Doctor =====");
+
+        String id = HelperUtils.generateId("DOC");
+
+        System.out.println("Generated System ID: " + id);
 
         Doctor existDoctor = getDoctorById(id);
 
@@ -165,7 +169,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         Doctor d = getDoctorById(doctorId);
 
-        if (d != null) {
+        if (HelperUtils.isNull(d)) {
 
             System.out.println("Enter new phone number:");
             d.setPhoneNumber(scanner.nextLine());
@@ -201,7 +205,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         Doctor d = getDoctorById(doctorId);
 
-        if (d != null) {
+        if (HelperUtils.isNotNull(d)) {
 
             doctors.remove(d);
             System.out.println("Doctor removed successfully.");
@@ -321,7 +325,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         Doctor doctor = getDoctorById(doctorId);
 
-        if (doctor == null) {
+        if (HelperUtils.isNull(doctor)) {
             System.out.println("Doctor not found");
             return;
         }
