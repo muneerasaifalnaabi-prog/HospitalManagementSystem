@@ -2,6 +2,7 @@ package Services;
 
 import Entities.Nurse;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -44,9 +45,7 @@ public Nurse addNurse() {
             System.out.println("ID already exists");
             return null;
         }
-
-        System.out.print("Enter First Name: ");
-        String fname = scanner.nextLine();
+        String fname = InputHandler.getStringInput("First Name");
 
         System.out.print("Enter Last Name: ");
         String lname = scanner.nextLine();
