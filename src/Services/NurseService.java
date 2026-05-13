@@ -88,8 +88,8 @@ public Nurse addNurse() {
 public void editNurses(String nurseId) {
     Nurse nurse = getNurseById(nurseId);
     if (HelperUtils.isNotNull(nurse)) {
-        System.out.println("Enter new phone number: ");
-        String newPhoneNumber = scanner.nextLine();
+
+        String newPhoneNumber =InputHandler.getStringInput("New Phone Number");
         nurse.setPhoneNumber(newPhoneNumber);
 
         System.out.println("Enter new email: ");
