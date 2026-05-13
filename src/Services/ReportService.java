@@ -19,6 +19,10 @@ public class ReportService {
                found = true;
            }
        }
+       if (!found){
+           System.out.println("Appointment Not Found");
+       }
 
     }
+
 }
