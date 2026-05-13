@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Appointment;
+import Utils.HelperUtils;
 import Utils.MenuMessege;
 import interfaces.Appointable;
 import interfaces.Manageable;
@@ -36,13 +37,14 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             }
         }
     }
-
+    //
     public Appointment addAppointment() {
 
         System.out.println("======= Add New Appointment =======");
 
-        System.out.println("Enter Appointment ID:");
-        String appointmentId = scanner.nextLine();
+        String appointmentId = HelperUtils.generateId("APP");
+
+        System.out.println("Generated Appointment ID : " + appointmentId);
 
         Appointment existingAppointment = getAppointmentById(appointmentId);
 
