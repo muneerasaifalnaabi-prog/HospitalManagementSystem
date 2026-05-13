@@ -24,12 +24,10 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     static PatientService patientService = new PatientService();
 
     public void addDoctors() {
-
         while (true) {
-
             Doctor d = addDoctor();
 
-            if (d != null) {
+            if (HelperUtils.isNotNull(d)) {
                 doctors.add(d);
                 System.out.println("Doctor added successfully.");
             }

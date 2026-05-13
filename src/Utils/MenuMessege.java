@@ -21,7 +21,7 @@ public class MenuMessege {
            1.7 Update Patient Information
            1.8 Remove Patient
            1.9 View Patient Medical History
-            
+           
     """;
 
 
