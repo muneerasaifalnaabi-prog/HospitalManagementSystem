@@ -147,9 +147,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     @Override
     public void getAll() {
-        for (Patient p : patients) {
-            System.out.println(p);
-        }
+        displayAllPatients();
     }
 
     @Override
