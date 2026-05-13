@@ -62,14 +62,11 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
                 prescription,
                 notes
         );
-
         return medicalRecord;
     }
 
     public MedicalRecord getMedicalRecordById(String recordId) {
-
         for (MedicalRecord record : medicalRecords) {
-
             if (record.getRecordId().equals(recordId)) {
                 return record;
             }
@@ -77,14 +74,12 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
         return null;
     }
+
     public void editMedicalRecord(String recordId) {
 
         MedicalRecord record = getMedicalRecordById(recordId);
-
         if (HelperUtils.isNotNull(record)) {
-
-            System.out.println("Enter new Diagnosis:");
-            record.setDiagnosis(scanner.nextLine());
+            record.setDiagnosis(InputHandler.getStringInput("Enter Diagnosis: "));
 
             System.out.println("Enter new Prescription:");
             record.setPrescription(scanner.nextLine());
