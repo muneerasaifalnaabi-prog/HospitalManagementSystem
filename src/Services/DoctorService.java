@@ -334,16 +334,15 @@ public void displayDoctors(String specialization){
                     addConsultation();
                     handelDoctorService();
                 }
-
                 case 4 ->{
                     addGeneralPrescription();
                     handelDoctorService();
                 }
-
-
-                case 5 -> displayDoctors();
-
-                case 6 -> displayAvailableDoctors();
+                case 5 -> {
+                    displayDoctors();
+                    handelDoctorService();
+                }
+                case 6 ->
 
                 case 7 -> {
 
