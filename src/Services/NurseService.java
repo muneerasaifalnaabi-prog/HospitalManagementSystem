@@ -3,6 +3,7 @@ package Services;
 import Entities.Nurse;
 import Utils.HelperUtils;
 import Utils.InputHandler;
+import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -247,5 +248,9 @@ public void  displayNurses(){
         } else {
             System.out.println("Nurse not found");
         }
+    }
+    public void NurseHandler(){
+        System.out.println("==== Nurse Management ===");
+        System.out.println(MenuMessege.NURSE_MENU_MESSEGE);
     }
 }
