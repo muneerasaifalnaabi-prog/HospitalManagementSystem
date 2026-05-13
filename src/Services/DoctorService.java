@@ -31,28 +31,21 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
                 doctors.add(d);
                 System.out.println("Doctor added successfully.");
             }
-
             System.out.println("Press q to go back to menu or press Enter to add another doctor:");
-
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 return;
             }
         }
     }
-
     public Doctor addDoctor() {
-
         System.out.println("========= Added New Doctor =====");
-
-        System.out.println("========= Added New Doctor =====");
-
         String id = HelperUtils.generateId("DOC");
-
         System.out.println("Generated System ID: " + id);
 
         Doctor existDoctor = getDoctorById(id);
 
-        if (existDoctor != null) {
+
+        if (HelperUtils.isNotNull(existDoctor)) {
             System.out.println("ID already exists");
             return null;
         }
