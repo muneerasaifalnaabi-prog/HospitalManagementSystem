@@ -3,6 +3,7 @@ package Services;
 import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
@@ -199,6 +200,14 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         if (HelperUtils.isNotNull(p)) {
             p.displayInfo();
             System.out.println(p);
+        }
+    }
+    public void HadlerPatient(){
+        System.out.println("====== Patient Management =======");
+        System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
+        int choice = InputHandler.getIntInput("Enter choice: ");
+        switch (choice) {
+
         }
     }
 }
