@@ -3,6 +3,7 @@ package Services;
 import Entities.Appointment;
 import Entities.Department;
 import Entities.Nurse;
+import Utils.HelperUtils;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -39,8 +40,10 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
         System.out.println("======= Add New Department =======");
 
-        System.out.println("Enter Department ID:");
-        String departmentId = scanner.nextLine();
+        String departmentId = HelperUtils.generateId("DEP");
+
+        System.out.println("Generated Department ID : " + departmentId);
+
 
         Department existingDepartment = getDepartmentById(departmentId);
 
@@ -93,7 +96,7 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
         Department department = getDepartmentById(departmentId);
 
-        if (department != null) {
+        if (HelperUtils.isNull(department)) {
 
             System.out.println("Enter new Department Name");
             department.setDepartmentName(scanner.nextLine());
@@ -117,7 +120,7 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
         Department department = getDepartmentById(departmentId);
 
-        if (department != null) {
+        if (HelperUtils.isNotNull(department)) {
             departments.remove(department);
             System.out.println("Department Deleted Successfully");
         } else {
