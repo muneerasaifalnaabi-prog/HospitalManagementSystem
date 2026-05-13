@@ -26,26 +26,23 @@ public class ReportService {
        if (!found){
            System.out.println("Appointment Not Found");
        }
-
-    }
-    public void DoctorPerformanceReport() {
-        System.out.println("====Doctor Performance Report=====");
-       String doctorId = InputHandler.getStringInput("Enter Doctor ID");
         int totalAppointment =0;
         int totalComplete =0;
         int cancelled =0;
         for (Appointment a :AppointmentService.appointments){
-            if (a.getDoctorId().equals(doctorId)){
+            System.out.println(a);
                 totalAppointment++;
-            }
-            if (a.getStatus().equalsIgnoreCase("Completed")){
-                totalComplete++;
-            }
             if (a.getStatus().equalsIgnoreCase("Cancelled")){
                 cancelled++;
             }
             System.out.println("Doctor :"+a.getDoctorId()+"/n Appointment :"+totalAppointment +"/n Complete :"+totalComplete +"/n cancelled :"+cancelled);
         }
+
+    }
+    public void DoctorPerformanceReport() {
+        System.out.println("====Doctor Performance Report=====");
+       String doctorId = InputHandler.getStringInput("Enter Doctor ID");
+
     }
 
 }
