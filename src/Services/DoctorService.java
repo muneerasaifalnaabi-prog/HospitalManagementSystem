@@ -364,7 +364,7 @@ public void displayDoctors(String specialization){
                 }
                 default -> System.out.println("Invalid option");
             }
-        }
+
     }
 
     @Override
@@ -399,11 +399,7 @@ public void displayDoctors(String specialization){
             System.out.println("No Doctor found");
             return;
         }
-
-        for (Doctor d : doctors) {
-            System.out.println(d);
-        }
-
+        displayDoctors();
     }
 
     @Override
