@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.InPatient;
 import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
@@ -19,6 +20,10 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     static Scanner scanner = new Scanner(System.in);
     static List<Patient> patients = new ArrayList<>();
+    static InPatient inPatient;
+    Patient patient = new Patient();
+
+
 
     public static List<Patient> getPatients() {
         return patients;
@@ -208,7 +213,6 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
-       addPatient();
     }
     public void registerEmergencyPatient(){
         System.out.println("EmergencyPatient registration");
@@ -217,6 +221,9 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     public void viewPatientMedicalHistory(){
         String patientId =  InputHandler.getStringInput("Enter Patient ID: ");
         Patient patient = getPatientById(patientId);
+        if (HelperUtils.isNotNull(patient)) {
+
+        }
 
     }
     public void HadlerPatient(){
