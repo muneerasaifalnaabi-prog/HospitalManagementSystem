@@ -302,6 +302,8 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         boolean found = false;
         for (Appointment a : appointments) {
             if (a.getAppointmentDate().isAfter(date) || a.getAppointmentDate().equals(date)) {
+                System.out.println(a);
+                found = true;
 
             }
 
