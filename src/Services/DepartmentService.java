@@ -1,6 +1,4 @@
 package Services;
-
-import Entities.Appointment;
 import Entities.Department;
 import Entities.Nurse;
 import Utils.HelperUtils;
@@ -8,7 +6,6 @@ import Utils.InputHandler;
 import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

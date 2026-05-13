@@ -268,9 +268,34 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
             }
         }
-
     }
-
+    public void displayAppointmentsByPatient(){
+        String patientId =InputHandler.getStringInput("Enter Patient ID");
+        List<Appointment> patientAppo =getAppointmentsByPatient(patientId);
+        if (HelperUtils.isNotNull(patientAppo)) {
+            for (Appointment a : patientAppo) {
+                System.out.println(a);
+            }
+        }
+    }
+    public void displayAppointmentsByDate(){
+        LocalDate date = InputHandler.getLocalDateInput("Enter Date");
+        List<Appointment> patientAppo = getAppointmentsByDate(date);
+        if (HelperUtils.isNotNull(patientAppo)) {
+            for (Appointment a : patientAppo) {
+                System.out.println(a);
+            }
+        }
+    }
+    public void displayAppointmentsByDoctor(){
+        String doctorId =InputHandler.getStringInput("Enter Doctor ID");
+        List<Appointment> doctorAppo =getAppointmentsByDoctor(doctorId);
+        if (HelperUtils.isNotNull(doctorAppo)) {
+            for (Appointment a : doctorAppo) {
+                System.out.println(a);
+            }
+        }
+    }
 
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
@@ -286,10 +311,13 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                     handleAppointmentService();
                 }
                 case 3->{
+                    displayAppointmentsByPatient();
+                    handleAppointmentService();
 
                 }
                 case 4->{
-
+                    displayAppointmentsByDoctor();
+                    handleAppointmentService();
                 }
                 case 5->{
 
