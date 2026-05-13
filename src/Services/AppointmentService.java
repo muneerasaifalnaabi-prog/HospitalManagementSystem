@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Appointment;
+import Entities.Department;
 import Utils.HelperUtils;
 import Utils.InputHandler;
 import Utils.MenuMessege;
@@ -296,6 +297,13 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             }
         }
     }
+    public void upcomingAppointment(){
+        LocalDate date = LocalDate.now();
+        boolean found = false;
+        for (Appointment a : appointments) {
+
+        }
+    }
 
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
@@ -330,11 +338,13 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                 case 7->{
                   Appointment appointment = appointments.get(InputHandler.getIntInput("Enter appointment Id"));
                   cancelAppointment(appointment);
+                  handleAppointmentService();
                 }
                 case 8->{
-
-
-
+                    Appointment appointment = new Appointment();
+                    appointment.cancel();
+                    appointments.add(appointment);
+                    handleAppointmentService();
                 }
                 case 9->{
 
