@@ -214,7 +214,22 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 //registerInPatient();
             }
             case 3->{
-
+                //registerOutPatient();
+            }
+            case 4->{
+                //registerEmergencyPatient();
+            }
+            case 5->{
+                displayAllPatients();
+            }
+            case 6->{
+                //searchPatientsHandler();
+            }
+            case 7->{
+                //updatePatientHandler();
+            }
+            case 8->{
+               // removePatientHandler();
             }
 
         }
