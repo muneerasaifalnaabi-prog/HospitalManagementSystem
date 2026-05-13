@@ -243,7 +243,7 @@ public void  displayNurses(){
 
         Nurse nurse = getNurseById(id);
 
-        if (nurse != null) {
+        if (HelperUtils.isNotNull(nurse)) {
             Nurses.remove(nurse);
             System.out.println("Nurse removed successfully");
         } else {
