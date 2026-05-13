@@ -93,7 +93,6 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public void deleteMedicalRecord(String recordId) {
 
         MedicalRecord record = getMedicalRecordById(recordId);
-
         if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
             System.out.println("Medical Record deleted successfully.");
@@ -110,15 +109,12 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
                 result.add(record);
             }
         }
-
         return result;
     }
     public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
 
         List<MedicalRecord> result = new ArrayList<>();
-
         for (MedicalRecord record : medicalRecords) {
-
             if (record.getDoctorId().equals(doctorId)) {
                 result.add(record);
             }
