@@ -112,13 +112,9 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             d.setAddress(InputHandler.getStringInput("Enter new Address"));
             d.setSpecialization(InputHandler.getStringInput("Enter new Specialization"));
             d.setQualification(InputHandler.getStringInput("Enter new Qualification"));
-
-            System.out.println("Enter new Experience Years:");
-            d.setExperienceYears(scanner.nextInt());
+            d.setExperienceYears(InputHandler.getIntInput("Enter new Experience Years"));
             scanner.nextLine();
-
-            System.out.println("Enter new Consultation Fee:");
-            d.setConsultationFee(scanner.nextDouble());
+            d.setConsultationFee(InputHandler.getDoubleInput("Enter new Consultation Fee"));
             scanner.nextLine();
 
             System.out.println("Doctor updated successfully.");
