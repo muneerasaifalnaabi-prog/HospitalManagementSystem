@@ -215,9 +215,7 @@ public void  displayNurses(){
             System.out.println("No nurses found");
             return;
         }
-        for (Nurse n : Nurses) {
-            System.out.println(n);
-        }
+        displayNurses();
     }
 
     @Override
