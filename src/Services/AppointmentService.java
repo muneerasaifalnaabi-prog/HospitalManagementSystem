@@ -2,6 +2,7 @@ package Services;
 
 import Entities.Appointment;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 import Utils.MenuMessege;
 import interfaces.Appointable;
 import interfaces.Manageable;
@@ -17,84 +18,46 @@ import java.util.Scanner;
 public class AppointmentService extends BaseService implements Manageable, Searchable , Appointable {
     static Scanner scanner = new Scanner(System.in);
     static List<Appointment> appointments = new ArrayList<>();
+
     public void addAppointments() {
-
         while (true) {
-
             Appointment appointment = addAppointment();
-
             if (appointment != null) {
-
                 appointments.add(appointment);
 
                 System.out.println("Appointment Added Successfully");
             }
 
             System.out.println("Press q to quit");
-
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 return;
             }
         }
     }
-    //
+
     public Appointment addAppointment() {
-
         System.out.println("======= Add New Appointment =======");
-
         String appointmentId = HelperUtils.generateId("APP");
-
         System.out.println("Generated Appointment ID : " + appointmentId);
-
         Appointment existingAppointment = getAppointmentById(appointmentId);
-
         if (existingAppointment != null) {
-
             System.out.println("Appointment ID already exists");
-
             return null;
         }
         String patientId;
 
         while (true) {
-
             System.out.println("Enter Patient ID:");
-
             patientId = scanner.nextLine();
-
             if (HelperUtils.isValidString(patientId, 2)) {
                 break;
             }
-
             System.out.println("Invalid Patient ID");
         }
+
         System.out.println("Enter Doctor ID:");
-        String doctorId = scanner.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        LocalDate appointmentDate = null;
-
-        boolean valid = false;
-
-        while (!valid) {
-
-            System.out.println("Enter Appointment Date (dd-MM-yyyy):");
-
-            String input = scanner.nextLine();
-
-            try {
-
-                appointmentDate = LocalDate.parse(input, formatter);
-
-                valid = true;
-
-            } catch (DateTimeParseException e) {
-
-                System.out.println("Invalid Date Format");
-            }
-        }
-
+        String doctorId = InputHandler.getStringInput("Doctor ID");
+        LocalDate appointmentDate = InputHandler.getLocalDateInput("Date of Appointment");
         System.out.println("Enter Appointment Time:");
         String appointmentTime = scanner.nextLine();
 
