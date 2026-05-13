@@ -205,7 +205,15 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     public void registerInPatient(){
         System.out.println("InPatient registration");
         addaddPatients();
-
+    }
+    public void registerOutPatient(){
+        System.out.println("OutPatient registration");
+        addaddPatients();
+    }
+    public void registerEmergencyPatient(){
+        System.out.println("EmergencyPatient registration");
+        String fname = InputHandler.getStringInput("First Name");
+        String lname = InputHandler.getStringInput("Last Name");
     }
     public void HadlerPatient(){
         System.out.println("====== Patient Management =======");
@@ -221,11 +229,11 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 HadlerPatient();
             }
             case 3->{
-                //registerOutPatient();
+                registerOutPatient();
                 HadlerPatient();
             }
             case 4->{
-                //registerEmergencyPatient();
+                registerEmergencyPatient();
                 HadlerPatient();
             }
             case 5->{
