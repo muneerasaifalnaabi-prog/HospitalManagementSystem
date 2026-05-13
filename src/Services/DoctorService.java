@@ -347,7 +347,7 @@ public void assignPatient(String doctorId, List<String> patientIds) {
 
     Doctor doctor = getDoctorById(doctorId);
 
-    if (doctor == null) {
+    if (HelperUtils.isNull(doctor)) {
         System.out.println("Doctor not found");
         return;
     }
@@ -458,7 +458,7 @@ public void displayDoctors(String specialization){
     @Override
     public void remove(String id) {
         Doctor doctor =getDoctorById(id);
-        if (doctor !=null){
+        if (HelperUtils.isNotNull(doctor)) {
             doctors.remove(doctor);
             System.out.println("doctor removed successfully");
         }
@@ -505,7 +505,7 @@ public void displayDoctors(String specialization){
     public void searchById(String id) {
         Doctor doctor = getDoctorById(id);
 
-        if (doctor != null) {
+        if (HelperUtils.isNotNull(doctor)) {
             System.out.println(doctor);
         } else {
             System.out.println("Doctor not found");
