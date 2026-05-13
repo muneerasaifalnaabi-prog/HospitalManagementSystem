@@ -19,7 +19,7 @@ static List<Nurse> Nurses=new ArrayList<Nurse>();
 public void addNurses(){
     while(true){
         Nurse n = addNurse();
-        if(n==null){
+        if(HelperUtils.isNotNull(n)){
             Nurses.add(n);
             System.out.println("Nurse Added Successfully");
         }
