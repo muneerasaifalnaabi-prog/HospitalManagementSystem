@@ -350,7 +350,10 @@ public void displayDoctors(String specialization){
                     displayAvailableDoctors();
                     handelDoctorService();
                 }
-
+                case 8 -> {
+                    assignPatient(InputHandler.getStringInput("Enter Doctor Id"), InputHandler.getStringInput("Enter Patient Id"));
+                    handelDoctorService();
+                }
                 default -> System.out.println("Invalid option");
             }
         }
