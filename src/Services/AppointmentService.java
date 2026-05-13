@@ -54,10 +54,20 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
             return null;
         }
+        String patientId;
 
-        System.out.println("Enter Patient ID:");
-        String patientId = scanner.nextLine();
+        while (true) {
 
+            System.out.println("Enter Patient ID:");
+
+            patientId = scanner.nextLine();
+
+            if (HelperUtils.isValidString(patientId, 2)) {
+                break;
+            }
+
+            System.out.println("Invalid Patient ID");
+        }
         System.out.println("Enter Doctor ID:");
         String doctorId = scanner.nextLine();
 
@@ -112,7 +122,9 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     }
 
     public Appointment getAppointmentById(String appointmentId) {
-
+        if (HelperUtils.isNull(appointmentId)) {
+            return null;
+        }
         for (Appointment a : appointments) {
 
             if (a.getAppointmentId().equals(appointmentId)) {
