@@ -3,6 +3,8 @@ package Utils;
 import Utils.HelperUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -81,6 +83,21 @@ public class InputHandler {
                 return false;
             }
             System.out.println("Please answer yes or no");
+        }
+    }
+    public static LocalDate getLocalDateInput(String prompt) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+
+            if (!HelperUtils.isValidDate(input)) {
+                System.out.println("Invalid date format");
+                continue;
+            }
+
+            return LocalDate.parse(input, formatter);
         }
     }
 }
