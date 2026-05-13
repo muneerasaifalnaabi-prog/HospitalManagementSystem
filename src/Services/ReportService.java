@@ -91,8 +91,10 @@ public class ReportService {
             System.out.println("Total Patient :" +a.getPatientId());
             System.out.println("Total Appointment :" +totalAppointments);
             System.out.println("Total Medical Records :" +totalMedicalRecords);
-
         }
+    }
+    public void emergencyPatientsReport() {
+        System.out.println("====Emergency Patients Report=====");
     }
 
 }
