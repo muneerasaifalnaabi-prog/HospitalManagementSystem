@@ -254,6 +254,10 @@ public void  displayNurses(){
         System.out.println(MenuMessege.NURSE_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
         switch (choice) {
+            case 1 ->{
+                addNurse();
+                NurseHandler();
+            }
 
         }
     }
