@@ -220,6 +220,9 @@ public class PatientService extends BaseService implements Manageable, Searchabl
          */
         String emergencyType = InputHandler.getStringInput("Emergency Type");
         emergencyPatient.setEmergencyType(emergencyType);
+        String arrivalMode = InputHandler.getStringInput("Arrival Mode");
+        emergencyPatient.setArrivalMode(arrivalMode);
+
 
 
 
