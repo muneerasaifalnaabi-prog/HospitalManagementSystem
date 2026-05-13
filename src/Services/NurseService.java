@@ -290,7 +290,7 @@ public void  displayNurses(){
 
         Nurse nurse = getNurseById(id);
 
-        if (nurse != null) {
+        if (HelperUtils.isNotNull(nurse)) {
             System.out.println(nurse);
         } else {
             System.out.println("Nurse not found");
