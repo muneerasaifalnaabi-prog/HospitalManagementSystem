@@ -258,6 +258,10 @@ public void  displayNurses(){
                 addNurse();
                 NurseHandler();
             }
+            case 2 ->{
+                displayNurses();
+                NurseHandler();
+            }
 
         }
     }
