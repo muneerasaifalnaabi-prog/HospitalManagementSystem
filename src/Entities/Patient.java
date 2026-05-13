@@ -153,9 +153,9 @@ public class Patient extends Person implements Displayable {
         if (HelperUtils.isNotNull(email)) this.setEmail(email);
     }
     public void updateContact(String phone, String email, String address){
-        this.setPhoneNumber(phone);
-        this.setEmail(email);
-        this.setAddress(address);
+        if (HelperUtils.isNotNull(phone)) this.setPhoneNumber(phone);
+        if (HelperUtils.isNotNull(email)) this.setEmail(email);
+        if (HelperUtils.isNotNull(address)) this.setAddress(address);
     }
 
     @Override
