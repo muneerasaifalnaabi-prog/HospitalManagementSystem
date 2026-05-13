@@ -1,9 +1,6 @@
 package Services;
 
-import Entities.EmergencyPatient;
-import Entities.InPatient;
-import Entities.OutPatient;
-import Entities.Patient;
+import Entities.*;
 import Utils.Constants;
 import Utils.HelperUtils;
 import Utils.InputHandler;
@@ -224,9 +221,15 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             case 1 ->{
                 String keyword = InputHandler.getStringInput("Enter keyword: ");
                 search(keyword);
+                searchPatientsHandler();
             }
             case 2 ->{
                searchPatientsByName(InputHandler.getStringInput("Enter name: "));
+               searchPatientsHandler();
+            }
+            case 3 ->{
+                searchById(InputHandler.getStringInput("Enter ID: "));
+                searchPatientsHandler();
             }
         }
 
@@ -261,15 +264,15 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 HadlerPatient();
             }
             case 7->{
-                updatePatientHandler();
+                editPatient(InputHandler.getStringInput("Enter ID: "));
                 HadlerPatient();
             }
             case 8->{
-               removePatientHandler();
+                removePatient(InputHandler.getStringInput("Enter ID: "));
                 HadlerPatient();
             }
             case 9->{
-                //viewPatientMedicalHistory();
+                MedicalRecord m = new MedicalRecord();
                 HadlerPatient();
             }
             default -> {
