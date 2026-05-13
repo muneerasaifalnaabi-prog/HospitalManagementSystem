@@ -40,7 +40,7 @@ public Nurse addNurse() {
 
         Nurse existNurse = getNurseById(id);
 
-        if (existNurse != null) {
+        if (HelperUtils.isNotNull(existNurse)) {
             System.out.println("ID already exists");
             return null;
         }
