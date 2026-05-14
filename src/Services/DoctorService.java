@@ -103,7 +103,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
     public void editDoctor(String doctorId) {
         Doctor d = getDoctorById(doctorId);
-        if (HelperUtils.isNull(d)) {
+        if (HelperUtils.isNotNull(d)) {
             d.setPhoneNumber(InputHandler.getStringInput("Enter new Phone Number"));
             d.setEmail(InputHandler.getStringInput("Enter new Email"));
             d.setAddress(InputHandler.getStringInput("Enter new Address"));
