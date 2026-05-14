@@ -83,7 +83,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         }
         for (Appointment a : appointments) {
 
-            if (a.getAppointmentId().equals(appointmentId)) {
+            if (a.getAppointmentId() != null && a.getAppointmentId().equals(appointmentId)) {
 
                 return a;
             }
