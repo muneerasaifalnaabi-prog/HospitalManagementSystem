@@ -77,28 +77,27 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 registrationDate, insuranceId, new ArrayList<>(), new ArrayList<>()
         );
     }
-    public void addPatient(String firstName, String lastName, String phone) {
-        String id = HelperUtils.generateId("PAT");
-        if (HelperUtils.isNotNull(getPatientById(id))) {
-            System.out.println("ID already exists");
-        }
-        String fname = InputHandler.getStringInput("Enter First Name: ");
-        String lname = InputHandler.getStringInput("Enter Last Name: ");
-       String phoneNumber = InputHandler.getStringInput("Enter Phone Number: ");
-        Patient patient = addPatient();
+    public void addPatient(String firstName, String lastName, String phone){
+
+        Patient patient = new Patient();
+
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setPhoneNumber(phone);
+
         patients.add(patient);
-        System.out.println("Patient added successfully.");
+
     }
-    public void addPatient(String firstName, String lastName, String phone, String bloodGroup, String email) {
-        String id = HelperUtils.generateId("PAT");
-        if (HelperUtils.isNotNull(getPatientById(id))) {
-            System.out.println("ID already exists");
-        }
-        String fname = InputHandler.getStringInput("Enter First Name: ");
-        String lname = InputHandler.getStringInput("Enter Last Name: ");
-        String phoneNumber = InputHandler.getStringInput("Enter Phone Number: ");
-        String bloodGroup2= InputHandler.getStringInput("Enter blood group: ");
-        String email2 = InputHandler.getStringInput("Enter email: ");
+    public void addPatient(String firstName, String lastName, String phone , String bloodGroup, String email){
+        Patient patient = new Patient();
+
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setPhoneNumber(phone);
+        patient.setPhoneNumber(bloodGroup);
+        patient.setPhoneNumber(email);
+
+        patients.add(patient);
 
     }
 
@@ -153,7 +152,39 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             p.displayInfo();
         }
     }
+    public static void displayPatients(){
+        if (HelperUtils.isNull(patients)) { System.out.println("No patients registered."); return; }
+        for(Patient p : patients){
+            p.displayInfo();
+        }
+    }
+    public void displayPatients(String filter){
+        for(Patient p : patients) {
+            System.out.println("Filtered By "+ filter);
+            if (p.getInsuranceId().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getBloodGroup().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getGender().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getRegistrationDate().equals(filter)) {
+                System.out.println();
+            }
 
+
+        }
+    }
+    public void displayPatients(int limit){
+        while (limit!=0){
+            for(Patient p : patients){
+                p.displayInfo();
+                limit--;
+            }
+        }
+    }
     @Override
     public void add(Object entity) {
         if (entity instanceof Patient patient) {
@@ -193,6 +224,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             System.out.println(p);
         }
     }
+
     public void registerInPatient(){
         System.out.println("InPatient registration");
         addaddPatients();
