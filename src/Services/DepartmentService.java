@@ -159,16 +159,17 @@ public void displayDepartments() {
 
     @Override
     public void add(Object entity) {
-        if (entity instanceof Department department){
+        if (entity instanceof Department department) {
+            if (HelperUtils.isNull(department.getDepartmentId())) {
+                department.setDepartmentId(HelperUtils.generateId("DEP"));
+            }
             departments.add(department);
             System.out.println("Department added successfully");
-        }
-        else {
+        } else {
             System.out.println("Invalid entity type");
-
         }
-
     }
+
 
     @Override
     public void remove(String id) {
@@ -198,6 +199,7 @@ public void displayDepartments() {
 
     @Override
     public void search(String keyword) {
+        if (HelperUtils.isNull(keyword)) return;
         boolean found =false;
 
         for (Department d : departments){
