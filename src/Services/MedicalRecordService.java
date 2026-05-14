@@ -104,7 +104,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         List<MedicalRecord> result = new ArrayList<>();
         for (MedicalRecord record : medicalRecords) {
 
-            if (record.getPatientId().equals(patientId)) {
+            if (record.getPatientId() != null && record.getPatientId().equals(patientId)) {
                 result.add(record);
             }
         }
