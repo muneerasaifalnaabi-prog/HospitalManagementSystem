@@ -169,6 +169,10 @@ public class ReportService {
                 emergencyPatientsReport();
                 ReportHandler();
             }
+            case 6 -> {
+                System.out.println("Extitng from Report");
+                return;
+            }
             default -> {
                 System.out.println("Invalid choice. Please try again.");
                 ReportHandler();
