@@ -326,6 +326,10 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 m.displayInfo();
                 HadlerPatient();
             }
+            case 10->{
+                System.out.println("Extitng from Patient Registration");
+                return;
+            }
             default -> {
                 System.out.println("Invalid choice. Please try again.");
             }

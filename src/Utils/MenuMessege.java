@@ -21,6 +21,7 @@ public class MenuMessege {
            1.7 Update Patient Information
            1.8 Remove Patient
            1.9 View Patient Medical History
+           1.10 Back to Menu
            
     """;
 
@@ -36,6 +37,7 @@ public static String DOCTOR_MENU_MESSEGE= """
            2.8 Assign Patient to Doctor
            2.9 Update Doctor Information
            2.10 Remove Doctor
+           2.11 Back to Menu
     """;
     public static String NURSE_MENU_MESSEGE= """
             3.1 Add Nurse
@@ -45,6 +47,7 @@ public static String DOCTOR_MENU_MESSEGE= """
             3.5 Assign Nurse to Patient
             3.6 Update Nurse Information
             3.7 Remove Nurse
+            3.8 Back to Menu
     """;
     public static String DEPARTMENT_MENU_MESSEGE= """
            6.1 Add Department
@@ -54,6 +57,7 @@ public static String DOCTOR_MENU_MESSEGE= """
            6.5 Assign Nurse to Department
            6.6 Update Department Information
            6.7 View Department Statistics
+           6.8 Back to Menu
     """;
     public static String APPOINTMENT_MENU_MESSEGE= """
              4.1 Schedule New Appointment
@@ -65,6 +69,7 @@ public static String DOCTOR_MENU_MESSEGE= """
              4.7 Cancel Appointment
              4.8 Complete Appointment
              4.9 View Upcoming Appointments
+             4.10 Back to Menu
             """;
     public static String MEDICALRECORD_MENU_MESSEGE= """
            5.1 Create Medical Record
@@ -74,6 +79,7 @@ public static String DOCTOR_MENU_MESSEGE= """
            5.5 Update Medical Record
            5.6 Delete Medical Record
            5.7 Generate Patient History Report
+           5.8 Back to Menu
     """;
     public static String REPORT_MENU_MESSEGE= """
             7.1 Daily Appointments Report
@@ -81,6 +87,7 @@ public static String DOCTOR_MENU_MESSEGE= """
             7.3 Department Occupancy Report
             7.4 Patient Statistics
             7.5 Emergency Cases Report
+            7.6 Back to Menu
     """;
 
 }
