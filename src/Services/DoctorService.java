@@ -244,7 +244,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
         for (Patient p : patientService.getPatients()) {
 
-            if (p.getId().equals(patientId)) {
+            if (p.getId() != null && p.getId().equals(patientId)) {
 
                 doctor.getAssignedPatients().add(patientId);
                 System.out.println("Patient assigned successfully");
@@ -268,7 +268,7 @@ public void assignPatient(String doctorId, List<String> patientIds) {
 
         for (Patient p : patientService.getPatients()) {
 
-            if (p.getId().equals(patientId)) {
+            if (p.getId() != null && p.getId().equals(patientId)) {
                 doctor.getAssignedPatients().add(patientId);
                 System.out.println("Patient assigned: " + patientId);
                 break;
@@ -313,9 +313,12 @@ public void displayDoctors(String specialization){
     }
     public void addSurgeon() {
         System.out.println("===== Add Surgeon =====");
-        addDoctor();
-        Surgeon s = new Surgeon();
-        s.setSurgeriesPerformed(InputHandler.getIntInput("Enter surgery number"));
+       Doctor d = addDoctor();
+       if (d != null) {
+           Surgeon s = new Surgeon();
+           s.setSurgeriesPerformed(InputHandler.getIntInput("Enter surgery number"));
+           add(s);
+       }
     }
     public void addConsultation() {
         System.out.println("===== Add Consultation =====");
