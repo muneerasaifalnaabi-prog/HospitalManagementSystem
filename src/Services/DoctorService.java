@@ -319,7 +319,6 @@ public void displayDoctors(String specialization){
     }
 
     public void handelDoctorService() {
-        System.out.println(MenuMessege.DOCTOR_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
             switch (choice) {
                 case 1 -> {
