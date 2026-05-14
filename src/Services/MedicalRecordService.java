@@ -19,7 +19,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         while (true) {
             MedicalRecord record = addMedicalRecord();
             if (HelperUtils.isNotNull(record)) {
-                medicalRecords.add(record);
+                add(record);
                 System.out.println("Medical Record added successfully.");
             }
             System.out.println("Press q to go back to menu or press Enter to add another record:");
