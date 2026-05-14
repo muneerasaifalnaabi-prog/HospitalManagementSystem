@@ -1,16 +1,12 @@
 package Services;
 
 import Entities.*;
-import Utils.Constants;
 import Utils.HelperUtils;
 import Utils.InputHandler;
-import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,7 +26,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     public void addaddPatients() {
         while (true) {
-            Patient p = addPatient();
+           Patient p = addPatient();
             if (p != null) {
                 patients.add(p);
                 System.out.println("Patient added successfully.");
@@ -41,6 +37,8 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             }
         }
     }
+
+
 
     public Patient addPatient() {
 
@@ -308,7 +306,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 HadlerPatient();
             }
             case 5->{
-                displayAllPatients();
+                getAll();
                 HadlerPatient();
             }
             case 6->{

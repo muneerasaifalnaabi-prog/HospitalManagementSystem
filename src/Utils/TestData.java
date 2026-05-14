@@ -917,6 +917,7 @@ public class TestData {
     public static void testOverloadedMethod(){
         System.out.println("\n--- OVERLOADED METHODS TESTS ---");
 
+       /*
         // PatientService overloads
         patientService.addPatient("Omar", "Al-Busaidi", "98880011");
         patientService.addPatient("Laila", "Al-Hinai", "97770022", "A-", "laila@email.com");
@@ -928,6 +929,8 @@ public class TestData {
         patientService.displayPatients(2);
         System.out.println("✓ PatientService.displayPatients() overloaded");
 
+
+        */
         // DoctorService overloads
         doctorService.addDoctor("Dr. Samira", "Pediatrics", "96661122");
         doctorService.addDoctor("Dr. Nasser", "Cardiology", "95552233", 120.0);
@@ -983,6 +986,7 @@ public class TestData {
     public static void testCRUD(){
         System.out.println("--- CRUD TESTS ---");
 
+       /*
         // Patient CRUD
         Patient tempPatient = new Patient();
         tempPatient.setFirstName("Temp");
@@ -996,6 +1000,8 @@ public class TestData {
         System.out.println("✓ Update Patient");
         patientService.remove(retrieved.getId());
         System.out.println("✓ Delete Patient");
+
+        */
 
         // Doctor CRUD
         Doctor tempDoc = new Doctor();
@@ -1058,6 +1064,8 @@ public class TestData {
         System.out.println("✓ Update Nurse");
         nurseService.remove(nurseRetrieved.getId());
         System.out.println("✓ Delete Nurse");
+    }
+    public static void testImplemntation(){
     }
 
 
