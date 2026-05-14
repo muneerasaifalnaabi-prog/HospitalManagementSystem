@@ -142,8 +142,10 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
     @Override
     public void add(Object entity) {
-
         if (entity instanceof MedicalRecord record) {
+            if (HelperUtils.isNull(record.getRecordId())) {
+                record.setRecordId(HelperUtils.generateId("MR"));
+            }
             medicalRecords.add(record);
             System.out.println("Medical record added successfully");
         } else {
