@@ -6,7 +6,7 @@ import interfaces.Displayable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+//class Appointment
 public class Appointment implements Displayable {
     private String appointmentId;
     private String patientId;
