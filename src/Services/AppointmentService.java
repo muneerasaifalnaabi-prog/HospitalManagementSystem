@@ -10,8 +10,6 @@ import interfaces.Manageable;
 import interfaces.Searchable;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -132,7 +130,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public List<Appointment> getAppointmentsByPatient(String patient) {
         List<Appointment> appointmentList = new ArrayList<>();
         for (Appointment a : appointments) {
-            if (a.getPatientId().equals(patient)) {
+            if (a.getPatientId() != null && a.getPatientId().equals(patient)) {
                 appointmentList.add(a);
             }
         }
@@ -141,7 +139,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public List<Appointment> getAppointmentsByDoctor(String doctor) {
         List<Appointment> appointmentList = new ArrayList<>();
         for (Appointment a : appointments) {
-            if (a.getDoctorId().equals(doctor)) {
+            if (a.getDoctorId() != null && a.getDoctorId().equals(doctor)) {
                 appointmentList.add(a);
             }
         }
@@ -156,7 +154,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
         for (Appointment a : appointments) {
 
-            if (a.getAppointmentDate().equals(date)) {
+            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(date)) {
 
                 appointmentList.add(a);
             }
