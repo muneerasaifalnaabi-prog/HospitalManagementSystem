@@ -18,8 +18,9 @@ public class Main {
     static MedicalRecordService medicalRecordService =new MedicalRecordService();
    static Menue menue =new Menue();
     public static void main(String[] args) {
-        handelMenu();
+        System.out.println("Welcome to Hospital Management System... :>");
         TestData.loadData();
+        handelMenu();
 
         }
 
