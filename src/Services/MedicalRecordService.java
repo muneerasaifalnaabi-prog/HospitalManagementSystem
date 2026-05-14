@@ -176,7 +176,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     }
     @Override
     public void search(String keyword) {
-
+        if (HelperUtils.isNull(keyword)) return;
         boolean found = false;
 
         for (MedicalRecord record : medicalRecords) {

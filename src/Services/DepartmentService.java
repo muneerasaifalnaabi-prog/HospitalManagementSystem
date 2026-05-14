@@ -21,7 +21,7 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
             if (department != null) {
 
-                departments.add(department);
+                add(department);
 
                 System.out.println("Department Added Successfully");
             }
@@ -83,7 +83,7 @@ public class DepartmentService extends BaseService implements Manageable, Search
 
         for (Department d : departments) {
 
-            if (d.getDepartmentId().equals(departmentId)) {
+            if (d.getDepartmentId() != null && d.getDepartmentId().equals(departmentId)) {
 
                 return d;
             }
