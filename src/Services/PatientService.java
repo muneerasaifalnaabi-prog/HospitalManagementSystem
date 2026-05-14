@@ -98,8 +98,9 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
 
     public Patient getPatientById(String patientId) {
+        if (HelperUtils.isNull(patientId)) return null;
         for (Patient p : patients) {
-            if (p.getId().equals(patientId)) {
+            if (p.getId() != null && p.getId().equals(patientId)) {
                 return p;
             }
         }
@@ -155,24 +156,22 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         }
     }
     public void displayPatients(String filter){
-        for(Patient p : patients) {
-            System.out.println("Filtered By "+ filter);
-            if (p.getInsuranceId().equals(filter)) {
-                System.out.println();
-            }
-            if (p.getBloodGroup().equals(filter)) {
-                System.out.println();
-            }
-            if (p.getGender().equals(filter)) {
-                System.out.println();
-            }
-            if (p.getRegistrationDate().equals(filter)) {
-                System.out.println();
-            }
-
-
+        if (HelperUtils.isNull(filter)) {
+            displayAllPatients();
+            return;
         }
+        boolean found = false;
+        for (Patient p : patients) {
+            if ((p.getGender() != null && p.getGender().equalsIgnoreCase(filter)) ||
+                    (p.getBloodGroup() != null && p.getBloodGroup().equalsIgnoreCase(filter)) ||
+                    (p.getInsuranceId() != null && p.getInsuranceId().equalsIgnoreCase(filter))) {
+                p.displayInfo();
+                found = true;
+            }
+        }
+        if (!found) System.out.println("No patients match filter: " + filter);
     }
+
     public void displayPatients(int limit){
         int count = 0;
         for (Patient p : patients) {
@@ -182,11 +181,14 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         }
     }
     @Override
-    public void add(Object entity) {
-        if (entity instanceof Patient patient) {
-            patients.add(patient);
+        public void add(Object entity) {
+            if (entity instanceof Patient patient) {
+                if (HelperUtils.isNull(patient.getId())) {
+                    patient.setId(HelperUtils.generateId("PAT"));
+                }
+                patients.add(patient);
+            }
         }
-    }
 
     @Override
     public void remove(String id) {
@@ -203,13 +205,17 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     @Override
     public void search(String keyword) {
+        if (HelperUtils.isNull(keyword)) return;
+        boolean found = false;
         for (Patient p : patients) {
-            if (p.getFirstName().equalsIgnoreCase(keyword)
-                    || p.getLastName().equalsIgnoreCase(keyword)
-                    || p.getBloodGroup().equalsIgnoreCase(keyword)) {
+            if ((p.getFirstName() != null && p.getFirstName().equalsIgnoreCase(keyword)) ||
+                    (p.getLastName() != null && p.getLastName().equalsIgnoreCase(keyword)) ||
+                    (p.getBloodGroup() != null && p.getBloodGroup().equalsIgnoreCase(keyword))) {
                 System.out.println(p);
+                found = true;
             }
         }
+        if (!found) System.out.println("No patients found");
     }
 
     @Override

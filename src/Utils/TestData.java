@@ -982,7 +982,7 @@ public class TestData {
     public static void testCRUD(){
         System.out.println("--- CRUD TESTS ---");
 
-/*
+
         // Patient CRUD
         Patient tempPatient = new Patient();
         tempPatient.setFirstName("Temp");
@@ -997,7 +997,6 @@ public class TestData {
         patientService.remove(retrieved.getId());
         System.out.println("✓ Delete Patient");
 
- */
 
 
         // Doctor CRUD
