@@ -280,6 +280,10 @@ public void displayDepartments() {
                 getAll();
                 DepartmentHandler();
             }
+            case 7 ->{
+                System.out.println("Extitng from Department ...");
+                return;
+            }
             default -> System.out.println("Invalid choice");
         }
     }

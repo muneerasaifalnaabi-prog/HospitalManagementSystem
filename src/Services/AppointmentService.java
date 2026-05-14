@@ -367,6 +367,10 @@ public class AppointmentService extends BaseService implements Manageable, Searc
                 handleAppointmentService();
 
             }
+            case 10 ->{
+                System.out.println("Extitng from Appointment Service ...");
+                return;
+            }
             default -> System.out.println("Invalid choice");
         }
 

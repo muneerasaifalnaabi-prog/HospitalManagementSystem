@@ -362,6 +362,10 @@ public void displayDoctors(String specialization){
                     removeDoctor(InputHandler.getStringInput("Enter Doctor Id to remove"));
                     handelDoctorService();
                 }
+                case 11->{
+                    System.out.println("Extitng from Doctor Registration");
+                    return;
+                }
                 default -> System.out.println("Invalid option");
             }
 
