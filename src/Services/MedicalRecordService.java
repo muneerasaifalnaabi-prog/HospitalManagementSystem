@@ -231,6 +231,10 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             case 7 ->{
                 displayPatientHistory(InputHandler.getStringInput("Enter PatientId to search for Medical Records History: "));
             }
+            case 8->{
+                System.out.println("Extitng from Medical Record Registration");
+                return;
+            }
             default ->{
                 System.out.println("Invalid choice");
             }
