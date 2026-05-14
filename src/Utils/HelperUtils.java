@@ -72,8 +72,6 @@ public class HelperUtils {
         return date != null;
     }
 
-    // In HelperUtils.java
-
     public static boolean isValidDate(String dateStr) {
         if (dateStr == null || dateStr.trim().isEmpty()) return false;
         List<String> patterns = Arrays.asList("dd-MM-yyyy", "d-M-yyyy", "dd-M-yyyy", "d-MM-yyyy");

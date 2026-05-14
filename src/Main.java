@@ -20,8 +20,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Hospital Management System... :>");
         TestData.loadData();
-       TestData.testOverloadedMethod();
+        System.out.println("-------------------------");
+       //TestData.testOverloadedMethod();
        //TestData.testCRUD();
+        System.out.println("=========================");
         handelMenu();
 
         }

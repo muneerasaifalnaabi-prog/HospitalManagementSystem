@@ -53,7 +53,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             }
             System.out.println("Invalid Patient ID");
         }
-
         System.out.println("Enter Doctor ID:");
         String doctorId = InputHandler.getStringInput("Doctor ID");
         LocalDate appointmentDate = InputHandler.getLocalDateInput("Date of Appointment");
@@ -429,7 +428,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         }
 
     }
-
     @Override
     public void searchById(String id) {
         Appointment appointment =getAppointmentById(id);
