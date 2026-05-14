@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class NurseService extends BaseService implements Manageable, Searchable {
 static Scanner scanner=new Scanner(System.in);
-static List<Nurse> Nurses=new ArrayList<Nurse>();
+public static List<Nurse> Nurses=new ArrayList<Nurse>();
 
 public void addNurses(){
     while(true){

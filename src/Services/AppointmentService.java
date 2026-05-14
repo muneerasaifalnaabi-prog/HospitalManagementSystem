@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class AppointmentService extends BaseService implements Manageable, Searchable , Appointable {
     static Scanner scanner = new Scanner(System.in);
-    static List<Appointment> appointments = new ArrayList<>();
+    public static List<Appointment> appointments = new ArrayList<>();
 
     public void addAppointments() {
         while (true) {
@@ -203,9 +203,15 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         appointment.setAppointmentDate(date);
         appointment.setAppointmentTime(time);
     }
-    public void createAppointment(Appointment appointment){
-        System.out.println("===new Appointment ===");
-        appointments.add(appointment);
+    public void createAppointment(Appointment appointment) {
+        if (HelperUtils.isNotNull(appointment) &&
+                HelperUtils.isNotNull(appointment.getDoctorId()) &&
+                HelperUtils.isNotNull(appointment.getPatientId())) {
+            appointments.add(appointment);
+            System.out.println("Appointment added.");
+        } else {
+            System.out.println("Invalid appointment - missing doctor or patient ID.");
+        }
     }
 
     @Override
@@ -252,21 +258,24 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         System.out.println("Appointment not found with ID: " + appointmentId);
     }
     public void rescheduleAppointment(Appointment appointment, LocalDate newDate, String newTime, String reason){
-       appointments.add(appointment);
-       appointment.setAppointmentDate(newDate);
-       appointment.setAppointmentTime(newTime);
-       appointment.setReason(reason);
+        appointments.add(appointment);
+        appointment.setAppointmentDate(newDate);
+        appointment.setAppointmentTime(newTime);
+        appointment.setReason(reason);
     }
     public void displayAppointments(LocalDate date){
         for (Appointment a : appointments) {
-            System.out.println(a);
+            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(date)) {
+                System.out.println(a);
+            }
         }
     }
     public void displayAppointments(String doctorId, LocalDate startDate, LocalDate endDate){
         for (Appointment a : appointments) {
-            if (a.getDoctorId().equals(doctorId)) {
+            if (a.getDoctorId() != null && a.getDoctorId().equals(doctorId) &&
+                    !a.getAppointmentDate().isBefore(startDate) &&
+                    !a.getAppointmentDate().isAfter(endDate)) {
                 System.out.println(a);
-
             }
         }
     }
@@ -314,53 +323,54 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
         System.out.println(MenuMessege.APPOINTMENT_MENU_MESSEGE);
-            int choice = InputHandler.getIntInput("Enter choice");
-            switch (choice) {
-                case 1->{
-                    scheduleAppointment(appointments.get(0));
-                    handleAppointmentService();
-                }
-                case 2->{
-                    displayAppointments();
-                    handleAppointmentService();
-                }
-                case 3->{
-                    displayAppointmentsByPatient();
-                    handleAppointmentService();
-
-                }
-                case 4->{
-                    displayAppointmentsByDoctor();
-                    handleAppointmentService();
-                }
-                case 5->{
-                    displayAppointmentsByDate();
-                    handleAppointmentService();
-                }
-                case 6->{
-                    rescheduleAppointment(InputHandler.getStringInput("Enter appointment Id"),InputHandler.getLocalDateInput("Enter New Date"));
-                    handleAppointmentService();
-                }
-                case 7->{
-                  Appointment appointment = appointments.get(InputHandler.getIntInput("Enter appointment Id"));
-                  cancelAppointment(appointment);
-                  handleAppointmentService();
-                }
-                case 8->{
-                    Appointment appointment = new Appointment();
-                    appointment.cancel();
-                    appointments.add(appointment);
-                    handleAppointmentService();
-                }
-                case 9->{
-                    upcomingAppointment();
-                    handleAppointmentService();
-
-                }
-                default -> System.out.println("Invalid choice");
+        int choice = InputHandler.getIntInput("Enter choice");
+        switch (choice) {
+            case 1->{
+                Appointment appointment = addAppointment();
+                scheduleAppointment(appointment);
+                handleAppointmentService();
             }
+            case 2->{
+                displayAppointments();
+                handleAppointmentService();
+            }
+            case 3->{
+                displayAppointmentsByPatient();
+                handleAppointmentService();
 
+            }
+            case 4->{
+                displayAppointmentsByDoctor();
+                handleAppointmentService();
+            }
+            case 5->{
+                displayAppointmentsByDate();
+                handleAppointmentService();
+            }
+            case 6->{
+                rescheduleAppointment(InputHandler.getStringInput("Enter appointment Id"),InputHandler.getLocalDateInput("Enter New Date"));
+                handleAppointmentService();
+            }
+            case 7->{
+                Appointment appointment = appointments.get(InputHandler.getIntInput("Enter appointment Id"));
+                cancelAppointment(appointment);
+                handleAppointmentService();
+            }
+            case 8->{
+                Appointment appointment = new Appointment();
+                appointment.cancel();
+                appointments.add(appointment);
+                handleAppointmentService();
+            }
+            case 9->{
+                upcomingAppointment();
+                handleAppointmentService();
+
+            }
+            default -> System.out.println("Invalid choice");
         }
+
+    }
 
     @Override
     public void add(Object entity) {
@@ -423,7 +433,7 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public void searchById(String id) {
         Appointment appointment =getAppointmentById(id);
 
-        if (appointment != null){
+        if (HelperUtils.isNotNull(appointment)){
             System.out.println(appointment);
         }
         else{
@@ -431,4 +441,5 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         }
 
     }
-}
+
+    }

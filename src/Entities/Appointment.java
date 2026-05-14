@@ -169,14 +169,14 @@ public  Appointment(){
     @Override
     public String toString() {
         return "Appointment{" +
-                "appointmentId='" + appointmentId + '\'' +
-                ", patientId='" + patientId + '\'' +
-                ", doctorId='" + doctorId + '\'' +
+                "appointmentId='" + (appointmentId != null ? appointmentId : "N/A") + '\'' +
+                ", patientId='" + (patientId != null ? patientId : "N/A") + '\'' +
+                ", doctorId='" + (doctorId != null ? doctorId : "N/A") + '\'' +
                 ", appointmentDate=" + appointmentDate +
-                ", appointmentTime='" + appointmentTime + '\'' +
-                ", status='" + status + '\'' +
-                ", reason='" + reason + '\'' +
-                ", notes='" + notes + '\'' +
+                ", appointmentTime='" + (appointmentTime != null ? appointmentTime : "N/A") + '\'' +
+                ", status='" + (status != null ? status : "N/A") + '\'' +
+                ", reason='" + (reason != null ? reason : "N/A") + '\'' +
+                ", notes='" + (notes != null ? notes : "N/A") + '\'' +
                 '}';
     }
 }

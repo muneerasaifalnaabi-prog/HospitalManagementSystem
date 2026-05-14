@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class MedicalRecordService extends BaseService implements Manageable, Searchable {
     static Scanner scanner = new Scanner(System.in);
-    static List<MedicalRecord> medicalRecords = new ArrayList<>();
+    public static List<MedicalRecord> medicalRecords = new ArrayList<>();
 
     public void addMedicalRecords() {
         while (true) {

@@ -42,6 +42,9 @@ public class Department implements Displayable {
         this.availableBeds = availableBeds;
     }
 
+    public Department() {
+    }
+
     public String getDepartmentId() {
         return departmentId;
     }

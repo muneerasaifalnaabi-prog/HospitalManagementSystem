@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class DepartmentService extends BaseService implements Manageable, Searchable {
     static Scanner scanner = new Scanner(System.in);
-    static List<Department> departments = new ArrayList<>();
+    public static List<Department> departments = new ArrayList<>();
     public void addDepartments() {
 
         while (true) {

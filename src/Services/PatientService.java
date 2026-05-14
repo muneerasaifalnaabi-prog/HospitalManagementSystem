@@ -77,6 +77,30 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 registrationDate, insuranceId, new ArrayList<>(), new ArrayList<>()
         );
     }
+    public void addPatient(String firstName, String lastName, String phone) {
+        String id = HelperUtils.generateId("PAT");
+        if (HelperUtils.isNotNull(getPatientById(id))) {
+            System.out.println("ID already exists");
+        }
+        String fname = InputHandler.getStringInput("Enter First Name: ");
+        String lname = InputHandler.getStringInput("Enter Last Name: ");
+       String phoneNumber = InputHandler.getStringInput("Enter Phone Number: ");
+        Patient patient = addPatient();
+        patients.add(patient);
+        System.out.println("Patient added successfully.");
+    }
+    public void addPatient(String firstName, String lastName, String phone, String bloodGroup, String email) {
+        String id = HelperUtils.generateId("PAT");
+        if (HelperUtils.isNotNull(getPatientById(id))) {
+            System.out.println("ID already exists");
+        }
+        String fname = InputHandler.getStringInput("Enter First Name: ");
+        String lname = InputHandler.getStringInput("Enter Last Name: ");
+        String phoneNumber = InputHandler.getStringInput("Enter Phone Number: ");
+        String bloodGroup2= InputHandler.getStringInput("Enter blood group: ");
+        String email2 = InputHandler.getStringInput("Enter email: ");
+
+    }
 
     public Patient getPatientById(String patientId) {
         for (Patient p : patients) {
@@ -232,9 +256,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         }
 
     }
-    public void HadlerPatient(){
-        System.out.println("====== Patient Management =======");
-        System.out.println(MenuMessege.PATIENT_MENU_MESSEGE);
+    public  void HadlerPatient(){
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
             case 1->{

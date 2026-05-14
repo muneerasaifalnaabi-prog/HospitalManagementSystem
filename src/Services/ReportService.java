@@ -14,129 +14,164 @@ import java.util.List;
 public class ReportService {
     AppointmentService appointmentService = new AppointmentService();
     DoctorService doctorService = new DoctorService();
-    DepartmentService departmentService = new DepartmentService();
     MedicalRecordService medicalRecordService = new MedicalRecordService();
+
     public void DailyAppointmentsReport() {
-        System.out.println("====Daily Appointments Report=====");
-        LocalDate localDate = InputHandler.getLocalDateInput("Enter Daily Appointment Date");
+        System.out.println("==== Daily Appointments Report ====");
+        LocalDate localDate = InputHandler.getLocalDateInput("Enter Appointment Date: ");
         boolean found = false;
-       for (Appointment a :AppointmentService.appointments){
-           if (a.getAppointmentDate().equals(localDate)){
-               System.out.println("Appointment Information in Details");
-               a.displayInfo();
-               System.out.println("Summary of Appointment Information ");
-               a.displaySummary();
-               found = true;
-           }
-       }
-       if (!found){
-           System.out.println("Appointment Not Found");
-       }
-        int totalAppointment =0;
-        int totalComplete =0;
-        int cancelled =0;
-        for (Appointment a :AppointmentService.appointments){
-            System.out.println(a);
-                totalAppointment++;
-            if (a.getStatus().equalsIgnoreCase("Cancelled")){
-                cancelled++;
+        int totalAppointment = 0;
+        int totalCompleted = 0;
+        int totalCancelled = 0;
+
+        for (Appointment a : AppointmentService.appointments) { // Direct access
+            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(localDate)) {
+                if (!found) {
+                    System.out.println("\n--- Appointments for " + localDate + " ---");
+                    found = true;
+                }
+                System.out.println("Appointment Information:");
+                a.displayInfo();
+                System.out.println("Summary:");
+                a.displaySummary();
+                System.out.println("-----------------------------------");
             }
-            System.out.println("Appointment :"+a.getAppointmentId()+"/n Appointment :"+totalAppointment +"/n Complete :"+totalComplete +"/n cancelled :"+cancelled);
+            totalAppointment++;
+            if (a.getStatus() != null) {
+                if (a.getStatus().equalsIgnoreCase("Completed")) totalCompleted++;
+                if (a.getStatus().equalsIgnoreCase("Cancelled")) totalCancelled++;
+            }
         }
 
+        if (!found) {
+            System.out.println("No appointments found for date: " + localDate);
+        } else {
+            System.out.println("\n--- Summary for " + localDate + " ---");
+            System.out.println("Total Appointments (all dates): " + totalAppointment);
+            System.out.println("Completed (all dates): " + totalCompleted);
+            System.out.println("Cancelled (all dates): " + totalCancelled);
+        }
     }
+
     public void DoctorPerformanceReport() {
-        System.out.println("====Doctor Performance Report=====");
-       String doctorId = InputHandler.getStringInput("Enter Doctor ID");
-       Doctor doctor = doctorService.getDoctorById(doctorId);
-       if (HelperUtils.isNotNull(doctor)){
-           System.out.println("Doctor Information in Details");
-           List<Appointment> doctorAppointments = appointmentService.getAppointmentsByDoctor(doctorId);
-           List<MedicalRecord> records =medicalRecordService.getMedicalRecordsByDoctorId(doctorId);
-           int completed =0;
-           for (Appointment a :doctorAppointments){
-               if (a.getStatus().equalsIgnoreCase("Completed")){
-                   completed++;
-               }
-           }
-           System.out.println("Doctor name :" + doctor.getFirstName() + " " + doctor.getLastName() );
-           System.out.println("Specialization  :" + doctor.getSpecialization());
-           System.out.println("Total Appointment :" + doctorAppointments.size());
-           System.out.println("Total Complete :" + completed);
-           System.out.println("Medical Records Created :" + records.size());
-           System.out.println("Assigned Patients :"+ doctor.getAssignedPatients());
-       }
-    }
-    public void departmentOccupancyReport() {
-        System.out.println("====Department Occupancy Report=====");
-        if (DepartmentService.departments.isEmpty()) {
-            System.out.println("Department Not Found");
+        System.out.println("==== Doctor Performance Report ====");
+        String doctorId = InputHandler.getStringInput("Enter Doctor ID: ");
+        Doctor doctor = doctorService.getDoctorById(doctorId);
+        if (HelperUtils.isNull(doctor)) {
+            System.out.println("Doctor not found.");
             return;
         }
-        for (Department department :DepartmentService.departments){
-            int occupiedBeds = department.getBedCapacity() - department.getAvailableBeds();
-            System.out.println("Department Occupancy Information in Details");
-            department.displayInfo();
-            System.out.println("Summary of Department Occupancy Information ");
-            department.displaySummary();
-            System.out.println("Bed Capacity :" + department.getBedCapacity());
-            System.out.println("Available Bed Capacity :" + department.getAvailableBeds());
-            System.out.println("Total Bed Capacity :" + department.getBedCapacity());
-        }
-    }
-    public void patientStatisticsReport() {
-        System.out.println("====Patient Statistics Report=====");
-        int totalAppointments =AppointmentService.appointments.size();
-        int totalMedicalRecords =medicalRecordService.medicalRecords.size();
-        for (Appointment a :AppointmentService.appointments){
-            System.out.println("Total Patient :" +a.getPatientId());
-            System.out.println("Total Appointment :" +totalAppointments);
-            System.out.println("Total Medical Records :" +totalMedicalRecords);
-        }
-    }
-    public void emergencyPatientsReport() {
-        System.out.println("====Emergency Patients Report=====");
-        boolean found = false;
-        for (Appointment a :AppointmentService.appointments){
-            if (a.getReason().equalsIgnoreCase("Emergency")){
-                System.out.println("Emergency Patient Information in Details");
-                a.displayInfo();
-                System.out.println("Summary of Emergency Patient Information ");
-                a.displaySummary();
-                found = true;
+
+        List<Appointment> doctorAppointments = appointmentService.getAppointmentsByDoctor(doctorId);
+        List<MedicalRecord> records = medicalRecordService.getMedicalRecordsByDoctorId(doctorId);
+        int completed = 0;
+        for (Appointment a : doctorAppointments) {
+            if (a.getStatus() != null && a.getStatus().equalsIgnoreCase("Completed")) {
+                completed++;
             }
         }
-        if (!found){
-            System.out.println("Emergency Patient cases Found");
+
+        System.out.println("\n--- Doctor Details ---");
+        doctor.displayInfo();
+        System.out.println("\n--- Performance Summary ---");
+        System.out.println("Total Appointments: " + doctorAppointments.size());
+        System.out.println("Completed Appointments: " + completed);
+        System.out.println("Medical Records Created: " + records.size());
+        System.out.println("Assigned Patients: " + (doctor.getAssignedPatients() != null ? doctor.getAssignedPatients().size() : 0));
+    }
+
+    public void departmentOccupancyReport() {
+        System.out.println("==== Department Occupancy Report ====");
+        if (DepartmentService.departments.isEmpty()) {
+            System.out.println("No departments found.");
+            return;
+        }
+
+        for (Department department : DepartmentService.departments) {
+            int occupiedBeds = department.getBedCapacity() - department.getAvailableBeds();
+            System.out.println("\n--- Department: " + department.getDepartmentName() + " ---");
+            department.displaySummary();
+            System.out.println("Bed Capacity: " + department.getBedCapacity());
+            System.out.println("Available Beds: " + department.getAvailableBeds());
+            System.out.println("Occupied Beds: " + occupiedBeds);
+            System.out.println("Occupancy Rate: " + (department.getBedCapacity() > 0 ?
+                    (occupiedBeds * 100 / department.getBedCapacity()) : 0) + "%");
+            System.out.println("-----------------------------------");
         }
     }
-    public void ReportHandler(){
-        System.out.println("====Report Handler=====");
+
+    public void patientStatisticsReport() {
+        System.out.println("==== Patient Statistics Report ====");
+        int totalAppointments = AppointmentService.appointments.size();
+        int totalMedicalRecords = MedicalRecordService.medicalRecords.size();
+        int uniquePatients = (int) AppointmentService.appointments.stream()
+                .map(Appointment::getPatientId)
+                .distinct()
+                .count();
+
+        System.out.println("Total Appointments: " + totalAppointments);
+        System.out.println("Total Medical Records: " + totalMedicalRecords);
+        System.out.println("Unique Patients with Appointments: " + uniquePatients);
+        System.out.println("\nDetailed Patient List (from appointments):");
+        AppointmentService.appointments.stream()
+                .map(Appointment::getPatientId)
+                .distinct()
+                .forEach(pid -> System.out.println("  - Patient ID: " + pid));
+    }
+
+    public void emergencyPatientsReport() {
+        System.out.println("==== Emergency Patients Report ====");
+        boolean found = false;
+        for (Appointment a : AppointmentService.appointments) {
+            if (a.getReason() != null && a.getReason().equalsIgnoreCase("Emergency")) {
+                if (!found) {
+                    System.out.println("\n--- Emergency Appointments ---");
+                    found = true;
+                }
+                System.out.println("Appointment ID: " + a.getAppointmentId());
+                System.out.println("Patient ID: " + a.getPatientId());
+                System.out.println("Doctor ID: " + a.getDoctorId());
+                System.out.println("Date: " + a.getAppointmentDate());
+                System.out.println("Status: " + a.getStatus());
+                System.out.println("Reason: " + a.getReason());
+                System.out.println("Notes: " + a.getNotes());
+                System.out.println("-----------------------------------");
+            }
+        }
+        if (!found) {
+            System.out.println("No emergency patient cases found.");
+        }
+    }
+
+    public void ReportHandler() {
+        System.out.println("==== Report Handler ====");
         System.out.println(MenuMessege.REPORT_MENU_MESSEGE);
-        int choice = InputHandler.getIntInput("Enter choice");
-        switch (choice){
-            case 1 ->{
+        int choice = InputHandler.getIntInput("Enter choice: ");
+
+        switch (choice) {
+            case 1 -> {
                 DailyAppointmentsReport();
                 ReportHandler();
             }
-            case 2 ->{
+            case 2 -> {
                 DoctorPerformanceReport();
                 ReportHandler();
             }
-            case 3 ->{
+            case 3 -> {
                 departmentOccupancyReport();
                 ReportHandler();
             }
-            case 4 ->{
+            case 4 -> {
                 patientStatisticsReport();
                 ReportHandler();
             }
-            case 5 ->{
+            case 5 -> {
                 emergencyPatientsReport();
                 ReportHandler();
             }
-            default ->{
-                System.out.println("Invalid choice");
+            default -> {
+                System.out.println("Invalid choice. Please try again.");
+                ReportHandler();
             }
         }
     }
