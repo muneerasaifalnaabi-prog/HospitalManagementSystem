@@ -322,7 +322,6 @@ public class AppointmentService extends BaseService implements Manageable, Searc
 
     public void handleAppointmentService(){
         System.out.println("====Appointment service ====");
-        System.out.println(MenuMessege.APPOINTMENT_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
         switch (choice) {
             case 1->{
