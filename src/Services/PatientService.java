@@ -75,16 +75,14 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 registrationDate, insuranceId, new ArrayList<>(), new ArrayList<>()
         );
     }
-    public void addPatient(String firstName, String lastName, String phone){
+    public void addPatient(String firstName, String lastName, String phone) {
 
         Patient patient = new Patient();
-
+        patient.setId(HelperUtils.generateId("PAT"));
         patient.setFirstName(firstName);
         patient.setLastName(lastName);
         patient.setPhoneNumber(phone);
-
         patients.add(patient);
-
     }
     public void addPatient(String firstName, String lastName, String phone , String bloodGroup, String email){
         Patient patient = new Patient();
@@ -176,11 +174,11 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         }
     }
     public void displayPatients(int limit){
-        while (limit!=0){
-            for(Patient p : patients){
-                p.displayInfo();
-                limit--;
-            }
+        int count = 0;
+        for (Patient p : patients) {
+            if (count >= limit) break;
+            System.out.println(p);
+            count++;
         }
     }
     @Override
