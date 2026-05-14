@@ -78,9 +78,9 @@ public Nurse addNurse() {
     }
 
     public Nurse getNurseById(String nurseId) {
+        if (HelperUtils.isNull(nurseId)) return null;
         for (Nurse n : Nurses) {
-
-            if (n.getId().equals(nurseId)) {
+            if (n.getId() != null && n.getId().equals(nurseId)) {
                 return n;
             }
         }
@@ -126,7 +126,7 @@ public void deleteNurses(String nurseId) {
 public List<Nurse> getNursesByDepartmentId(String departmentId) {
     List<Nurse> nurses=new ArrayList<>();
     for (Nurse n : Nurses) {
-        if (n.getDepartmentId().equals(departmentId)) {
+        if (n.getDepartmentId() != null && n.getDepartmentId().equals(departmentId)){
             nurses.add(n);
         }
     }
@@ -273,7 +273,7 @@ public void  displayNurses(){
                 NurseHandler();
             }
             case 5 ->{
-                //assign nurse to patient
+
                 Patient p = new Patient();
                 assignNuresToPatient(String.valueOf(p));
                 NurseHandler();
