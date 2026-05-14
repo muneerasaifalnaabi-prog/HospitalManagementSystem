@@ -138,6 +138,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public List<Doctor> searchDoctorsBySpecialization(String specialization) {
 
         List<Doctor> results = new ArrayList<>();
+        if (HelperUtils.isNull(specialization)) return results;
         for (Doctor d : doctors) {
             if (d.getSpecialization().toLowerCase().contains(specialization.toLowerCase())) {
                 results.add(d);
