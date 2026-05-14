@@ -203,7 +203,6 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     }
     public void MedicalRecordHandler(){
         System.out.println("==== Medeical Record Handler ===");
-        System.out.println(MenuMessege.MEDICALRECORD_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
             case 1 ->{
