@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class InPatient extends Patient implements Displayable , Billable {
+public class InPatient extends Patient implements Displayable, Billable {
     private LocalDate admissionDate;
     private LocalDate dischargeDate;
     private String roomNumber;
@@ -16,14 +16,22 @@ public class InPatient extends Patient implements Displayable , Billable {
     private String admittingDoctorId;
     private double dailyCharges;
 
-    public InPatient(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String patientId, String bloodGroup, List<String> allergies, String emergencyContact, LocalDate registrationDate, String insuranceId, List<String> appointments, List<String> medicalRecords, LocalDate admissionDate, LocalDate dischargeDate, String roomNumber, String admittingDoctorId, String bedNumber, double dailyCharges) {
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, patientId, bloodGroup, allergies, emergencyContact, registrationDate, insuranceId, appointments, medicalRecords);
-        this.admissionDate = admissionDate;
-        this.dischargeDate = dischargeDate;
-        this.roomNumber = roomNumber;
-        this.admittingDoctorId = admittingDoctorId;
-        this.bedNumber = bedNumber;
-        this.dailyCharges = dailyCharges;
+    public InPatient(String id, String firstName, String lastName, LocalDate dateOfBirth,
+                     String gender, String phoneNumber, String email, String address,
+                     String patientId, String bloodGroup, List<String> allergies,
+                     String emergencyContact, LocalDate registrationDate, String insuranceId,
+                     List<String> appointments, List<String> medicalRecords,
+                     LocalDate admissionDate, LocalDate dischargeDate, String roomNumber,
+                     String admittingDoctorId, String bedNumber, double dailyCharges) {
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address,
+                patientId, bloodGroup, allergies, emergencyContact, registrationDate,
+                insuranceId, appointments, medicalRecords);
+        setAdmissionDate(admissionDate);
+        setDischargeDate(dischargeDate);
+        setRoomNumber(roomNumber);
+        setAdmittingDoctorId(admittingDoctorId);
+        setBedNumber(bedNumber);
+        setDailyCharges(dailyCharges);
     }
 
     public InPatient() {
@@ -36,6 +44,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setAdmissionDate(LocalDate admissionDate) {
         if (HelperUtils.isNotNull(admissionDate)) {
             this.admissionDate = admissionDate;
+        } else {
+            this.admissionDate = LocalDate.now();
         }
     }
 
@@ -46,6 +56,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setDischargeDate(LocalDate dischargeDate) {
         if (HelperUtils.isNotNull(dischargeDate)) {
             this.dischargeDate = dischargeDate;
+        } else {
+            this.dischargeDate = null;
         }
     }
 
@@ -56,6 +68,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setRoomNumber(String roomNumber) {
         if (HelperUtils.isValidString(roomNumber)) {
             this.roomNumber = roomNumber;
+        } else {
+            this.roomNumber = "N/A";
         }
     }
 
@@ -66,6 +80,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setBedNumber(String bedNumber) {
         if (HelperUtils.isValidString(bedNumber)) {
             this.bedNumber = bedNumber;
+        } else {
+            this.bedNumber = "N/A";
         }
     }
 
@@ -76,6 +92,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setAdmittingDoctorId(String admittingDoctorId) {
         if (HelperUtils.isValidString(admittingDoctorId)) {
             this.admittingDoctorId = admittingDoctorId;
+        } else {
+            this.admittingDoctorId = "N/A";
         }
     }
 
@@ -86,6 +104,8 @@ public class InPatient extends Patient implements Displayable , Billable {
     public void setDailyCharges(double dailyCharges) {
         if (HelperUtils.isPositive(dailyCharges)) {
             this.dailyCharges = dailyCharges;
+        } else {
+            this.dailyCharges = 100.0;
         }
     }
 
@@ -103,9 +123,8 @@ public class InPatient extends Patient implements Displayable , Billable {
 
     @Override
     public void calculateCharges() {
-        double total =calculateTotalCharges();
-        System.out.println("Total Of Chargs "+total);
-
+        double total = calculateTotalCharges();
+        System.out.println("Total Charges: " + total);
     }
 
     @Override
@@ -114,68 +133,61 @@ public class InPatient extends Patient implements Displayable , Billable {
         double total = calculateTotalCharges();
 
         System.out.println("===== HOSPITAL BILL =====");
-        System.out.println("Patient ID: " + getPatientId());
-        System.out.println("Admission Date: " + admissionDate);
-        System.out.println("Discharge Date: " + dischargeDate);
+        System.out.println("Patient ID: " + (HelperUtils.isNotNull(getPatientId()) ? getPatientId() : "N/A"));
+        System.out.println("Admission Date: " + (HelperUtils.isNotNull(admissionDate) ? admissionDate : "N/A"));
+        System.out.println("Discharge Date: " + (HelperUtils.isNotNull(dischargeDate) ? dischargeDate : "N/A"));
         System.out.println("Days Stayed: " + days);
-        System.out.println("Room Number: " + roomNumber);
-        System.out.println("Bed Number: " + bedNumber);
+        System.out.println("Room Number: " + (HelperUtils.isNotNull(roomNumber) ? roomNumber : "N/A"));
+        System.out.println("Bed Number: " + (HelperUtils.isNotNull(bedNumber) ? bedNumber : "N/A"));
         System.out.println("Daily Charges: " + dailyCharges);
         System.out.println("TOTAL AMOUNT: " + total);
         System.out.println("=========================");
-
     }
 
     @Override
     public void processPayment(double amount) {
         if (!HelperUtils.isPositive(amount)) {
-            System.out.println("invalid input");
+            System.out.println("Invalid payment amount.");
             return;
         }
-        double total =calculateTotalCharges();
-        if (amount>=total){
-            System.out.println("Payment succesful");
-            System.out.println("Change :"+(amount-total));
+        double total = calculateTotalCharges();
+        if (amount >= total) {
+            System.out.println("Payment successful.");
+            System.out.println("Change: " + (amount - total));
+        } else {
+            System.out.println("Payment failed. Insufficient amount.");
+            System.out.println("Remaining amount: " + (total - amount));
         }
-        else {
-            System.out.println("Payment failed");
-            System.out.println("Remainig amount :"+(total-amount));
-
-        }
-
-
     }
 
     @Override
     public void displayInfo() {
         super.displayInfo();
         System.out.println(this.toString());
-
-
     }
 
     @Override
     public void displaySummary() {
         System.out.println(
-                "InPatient: " + getFirstName() + " " + getLastName() +
-                        ", Room: " + roomNumber +
-                        ", Bed: " + bedNumber +
-                        ", Admission: " + admissionDate +
-                        ", Doctor ID: " + admittingDoctorId
+                "InPatient: " +
+                        (HelperUtils.isNotNull(getFirstName()) ? getFirstName() : "N/A") + " " +
+                        (HelperUtils.isNotNull(getLastName()) ? getLastName() : "N/A") +
+                        ", Room: " + (HelperUtils.isNotNull(roomNumber) ? roomNumber : "N/A") +
+                        ", Bed: " + (HelperUtils.isNotNull(bedNumber) ? bedNumber : "N/A") +
+                        ", Admission: " + (HelperUtils.isNotNull(admissionDate) ? admissionDate : "N/A") +
+                        ", Doctor ID: " + (HelperUtils.isNotNull(admittingDoctorId) ? admittingDoctorId : "N/A")
         );
-
     }
 
     @Override
     public String toString() {
         return "InPatient{" +
-                "admissionDate=" + admissionDate +
-                ", dischargeDate=" + dischargeDate +
-                ", roomNumber='" + roomNumber + '\'' +
-                ", bedNumber='" + bedNumber + '\'' +
-                ", admittingDoctorId='" + admittingDoctorId + '\'' +
+                "admissionDate=" + (HelperUtils.isNotNull(admissionDate) ? admissionDate : "N/A") +
+                ", dischargeDate=" + (HelperUtils.isNotNull(dischargeDate) ? dischargeDate : "N/A") +
+                ", roomNumber='" + (HelperUtils.isNotNull(roomNumber) ? roomNumber : "N/A") + '\'' +
+                ", bedNumber='" + (HelperUtils.isNotNull(bedNumber) ? bedNumber : "N/A") + '\'' +
+                ", admittingDoctorId='" + (HelperUtils.isNotNull(admittingDoctorId) ? admittingDoctorId : "N/A") + '\'' +
                 ", dailyCharges=" + dailyCharges +
                 '}';
     }
 }
-

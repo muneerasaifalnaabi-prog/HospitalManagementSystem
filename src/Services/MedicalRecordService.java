@@ -36,29 +36,42 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
         System.out.println("Generated Record ID: " + recordId);
 
         MedicalRecord existRecord = getMedicalRecordById(recordId);
-
         if (HelperUtils.isNotNull(existRecord)) {
             System.out.println("Record ID already exists");
             return null;
         }
 
         String patientId = InputHandler.getStringInput("Enter Patient ID: ");
+        if (!HelperUtils.isValidString(patientId)) {
+            System.out.println("Invalid Patient ID.");
+            return null;
+        }
+
         String doctorId = InputHandler.getStringInput("Enter Doctor ID: ");
+        if (!HelperUtils.isValidString(doctorId)) {
+            System.out.println("Invalid Doctor ID.");
+            return null;
+        }
+
         LocalDate visitDate = InputHandler.getLocalDateInput("Enter Visit Date: ");
+        if (HelperUtils.isNull(visitDate)) {
+            System.out.println("Invalid visit date.");
+            return null;
+        }
+
         String diagnosis = InputHandler.getStringInput("Enter Diagnosis: ");
-        String testResults =InputHandler.getStringInput("Enter Test Results: ");
+        if (!HelperUtils.isValidString(diagnosis)) {
+            System.out.println("Diagnosis cannot be empty.");
+            return null;
+        }
+
+        String testResults = InputHandler.getStringInput("Enter Test Results: ");
         String prescription = InputHandler.getStringInput("Enter Prescription: ");
         String notes = InputHandler.getStringInput("Enter Notes: ");
 
         MedicalRecord medicalRecord = new MedicalRecord(
-                recordId,
-                patientId,
-                doctorId,
-                visitDate,
-                diagnosis,
-                testResults,
-                prescription,
-                notes
+                recordId, patientId, doctorId, visitDate,
+                diagnosis, testResults, prescription, notes
         );
         return medicalRecord;
     }
@@ -66,31 +79,27 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public MedicalRecord getMedicalRecordById(String recordId) {
         if (HelperUtils.isNull(recordId)) return null;
         for (MedicalRecord record : medicalRecords) {
-            if (record.getRecordId() != null && record.getRecordId().equals(recordId)) {
+            if (HelperUtils.isNotNull(record.getRecordId()) && record.getRecordId().equals(recordId)) {
                 return record;
             }
         }
-
         return null;
     }
 
     public void editMedicalRecord(String recordId) {
-
         MedicalRecord record = getMedicalRecordById(recordId);
         if (HelperUtils.isNotNull(record)) {
             record.setDiagnosis(InputHandler.getStringInput("Enter Diagnosis: "));
             record.setPrescription(InputHandler.getStringInput("Enter Prescription: "));
             record.setTestResults(InputHandler.getStringInput("Enter Test Results: "));
             record.setNotes(InputHandler.getStringInput("Enter Notes: "));
-
             System.out.println("Medical Record updated successfully.");
-
         } else {
             System.out.println("Record Not Found");
         }
     }
-    public void deleteMedicalRecord(String recordId) {
 
+    public void deleteMedicalRecord(String recordId) {
         MedicalRecord record = getMedicalRecordById(recordId);
         if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
@@ -99,31 +108,34 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             System.out.println("Record Not Found");
         }
     }
-    public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
 
+    public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
         List<MedicalRecord> result = new ArrayList<>();
         if (HelperUtils.isNull(patientId)) return result;
         for (MedicalRecord record : medicalRecords) {
-
-            if (record.getPatientId() != null && record.getPatientId().equals(patientId)) {
+            if (HelperUtils.isNotNull(record.getPatientId()) && record.getPatientId().equals(patientId)) {
                 result.add(record);
             }
         }
         return result;
     }
-    public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
 
+    public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
         List<MedicalRecord> result = new ArrayList<>();
         if (HelperUtils.isNull(doctorId)) return result;
         for (MedicalRecord record : medicalRecords) {
-            if (record.getDoctorId() != null && record.getDoctorId().equals(doctorId)) {
+            if (HelperUtils.isNotNull(record.getDoctorId()) && record.getDoctorId().equals(doctorId)) {
                 result.add(record);
             }
         }
-
         return result;
     }
+
     public void displayPatientHistory(String patientId) {
+        if (HelperUtils.isNull(patientId)) {
+            System.out.println("Patient ID cannot be null.");
+            return;
+        }
         List<MedicalRecord> records = getMedicalRecordsByPatientId(patientId);
         if (records.isEmpty()) {
             System.out.println("No medical records found");
@@ -133,12 +145,16 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
             System.out.println(record);
         }
     }
+
     public void displayAllMedicalRecords() {
+        if (medicalRecords.isEmpty()) {
+            System.out.println("No medical records found.");
+            return;
+        }
         for (MedicalRecord record : medicalRecords) {
             System.out.println(record);
         }
     }
-
 
     @Override
     public void add(Object entity) {
@@ -155,7 +171,6 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
     @Override
     public void remove(String id) {
-
         MedicalRecord record = getMedicalRecordById(id);
         if (HelperUtils.isNotNull(record)) {
             medicalRecords.remove(record);
@@ -167,29 +182,25 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
     @Override
     public void getAll() {
-
         if (medicalRecords.isEmpty()) {
             System.out.println("No medical records found");
             return;
         }
         displayAllMedicalRecords();
     }
+
     @Override
     public void search(String keyword) {
         if (HelperUtils.isNull(keyword)) return;
         boolean found = false;
-
         for (MedicalRecord record : medicalRecords) {
-
-            if (record.getPatientId().equalsIgnoreCase(keyword)
-                    || record.getDoctorId().equalsIgnoreCase(keyword)
-                    || record.getDiagnosis().equalsIgnoreCase(keyword)) {
-
+            if ((HelperUtils.isNotNull(record.getPatientId()) && record.getPatientId().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(record.getDoctorId()) && record.getDoctorId().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(record.getDiagnosis()) && record.getDiagnosis().equalsIgnoreCase(keyword))) {
                 System.out.println(record);
                 found = true;
             }
         }
-
         if (!found) {
             System.out.println("No records found");
         }
@@ -197,52 +208,51 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
 
     @Override
     public void searchById(String id) {
-
         MedicalRecord record = getMedicalRecordById(id);
-
         if (HelperUtils.isNotNull(record)) {
             System.out.println(record);
         } else {
             System.out.println("Record not found");
         }
     }
-    public void MedicalRecordHandler(){
-        System.out.println("==== Medeical Record Handler ===");
+
+    public void MedicalRecordHandler() {
+        System.out.println("==== Medical Record Handler ===");
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
-            case 1 ->{
+            case 1 -> {
                 addMedicalRecord();
                 MedicalRecordHandler();
             }
-            case 2 ->{
+            case 2 -> {
                 displayAllMedicalRecords();
                 MedicalRecordHandler();
             }
-            case 3 ->{
-                getMedicalRecordsByPatientId(InputHandler.getStringInput("Enter PatientId to search for Medical Records: "));
+            case 3 -> {
+                getMedicalRecordsByPatientId(InputHandler.getStringInput("Enter PatientId: "));
                 MedicalRecordHandler();
             }
-            case 4 ->{
-                getMedicalRecordsByDoctorId(InputHandler.getStringInput("Enter DoctorId to search for Medical Records: "));
-            }
-            case 5 ->{
-                editMedicalRecord(InputHandler.getStringInput("Enter Medical Record: "));
+            case 4 -> {
+                getMedicalRecordsByDoctorId(InputHandler.getStringInput("Enter DoctorId: "));
                 MedicalRecordHandler();
             }
-            case 6 ->{
-                deleteMedicalRecord(InputHandler.getStringInput("Enter Medical Record to delete: "));
+            case 5 -> {
+                editMedicalRecord(InputHandler.getStringInput("Enter Medical Record ID: "));
+                MedicalRecordHandler();
             }
-            case 7 ->{
-                displayPatientHistory(InputHandler.getStringInput("Enter PatientId to search for Medical Records History: "));
+            case 6 -> {
+                deleteMedicalRecord(InputHandler.getStringInput("Enter Medical Record ID to delete: "));
+                MedicalRecordHandler();
             }
-            case 8->{
-                System.out.println("Extitng from Medical Record Registration");
+            case 7 -> {
+                displayPatientHistory(InputHandler.getStringInput("Enter PatientId: "));
+                MedicalRecordHandler();
+            }
+            case 8 -> {
+                System.out.println("Exiting from Medical Record Registration");
                 return;
             }
-            default ->{
-                System.out.println("Invalid choice");
-            }
-
+            default -> System.out.println("Invalid choice");
         }
     }
 }

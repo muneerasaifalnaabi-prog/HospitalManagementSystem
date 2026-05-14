@@ -21,12 +21,10 @@ public class AppointmentService extends BaseService implements Manageable, Searc
     public void addAppointments() {
         while (true) {
             Appointment appointment = addAppointment();
-            if (appointment != null) {
+            if (HelperUtils.isNotNull(appointment)) {
                 appointments.add(appointment);
-
                 System.out.println("Appointment Added Successfully");
             }
-
             System.out.println("Press q to quit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 return;
@@ -39,12 +37,11 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         String appointmentId = HelperUtils.generateId("APP");
         System.out.println("Generated Appointment ID : " + appointmentId);
         Appointment existingAppointment = getAppointmentById(appointmentId);
-        if (existingAppointment != null) {
+        if (HelperUtils.isNotNull(existingAppointment)) {
             System.out.println("Appointment ID already exists");
             return null;
         }
         String patientId;
-
         while (true) {
             System.out.println("Enter Patient ID:");
             patientId = scanner.nextLine();
@@ -59,17 +56,11 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         String appointmentTime = InputHandler.getStringInput("Time of Appointment");
         String status = InputHandler.getStringInput("Status");
         String reason = InputHandler.getStringInput("Reason");
-        String notes =InputHandler.getStringInput("Notes");
+        String notes = InputHandler.getStringInput("Notes");
 
         Appointment appointment = new Appointment(
-                patientId,
-                appointmentId,
-                doctorId,
-                appointmentDate,
-                appointmentTime,
-                status,
-                reason,
-                notes
+                patientId, appointmentId, doctorId, appointmentDate,
+                appointmentTime, status, reason, notes
         );
         return appointment;
     }
@@ -79,18 +70,15 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             return null;
         }
         for (Appointment a : appointments) {
-
-            if (a.getAppointmentId() != null && a.getAppointmentId().equals(appointmentId)) {
-
+            if (HelperUtils.isNotNull(a.getAppointmentId()) && a.getAppointmentId().equals(appointmentId)) {
                 return a;
             }
         }
-
         return null;
     }
+
     public void editAppointment(String appointment) {
         Appointment existingAppointment = getAppointmentById(appointment);
-
         if (HelperUtils.isNull(existingAppointment)) {
             System.out.println("Appointment Not Found");
             return;
@@ -108,102 +96,119 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             existingAppointment.setReason(newReason);
         }
         String newNotes = InputHandler.getStringInput("Enter new Notes of Appointment");
-        existingAppointment.setNotes(newNotes);
-
+        if (HelperUtils.isValidString(newNotes)) {
+            existingAppointment.setNotes(newNotes);
+        }
         System.out.println("Appointment Edited Successfully");
     }
+
     public void deleteAppointment(String appointmentId) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
-
         if (HelperUtils.isNotNull(existingAppointment)) {
-
             appointments.remove(existingAppointment);
-
             System.out.println("Appointment Deleted Successfully");
-        }
-        else {
-
+        } else {
             System.out.println("Appointment Not Found");
         }
     }
+
     public List<Appointment> getAppointmentsByPatient(String patient) {
         List<Appointment> appointmentList = new ArrayList<>();
+        if (HelperUtils.isNull(patient)) return appointmentList;
         for (Appointment a : appointments) {
-            if (a.getPatientId() != null && a.getPatientId().equals(patient)) {
+            if (HelperUtils.isNotNull(a.getPatientId()) && a.getPatientId().equals(patient)) {
                 appointmentList.add(a);
             }
         }
         return appointmentList;
     }
+
     public List<Appointment> getAppointmentsByDoctor(String doctor) {
         List<Appointment> appointmentList = new ArrayList<>();
+        if (HelperUtils.isNull(doctor)) return appointmentList;
         for (Appointment a : appointments) {
-            if (a.getDoctorId() != null && a.getDoctorId().equals(doctor)) {
+            if (HelperUtils.isNotNull(a.getDoctorId()) && a.getDoctorId().equals(doctor)) {
                 appointmentList.add(a);
             }
         }
         return appointmentList;
     }
-    public List<Appointment> getAppointmentsByDate(LocalDate date){
-        List<Appointment> appointmentList = new ArrayList<>();
 
+    public List<Appointment> getAppointmentsByDate(LocalDate date) {
+        List<Appointment> appointmentList = new ArrayList<>();
         if (HelperUtils.isNull(date)) {
             return appointmentList;
         }
-
         for (Appointment a : appointments) {
-
-            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(date)) {
-
+            if (HelperUtils.isNotNull(a.getAppointmentDate()) && a.getAppointmentDate().equals(date)) {
                 appointmentList.add(a);
             }
         }
-
         return appointmentList;
     }
 
-    public void rescheduleAppointments(String appointmentId,LocalDate date,String newTime) {
+    public void rescheduleAppointments(String appointmentId, LocalDate date, String newTime) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
-
         if (HelperUtils.isNotNull(existingAppointment)) {
             existingAppointment.reschedule(date, newTime);
-        }
-        else {
+        } else {
             System.out.println("Appointment Not Found");
         }
     }
-    public void cancelAppointments(String appointmentId,LocalDate date,String newTime) {
+
+    public void cancelAppointments(String appointmentId, LocalDate date, String newTime) {
         Appointment existingAppointment = getAppointmentById(appointmentId);
         if (HelperUtils.isNotNull(existingAppointment)) {
             existingAppointment.cancel();
-        }
-        else
+        } else {
             System.out.println("Appointment Not Found");
+        }
     }
+
     public void displayAppointments() {
+        if (appointments.isEmpty()) {
+            System.out.println("No appointments found.");
+            return;
+        }
         for (Appointment a : appointments) {
             System.out.println(a);
         }
     }
-    public void createAppointment(String patientId, String doctorId, LocalDate date){
+
+    public void createAppointment(String patientId, String doctorId, LocalDate date) {
+        if (HelperUtils.isNull(patientId) || HelperUtils.isNull(doctorId) || HelperUtils.isNull(date)) {
+            System.out.println("Invalid parameters for appointment creation.");
+            return;
+        }
         System.out.println("===new Appointment ===");
         Appointment appointment = new Appointment();
         appointment.setPatientId(patientId);
         appointment.setDoctorId(doctorId);
         appointment.setAppointmentDate(date);
+        appointment.setAppointmentId(HelperUtils.generateId("APP"));
     }
-    public void createAppointment(String patientId, String doctorId, LocalDate date, String time){
+
+    public void createAppointment(String patientId, String doctorId, LocalDate date, String time) {
+        if (HelperUtils.isNull(patientId) || HelperUtils.isNull(doctorId) || HelperUtils.isNull(date) || HelperUtils.isNull(time)) {
+            System.out.println("Invalid parameters for appointment creation.");
+            return;
+        }
         System.out.println("===new Appointment ===");
         Appointment appointment = new Appointment();
         appointment.setPatientId(patientId);
         appointment.setDoctorId(doctorId);
         appointment.setAppointmentDate(date);
         appointment.setAppointmentTime(time);
+        appointment.setAppointmentId(HelperUtils.generateId("APP"));
     }
+
     public void createAppointment(Appointment appointment) {
         if (HelperUtils.isNotNull(appointment) &&
                 HelperUtils.isNotNull(appointment.getDoctorId()) &&
                 HelperUtils.isNotNull(appointment.getPatientId())) {
+            if (HelperUtils.isNull(appointment.getAppointmentId())) {
+                appointment.setAppointmentId(HelperUtils.generateId("APP"));
+            }
             appointments.add(appointment);
             System.out.println("Appointment added.");
         } else {
@@ -217,9 +222,11 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             System.out.println("Invalid appointment");
             return;
         }
+        if (HelperUtils.isNull(appointment.getAppointmentId())) {
+            appointment.setAppointmentId(HelperUtils.generateId("APP"));
+        }
         appointments.add(appointment);
         System.out.println("Appointment scheduled successfully");
-
     }
 
     @Override
@@ -230,84 +237,125 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         }
         appointment.setStatus("Cancelled");
         System.out.println("Appointment cancelled successfully");
-
     }
 
-    public void rescheduleAppointment(String appointmentId, LocalDate newDate){
+    public void rescheduleAppointment(String appointmentId, LocalDate newDate) {
+        if (HelperUtils.isNull(appointmentId) || HelperUtils.isNull(newDate)) {
+            System.out.println("Invalid parameters for reschedule.");
+            return;
+        }
         for (Appointment a : appointments) {
-            if (a.getAppointmentId().equals(appointmentId)) {
+            if (HelperUtils.isNotNull(a.getAppointmentId()) && a.getAppointmentId().equals(appointmentId)) {
                 a.setAppointmentDate(newDate);
-                System.out.println("Appointment Updated Successfully to"+newDate);
+                System.out.println("Appointment Updated Successfully to " + newDate);
                 return;
             }
         }
         System.out.println("Appointment not found with ID: " + appointmentId);
     }
-    public void rescheduleAppointment(String appointmentId, LocalDate newDate, String newTime){
+
+    public void rescheduleAppointment(String appointmentId, LocalDate newDate, String newTime) {
+        if (HelperUtils.isNull(appointmentId) || HelperUtils.isNull(newDate) || HelperUtils.isNull(newTime)) {
+            System.out.println("Invalid parameters for reschedule.");
+            return;
+        }
         for (Appointment a : appointments) {
-            if (a.getAppointmentId().equals(appointmentId)) {
+            if (HelperUtils.isNotNull(a.getAppointmentId()) && a.getAppointmentId().equals(appointmentId)) {
                 a.setAppointmentDate(newDate);
                 a.setAppointmentTime(newTime);
-                System.out.println("Appointment Updated Successfully to"+newDate+" time :"+newTime);
+                System.out.println("Appointment Updated Successfully to " + newDate + " time :" + newTime);
                 return;
             }
         }
         System.out.println("Appointment not found with ID: " + appointmentId);
     }
-    public void rescheduleAppointment(Appointment appointment, LocalDate newDate, String newTime, String reason){
+
+    public void rescheduleAppointment(Appointment appointment, LocalDate newDate, String newTime, String reason) {
+        if (HelperUtils.isNull(appointment) || HelperUtils.isNull(newDate) || HelperUtils.isNull(newTime)) {
+            System.out.println("Invalid parameters for reschedule.");
+            return;
+        }
         appointments.add(appointment);
         appointment.setAppointmentDate(newDate);
         appointment.setAppointmentTime(newTime);
         appointment.setReason(reason);
     }
-    public void displayAppointments(LocalDate date){
+
+    public void displayAppointments(LocalDate date) {
+        if (HelperUtils.isNull(date)) {
+            System.out.println("Date cannot be null.");
+            return;
+        }
+        boolean found = false;
         for (Appointment a : appointments) {
-            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(date)) {
+            if (HelperUtils.isNotNull(a.getAppointmentDate()) && a.getAppointmentDate().equals(date)) {
                 System.out.println(a);
+                found = true;
             }
         }
+        if (!found) System.out.println("No appointments on " + date);
     }
-    public void displayAppointments(String doctorId, LocalDate startDate, LocalDate endDate){
+
+    public void displayAppointments(String doctorId, LocalDate startDate, LocalDate endDate) {
+        if (HelperUtils.isNull(doctorId) || HelperUtils.isNull(startDate) || HelperUtils.isNull(endDate)) {
+            System.out.println("Invalid parameters.");
+            return;
+        }
+        boolean found = false;
         for (Appointment a : appointments) {
-            if (a.getDoctorId() != null && a.getDoctorId().equals(doctorId) &&
+            if (HelperUtils.isNotNull(a.getDoctorId()) && a.getDoctorId().equals(doctorId) &&
+                    HelperUtils.isNotNull(a.getAppointmentDate()) &&
                     !a.getAppointmentDate().isBefore(startDate) &&
                     !a.getAppointmentDate().isAfter(endDate)) {
                 System.out.println(a);
+                found = true;
             }
         }
+        if (!found) System.out.println("No appointments for doctor " + doctorId + " in given range.");
     }
-    public void displayAppointmentsByPatient(){
-        String patientId =InputHandler.getStringInput("Enter Patient ID");
-        List<Appointment> patientAppo =getAppointmentsByPatient(patientId);
-        if (HelperUtils.isNotNull(patientAppo)) {
+
+    public void displayAppointmentsByPatient() {
+        String patientId = InputHandler.getStringInput("Enter Patient ID");
+        List<Appointment> patientAppo = getAppointmentsByPatient(patientId);
+        if (HelperUtils.isNotNull(patientAppo) && !patientAppo.isEmpty()) {
             for (Appointment a : patientAppo) {
                 System.out.println(a);
             }
+        } else {
+            System.out.println("No appointments found for patient: " + patientId);
         }
     }
-    public void displayAppointmentsByDate(){
+
+    public void displayAppointmentsByDate() {
         LocalDate date = InputHandler.getLocalDateInput("Enter Date");
         List<Appointment> patientAppo = getAppointmentsByDate(date);
-        if (HelperUtils.isNotNull(patientAppo)) {
+        if (HelperUtils.isNotNull(patientAppo) && !patientAppo.isEmpty()) {
             for (Appointment a : patientAppo) {
                 System.out.println(a);
             }
+        } else {
+            System.out.println("No appointments found for date: " + date);
         }
     }
-    public void displayAppointmentsByDoctor(){
-        String doctorId =InputHandler.getStringInput("Enter Doctor ID");
-        List<Appointment> doctorAppo =getAppointmentsByDoctor(doctorId);
-        if (HelperUtils.isNotNull(doctorAppo)) {
+
+    public void displayAppointmentsByDoctor() {
+        String doctorId = InputHandler.getStringInput("Enter Doctor ID");
+        List<Appointment> doctorAppo = getAppointmentsByDoctor(doctorId);
+        if (HelperUtils.isNotNull(doctorAppo) && !doctorAppo.isEmpty()) {
             for (Appointment a : doctorAppo) {
                 System.out.println(a);
             }
+        } else {
+            System.out.println("No appointments found for doctor: " + doctorId);
         }
     }
-    public void upcomingAppointment(){
+
+    public void upcomingAppointment() {
         LocalDate date = LocalDate.now();
         boolean found = false;
         for (Appointment a : appointments) {
-            if (a.getAppointmentDate().isAfter(date) || a.getAppointmentDate().equals(date)) {
+            if (HelperUtils.isNotNull(a.getAppointmentDate()) &&
+                    (a.getAppointmentDate().isAfter(date) || a.getAppointmentDate().equals(date))) {
                 System.out.println(a);
                 found = true;
             }
@@ -317,85 +365,85 @@ public class AppointmentService extends BaseService implements Manageable, Searc
         }
     }
 
-    public void handleAppointmentService(){
+    public void handleAppointmentService() {
         System.out.println("====Appointment service ====");
         int choice = InputHandler.getIntInput("Enter choice");
         switch (choice) {
-            case 1->{
+            case 1 -> {
                 Appointment appointment = addAppointment();
                 scheduleAppointment(appointment);
                 handleAppointmentService();
             }
-            case 2->{
+            case 2 -> {
                 displayAppointments();
                 handleAppointmentService();
             }
-            case 3->{
+            case 3 -> {
                 displayAppointmentsByPatient();
                 handleAppointmentService();
-
             }
-            case 4->{
+            case 4 -> {
                 displayAppointmentsByDoctor();
                 handleAppointmentService();
             }
-            case 5->{
+            case 5 -> {
                 displayAppointmentsByDate();
                 handleAppointmentService();
             }
-            case 6->{
-                rescheduleAppointment(InputHandler.getStringInput("Enter appointment Id"),InputHandler.getLocalDateInput("Enter New Date"));
+            case 6 -> {
+                rescheduleAppointment(InputHandler.getStringInput("Enter appointment Id"), InputHandler.getLocalDateInput("Enter New Date"));
                 handleAppointmentService();
             }
-            case 7->{
-                Appointment appointment = appointments.get(InputHandler.getIntInput("Enter appointment Id"));
-                cancelAppointment(appointment);
+            case 7 -> {
+                int index = InputHandler.getIntInput("Enter appointment index");
+                if (index >= 0 && index < appointments.size()) {
+                    Appointment appointment = appointments.get(index);
+                    cancelAppointment(appointment);
+                } else {
+                    System.out.println("Invalid index.");
+                }
                 handleAppointmentService();
             }
-            case 8->{
+            case 8 -> {
                 Appointment appointment = new Appointment();
                 appointment.cancel();
                 appointments.add(appointment);
                 handleAppointmentService();
             }
-            case 9->{
+            case 9 -> {
                 upcomingAppointment();
                 handleAppointmentService();
-
             }
-            case 10 ->{
-                System.out.println("Extitng from Appointment Service ...");
+            case 10 -> {
+                System.out.println("Exiting from Appointment Service ...");
                 return;
             }
             default -> System.out.println("Invalid choice");
         }
-
     }
 
     @Override
     public void add(Object entity) {
-        if (entity instanceof Appointment appointment){
+        if (entity instanceof Appointment appointment) {
+            if (HelperUtils.isNull(appointment.getAppointmentId())) {
+                appointment.setAppointmentId(HelperUtils.generateId("APP"));
+            }
             appointments.add(appointment);
             System.out.println("Appointment added successfully");
-        }
-        else {
+        } else {
             System.out.println("Invalid entity type");
         }
-
     }
 
     @Override
     public void remove(String id) {
         Appointment appointment = getAppointmentById(id);
-
-        if (appointment !=null){
+        if (HelperUtils.isNotNull(appointment)) {
             appointments.remove(appointment);
             System.out.println("Appointment removed successfully");
-        }
-        else {
+        } else {
             System.out.println("Appointment not found");
         }
-
     }
 
     @Override
@@ -404,41 +452,38 @@ public class AppointmentService extends BaseService implements Manageable, Searc
             System.out.println("No appointments found");
             return;
         }
-
         for (Appointment a : appointments) {
             System.out.println(a);
         }
-
     }
 
     @Override
     public void search(String keyword) {
-        boolean found =false;
-        for (Appointment a :appointments){
-            if (a.getPatientId().equalsIgnoreCase(keyword)
-                    || a.getDoctorId().equalsIgnoreCase(keyword)
-                    || a.getStatus().equalsIgnoreCase(keyword)
-            ){
+        if (HelperUtils.isNull(keyword)) {
+            System.out.println("Search keyword cannot be empty.");
+            return;
+        }
+        boolean found = false;
+        for (Appointment a : appointments) {
+            if ((HelperUtils.isNotNull(a.getPatientId()) && a.getPatientId().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(a.getDoctorId()) && a.getDoctorId().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(a.getStatus()) && a.getStatus().equalsIgnoreCase(keyword))) {
                 System.out.println(a);
-                found =true;
+                found = true;
             }
         }
-        if (!found){
+        if (!found) {
             System.out.println("No matching appointments found");
         }
-
     }
+
     @Override
     public void searchById(String id) {
-        Appointment appointment =getAppointmentById(id);
-
-        if (HelperUtils.isNotNull(appointment)){
+        Appointment appointment = getAppointmentById(id);
+        if (HelperUtils.isNotNull(appointment)) {
             System.out.println(appointment);
-        }
-        else{
+        } else {
             System.out.println("Appointment not found");
         }
-
     }
-
-    }
+}

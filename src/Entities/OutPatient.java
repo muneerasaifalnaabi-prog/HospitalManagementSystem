@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.HelperUtils;
 import interfaces.Displayable;
 
 import java.time.LocalDate;
@@ -10,11 +11,18 @@ public class OutPatient extends Patient implements Displayable {
     private LocalDate lastVisitDate;
     private String preferredDoctorId;
 
-    public OutPatient(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String patientId, String bloodGroup, List<String> allergies, String emergencyContact, LocalDate registrationDate, String insuranceId, List<String> appointments, List<String> medicalRecords, int visitCount, LocalDate lastVisitDate, String preferredDoctorId) {
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, patientId, bloodGroup, allergies, emergencyContact, registrationDate, insuranceId, appointments, medicalRecords);
-        this.visitCount = visitCount;
-        this.lastVisitDate = lastVisitDate;
-        this.preferredDoctorId = preferredDoctorId;
+    public OutPatient(String id, String firstName, String lastName, LocalDate dateOfBirth,
+                      String gender, String phoneNumber, String email, String address,
+                      String patientId, String bloodGroup, List<String> allergies,
+                      String emergencyContact, LocalDate registrationDate, String insuranceId,
+                      List<String> appointments, List<String> medicalRecords,
+                      int visitCount, LocalDate lastVisitDate, String preferredDoctorId) {
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address,
+                patientId, bloodGroup, allergies, emergencyContact, registrationDate,
+                insuranceId, appointments, medicalRecords);
+        setVisitCount(visitCount);
+        setLastVisitDate(lastVisitDate);
+        setPreferredDoctorId(preferredDoctorId);
     }
 
     public OutPatient() {
@@ -25,7 +33,11 @@ public class OutPatient extends Patient implements Displayable {
     }
 
     public void setVisitCount(int visitCount) {
-        this.visitCount = visitCount;
+        if (HelperUtils.isValidNumber(visitCount, 0, Integer.MAX_VALUE)) {
+            this.visitCount = visitCount;
+        } else {
+            this.visitCount = 0;
+        }
     }
 
     public LocalDate getLastVisitDate() {
@@ -33,7 +45,11 @@ public class OutPatient extends Patient implements Displayable {
     }
 
     public void setLastVisitDate(LocalDate lastVisitDate) {
-        this.lastVisitDate = lastVisitDate;
+        if (HelperUtils.isNotNull(lastVisitDate)) {
+            this.lastVisitDate = lastVisitDate;
+        } else {
+            this.lastVisitDate = LocalDate.now();
+        }
     }
 
     public String getPreferredDoctorId() {
@@ -41,17 +57,30 @@ public class OutPatient extends Patient implements Displayable {
     }
 
     public void setPreferredDoctorId(String preferredDoctorId) {
-        this.preferredDoctorId = preferredDoctorId;
+        if (HelperUtils.isValidString(preferredDoctorId, 2)) {
+            this.preferredDoctorId = preferredDoctorId;
+        } else {
+            this.preferredDoctorId = "N/A";
+        }
     }
-    public void scheduleFollowUp(LocalDate followUpDate){
-        System.out.println("Follow up for patient:" +getFirstName() + " " + getLastName());
-        System.out.println("Date "+followUpDate);
-        lastVisitDate = followUpDate;
+
+    public void scheduleFollowUp(LocalDate followUpDate) {
+        if (HelperUtils.isNotNull(followUpDate)) {
+            System.out.println("Follow up for patient: " +
+                    (HelperUtils.isNotNull(getFirstName()) ? getFirstName() : "N/A") + " " +
+                    (HelperUtils.isNotNull(getLastName()) ? getLastName() : "N/A"));
+            System.out.println("Date: " + followUpDate);
+            lastVisitDate = followUpDate;
+        } else {
+            System.out.println("Invalid follow-up date.");
+        }
     }
-    public void updateVisitCount(){
+
+    public void updateVisitCount() {
         visitCount++;
-        System.out.println("Updated visitCount:" +visitCount);
+        System.out.println("Updated visitCount: " + visitCount);
     }
+
     @Override
     public void displayInfo() {
         System.out.println(this.toString());
@@ -60,10 +89,12 @@ public class OutPatient extends Patient implements Displayable {
     @Override
     public void displaySummary() {
         System.out.println(
-                "OutPatient: " + getFirstName() + " " + getLastName() +
+                "OutPatient: " +
+                        (HelperUtils.isNotNull(getFirstName()) ? getFirstName() : "N/A") + " " +
+                        (HelperUtils.isNotNull(getLastName()) ? getLastName() : "N/A") +
                         ", Visits: " + visitCount +
-                        ", Last Visit: " + lastVisitDate +
-                        ", Preferred Doctor: " + preferredDoctorId
+                        ", Last Visit: " + (HelperUtils.isNotNull(lastVisitDate) ? lastVisitDate : "N/A") +
+                        ", Preferred Doctor: " + (HelperUtils.isNotNull(preferredDoctorId) ? preferredDoctorId : "N/A")
         );
     }
 
@@ -71,9 +102,8 @@ public class OutPatient extends Patient implements Displayable {
     public String toString() {
         return "OutPatient{" +
                 "visitCount=" + visitCount +
-                ", lastVisitDate=" + lastVisitDate +
-                ", preferredDoctorId='" + preferredDoctorId + '\'' +
+                ", lastVisitDate=" + (HelperUtils.isNotNull(lastVisitDate) ? lastVisitDate : "N/A") +
+                ", preferredDoctorId='" + (HelperUtils.isNotNull(preferredDoctorId) ? preferredDoctorId : "N/A") + '\'' +
                 '}';
     }
-
 }

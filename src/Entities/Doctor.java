@@ -20,17 +20,20 @@ public class Doctor extends Person {
     public Doctor() {
     }
 
-    public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<String> assignedPatients) {
+    public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth,
+                  String gender, String phoneNumber, String email, String address,
+                  String doctorId, String specialization, String qualification,
+                  int experienceYears, String departmentId, Double consultationFee,
+                  List<String> availableSlots, List<String> assignedPatients) {
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
-        this.doctorId = doctorId;
-        this.specialization = specialization;
-        this.qualification = qualification;
-        this.experienceYears = experienceYears;
-        this.departmentId = departmentId;
-        this.consultationFee = consultationFee;
-        this.availableSlots = availableSlots;
-        this.assignedPatients = assignedPatients;
-
+        setDoctorId(doctorId);
+        setSpecialization(specialization);
+        setQualification(qualification);
+        setExperienceYears(experienceYears);
+        setDepartmentId(departmentId);
+        setConsultationFee(consultationFee);
+        setAvailableSlots(availableSlots);
+        setAssignedPatients(assignedPatients);
     }
 
     public String getDoctorId() {
@@ -38,7 +41,11 @@ public class Doctor extends Person {
     }
 
     public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+        if (HelperUtils.isValidString(doctorId, 2)) {
+            this.doctorId = doctorId;
+        } else {
+            this.doctorId = HelperUtils.generateId("DOC");
+        }
     }
 
     public String getSpecialization() {
@@ -48,6 +55,8 @@ public class Doctor extends Person {
     public void setSpecialization(String specialization) {
         if (HelperUtils.isValidString(specialization, 3)) {
             this.specialization = specialization;
+        } else {
+            this.specialization = "General";
         }
     }
 
@@ -58,6 +67,8 @@ public class Doctor extends Person {
     public void setQualification(String qualification) {
         if (HelperUtils.isValidString(qualification, 2)) {
             this.qualification = qualification;
+        } else {
+            this.qualification = "Unknown";
         }
     }
 
@@ -68,6 +79,8 @@ public class Doctor extends Person {
     public void setExperienceYears(int experienceYears) {
         if (HelperUtils.isPositive(experienceYears)) {
             this.experienceYears = experienceYears;
+        } else {
+            this.experienceYears = 0;
         }
     }
 
@@ -78,6 +91,8 @@ public class Doctor extends Person {
     public void setDepartmentId(String departmentId) {
         if (HelperUtils.isValidString(departmentId, 2)) {
             this.departmentId = departmentId;
+        } else {
+            this.departmentId = "N/A";
         }
     }
 
@@ -88,26 +103,38 @@ public class Doctor extends Person {
     public void setConsultationFee(Double consultationFee) {
         if (HelperUtils.isPositive(consultationFee)) {
             this.consultationFee = consultationFee;
+        } else {
+            this.consultationFee = 0.0;
         }
     }
 
     public List<String> getAvailableSlots() {
+        if (HelperUtils.isNull(availableSlots)) {
+            availableSlots = new ArrayList<>();
+        }
         return availableSlots;
     }
 
     public void setAvailableSlots(List<String> availableSlots) {
         if (HelperUtils.isNotNull(availableSlots)) {
             this.availableSlots = availableSlots;
+        } else {
+            this.availableSlots = new ArrayList<>();
         }
     }
 
     public List<String> getAssignedPatients() {
+        if (HelperUtils.isNull(assignedPatients)) {
+            assignedPatients = new ArrayList<>();
+        }
         return assignedPatients;
     }
 
     public void setAssignedPatients(List<String> assignedPatients) {
         if (HelperUtils.isNotNull(assignedPatients)) {
             this.assignedPatients = assignedPatients;
+        } else {
+            this.assignedPatients = new ArrayList<>();
         }
     }
 
@@ -115,84 +142,118 @@ public class Doctor extends Person {
     public void displayInfo() {
         super.displayInfo();
         System.out.println(this.toString());
-
-
     }
 
     @Override
     public void displaySummary() {
         System.out.println(
-                "Doctor: Dr. " + getFirstName() + " " + getLastName() +
-                        ", Specialization: " + specialization +
+                "Doctor: Dr. " + (HelperUtils.isNotNull(getFirstName()) ? getFirstName() : "N/A") + " " +
+                        (HelperUtils.isNotNull(getLastName()) ? getLastName() : "N/A") +
+                        ", Specialization: " + (HelperUtils.isNotNull(specialization) ? specialization : "N/A") +
                         ", Experience: " + experienceYears + " years" +
-                        ", Fee: " + consultationFee
+                        ", Fee: " + (HelperUtils.isNotNull(consultationFee) ? consultationFee : 0.0)
         );
-
     }
 
     public void assignPatient(String patient) {
         if (HelperUtils.isValidString(patient, 2)) {
-            assignedPatients.add(patient);
-            System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
-
+            if (HelperUtils.isNull(assignedPatients)) {
+                assignedPatients = new ArrayList<>();
+            }
+            if (!assignedPatients.contains(patient)) {
+                assignedPatients.add(patient);
+                System.out.println(Constants.PATIENT_ASSIGN_SUCCESSFULLY);
+            } else {
+                System.out.println("Patient already assigned.");
+            }
+        } else {
+            System.out.println("Invalid patient ID.");
         }
     }
 
     public void removePatient(String rempatientId) {
-        if (HelperUtils.isValidString(rempatientId) && assignedPatients.contains(rempatientId)) {
+        if (HelperUtils.isValidString(rempatientId) && HelperUtils.isNotNull(assignedPatients) && assignedPatients.contains(rempatientId)) {
             assignedPatients.remove(rempatientId);
             System.out.println(Constants.REMOVE_PATIENT_SUCCESSFULLY);
         } else {
-            System.out.println("Patient not found in list");
+            System.out.println("Patient not found in list or invalid ID.");
         }
     }
 
     public void updateAvailability(List<String> newslot) {
         if (HelperUtils.isNotNull(newslot)) {
+            if (HelperUtils.isNull(availableSlots)) {
+                availableSlots = new ArrayList<>();
+            }
             this.availableSlots = new ArrayList<>(newslot);
             System.out.println("Availability has been updated");
+        } else {
+            System.out.println("Invalid slot list.");
         }
     }
 
     public void updateFee(double fee) {
         if (HelperUtils.isPositive(fee)) {
             this.consultationFee = fee;
+            System.out.println("Fee updated to: " + fee);
+        } else {
+            System.out.println("Fee must be positive.");
         }
     }
 
     public void updateFee(double fee, String reason) {
         if (HelperUtils.isPositive(fee) && HelperUtils.isValidString(reason)) {
             this.consultationFee = fee;
-            System.out.println("Fee has been updated" + fee);
-            System.out.println(reason);
+            System.out.println("Fee has been updated to " + fee);
+            System.out.println("Reason: " + reason);
+        } else {
+            System.out.println("Invalid fee or reason.");
         }
     }
 
     public void addAvailability(String slot) {
         if (HelperUtils.isValidString(slot)) {
-            availableSlots.add(slot);
-            System.out.println("Availability slot has been added");
+            if (HelperUtils.isNull(availableSlots)) {
+                availableSlots = new ArrayList<>();
+            }
+            if (!availableSlots.contains(slot)) {
+                availableSlots.add(slot);
+                System.out.println("Availability slot has been added: " + slot);
+            } else {
+                System.out.println("Slot already exists.");
+            }
+        } else {
+            System.out.println("Invalid slot.");
         }
     }
 
     public void addAvailability(List<String> slots) {
-        if (HelperUtils.isNotNull(slots)) {
-            this.availableSlots.addAll(slots);
-            System.out.println("All Availability slot has been added");
+        if (HelperUtils.isNotNull(slots) && !slots.isEmpty()) {
+            if (HelperUtils.isNull(availableSlots)) {
+                availableSlots = new ArrayList<>();
+            }
+            for (String slot : slots) {
+                if (HelperUtils.isValidString(slot) && !availableSlots.contains(slot)) {
+                    availableSlots.add(slot);
+                }
+            }
+            System.out.println("All availability slots have been added.");
+        } else {
+            System.out.println("Invalid slot list.");
         }
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "doctorId='" + doctorId + '\'' +
-                ", specialization='" + specialization + '\'' +
-                ", qualification='" + qualification + '\'' +
+                "doctorId='" + (HelperUtils.isNotNull(doctorId) ? doctorId : "N/A") + '\'' +
+                ", specialization='" + (HelperUtils.isNotNull(specialization) ? specialization : "N/A") + '\'' +
+                ", qualification='" + (HelperUtils.isNotNull(qualification) ? qualification : "N/A") + '\'' +
                 ", experienceYears=" + experienceYears +
-                ", departmentId='" + departmentId + '\'' +
-                ", consultationFee=" + consultationFee +
-                ", availableSlots=" + availableSlots +
-                ", assignedPatients=" + assignedPatients +
+                ", departmentId='" + (HelperUtils.isNotNull(departmentId) ? departmentId : "N/A") + '\'' +
+                ", consultationFee=" + (HelperUtils.isNotNull(consultationFee) ? consultationFee : 0.0) +
+                ", availableSlots=" + (HelperUtils.isNotNull(availableSlots) ? availableSlots : "[]") +
+                ", assignedPatients=" + (HelperUtils.isNotNull(assignedPatients) ? assignedPatients : "[]") +
                 '}';
     }
 }

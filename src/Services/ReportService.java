@@ -19,13 +19,19 @@ public class ReportService {
     public void DailyAppointmentsReport() {
         System.out.println("==== Daily Appointments Report ====");
         LocalDate localDate = InputHandler.getLocalDateInput("Enter Appointment Date: ");
+        if (HelperUtils.isNull(localDate)) {
+            System.out.println("Invalid date.");
+            return;
+        }
+
         boolean found = false;
         int totalAppointment = 0;
         int totalCompleted = 0;
         int totalCancelled = 0;
 
-        for (Appointment a : AppointmentService.appointments) { // Direct access
-            if (a.getAppointmentDate() != null && a.getAppointmentDate().equals(localDate)) {
+        for (Appointment a : AppointmentService.appointments) {
+            totalAppointment++;
+            if (HelperUtils.isNotNull(a.getAppointmentDate()) && a.getAppointmentDate().equals(localDate)) {
                 if (!found) {
                     System.out.println("\n--- Appointments for " + localDate + " ---");
                     found = true;
@@ -36,8 +42,7 @@ public class ReportService {
                 a.displaySummary();
                 System.out.println("-----------------------------------");
             }
-            totalAppointment++;
-            if (a.getStatus() != null) {
+            if (HelperUtils.isNotNull(a.getStatus())) {
                 if (a.getStatus().equalsIgnoreCase("Completed")) totalCompleted++;
                 if (a.getStatus().equalsIgnoreCase("Cancelled")) totalCancelled++;
             }
@@ -56,6 +61,11 @@ public class ReportService {
     public void DoctorPerformanceReport() {
         System.out.println("==== Doctor Performance Report ====");
         String doctorId = InputHandler.getStringInput("Enter Doctor ID: ");
+        if (!HelperUtils.isValidString(doctorId)) {
+            System.out.println("Invalid Doctor ID.");
+            return;
+        }
+
         Doctor doctor = doctorService.getDoctorById(doctorId);
         if (HelperUtils.isNull(doctor)) {
             System.out.println("Doctor not found.");
@@ -64,9 +74,10 @@ public class ReportService {
 
         List<Appointment> doctorAppointments = appointmentService.getAppointmentsByDoctor(doctorId);
         List<MedicalRecord> records = medicalRecordService.getMedicalRecordsByDoctorId(doctorId);
+
         int completed = 0;
         for (Appointment a : doctorAppointments) {
-            if (a.getStatus() != null && a.getStatus().equalsIgnoreCase("Completed")) {
+            if (HelperUtils.isNotNull(a.getStatus()) && a.getStatus().equalsIgnoreCase("Completed")) {
                 completed++;
             }
         }
@@ -74,10 +85,10 @@ public class ReportService {
         System.out.println("\n--- Doctor Details ---");
         doctor.displayInfo();
         System.out.println("\n--- Performance Summary ---");
-        System.out.println("Total Appointments: " + doctorAppointments.size());
+        System.out.println("Total Appointments: " + (HelperUtils.isNotNull(doctorAppointments) ? doctorAppointments.size() : 0));
         System.out.println("Completed Appointments: " + completed);
-        System.out.println("Medical Records Created: " + records.size());
-        System.out.println("Assigned Patients: " + (doctor.getAssignedPatients() != null ? doctor.getAssignedPatients().size() : 0));
+        System.out.println("Medical Records Created: " + (HelperUtils.isNotNull(records) ? records.size() : 0));
+        System.out.println("Assigned Patients: " + (HelperUtils.isNotNull(doctor.getAssignedPatients()) ? doctor.getAssignedPatients().size() : 0));
     }
 
     public void departmentOccupancyReport() {
@@ -88,14 +99,16 @@ public class ReportService {
         }
 
         for (Department department : DepartmentService.departments) {
-            int occupiedBeds = department.getBedCapacity() - department.getAvailableBeds();
-            System.out.println("\n--- Department: " + department.getDepartmentName() + " ---");
+            if (HelperUtils.isNull(department)) continue;
+            int bedCapacity = department.getBedCapacity();
+            int availableBeds = department.getAvailableBeds();
+            int occupiedBeds = bedCapacity - availableBeds;
+            System.out.println("\n--- Department: " + (HelperUtils.isNotNull(department.getDepartmentName()) ? department.getDepartmentName() : "N/A") + " ---");
             department.displaySummary();
-            System.out.println("Bed Capacity: " + department.getBedCapacity());
-            System.out.println("Available Beds: " + department.getAvailableBeds());
+            System.out.println("Bed Capacity: " + bedCapacity);
+            System.out.println("Available Beds: " + availableBeds);
             System.out.println("Occupied Beds: " + occupiedBeds);
-            System.out.println("Occupancy Rate: " + (department.getBedCapacity() > 0 ?
-                    (occupiedBeds * 100 / department.getBedCapacity()) : 0) + "%");
+            System.out.println("Occupancy Rate: " + (bedCapacity > 0 ? (occupiedBeds * 100 / bedCapacity) : 0) + "%");
             System.out.println("-----------------------------------");
         }
     }
@@ -104,7 +117,9 @@ public class ReportService {
         System.out.println("==== Patient Statistics Report ====");
         int totalAppointments = AppointmentService.appointments.size();
         int totalMedicalRecords = MedicalRecordService.medicalRecords.size();
-        int uniquePatients = (int) AppointmentService.appointments.stream()
+
+        long uniquePatients = AppointmentService.appointments.stream()
+                .filter(a -> HelperUtils.isNotNull(a.getPatientId()))
                 .map(Appointment::getPatientId)
                 .distinct()
                 .count();
@@ -114,6 +129,7 @@ public class ReportService {
         System.out.println("Unique Patients with Appointments: " + uniquePatients);
         System.out.println("\nDetailed Patient List (from appointments):");
         AppointmentService.appointments.stream()
+                .filter(a -> HelperUtils.isNotNull(a.getPatientId()))
                 .map(Appointment::getPatientId)
                 .distinct()
                 .forEach(pid -> System.out.println("  - Patient ID: " + pid));
@@ -123,18 +139,18 @@ public class ReportService {
         System.out.println("==== Emergency Patients Report ====");
         boolean found = false;
         for (Appointment a : AppointmentService.appointments) {
-            if (a.getReason() != null && a.getReason().equalsIgnoreCase("Emergency")) {
+            if (HelperUtils.isNotNull(a.getReason()) && a.getReason().equalsIgnoreCase("Emergency")) {
                 if (!found) {
                     System.out.println("\n--- Emergency Appointments ---");
                     found = true;
                 }
-                System.out.println("Appointment ID: " + a.getAppointmentId());
-                System.out.println("Patient ID: " + a.getPatientId());
-                System.out.println("Doctor ID: " + a.getDoctorId());
-                System.out.println("Date: " + a.getAppointmentDate());
-                System.out.println("Status: " + a.getStatus());
-                System.out.println("Reason: " + a.getReason());
-                System.out.println("Notes: " + a.getNotes());
+                System.out.println("Appointment ID: " + (HelperUtils.isNotNull(a.getAppointmentId()) ? a.getAppointmentId() : "N/A"));
+                System.out.println("Patient ID: " + (HelperUtils.isNotNull(a.getPatientId()) ? a.getPatientId() : "N/A"));
+                System.out.println("Doctor ID: " + (HelperUtils.isNotNull(a.getDoctorId()) ? a.getDoctorId() : "N/A"));
+                System.out.println("Date: " + (HelperUtils.isNotNull(a.getAppointmentDate()) ? a.getAppointmentDate() : "N/A"));
+                System.out.println("Status: " + (HelperUtils.isNotNull(a.getStatus()) ? a.getStatus() : "N/A"));
+                System.out.println("Reason: " + (HelperUtils.isNotNull(a.getReason()) ? a.getReason() : "N/A"));
+                System.out.println("Notes: " + (HelperUtils.isNotNull(a.getNotes()) ? a.getNotes() : "N/A"));
                 System.out.println("-----------------------------------");
             }
         }
@@ -169,7 +185,7 @@ public class ReportService {
                 ReportHandler();
             }
             case 6 -> {
-                System.out.println("Extitng from Report");
+                System.out.println("Exiting from Report");
                 return;
             }
             default -> {

@@ -15,10 +15,6 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     static Scanner scanner = new Scanner(System.in);
     static List<Patient> patients = new ArrayList<>();
-    static InPatient inPatient;
-    Patient patient = new Patient();
-
-
 
     public static List<Patient> getPatients() {
         return patients;
@@ -26,9 +22,9 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     public void addaddPatients() {
         while (true) {
-           Patient p = addPatient();
-            if (p != null) {
-                patients.add(p);
+            Patient p = addPatient();
+            if (HelperUtils.isNotNull(p)) {
+                add(p);
                 System.out.println("Patient added successfully.");
             }
             System.out.println("Press q to go back to menu or press Enter to add another patient:");
@@ -38,36 +34,25 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         }
     }
 
-
-
     public Patient addPatient() {
-
         System.out.println("========= Added New Patient =====");
-
         String id = HelperUtils.generateId("PAT");
-
         if (HelperUtils.isNotNull(getPatientById(id))) {
             System.out.println("ID already exists");
             return null;
         }
-
         String fname = InputHandler.getStringInput("Enter First Name: ");
         String lname = InputHandler.getStringInput("Enter Last Name: ");
-
         LocalDate date = InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy): ");
-
         String gender = InputHandler.getStringInput("Enter gender: ");
         String phoneNumber = InputHandler.getStringInput("Enter phone: ");
         String email = InputHandler.getStringInput("Enter email: ");
         String address = InputHandler.getStringInput("Enter address: ");
-
         String patientid = InputHandler.getStringInput("Enter patient id: ");
         String bloodGroup = InputHandler.getStringInput("Enter blood group: ");
         String emergencyContact = InputHandler.getStringInput("Enter emergency contact: ");
         String insuranceId = InputHandler.getStringInput("Enter insurance id: ");
-
         LocalDate registrationDate = InputHandler.getLocalDateInput("Enter registration date: ");
-
 
         return new Patient(
                 id, fname, lname, date, gender, phoneNumber, email, address,
@@ -75,8 +60,12 @@ public class PatientService extends BaseService implements Manageable, Searchabl
                 registrationDate, insuranceId, new ArrayList<>(), new ArrayList<>()
         );
     }
-    public void addPatient(String firstName, String lastName, String phone) {
 
+    public void addPatient(String firstName, String lastName, String phone) {
+        if (HelperUtils.isNull(firstName) || HelperUtils.isNull(lastName) || HelperUtils.isNull(phone)) {
+            System.out.println("Invalid parameters for patient creation.");
+            return;
+        }
         Patient patient = new Patient();
         patient.setId(HelperUtils.generateId("PAT"));
         patient.setFirstName(firstName);
@@ -84,23 +73,26 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         patient.setPhoneNumber(phone);
         patients.add(patient);
     }
-    public void addPatient(String firstName, String lastName, String phone , String bloodGroup, String email){
-        Patient patient = new Patient();
 
+    public void addPatient(String firstName, String lastName, String phone, String bloodGroup, String email) {
+        if (HelperUtils.isNull(firstName) || HelperUtils.isNull(lastName) || HelperUtils.isNull(phone)) {
+            System.out.println("Invalid parameters for patient creation.");
+            return;
+        }
+        Patient patient = new Patient();
+        patient.setId(HelperUtils.generateId("PAT"));
         patient.setFirstName(firstName);
         patient.setLastName(lastName);
         patient.setPhoneNumber(phone);
-        patient.setPhoneNumber(bloodGroup);
-        patient.setPhoneNumber(email);
-
+        patient.setBloodGroup(bloodGroup);
+        patient.setEmail(email);
         patients.add(patient);
-
     }
 
     public Patient getPatientById(String patientId) {
         if (HelperUtils.isNull(patientId)) return null;
         for (Patient p : patients) {
-            if (p.getId() != null && p.getId().equals(patientId)) {
+            if (HelperUtils.isNotNull(p.getId()) && p.getId().equals(patientId)) {
                 return p;
             }
         }
@@ -115,29 +107,27 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             p.setAddress(InputHandler.getStringInput("Enter address: "));
             p.setEmergencyContact(InputHandler.getStringInput("Enter emergency contact: "));
             p.setInsuranceId(InputHandler.getStringInput("Enter insurance id: "));
-
             System.out.println("Patient updated successfully");
         } else {
             System.out.println("Patient not found");
         }
     }
 
-
     public void removePatient(String patientId) {
         Patient p = getPatientById(patientId);
         if (HelperUtils.isNotNull(p)) {
             patients.remove(p);
             System.out.println("Patient removed successfully");
-        }
-        else  {
+        } else {
             System.out.println("Patient not found");
         }
     }
 
     public List<Patient> searchPatientsByName(String name) {
         List<Patient> results = new ArrayList<>();
+        if (HelperUtils.isNull(name)) return results;
         for (Patient p : patients) {
-            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
+            if (HelperUtils.isNotNull(p.getFirstName()) && p.getFirstName().toLowerCase().contains(name.toLowerCase())) {
                 results.add(p);
             }
         }
@@ -145,26 +135,35 @@ public class PatientService extends BaseService implements Manageable, Searchabl
     }
 
     public void displayAllPatients() {
+        if (patients.isEmpty()) {
+            System.out.println("No patients found.");
+            return;
+        }
         for (Patient p : patients) {
             p.displayInfo();
         }
     }
-    public static void displayPatients(){
-        if (HelperUtils.isNull(patients)) { System.out.println("No patients registered."); return; }
-        for(Patient p : patients){
+
+    public static void displayPatients() {
+        if (patients.isEmpty()) {
+            System.out.println("No patients registered.");
+            return;
+        }
+        for (Patient p : patients) {
             p.displayInfo();
         }
     }
-    public void displayPatients(String filter){
+
+    public void displayPatients(String filter) {
         if (HelperUtils.isNull(filter)) {
             displayAllPatients();
             return;
         }
         boolean found = false;
         for (Patient p : patients) {
-            if ((p.getGender() != null && p.getGender().equalsIgnoreCase(filter)) ||
-                    (p.getBloodGroup() != null && p.getBloodGroup().equalsIgnoreCase(filter)) ||
-                    (p.getInsuranceId() != null && p.getInsuranceId().equalsIgnoreCase(filter))) {
+            if ((HelperUtils.isNotNull(p.getGender()) && p.getGender().equalsIgnoreCase(filter)) ||
+                    (HelperUtils.isNotNull(p.getBloodGroup()) && p.getBloodGroup().equalsIgnoreCase(filter)) ||
+                    (HelperUtils.isNotNull(p.getInsuranceId()) && p.getInsuranceId().equalsIgnoreCase(filter))) {
                 p.displayInfo();
                 found = true;
             }
@@ -172,7 +171,8 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         if (!found) System.out.println("No patients match filter: " + filter);
     }
 
-    public void displayPatients(int limit){
+    public void displayPatients(int limit) {
+        if (limit <= 0) return;
         int count = 0;
         for (Patient p : patients) {
             if (count >= limit) break;
@@ -180,21 +180,28 @@ public class PatientService extends BaseService implements Manageable, Searchabl
             count++;
         }
     }
+
     @Override
-        public void add(Object entity) {
-            if (entity instanceof Patient patient) {
-                if (HelperUtils.isNull(patient.getId())) {
-                    patient.setId(HelperUtils.generateId("PAT"));
-                }
-                patients.add(patient);
+    public void add(Object entity) {
+        if (entity instanceof Patient patient) {
+            if (HelperUtils.isNull(patient.getId())) {
+                patient.setId(HelperUtils.generateId("PAT"));
             }
+            patients.add(patient);
+            System.out.println("Patient added successfully");
+        } else {
+            System.out.println("Invalid entity type");
         }
+    }
 
     @Override
     public void remove(String id) {
         Patient p = getPatientById(id);
         if (HelperUtils.isNotNull(p)) {
             patients.remove(p);
+            System.out.println("Patient removed successfully");
+        } else {
+            System.out.println("Patient not found");
         }
     }
 
@@ -208,9 +215,9 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         if (HelperUtils.isNull(keyword)) return;
         boolean found = false;
         for (Patient p : patients) {
-            if ((p.getFirstName() != null && p.getFirstName().equalsIgnoreCase(keyword)) ||
-                    (p.getLastName() != null && p.getLastName().equalsIgnoreCase(keyword)) ||
-                    (p.getBloodGroup() != null && p.getBloodGroup().equalsIgnoreCase(keyword))) {
+            if ((HelperUtils.isNotNull(p.getFirstName()) && p.getFirstName().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(p.getLastName()) && p.getLastName().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(p.getBloodGroup()) && p.getBloodGroup().equalsIgnoreCase(keyword))) {
                 System.out.println(p);
                 found = true;
             }
@@ -223,14 +230,16 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         Patient p = getPatientById(id);
         if (HelperUtils.isNotNull(p)) {
             p.displayInfo();
-            System.out.println(p);
+        } else {
+            System.out.println("Patient not found");
         }
     }
 
-    public void registerInPatient(){
+    public void registerInPatient() {
         System.out.println("InPatient registration");
+        addaddPatients();
         LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
-        LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
+        LocalDate dischargeDate = InputHandler.getLocalDateInput("Enter Discharge date (dd-MM-yyyy):");
         String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
         String bedNumber = InputHandler.getStringInput("Enter Bed Number: ");
         double dailyCharges = InputHandler.getDoubleInput("Daily Charges: ");
@@ -242,20 +251,23 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         inPatient.setBedNumber(bedNumber);
         inPatient.setDailyCharges(dailyCharges);
         inPatient.setAdmittingDoctorId(admittingDoctorId);
-        addaddPatients();
+        add(inPatient);
     }
 
-    public void registerOutPatient(){
+    public void registerOutPatient() {
         System.out.println("OutPatient registration");
+        addaddPatients();
         OutPatient outPatient = new OutPatient();
         LocalDate lastVisitDate = InputHandler.getLocalDateInput("Enter Last Visit");
         outPatient.setLastVisitDate(lastVisitDate);
         String patientId = InputHandler.getStringInput("Enter Patient ID: ");
         outPatient.setPatientId(patientId);
-        addaddPatients();
+        add(outPatient);
     }
-    public void registerEmergencyPatient(){
+
+    public void registerEmergencyPatient() {
         System.out.println("EmergencyPatient registration");
+        addPatient();
         EmergencyPatient emergencyPatient = new EmergencyPatient();
         String emergencyType = InputHandler.getStringInput("Emergency Type");
         emergencyPatient.setEmergencyType(emergencyType);
@@ -263,83 +275,86 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         emergencyPatient.setArrivalMode(arrivalMode);
         int triageLevel = InputHandler.getIntInput("Triage Level");
         emergencyPatient.setTriageLevel(triageLevel);
-        addPatient();
+        add(emergencyPatient);
     }
-    public void searchPatientsHandler(){
+
+    public void searchPatientsHandler() {
         System.out.println("Patients search");
         System.out.println("""
-                1.Search Patient by any keyword
-                2.search Patient by name 
-                3.search by id
+                1. Search Patient by any keyword
+                2. Search Patient by name 
+                3. Search by id
                 """);
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
-            case 1 ->{
+            case 1 -> {
                 String keyword = InputHandler.getStringInput("Enter keyword: ");
                 search(keyword);
                 searchPatientsHandler();
             }
-            case 2 ->{
-               searchPatientsByName(InputHandler.getStringInput("Enter name: "));
-               searchPatientsHandler();
+            case 2 -> {
+                searchPatientsByName(InputHandler.getStringInput("Enter name: "));
+                searchPatientsHandler();
             }
-            case 3 ->{
+            case 3 -> {
                 searchById(InputHandler.getStringInput("Enter ID: "));
                 searchPatientsHandler();
             }
+            default -> {
+                System.out.println("Invalid choice");
+                searchPatientsHandler();
+            }
         }
-
     }
-    public  void HadlerPatient(){
+
+    public void HadlerPatient() {
         int choice = InputHandler.getIntInput("Enter choice: ");
         switch (choice) {
-            case 1->{
+            case 1 -> {
                 addaddPatients();
                 HadlerPatient();
             }
-            case 2->{
+            case 2 -> {
                 registerInPatient();
                 HadlerPatient();
             }
-            case 3->{
+            case 3 -> {
                 registerOutPatient();
                 HadlerPatient();
             }
-            case 4->{
+            case 4 -> {
                 registerEmergencyPatient();
                 HadlerPatient();
             }
-            case 5->{
+            case 5 -> {
                 getAll();
                 HadlerPatient();
             }
-            case 6->{
+            case 6 -> {
                 searchPatientsHandler();
                 HadlerPatient();
             }
-            case 7->{
+            case 7 -> {
                 editPatient(InputHandler.getStringInput("Enter ID: "));
                 HadlerPatient();
             }
-            case 8->{
+            case 8 -> {
                 removePatient(InputHandler.getStringInput("Enter ID: "));
                 HadlerPatient();
             }
-            case 9->{
+            case 9 -> {
                 MedicalRecord m = new MedicalRecord();
                 m.displayInfo();
                 HadlerPatient();
             }
-            case 10->{
-                System.out.println("Extitng from Patient Registration");
+            case 10 -> {
+                System.out.println("Exiting from Patient Registration");
                 return;
             }
             default -> {
                 System.out.println("Invalid choice. Please try again.");
+                HadlerPatient();
             }
-
-
         }
     }
-
 }

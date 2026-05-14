@@ -6,22 +6,6 @@ import interfaces.Displayable;
 import java.time.LocalDate;
 
 public class MedicalRecord implements Displayable {
-    @Override
-    public void displayInfo() {
-        System.out.println(this.toString());
-    }
-
-    @Override
-    public void displaySummary() {
-        System.out.println(
-                "Medical Record ID: " + recordId +
-                        ", Patient ID: " + patientId +
-                        ", Doctor ID: " + doctorId +
-                        ", Visit Date: " + visitDate +
-                        ", Diagnosis: " + diagnosis
-        );
-
-    }
 
     private String recordId;
     private String patientId;
@@ -32,15 +16,16 @@ public class MedicalRecord implements Displayable {
     private String testResults;
     private String notes;
 
-    public MedicalRecord(String recordId, String patientId, String doctorId, LocalDate visitDate, String diagnosis, String testResults, String prescription, String notes) {
-        this.recordId = recordId;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitDate = visitDate;
-        this.diagnosis = diagnosis;
-        this.testResults = testResults;
-        this.prescription = prescription;
-        this.notes = notes;
+    public MedicalRecord(String recordId, String patientId, String doctorId, LocalDate visitDate,
+                         String diagnosis, String testResults, String prescription, String notes) {
+        setRecordId(recordId);
+        setPatientId(patientId);
+        setDoctorId(doctorId);
+        setVisitDate(visitDate);
+        setDiagnosis(diagnosis);
+        setTestResults(testResults);
+        setPrescription(prescription);
+        setNotes(notes);
     }
 
     public MedicalRecord() {
@@ -53,6 +38,8 @@ public class MedicalRecord implements Displayable {
     public void setRecordId(String recordId) {
         if (HelperUtils.isNotNull(recordId)) {
             this.recordId = recordId;
+        } else {
+            this.recordId = HelperUtils.generateId("MR");
         }
     }
 
@@ -63,10 +50,10 @@ public class MedicalRecord implements Displayable {
     public void setPatientId(String patientId) {
         if (HelperUtils.isNotNull(patientId)) {
             this.patientId = patientId;
-
+        } else {
+            this.patientId = "N/A";
         }
     }
-
 
     public String getDoctorId() {
         return doctorId;
@@ -75,6 +62,8 @@ public class MedicalRecord implements Displayable {
     public void setDoctorId(String doctorId) {
         if (HelperUtils.isNotNull(doctorId)) {
             this.doctorId = doctorId;
+        } else {
+            this.doctorId = "N/A";
         }
     }
 
@@ -83,8 +72,10 @@ public class MedicalRecord implements Displayable {
     }
 
     public void setVisitDate(LocalDate visitDate) {
-        if (HelperUtils.isValidDate(String.valueOf(visitDate))) {
+        if (HelperUtils.isNotNull(visitDate)) {
             this.visitDate = visitDate;
+        } else {
+            this.visitDate = LocalDate.now();
         }
     }
 
@@ -95,6 +86,8 @@ public class MedicalRecord implements Displayable {
     public void setDiagnosis(String diagnosis) {
         if (HelperUtils.isValidString(diagnosis)) {
             this.diagnosis = diagnosis;
+        } else {
+            this.diagnosis = "No diagnosis provided";
         }
     }
 
@@ -105,6 +98,8 @@ public class MedicalRecord implements Displayable {
     public void setPrescription(String prescription) {
         if (HelperUtils.isValidString(prescription)) {
             this.prescription = prescription;
+        } else {
+            this.prescription = "No prescription";
         }
     }
 
@@ -115,6 +110,8 @@ public class MedicalRecord implements Displayable {
     public void setTestResults(String testResults) {
         if (HelperUtils.isValidString(testResults)) {
             this.testResults = testResults;
+        } else {
+            this.testResults = "No test results";
         }
     }
 
@@ -124,23 +121,39 @@ public class MedicalRecord implements Displayable {
 
     public void setNotes(String notes) {
         if (HelperUtils.isValidString(notes)) {
-
+            this.notes = notes;
+        } else {
+            this.notes = "No additional notes";
         }
-        this.notes = notes;
     }
 
+    @Override
+    public void displayInfo() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public void displaySummary() {
+        System.out.println(
+                "Medical Record ID: " + (HelperUtils.isNotNull(recordId) ? recordId : "N/A") +
+                        ", Patient ID: " + (HelperUtils.isNotNull(patientId) ? patientId : "N/A") +
+                        ", Doctor ID: " + (HelperUtils.isNotNull(doctorId) ? doctorId : "N/A") +
+                        ", Visit Date: " + (HelperUtils.isNotNull(visitDate) ? visitDate : "N/A") +
+                        ", Diagnosis: " + (HelperUtils.isNotNull(diagnosis) ? diagnosis : "N/A")
+        );
+    }
 
     @Override
     public String toString() {
         return "MedicalRecord{" +
-                "recordId='" + recordId + '\'' +
-                ", patientId='" + patientId + '\'' +
-                ", doctorId='" + doctorId + '\'' +
-                ", visitDate=" + visitDate +
-                ", diagnosis='" + diagnosis + '\'' +
-                ", prescription='" + prescription + '\'' +
-                ", testResults='" + testResults + '\'' +
-                ", notes='" + notes + '\'' +
+                "recordId='" + (HelperUtils.isNotNull(recordId) ? recordId : "N/A") + '\'' +
+                ", patientId='" + (HelperUtils.isNotNull(patientId) ? patientId : "N/A") + '\'' +
+                ", doctorId='" + (HelperUtils.isNotNull(doctorId) ? doctorId : "N/A") + '\'' +
+                ", visitDate=" + (HelperUtils.isNotNull(visitDate) ? visitDate : "N/A") +
+                ", diagnosis='" + (HelperUtils.isNotNull(diagnosis) ? diagnosis : "N/A") + '\'' +
+                ", prescription='" + (HelperUtils.isNotNull(prescription) ? prescription : "N/A") + '\'' +
+                ", testResults='" + (HelperUtils.isNotNull(testResults) ? testResults : "N/A") + '\'' +
+                ", notes='" + (HelperUtils.isNotNull(notes) ? notes : "N/A") + '\'' +
                 '}';
     }
 }

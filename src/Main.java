@@ -18,9 +18,9 @@ public class Main {
     static MedicalRecordService medicalRecordService =new MedicalRecordService();
    static Menue menue =new Menue();
     public static void main(String[] args) {
-        System.out.println("Welcome to Hospital Management System... :>");
+        System.out.println("*** Welcome to Hospital Management System... :>");
         TestData.loadData();
-        System.out.println("-------------------------");
+
        //TestData.testOverloadedMethod();
        //TestData.testCRUD();
         System.out.println("=========================");

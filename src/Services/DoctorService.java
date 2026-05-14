@@ -3,7 +3,6 @@ package Services;
 import Entities.*;
 import Utils.HelperUtils;
 import Utils.InputHandler;
-import Utils.MenuMessege;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DoctorService extends  BaseService implements Manageable, Searchable {
+public class DoctorService extends BaseService implements Manageable, Searchable {
 
     static Scanner scanner = new Scanner(System.in);
     public static List<Doctor> doctors = new ArrayList<>();
@@ -21,7 +20,6 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public void addDoctors() {
         while (true) {
             Doctor d = addDoctor();
-
             if (HelperUtils.isNotNull(d)) {
                 add(d);
                 System.out.println("Doctor added successfully.");
@@ -32,7 +30,6 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             }
         }
     }
-
 
     public Doctor addDoctor() {
         System.out.println("========= Added New Doctor =====");
@@ -52,12 +49,12 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         String phone = InputHandler.getStringInput("Enter Phone Number");
         String email = InputHandler.getStringInput(" Enter Email");
         String address = InputHandler.getStringInput("Enter Address");
-        String doctorId =InputHandler.getStringInput(" Enter Doctor ID");
+        String doctorId = InputHandler.getStringInput(" Enter Doctor ID");
         String specialization = InputHandler.getStringInput("Enter Specialization");
-        String qualification =InputHandler.getStringInput("Enter Qualification");
-        int experienceYears =InputHandler.getIntInput("Enter Experience Years");
-        String departmentId =InputHandler.getStringInput("Enter Department ID");
-        Double consultationFee =InputHandler.getDoubleInput("Enter Consultation Fee");
+        String qualification = InputHandler.getStringInput("Enter Qualification");
+        int experienceYears = InputHandler.getIntInput("Enter Experience Years");
+        String departmentId = InputHandler.getStringInput("Enter Department ID");
+        Double consultationFee = InputHandler.getDoubleInput("Enter Consultation Fee");
 
         List<String> availableSlots = new ArrayList<>();
         while (true) {
@@ -70,31 +67,17 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         }
 
         Doctor doctor = new Doctor(
-                id,
-                firstName,
-                lastName,
-                dob,
-                gender,
-                phone,
-                email,
-                address,
-                doctorId,
-                specialization,
-                qualification,
-                experienceYears,
-                departmentId,
-                consultationFee,
-                availableSlots,
-                new ArrayList<>()
+                id, firstName, lastName, dob, gender, phone, email, address,
+                doctorId, specialization, qualification, experienceYears,
+                departmentId, consultationFee, availableSlots, new ArrayList<>()
         );
-
         return doctor;
     }
 
     public Doctor getDoctorById(String doctorId) {
         if (HelperUtils.isNull(doctorId)) return null;
         for (Doctor d : doctors) {
-            if (d.getDoctorId() != null && d.getDoctorId().equals(doctorId)) {
+            if (HelperUtils.isNotNull(d.getDoctorId()) && d.getDoctorId().equals(doctorId)) {
                 return d;
             }
         }
@@ -110,46 +93,35 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             d.setSpecialization(InputHandler.getStringInput("Enter new Specialization"));
             d.setQualification(InputHandler.getStringInput("Enter new Qualification"));
             d.setExperienceYears(InputHandler.getIntInput("Enter new Experience Years"));
-            scanner.nextLine();
             d.setConsultationFee(InputHandler.getDoubleInput("Enter new Consultation Fee"));
-            scanner.nextLine();
-
             System.out.println("Doctor updated successfully.");
-
         } else {
             System.out.println("Doctor not found");
         }
     }
 
     public void removeDoctor(String doctorId) {
-
         Doctor d = getDoctorById(doctorId);
-
         if (HelperUtils.isNotNull(d)) {
-
             doctors.remove(d);
             System.out.println("Doctor removed successfully.");
-
         } else {
             System.out.println("Doctor not found");
         }
     }
 
     public List<Doctor> searchDoctorsBySpecialization(String specialization) {
-
         List<Doctor> results = new ArrayList<>();
         if (HelperUtils.isNull(specialization)) return results;
         for (Doctor d : doctors) {
-            if (d.getSpecialization().toLowerCase().contains(specialization.toLowerCase())) {
+            if (HelperUtils.isNotNull(d.getSpecialization()) && d.getSpecialization().toLowerCase().contains(specialization.toLowerCase())) {
                 results.add(d);
             }
         }
-
         return results;
     }
 
     public void searchDoctors() {
-
         String specialization = InputHandler.getStringInput(" Enter Specialization to search");
         System.out.println("Search Results:");
         List<Doctor> searchResults = searchDoctorsBySpecialization(specialization);
@@ -157,7 +129,6 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             for (Doctor d : searchResults) {
                 d.displayInfo();
             }
-
         } else {
             System.out.println("No matches found");
         }
@@ -165,7 +136,6 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         if (scanner.nextLine().equalsIgnoreCase("q")) {
             return;
         }
-
         searchDoctors();
     }
 
@@ -175,7 +145,6 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             System.out.println("No doctors found");
             return;
         }
-
         for (Doctor d : doctors) {
             d.displayInfo();
         }
@@ -184,28 +153,30 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     public List<Doctor> getAvailableDoctors() {
         List<Doctor> availableDoctors = new ArrayList<>();
         for (Doctor d : doctors) {
-            if (!d.getAvailableSlots().isEmpty()) {
+            if (HelperUtils.isNotNull(d.getAvailableSlots()) && !d.getAvailableSlots().isEmpty()) {
                 availableDoctors.add(d);
             }
         }
-
         return availableDoctors;
     }
 
     public void displayAvailableDoctors() {
-
         System.out.println("===== Available Doctors =====");
         List<Doctor> availableDoctors = getAvailableDoctors();
         if (!availableDoctors.isEmpty()) {
             for (Doctor d : availableDoctors) {
                 d.displayInfo();
             }
-
         } else {
             System.out.println("No available doctors");
         }
     }
+
     public void addDoctor(String name, String specialization, String phone) {
+        if (HelperUtils.isNull(name) || HelperUtils.isNull(specialization) || HelperUtils.isNull(phone)) {
+            System.out.println("Invalid parameters for doctor creation.");
+            return;
+        }
         Doctor d = new Doctor();
         d.setFirstName(name);
         d.setSpecialization(specialization);
@@ -213,7 +184,12 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         d.setDoctorId(HelperUtils.generateId("DOC"));
         doctors.add(d);
     }
-    public void addDoctor(String name, String specialization, String phone, double consultationFee){
+
+    public void addDoctor(String name, String specialization, String phone, double consultationFee) {
+        if (HelperUtils.isNull(name) || HelperUtils.isNull(specialization) || HelperUtils.isNull(phone)) {
+            System.out.println("Invalid parameters for doctor creation.");
+            return;
+        }
         Doctor d = new Doctor();
         d.setFirstName(name);
         d.setSpecialization(specialization);
@@ -221,10 +197,10 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         d.setConsultationFee(consultationFee);
         d.setDoctorId(HelperUtils.generateId("DOC"));
         doctors.add(d);
-
     }
-    public void addDoctor(Doctor doctor){
-        if (doctor != null) {
+
+    public void addDoctor(Doctor doctor) {
+        if (HelperUtils.isNotNull(doctor)) {
             if (HelperUtils.isNull(doctor.getDoctorId())) {
                 doctor.setDoctorId(HelperUtils.generateId("DOC"));
             }
@@ -232,157 +208,155 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
         }
     }
 
-
     public void assignPatient(String doctorId, String patientId) {
-
         Doctor doctor = getDoctorById(doctorId);
-
         if (HelperUtils.isNull(doctor)) {
             System.out.println("Doctor not found");
             return;
         }
-
         for (Patient p : patientService.getPatients()) {
-
-            if (p.getId() != null && p.getId().equals(patientId)) {
-
+            if (HelperUtils.isNotNull(p.getId()) && p.getId().equals(patientId)) {
                 doctor.getAssignedPatients().add(patientId);
                 System.out.println("Patient assigned successfully");
                 return;
             }
         }
-
         System.out.println("Patient not found");
     }
-//i will see later
-public void assignPatient(String doctorId, List<String> patientIds) {
 
-    Doctor doctor = getDoctorById(doctorId);
-
-    if (HelperUtils.isNull(doctor)) {
-        System.out.println("Doctor not found");
-        return;
-    }
-
-    for (String patientId : patientIds) {
-
-        for (Patient p : patientService.getPatients()) {
-
-            if (p.getId() != null && p.getId().equals(patientId)) {
-                doctor.getAssignedPatients().add(patientId);
-                System.out.println("Patient assigned: " + patientId);
-                break;
+    public void assignPatient(String doctorId, List<String> patientIds) {
+        Doctor doctor = getDoctorById(doctorId);
+        if (HelperUtils.isNull(doctor)) {
+            System.out.println("Doctor not found");
+            return;
+        }
+        for (String patientId : patientIds) {
+            for (Patient p : patientService.getPatients()) {
+                if (HelperUtils.isNotNull(p.getId()) && p.getId().equals(patientId)) {
+                    doctor.getAssignedPatients().add(patientId);
+                    System.out.println("Patient assigned: " + patientId);
+                    break;
+                }
             }
         }
     }
-}
 
-
-
-public void displayDoctors(String specialization){
-    System.out.println("===== All Doctors by specialization =====");
-    boolean found =false;
-    for (Doctor d : doctors) {
-        if (d.getSpecialization().toLowerCase().equals(specialization.toLowerCase())) {
-            d.displayInfo();
-            found = true;
+    public void displayDoctors(String specialization) {
+        if (HelperUtils.isNull(specialization)) {
+            System.out.println("Specialization cannot be null.");
+            return;
+        }
+        System.out.println("===== All Doctors by specialization =====");
+        boolean found = false;
+        for (Doctor d : doctors) {
+            if (HelperUtils.isNotNull(d.getSpecialization()) && d.getSpecialization().toLowerCase().equals(specialization.toLowerCase())) {
+                d.displayInfo();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No doctors found");
         }
     }
-    if (!found) {
-        System.out.println("No doctors found");
-    }
-}
+
     public void displayDoctors(String departmentId, boolean showAvailableOnly) {
-
+        if (HelperUtils.isNull(departmentId)) {
+            System.out.println("Department ID cannot be null.");
+            return;
+        }
         boolean found = false;
-
         for (Doctor d : doctors) {
-
-            boolean matchDept = d.getDepartmentId().equals(departmentId);
-            boolean matchAvailability = !showAvailableOnly || !d.getAvailableSlots().isEmpty();
-
+            boolean matchDept = HelperUtils.isNotNull(d.getDepartmentId()) && d.getDepartmentId().equals(departmentId);
+            boolean matchAvailability = !showAvailableOnly || (HelperUtils.isNotNull(d.getAvailableSlots()) && !d.getAvailableSlots().isEmpty());
             if (matchDept && matchAvailability) {
                 d.displayInfo();
                 found = true;
             }
         }
-
         if (!found) {
             System.out.println("No doctors found");
         }
     }
+
     public void addSurgeon() {
         System.out.println("===== Add Surgeon =====");
-       Doctor d = addDoctor();
-       if (d != null) {
-           Surgeon s = new Surgeon();
-           s.setSurgeriesPerformed(InputHandler.getIntInput("Enter surgery number"));
-           add(s);
-       }
+        Doctor d = addDoctor();
+        if (d != null) {
+            Surgeon s = new Surgeon();
+            s.setSurgeriesPerformed(InputHandler.getIntInput("Enter surgery number"));
+            add(s);
+        }
     }
+
     public void addConsultation() {
         System.out.println("===== Add Consultation =====");
-        addDoctor();
-        Consultant consultant = new Consultant();
-        consultant.setConsultationDuration(InputHandler.getIntInput("Enter duration"));
-        consultant.setOnlineConsultationAvailable(true);
+        Doctor d = addDoctor();
+        if (d != null) {
+            Consultant consultant = new Consultant();
+            consultant.setConsultationDuration(InputHandler.getIntInput("Enter duration"));
+            consultant.setOnlineConsultationAvailable(true);
+            add(consultant);
+        }
     }
+
     public void addGeneralPrescription() {
         System.out.println("===== Add General Prescription =====");
-        addDoctor();
-        GeneralPractitioner generalPractitioner=new GeneralPractitioner();
+        Doctor d = addDoctor();
+        if (d != null) {
+            GeneralPractitioner generalPractitioner = new GeneralPractitioner();
+            add(generalPractitioner);
+        }
     }
 
     public void handelDoctorService() {
         int choice = InputHandler.getIntInput("Enter choice");
-            switch (choice) {
-                case 1 -> {
-                    addDoctors();
-                    handelDoctorService();
-                }
-                case 2 -> {
-                    addSurgeon();
-                    handelDoctorService();
-                }
-                case 3 -> {
-                    addConsultation();
-                    handelDoctorService();
-                }
-                case 4 ->{
-                    addGeneralPrescription();
-                    handelDoctorService();
-                }
-                case 5 -> {
-                    displayDoctors();
-                    handelDoctorService();
-                }
-                case 6 -> {
-                    searchDoctorsBySpecialization(InputHandler.getStringInput("Enter specialization to search"));
-                    handelDoctorService();
-                }
-                case 7 -> {
-                    displayAvailableDoctors();
-                    handelDoctorService();
-                }
-                case 8 -> {
-                    assignPatient(InputHandler.getStringInput("Enter Doctor Id"), InputHandler.getStringInput("Enter Patient Id"));
-                    handelDoctorService();
-                }
-                case 9 -> {
-                    editDoctor(InputHandler.getStringInput("Enter Doctor Id to edit"));
-                    handelDoctorService();
-                }
-                case 10 -> {
-                    removeDoctor(InputHandler.getStringInput("Enter Doctor Id to remove"));
-                    handelDoctorService();
-                }
-                case 11->{
-                    System.out.println("Extitng from Doctor Registration");
-                    return;
-                }
-                default -> System.out.println("Invalid option");
+        switch (choice) {
+            case 1 -> {
+                addDoctors();
+                handelDoctorService();
             }
-
+            case 2 -> {
+                addSurgeon();
+                handelDoctorService();
+            }
+            case 3 -> {
+                addConsultation();
+                handelDoctorService();
+            }
+            case 4 -> {
+                addGeneralPrescription();
+                handelDoctorService();
+            }
+            case 5 -> {
+                displayDoctors();
+                handelDoctorService();
+            }
+            case 6 -> {
+                searchDoctorsBySpecialization(InputHandler.getStringInput("Enter specialization to search"));
+                handelDoctorService();
+            }
+            case 7 -> {
+                displayAvailableDoctors();
+                handelDoctorService();
+            }
+            case 8 -> {
+                assignPatient(InputHandler.getStringInput("Enter Doctor Id"), InputHandler.getStringInput("Enter Patient Id"));
+                handelDoctorService();
+            }
+            case 9 -> {
+                editDoctor(InputHandler.getStringInput("Enter Doctor Id to edit"));
+                handelDoctorService();
+            }
+            case 10 -> {
+                removeDoctor(InputHandler.getStringInput("Enter Doctor Id to remove"));
+                handelDoctorService();
+            }
+            case 11 -> {
+                System.out.println("Exiting from Doctor Registration");
+                return;
+            }
+            default -> System.out.println("Invalid option");
+        }
     }
 
     @Override
@@ -396,20 +370,17 @@ public void displayDoctors(String specialization){
         } else {
             System.out.println("Invalid entity type");
         }
-
     }
 
     @Override
     public void remove(String id) {
-        Doctor doctor =getDoctorById(id);
+        Doctor doctor = getDoctorById(id);
         if (HelperUtils.isNotNull(doctor)) {
             doctors.remove(doctor);
             System.out.println("doctor removed successfully");
-        }
-        else {
+        } else {
             System.out.println("doctor not found");
         }
-
     }
 
     @Override
@@ -425,26 +396,22 @@ public void displayDoctors(String specialization){
     public void search(String keyword) {
         if (HelperUtils.isNull(keyword)) return;
         boolean found = false;
-
         for (Doctor d : doctors) {
-
-            if (d.getFirstName().equalsIgnoreCase(keyword)
-                    || d.getSpecialization().equalsIgnoreCase(keyword)
-                    || d.getDepartmentId().equalsIgnoreCase(keyword)) {
-
+            if ((HelperUtils.isNotNull(d.getFirstName()) && d.getFirstName().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(d.getSpecialization()) && d.getSpecialization().equalsIgnoreCase(keyword)) ||
+                    (HelperUtils.isNotNull(d.getDepartmentId()) && d.getDepartmentId().equalsIgnoreCase(keyword))) {
                 System.out.println(d);
                 found = true;
             }
         }
-
         if (!found) {
             System.out.println("No doctors found");
         }
     }
+
     @Override
     public void searchById(String id) {
         Doctor doctor = getDoctorById(id);
-
         if (HelperUtils.isNotNull(doctor)) {
             System.out.println(doctor);
         } else {
