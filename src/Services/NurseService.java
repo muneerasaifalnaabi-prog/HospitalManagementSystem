@@ -163,7 +163,7 @@ public void searchNursesByShift() {
     String shift = scanner.nextLine();
     List<Nurse> nurses=getNursesByShift(shift);
     for (Nurse n : nurses) {
-        if (n.getShift().equals(shift)) {
+        if (n.getShift() != null && n.getShift().equals(shift)){
             n.displayInfo();
         }
         else  {
