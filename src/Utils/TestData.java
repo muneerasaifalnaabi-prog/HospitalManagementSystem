@@ -915,6 +915,69 @@ public class TestData {
     }
 
     public static void testOverloadedMethod(){
+        System.out.println("\n--- OVERLOADED METHODS TESTS ---");
+
+        // PatientService overloads
+        patientService.addPatient("Omar", "Al-Busaidi", "98880011");
+        patientService.addPatient("Laila", "Al-Hinai", "97770022", "A-", "laila@email.com");
+        Patient overloadPatient = new Patient();
+        patientService.addPatient(overloadPatient);
+        System.out.println("✓ PatientService.addPatient() overloaded");
+        patientService.displayPatients();
+        patientService.displayPatients("Male");
+        patientService.displayPatients(2);
+        System.out.println("✓ PatientService.displayPatients() overloaded");
+
+        // DoctorService overloads
+        doctorService.addDoctor("Dr. Samira", "Pediatrics", "96661122");
+        doctorService.addDoctor("Dr. Nasser", "Cardiology", "95552233", 120.0);
+        Doctor d = new Doctor();
+        doctorService.addDoctor(d);
+        System.out.println("✓ DoctorService.addDoctor() overloaded");
+
+        // Doctor instance overloads
+        if (!doctorService.doctors.isEmpty()) {
+            Doctor sample = doctorService.doctors.get(0);
+            sample.updateFee(150.0);
+            sample.updateFee(160.0, "Annual increase");
+            sample.addAvailability("Tue 10:00");
+            sample.addAvailability(Arrays.asList("Wed 14:00", "Fri 09:00"));
+            System.out.println("✓ Doctor.updateFee() & addAvailability() overloaded");
+        }
+
+        // AppointmentService overloads
+        appointmentService.createAppointment("PAT-001", "DOC-001", LocalDate.now().plusDays(1));
+        appointmentService.createAppointment("PAT-002", "DOC-002", LocalDate.now().plusDays(2), "11:00");
+        Appointment a = new Appointment();
+        appointmentService.createAppointment(a);
+        System.out.println("✓ AppointmentService.createAppointment() overloaded");
+
+        appointmentService.rescheduleAppointment("A001", LocalDate.now().plusDays(10));
+        appointmentService.rescheduleAppointment("A002", LocalDate.now().plusDays(10), "14:30");
+        Appointment mock = new Appointment();
+        appointmentService.rescheduleAppointment(mock, LocalDate.now(), "09:00", "Test reason");
+        System.out.println("✓ AppointmentService.rescheduleAppointment() overloaded");
+
+        appointmentService.displayAppointments();
+        appointmentService.displayAppointments(LocalDate.now());
+        appointmentService.displayAppointments("DOC001", LocalDate.now(), LocalDate.now().plusDays(7));
+        System.out.println("✓ AppointmentService.displayAppointments() overloaded");
+
+        // Appointment entity overloaded addNotes
+        Appointment app = new Appointment();
+        app.addNotes("First note");
+        app.addNotes("Second note", "Dr. Ahmed");
+        app.addNotes("Third note", "Dr. Fatima", LocalDateTime.now());
+        System.out.println("✓ Appointment.addNotes() overloaded");
+
+        // Patient updateContact overloads
+        Patient pat = patientService.getPatientById("SYS-P001");
+        if (pat != null) {
+            pat.updateContact("11111111");
+            pat.updateContact("22222222", "new@email.com");
+            pat.updateContact("33333333", "another@email.com", "New Address");
+            System.out.println("✓ Patient.updateContact() overloaded");
+        }
 
     }
     public static void testCRUD(){
