@@ -253,7 +253,6 @@ public void displayDepartments() {
     }
     public void DepartmentHandler(){
         System.out.println("==== Department Management ===");
-        System.out.println(MenuMessege.DEPARTMENT_MENU_MESSEGE);
         int choice = InputHandler.getIntInput("Enter choice");
         switch (choice){
             case 1->{
