@@ -23,7 +23,7 @@ public void addNurses(){
     while(true){
         Nurse n = addNurse();
         if(HelperUtils.isNotNull(n)){
-            Nurses.add(n);
+            add(n);
             System.out.println("Nurse Added Successfully");
         }
         System.out.println("Press q to quit ");
@@ -189,12 +189,11 @@ public void  displayNurses(){
 
     @Override
     public void add(Object entity) {
-
         if (entity instanceof Nurse nurse) {
+            if (HelperUtils.isNull(nurse.getId())) {
+                nurse.setId(HelperUtils.generateId("NURSE"));
+            }
             Nurses.add(nurse);
-            System.out.println("Nurse added successfully");
-        } else {
-            System.out.println("Invalid entity type");
         }
     }
 
