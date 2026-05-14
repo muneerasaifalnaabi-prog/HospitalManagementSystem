@@ -32,6 +32,8 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             }
         }
     }
+
+
     public Doctor addDoctor() {
         System.out.println("========= Added New Doctor =====");
         String id = HelperUtils.generateId("DOC");
@@ -91,7 +93,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
 
     public Doctor getDoctorById(String doctorId) {
         for (Doctor d : doctors) {
-            if (d.getDoctorId().equals(doctorId)) {
+            if (d.getDoctorId() != null && d.getDoctorId().equals(doctorId)) {
                 return d;
             }
         }
@@ -201,25 +203,33 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             System.out.println("No available doctors");
         }
     }
-    public void addDoctor(String name, String specialization, String phone){
-        Doctor d =  new Doctor();
+    public void addDoctor(String name, String specialization, String phone) {
+        Doctor d = new Doctor();
         d.setFirstName(name);
         d.setSpecialization(specialization);
         d.setPhoneNumber(phone);
-
+        d.setDoctorId(HelperUtils.generateId("DOC"));
+        doctors.add(d);
     }
     public void addDoctor(String name, String specialization, String phone, double consultationFee){
-        Doctor d =  new Doctor();
+        Doctor d = new Doctor();
         d.setFirstName(name);
         d.setSpecialization(specialization);
         d.setPhoneNumber(phone);
         d.setConsultationFee(consultationFee);
+        d.setDoctorId(HelperUtils.generateId("DOC"));
         doctors.add(d);
 
     }
     public void addDoctor(Doctor doctor){
-        doctors.add(doctor);
+        if (doctor != null) {
+            if (HelperUtils.isNull(doctor.getDoctorId())) {
+                doctor.setDoctorId(HelperUtils.generateId("DOC"));
+            }
+            doctors.add(doctor);
+        }
     }
+
 
     public void assignPatient(String doctorId, String patientId) {
 
@@ -372,14 +382,15 @@ public void displayDoctors(String specialization){
 
     @Override
     public void add(Object entity) {
-        if (entity instanceof  Doctor doctor){
+        if (entity instanceof Doctor doctor) {
+            if (HelperUtils.isNull(doctor.getDoctorId())) {
+                doctor.setDoctorId(HelperUtils.generateId("DOC"));
+            }
             doctors.add(doctor);
             System.out.println("Doctor added successfully");
+        } else {
+            System.out.println("Invalid entity type");
         }
-        else {
-        System.out.println("Invalid entity type");
-
-    }
 
     }
 
