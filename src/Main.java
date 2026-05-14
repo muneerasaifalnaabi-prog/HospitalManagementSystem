@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Welcome to Hospital Management System... :>");
         TestData.loadData();
        TestData.testOverloadedMethod();
-       TestData.testCRUD();
+       //TestData.testCRUD();
         handelMenu();
 
         }

@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -70,15 +72,22 @@ public class HelperUtils {
         return date != null;
     }
 
+    // In HelperUtils.java
+
     public static boolean isValidDate(String dateStr) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.setLenient(false);
-            sdf.parse(dateStr);
-            return true;
-        } catch (ParseException e) {
-            return false;
+        if (dateStr == null || dateStr.trim().isEmpty()) return false;
+        List<String> patterns = Arrays.asList("dd-MM-yyyy", "d-M-yyyy", "dd-M-yyyy", "d-MM-yyyy");
+        for (String pattern : patterns) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                sdf.setLenient(false);
+                sdf.parse(dateStr);
+                return true;
+            } catch (ParseException e) {
+                // continue
+            }
         }
+        return false;
     }
 
     public static boolean isValidDate(Date date, Date minDate, Date maxDate) {

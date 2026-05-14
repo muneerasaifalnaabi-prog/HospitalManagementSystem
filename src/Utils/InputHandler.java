@@ -5,7 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -66,19 +69,27 @@ public class InputHandler {
             System.out.println("Please answer yes or no");
         }
     }
+    // In InputHandler.java
+
     public static LocalDate getLocalDateInput(String prompt) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        List<DateTimeFormatter> formatters = Arrays.asList(
+                DateTimeFormatter.ofPattern("dd-MM-yyyy"),
+                DateTimeFormatter.ofPattern("d-M-yyyy"),
+                DateTimeFormatter.ofPattern("dd-M-yyyy"),
+                DateTimeFormatter.ofPattern("d-MM-yyyy")
+        );
 
         while (true) {
             System.out.print(prompt);
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
-            if (!HelperUtils.isValidDate(input)) {
-                System.out.println("Invalid date format");
-                continue;
+            for (DateTimeFormatter formatter : formatters) {
+                try {
+                    return LocalDate.parse(input, formatter);
+                } catch (DateTimeParseException e) {
+                }
             }
-
-            return LocalDate.parse(input, formatter);
+            System.out.println("Invalid date format. Please use dd-MM-yyyy or d-M-yyyy (e.g., 12-05-2026 or 12-5-2026)");
         }
     }
 }

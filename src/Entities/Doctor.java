@@ -11,12 +11,15 @@ public class Doctor extends Person {
     private String doctorId;
     private String specialization;
     private String qualification;
-    private int  experienceYears;
+    private int experienceYears;
     private String departmentId;
     private Double consultationFee;
     private List<String> availableSlots;
     private List<String> assignedPatients;
-public Doctor(){}
+
+    public Doctor() {
+    }
+
     public Doctor(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String doctorId, String specialization, String qualification, int experienceYears, String departmentId, Double consultationFee, List<String> availableSlots, List<String> assignedPatients) {
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
         this.doctorId = doctorId;
@@ -106,17 +109,18 @@ public Doctor(){}
         if (HelperUtils.isNotNull(assignedPatients)) {
             this.assignedPatients = assignedPatients;
         }
-}
+    }
 
     @Override
-    public void displayInfo(){
+    public void displayInfo() {
         super.displayInfo();
         System.out.println(this.toString());
 
 
     }
+
     @Override
-    public void displaySummary(){
+    public void displaySummary() {
         System.out.println(
                 "Doctor: Dr. " + getFirstName() + " " + getLastName() +
                         ", Specialization: " + specialization +
@@ -125,6 +129,7 @@ public Doctor(){}
         );
 
     }
+
     public void assignPatient(String patient) {
         if (HelperUtils.isValidString(patient, 2)) {
             assignedPatients.add(patient);
@@ -132,6 +137,7 @@ public Doctor(){}
 
         }
     }
+
     public void removePatient(String rempatientId) {
         if (HelperUtils.isValidString(rempatientId) && assignedPatients.contains(rempatientId)) {
             assignedPatients.remove(rempatientId);
@@ -140,17 +146,20 @@ public Doctor(){}
             System.out.println("Patient not found in list");
         }
     }
+
     public void updateAvailability(List<String> newslot) {
         if (HelperUtils.isNotNull(newslot)) {
             this.availableSlots = new ArrayList<>(newslot);
             System.out.println("Availability has been updated");
         }
     }
+
     public void updateFee(double fee) {
         if (HelperUtils.isPositive(fee)) {
             this.consultationFee = fee;
         }
     }
+
     public void updateFee(double fee, String reason) {
         if (HelperUtils.isPositive(fee) && HelperUtils.isValidString(reason)) {
             this.consultationFee = fee;
@@ -158,6 +167,7 @@ public Doctor(){}
             System.out.println(reason);
         }
     }
+
     public void addAvailability(String slot) {
         if (HelperUtils.isValidString(slot)) {
             availableSlots.add(slot);
@@ -171,6 +181,7 @@ public Doctor(){}
             System.out.println("All Availability slot has been added");
         }
     }
+
     @Override
     public String toString() {
         return "Doctor{" +

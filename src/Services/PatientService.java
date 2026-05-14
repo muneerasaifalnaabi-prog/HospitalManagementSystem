@@ -229,7 +229,6 @@ public class PatientService extends BaseService implements Manageable, Searchabl
 
     public void registerInPatient(){
         System.out.println("InPatient registration");
-        addaddPatients();
         LocalDate admissionDate = InputHandler.getLocalDateInput("Enter Admission date");
         LocalDate dischargeDate =InputHandler.getLocalDateInput("Enter DOB (dd-MM-yyyy):");
         String roomNumber = InputHandler.getStringInput("Enter Room Number: ");
@@ -243,20 +242,20 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         inPatient.setBedNumber(bedNumber);
         inPatient.setDailyCharges(dailyCharges);
         inPatient.setAdmittingDoctorId(admittingDoctorId);
+        addaddPatients();
     }
 
     public void registerOutPatient(){
         System.out.println("OutPatient registration");
-        addaddPatients();
         OutPatient outPatient = new OutPatient();
         LocalDate lastVisitDate = InputHandler.getLocalDateInput("Enter Last Visit");
         outPatient.setLastVisitDate(lastVisitDate);
         String patientId = InputHandler.getStringInput("Enter Patient ID: ");
         outPatient.setPatientId(patientId);
+        addaddPatients();
     }
     public void registerEmergencyPatient(){
         System.out.println("EmergencyPatient registration");
-        addPatient();
         EmergencyPatient emergencyPatient = new EmergencyPatient();
         String emergencyType = InputHandler.getStringInput("Emergency Type");
         emergencyPatient.setEmergencyType(emergencyType);
@@ -264,6 +263,7 @@ public class PatientService extends BaseService implements Manageable, Searchabl
         emergencyPatient.setArrivalMode(arrivalMode);
         int triageLevel = InputHandler.getIntInput("Triage Level");
         emergencyPatient.setTriageLevel(triageLevel);
+        addPatient();
     }
     public void searchPatientsHandler(){
         System.out.println("Patients search");

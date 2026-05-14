@@ -13,12 +13,14 @@ public class Appointment implements Displayable {
     private String doctorId;
     private LocalDate appointmentDate;
     private String appointmentTime;
-    private String  status;
+    private String status;
     private String reason;
     private String notes;
-public  Appointment(){
 
-}
+    public Appointment() {
+
+    }
+
     public Appointment(String patientId, String appointmentId, String doctorId, LocalDate appointmentDate, String appointmentTime, String status, String reason, String notes) {
         this.patientId = patientId;
         this.appointmentId = appointmentId;
@@ -49,6 +51,7 @@ public  Appointment(){
             this.patientId = patientId;
         }
     }
+
     public String getDoctorId() {
         return doctorId;
     }
@@ -109,41 +112,44 @@ public  Appointment(){
         }
     }
 
-    public void  reschedule(LocalDate newDate, String newTime){
+    public void reschedule(LocalDate newDate, String newTime) {
 
-        if (HelperUtils.isNotNull(status) && status.equals("Completed") || status.equals("Cancelled")){
+        if (HelperUtils.isNotNull(status) && status.equals("Completed") || status.equals("Cancelled")) {
             System.out.println(Constants.NOT_RESCHEDULE);
         }
-        this.appointmentDate=newDate;
-        this.appointmentTime=newTime;
-        this.status="Rescheduled";
+        this.appointmentDate = newDate;
+        this.appointmentTime = newTime;
+        this.status = "Rescheduled";
         System.out.println(
-                Constants.RESCHEDULE_SUCCESSFULLY +"new Date:" +newDate + "Time :"+ newTime);
+                Constants.RESCHEDULE_SUCCESSFULLY + "new Date:" + newDate + "Time :" + newTime);
 
     }
-    public void  cancel(){
-        if (HelperUtils.isNotNull(status) && !status.equals("Completed")){
-            this.status="Cancelled";
+
+    public void cancel() {
+        if (HelperUtils.isNotNull(status) && !status.equals("Completed")) {
+            this.status = "Cancelled";
             System.out.println(Constants.CANCELLED);
         }
 
     }
-    public void  complete(){
-        this.status="Completed";
+
+    public void complete() {
+        this.status = "Completed";
         System.out.println(Constants.COMPLETED);
 
     }
+
     @Override
-    public  void displayInfo(){
+    public void displayInfo() {
         System.out.println(this.toString());
     }
 
     @Override
     public void displaySummary() {
         System.out.println(
-                "Appintment ID" +appointmentId +
-                        "Patient Id "+patientId +
-                        "Doctor Id " +doctorId +
+                "Appintment ID" + appointmentId +
+                        "Patient Id " + patientId +
+                        "Doctor Id " + doctorId +
                         "Date " + appointmentDate +
                         "Status " + status
         );
@@ -151,18 +157,19 @@ public  Appointment(){
     }
 
 
+    public void addNotes(String notes) {
+        this.notes = notes;
+        System.out.println("Notes :" + notes);
+    }
 
-    public void addNotes(String notes){
-    this.notes=notes;
-        System.out.println("Notes :"+ notes);
+    public void addNotes(String notes, String addedBy) {
+        this.notes = notes;
+        System.out.println("Notes :" + notes + "Added by :" + addedBy);
     }
-    public void addNotes(String notes, String addedBy){
-       this.notes=notes;
-       System.out.println("Notes :"+ notes + "Added by :"+ addedBy);
-    }
-    public void addNotes(String notes, String addedBy, LocalDateTime timestamp){
-       this.notes=notes;
-       System.out.println("Notes :"+ notes + "Added by :"+ addedBy + "Time :"+ timestamp);
+
+    public void addNotes(String notes, String addedBy, LocalDateTime timestamp) {
+        this.notes = notes;
+        System.out.println("Notes :" + notes + "Added by :" + addedBy + "Time :" + timestamp);
     }
 
 
