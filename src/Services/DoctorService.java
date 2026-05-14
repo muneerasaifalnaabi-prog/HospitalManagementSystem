@@ -423,6 +423,7 @@ public void displayDoctors(String specialization){
 
     @Override
     public void search(String keyword) {
+        if (HelperUtils.isNull(keyword)) return;
         boolean found = false;
 
         for (Doctor d : doctors) {
