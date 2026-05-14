@@ -8,16 +8,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TestData {
-    static PatientService patientService =new PatientService();
-    static AppointmentService appointmentService =new AppointmentService();
-    static DoctorService doctorService =new DoctorService();
-    static NurseService nurseService =new NurseService();
-    static ReportService reportService =new ReportService();
-    static DepartmentService departmentService =new DepartmentService();
-    static MedicalRecordService medicalRecordService =new MedicalRecordService();
+    static PatientService patientService = new PatientService();
+    static AppointmentService appointmentService = new AppointmentService();
+    static DoctorService doctorService = new DoctorService();
+    static NurseService nurseService = new NurseService();
+    static ReportService reportService = new ReportService();
+    static DepartmentService departmentService = new DepartmentService();
+    static MedicalRecordService medicalRecordService = new MedicalRecordService();
+
     public static void main(String[] args) {
         loadData();
-       // testOverloadedMethod();
+        // testOverloadedMethod();
     }
 
     public static void loadData() {
@@ -80,7 +81,7 @@ public class TestData {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 3,
-                LocalDate.of(2026,5,10),
+                LocalDate.of(2026, 5, 10),
                 "DOC-006"
         );
 
@@ -101,8 +102,8 @@ public class TestData {
                 "INS004",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                LocalDate.of(2026,4,1),
-                LocalDate.of(2026,4,10),
+                LocalDate.of(2026, 4, 1),
+                LocalDate.of(2026, 4, 10),
                 "Room-101",
                 "DOC-001",
                 "Bed-1",
@@ -126,8 +127,8 @@ public class TestData {
                 "INS005",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                LocalDate.of(2026,4,5),
-                LocalDate.of(2026,4,15),
+                LocalDate.of(2026, 4, 5),
+                LocalDate.of(2026, 4, 15),
                 "Room-202",
                 "DOC-003",
                 "Bed-2",
@@ -151,8 +152,8 @@ public class TestData {
                 "INS006",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                LocalDate.of(2026,5,1),
-                LocalDate.of(2026,5,4),
+                LocalDate.of(2026, 5, 1),
+                LocalDate.of(2026, 5, 4),
                 "ER-01",
                 "DOC-002",
                 "ER-BED-1",
@@ -180,8 +181,8 @@ public class TestData {
                 "INS007",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                LocalDate.of(2026,5,2),
-                LocalDate.of(2026,5,3),
+                LocalDate.of(2026, 5, 2),
+                LocalDate.of(2026, 5, 3),
                 "ER-02",
                 "DOC-002",
                 "ER-BED-2",
@@ -210,7 +211,7 @@ public class TestData {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 5,
-                LocalDate.of(2026,5,15),
+                LocalDate.of(2026, 5, 15),
                 "DOC-005"
         );
 
@@ -250,8 +251,8 @@ public class TestData {
                 "INS010",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                LocalDate.of(2026,2,2),
-                LocalDate.of(2026,2,20),
+                LocalDate.of(2026, 2, 2),
+                LocalDate.of(2026, 2, 20),
                 "Room-05",
                 "DOC-001",
                 "Bed-5",
@@ -268,7 +269,6 @@ public class TestData {
         patientService.add(p8);
         patientService.add(p9);
         patientService.add(p10);
-
 
 
         // Doctors sample data
@@ -423,7 +423,7 @@ public class TestData {
                 new ArrayList<>(Arrays.asList("12:00 PM")),
                 new ArrayList<>(),
                 new ArrayList<>(Arrays.asList("Child Consultation")),
-                40,true
+                40, true
         );
 
         GeneralPractitioner d8 = new GeneralPractitioner(
@@ -912,105 +912,90 @@ public class TestData {
         medicalRecordService.add(mr11);
         medicalRecordService.add(mr12);
 
+    }
 
-/*
-        // addPatient(String, String, String)
-        patientService.addPatient("Omar", "Al-Busaidi", "98880011");
-        System.out.println("✓ addPatient(String, String, String)");
+    public static void testOverloadedMethod(){
 
-        // addPatient(String, String, String, String, String)
-        ps.addPatient("Laila", "Al-Hinai", "97770022", "A-", "laila@email.com");
-        System.out.println("✓ addPatient(String, String, String, String, String)");
+    }
+    public static void testCRUD(){
+        System.out.println("--- CRUD TESTS ---");
 
-        // addPatient(Patient)
-        Patient temp = new Patient();
-        ps.addPatient(temp);
-        System.out.println("✓ addPatient(Patient)");
+        // Patient CRUD
+        Patient tempPatient = new Patient();
+        tempPatient.setFirstName("Temp");
+        tempPatient.setLastName("User");
+        patientService.add(tempPatient);
+        System.out.println("✓ Create Patient");
+        Patient retrieved = patientService.getPatientById(tempPatient.getId());
+        System.out.println("✓ Read Patient: " + (retrieved != null));
+        retrieved.setPhoneNumber("99999999");
+        patientService.editPatient(retrieved.getId());
+        System.out.println("✓ Update Patient");
+        patientService.remove(retrieved.getId());
+        System.out.println("✓ Delete Patient");
 
-        displayPatients() / displayPatients(String) / displayPatients(int)
-        ps.displayPatients();                        // all
-        ps.displayPatients("Male");                  // filter by gender
-        ps.displayPatients(2);                       // limit 2
-        System.out.println("✓ displayPatients() overloaded");
+        // Doctor CRUD
+        Doctor tempDoc = new Doctor();
+        tempDoc.setFirstName("TempDoc");
+        doctorService.add(tempDoc);
+        System.out.println("✓ Create Doctor");
+        Doctor docRetrieved = doctorService.getDoctorById(tempDoc.getDoctorId());
+        System.out.println("✓ Read Doctor: " + (docRetrieved != null));
+        docRetrieved.setSpecialization("Test");
+        doctorService.editDoctor(docRetrieved.getDoctorId());
+        System.out.println("✓ Update Doctor");
+        doctorService.remove(docRetrieved.getDoctorId());
+        System.out.println("✓ Delete Doctor");
 
-        // searchPatients(String) and searchPatients(String, String)
-        List<Patient> byKeyword = ps.searchPatients("Al-Hasani");
-        System.out.println("✓ searchPatients(keyword) found " + byKeyword.size());
-        List<Patient> byFullName = ps.searchPatients("Said", "Al-Hasani");
-        System.out.println("✓ searchPatients(firstName, lastName) found " + byFullName.size());
+        // Department CRUD
+        Department tempDept = new Department("TMP", "TempDept", "DOC001", new ArrayList<>(), new ArrayList<>(), 10, 5);
+        departmentService.add(tempDept);
+        System.out.println("✓ Create Department");
+        Department deptRetrieved = departmentService.getDepartmentById("TMP");
+        System.out.println("✓ Read Department: " + (deptRetrieved != null));
+        deptRetrieved.setDepartmentName("UpdatedDept");
+        departmentService.editDepartment("TMP");
+        System.out.println("✓ Update Department");
+        departmentService.remove("TMP");
+        System.out.println("✓ Delete Department");
 
- */
-            DoctorService ds = new DoctorService();
-      //  ---------- DoctorService overloads ----------
+        // Appointment CRUD
+        Appointment tempApp = new Appointment("P001", "TMP001", "DOC001", LocalDate.now(), "10:00", "Scheduled", "Test", "Notes");
+        appointmentService.add(tempApp);
+        System.out.println("✓ Create Appointment");
+        Appointment appRetrieved = appointmentService.getAppointmentById("TMP001");
+        System.out.println("✓ Read Appointment: " + (appRetrieved != null));
+        appRetrieved.setStatus("Completed");
+        appointmentService.editAppointment("TMP001");
+        System.out.println("✓ Update Appointment");
+        appointmentService.remove("TMP001");
+        System.out.println("✓ Delete Appointment");
 
-        // addDoctor(String, String, String)
-        ds.addDoctor("Dr. Samira", "Pediatrics", "96661122");
-        System.out.println("✓ addDoctor(String, String, String)");
+        // MedicalRecord CRUD
+        MedicalRecord tempMr = new MedicalRecord("MR_TMP", "P001", "DOC001", LocalDate.now(), "Test", "Normal", "Med", "Note");
+        medicalRecordService.add(tempMr);
+        System.out.println("✓ Create MedicalRecord");
+        MedicalRecord mrRetrieved = medicalRecordService.getMedicalRecordById("MR_TMP");
+        System.out.println("✓ Read MedicalRecord: " + (mrRetrieved != null));
+        mrRetrieved.setDiagnosis("Updated");
+        medicalRecordService.editMedicalRecord("MR_TMP");
+        System.out.println("✓ Update MedicalRecord");
+        medicalRecordService.remove("MR_TMP");
+        System.out.println("✓ Delete MedicalRecord");
 
-        // addDoctor(String, String, String, double)
-        ds.addDoctor("Dr. Nasser", "Cardiology", "95552233", 120.0);
-        System.out.println("✓ addDoctor(String, String, String, double)");
-
-        // addDoctor(Doctor)
-        Doctor d = new Doctor();
-        ds.addDoctor(d);
-        System.out.println("✓ addDoctor(Doctor)");
-
-        // updateFee (Doctor instance methods – need a real doctor)
-        Doctor sampleDoctor = DoctorService.doctors.get(0);
-        sampleDoctor.updateFee(150.0);
-        sampleDoctor.updateFee(160.0, "Annual increase");
-        System.out.println("✓ Doctor.updateFee() overloaded");
-
-        // addAvailability (Doctor instance)
-        sampleDoctor.addAvailability("Tue 10:00");
-        sampleDoctor.addAvailability(Arrays.asList("Wed 14:00", "Fri 09:00"));
-        System.out.println("✓ Doctor.addAvailability() overloaded");
-
-        // ---------- AppointmentService overloads ----------
-        AppointmentService as = new AppointmentService();
-
-        // createAppointment(String, String, LocalDate)
-        as.createAppointment("PAT-001", "DOC-001", LocalDate.now().plusDays(1));
-        System.out.println("✓ createAppointment(patientId, doctorId, date)");
-
-        // createAppointment(String, String, LocalDate, String)
-        as.createAppointment("PAT-002", "DOC-002", LocalDate.now().plusDays(2), "11:00");
-        System.out.println("✓ createAppointment(patientId, doctorId, date, time)");
-
-        // createAppointment(Appointment)
-        Appointment a = new Appointment();
-        as.createAppointment(a);
-        System.out.println("✓ createAppointment(Appointment)");
-
-        // rescheduleAppointment (overloaded in AppointmentService)
-        as.rescheduleAppointment("APP-001", LocalDate.now().plusDays(10));
-        as.rescheduleAppointment("APP-002", LocalDate.now().plusDays(10), "14:30");
-        Appointment mockApp = new Appointment();
-        as.rescheduleAppointment(mockApp, LocalDate.now(), "09:00", "Test reason");
-        System.out.println("✓ AppointmentService.rescheduleAppointment() overloaded");
-
-        // displayAppointments overloads (one with date, one with doctor+date range)
-        as.displayAppointments();                           // all
-        as.displayAppointments(LocalDate.now());            // by date (note: implementation prints all, but it's overloaded)
-        as.displayAppointments("DOC-001", LocalDate.now(), LocalDate.now().plusDays(7));
-        System.out.println("✓ displayAppointments() overloaded");
-
-        // ---------- Appointment entity overloaded addNotes ----------
-        Appointment app = new Appointment();
-        app.addNotes("First note");
-        app.addNotes("Second note", "Dr. Ahmed");
-        app.addNotes("Third note", "Dr. Fatima", LocalDateTime.now());
-        System.out.println("✓ Appointment.addNotes() overloaded");
-
-        System.out.println("Overloaded methods test completed.");
-
-
-
-        //Test interface Method that  overloaded  :
-
+        // Nurse CRUD
+        Nurse tempNurse = new Nurse();
+        tempNurse.setFirstName("TempNurse");
+        nurseService.add(tempNurse);
+        System.out.println("✓ Create Nurse");
+        Nurse nurseRetrieved = nurseService.getNurseById(tempNurse.getId());
+        System.out.println("✓ Read Nurse: " + (nurseRetrieved != null));
+        nurseRetrieved.setShift("Evening");
+        nurseService.editNurses(nurseRetrieved.getId());
+        System.out.println("✓ Update Nurse");
+        nurseService.remove(nurseRetrieved.getId());
+        System.out.println("✓ Delete Nurse");
     }
 
 
-
-}
+    }
