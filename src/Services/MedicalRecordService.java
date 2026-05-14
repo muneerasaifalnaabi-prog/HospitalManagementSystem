@@ -64,8 +64,9 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     }
 
     public MedicalRecord getMedicalRecordById(String recordId) {
+        if (HelperUtils.isNull(recordId)) return null;
         for (MedicalRecord record : medicalRecords) {
-            if (record.getRecordId().equals(recordId)) {
+            if (record.getRecordId() != null && record.getRecordId().equals(recordId)) {
                 return record;
             }
         }
