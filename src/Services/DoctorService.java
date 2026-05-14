@@ -23,7 +23,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
             Doctor d = addDoctor();
 
             if (HelperUtils.isNotNull(d)) {
-                doctors.add(d);
+                add(d);
                 System.out.println("Doctor added successfully.");
             }
             System.out.println("Press q to go back to menu or press Enter to add another doctor:");
@@ -92,6 +92,7 @@ public class DoctorService extends  BaseService implements Manageable, Searchabl
     }
 
     public Doctor getDoctorById(String doctorId) {
+        if (HelperUtils.isNull(doctorId)) return null;
         for (Doctor d : doctors) {
             if (d.getDoctorId() != null && d.getDoctorId().equals(doctorId)) {
                 return d;
