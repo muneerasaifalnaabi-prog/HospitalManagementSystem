@@ -102,6 +102,7 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
 
         List<MedicalRecord> result = new ArrayList<>();
+        if (HelperUtils.isNull(patientId)) return result;
         for (MedicalRecord record : medicalRecords) {
 
             if (record.getPatientId() != null && record.getPatientId().equals(patientId)) {
@@ -113,8 +114,9 @@ public class MedicalRecordService extends BaseService implements Manageable, Sea
     public List<MedicalRecord> getMedicalRecordsByDoctorId(String doctorId) {
 
         List<MedicalRecord> result = new ArrayList<>();
+        if (HelperUtils.isNull(doctorId)) return result;
         for (MedicalRecord record : medicalRecords) {
-            if (record.getDoctorId().equals(doctorId)) {
+            if (record.getDoctorId() != null && record.getDoctorId().equals(doctorId)) {
                 result.add(record);
             }
         }
