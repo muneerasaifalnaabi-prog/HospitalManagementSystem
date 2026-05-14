@@ -17,261 +17,900 @@ public class TestData {
     static MedicalRecordService medicalRecordService =new MedicalRecordService();
     public static void main(String[] args) {
         loadData();
-        testOverloadedMethod();
+       // testOverloadedMethod();
     }
 
     public static void loadData() {
-        // Clear existing data
-        PatientService.getPatients().clear();
-        DoctorService.doctors.clear();
-        NurseService.Nurses.clear();
-        DepartmentService.departments.clear();
-        AppointmentService.appointments.clear();
-        MedicalRecordService.medicalRecords.clear();
 
-        // ========================= PATIENTS =========================
+        // ========================= PATIENT SAMPLE DATA =========================
+
         Patient p1 = new Patient(
-                "SYS-P001", "Said", "Al-Hasani", LocalDate.of(1985, 6, 15), "Male",
-                "+968 92123456", "said.alhasani@email.om", "Muscat, Al Ghubra",
-                "PAT-001", "O+", new ArrayList<>(), "+968 99881234",
-                LocalDate.of(2024, 1, 10), "INS-OM-001", new ArrayList<>(), new ArrayList<>()
+                "SYS-P001",
+                "Said",
+                "Al-Hasani",
+                LocalDate.of(1985, 6, 15),
+                "Male",
+                "+96892123456",
+                "said@email.com",
+                "Muscat",
+                "PAT-001",
+                "O+",
+                new ArrayList<>(Arrays.asList("Dust")),
+                "+96899881234",
+                LocalDate.now(),
+                "INS001",
+                new ArrayList<>(),
+                new ArrayList<>()
         );
+
         Patient p2 = new Patient(
-                "SYS-P002", "Mariam", "Al-Rawahi", LocalDate.of(1990, 3, 22), "Female",
-                "+968 92345678", "mariam.rawahi@email.om", "Salalah, Al Dahariz",
-                "PAT-002", "A-", new ArrayList<>(Arrays.asList("Penicillin")), "+968 99112345",
-                LocalDate.of(2024, 1, 15), "INS-OM-002", new ArrayList<>(), new ArrayList<>()
+                "SYS-P002",
+                "Mariam",
+                "Al-Rawahi",
+                LocalDate.of(1990, 3, 22),
+                "Female",
+                "+96892345678",
+                "mariam@email.com",
+                "Salalah",
+                "PAT-002",
+                "A-",
+                new ArrayList<>(Arrays.asList("Penicillin")),
+                "+96899112345",
+                LocalDate.now(),
+                "INS002",
+                new ArrayList<>(),
+                new ArrayList<>()
         );
-        Patient p3 = new Patient(
-                "SYS-P003", "Abdullah", "Al-Balushi", LocalDate.of(2018, 11, 5), "Male",
-                "+968 93456789", "abdullah.family@email.om", "Sohar, Al Hail",
-                "PAT-003", "B+", new ArrayList<>(Arrays.asList("Peanuts")), "+968 99229988",
-                LocalDate.of(2024, 2, 20), "INS-OM-003", new ArrayList<>(), new ArrayList<>()
+
+        OutPatient p3 = new OutPatient(
+                "SYS-P003",
+                "Abdullah",
+                "Al-Balushi",
+                LocalDate.of(2018, 11, 5),
+                "Male",
+                "+96893456789",
+                "abdullah@email.com",
+                "Sohar",
+                "PAT-003",
+                "B+",
+                new ArrayList<>(Arrays.asList("Peanuts")),
+                "+96899229988",
+                LocalDate.now(),
+                "INS003",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                3,
+                LocalDate.of(2026,5,10),
+                "DOC-006"
         );
 
         InPatient p4 = new InPatient(
-                "SYS-P004", "Khalid", "Al-Maskari", LocalDate.of(1975, 12, 1), "Male",
-                "+968 95678901", "khalid.maskari@email.om", "Nizwa, Birkat Al Mouz",
-                "PAT-004", "O-", new ArrayList<>(), "+968 99445566",
-                LocalDate.of(2024, 3, 12), "INS-OM-004", new ArrayList<>(), new ArrayList<>(),
-                LocalDate.of(2024, 4, 1), null, "Room 105", "DOC-001", "Bed 2", 180.0
+                "SYS-P004",
+                "Khalid",
+                "Al-Maskari",
+                LocalDate.of(1975, 12, 1),
+                "Male",
+                "+96895678901",
+                "khalid@email.com",
+                "Nizwa",
+                "PAT-004",
+                "O-",
+                new ArrayList<>(),
+                "+96899445566",
+                LocalDate.now(),
+                "INS004",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                LocalDate.of(2026,4,1),
+                LocalDate.of(2026,4,10),
+                "Room-101",
+                "DOC-001",
+                "Bed-1",
+                150.0
         );
+
         InPatient p5 = new InPatient(
-                "SYS-P005", "Aisha", "Al-Busaidi", LocalDate.of(1970, 11, 30), "Female",
-                "+968 98901234", "aisha.busaidi@email.om", "Sur, Ash Sharqiyah",
-                "PAT-005", "O+", new ArrayList<>(Arrays.asList("Sulfa")), "+968 99553344",
-                LocalDate.of(2024, 3, 20), "INS-OM-005", new ArrayList<>(), new ArrayList<>(),
-                LocalDate.of(2024, 4, 5), null, "Room 202", "DOC-001", "Bed 8", 150.0
+                "SYS-P005",
+                "Aisha",
+                "Al-Busaidi",
+                LocalDate.of(1970, 11, 30),
+                "Female",
+                "+96898901234",
+                "aisha@email.com",
+                "Sur",
+                "PAT-005",
+                "A+",
+                new ArrayList<>(Arrays.asList("Sulfa")),
+                "+96899553344",
+                LocalDate.now(),
+                "INS005",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                LocalDate.of(2026,4,5),
+                LocalDate.of(2026,4,15),
+                "Room-202",
+                "DOC-003",
+                "Bed-2",
+                180.0
         );
 
         EmergencyPatient p6 = new EmergencyPatient(
-                "SYS-P006", "Yusuf", "Al-Hinai", LocalDate.of(2000, 1, 10), "Male",
-                "+968 99012345", "yusuf.hinai@email.om", "Muscat, Bausher",
-                "PAT-006", "AB-", new ArrayList<>(), "+968 99778899",
-                LocalDate.of(2024, 4, 1), "INS-OM-006", new ArrayList<>(), new ArrayList<>(),
-                LocalDate.of(2024, 4, 2), LocalDate.of(2024, 4, 3), "ER-03", "DOC-002", "ER Bed 2", 200.0,
-                "Fracture", "Ambulance", 4, true
+                "SYS-P006",
+                "Yusuf",
+                "Al-Hinai",
+                LocalDate.of(2000, 1, 10),
+                "Male",
+                "+96899012345",
+                "yusuf@email.com",
+                "Muscat",
+                "PAT-006",
+                "AB-",
+                new ArrayList<>(),
+                "+96899778899",
+                LocalDate.now(),
+                "INS006",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                LocalDate.of(2026,5,1),
+                LocalDate.of(2026,5,4),
+                "ER-01",
+                "DOC-002",
+                "ER-BED-1",
+                200.0,
+                "Accident",
+                "Ambulance",
+                1,
+                true
         );
+
         EmergencyPatient p7 = new EmergencyPatient(
-                "SYS-P007", "Fatima", "Al-Zadjali", LocalDate.of(1988, 9, 18), "Female",
-                "+968 96789012", "fatima.zadjali@email.om", "Muscat, Al Amerat",
-                "PAT-007", "A+", new ArrayList<>(), "+968 99337777",
-                LocalDate.of(2024, 3, 15), "INS-OM-007", new ArrayList<>(), new ArrayList<>(),
-                LocalDate.of(2024, 3, 15), LocalDate.of(2024, 3, 16), "ER-02", "DOC-002", "ER Bed 1", 200.0,
-                "Chest Pain", "Walk-in", 3, true
+                "SYS-P007",
+                "Fatima",
+                "Al-Zadjali",
+                LocalDate.of(1988, 9, 18),
+                "Female",
+                "+96896789012",
+                "fatima@email.com",
+                "Muscat",
+                "PAT-007",
+                "A+",
+                new ArrayList<>(),
+                "+96899337777",
+                LocalDate.now(),
+                "INS007",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                LocalDate.of(2026,5,2),
+                LocalDate.of(2026,5,3),
+                "ER-02",
+                "DOC-002",
+                "ER-BED-2",
+                250.0,
+                "Chest Pain",
+                "Walk-in",
+                2,
+                true
         );
 
-        Patient p8 = new Patient(
-                "SYS-P008", "Zainab", "Al-Lawati", LocalDate.of(1992, 6, 12), "Female",
-                "+968 99123456", "zainab.lawati@email.om", "Rustaq, Al Batinah",
-                "PAT-008", "A-", new ArrayList<>(), "+968 99886677",
-                LocalDate.of(2024, 4, 5), "INS-OM-008", new ArrayList<>(), new ArrayList<>()
+        OutPatient p8 = new OutPatient(
+                "SYS-P008",
+                "Zainab",
+                "Al-Lawati",
+                LocalDate.of(1992, 6, 12),
+                "Female",
+                "+96899123456",
+                "zainab@email.com",
+                "Rustaq",
+                "PAT-008",
+                "A-",
+                new ArrayList<>(),
+                "+96899886677",
+                LocalDate.now(),
+                "INS008",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                5,
+                LocalDate.of(2026,5,15),
+                "DOC-005"
         );
+
         Patient p9 = new Patient(
-                "SYS-P009", "Mohammed", "Al-Saadi", LocalDate.of(1995, 4, 25), "Male",
-                "+968 97890123", "mohammed.saadi@email.om", "Ibri, Al Dhahirah",
-                "PAT-009", "B-", new ArrayList<>(), "+968 99001122",
-                LocalDate.of(2024, 2, 1), "INS-OM-009", new ArrayList<>(), new ArrayList<>()
+                "SYS-P009",
+                "Mohammed",
+                "Al-Saadi",
+                LocalDate.of(1995, 4, 25),
+                "Male",
+                "+96897890123",
+                "mohammed@email.com",
+                "Ibri",
+                "PAT-009",
+                "B-",
+                new ArrayList<>(),
+                "+96899001122",
+                LocalDate.now(),
+                "INS009",
+                new ArrayList<>(),
+                new ArrayList<>()
         );
+
         InPatient p10 = new InPatient(
-                "SYS-P010", "Hana", "Nasser", LocalDate.of(2014, 8, 22), "Female",
-                "+968 97777777", "hana@gmail.com", "Nizwa",
-                "PAT-010", "O+", new ArrayList<>(), "+968 95989659",
-                LocalDate.now(), "INS-010", new ArrayList<>(), new ArrayList<>(),
-                LocalDate.of(2026, 2, 2), LocalDate.of(2026, 2, 20), "Room-05", "DOC-001", "Bed-1", 150.0
+                "SYS-P010",
+                "Hana",
+                "Nasser",
+                LocalDate.of(2014, 8, 22),
+                "Female",
+                "+96897777777",
+                "hana@email.com",
+                "Nizwa",
+                "PAT-010",
+                "O+",
+                new ArrayList<>(),
+                "+96895989659",
+                LocalDate.now(),
+                "INS010",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                LocalDate.of(2026,2,2),
+                LocalDate.of(2026,2,20),
+                "Room-05",
+                "DOC-001",
+                "Bed-5",
+                170.0
         );
 
-        PatientService.getPatients().addAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+        patientService.add(p1);
+        patientService.add(p2);
+        patientService.add(p3);
+        patientService.add(p4);
+        patientService.add(p5);
+        patientService.add(p6);
+        patientService.add(p7);
+        patientService.add(p8);
+        patientService.add(p9);
+        patientService.add(p10);
 
-        // ========================= DOCTORS =========================
-        Consultant doc1 = new Consultant(
-                "DOC-001", "Ahmed", "Al-Hasani", LocalDate.of(1975, 5, 12), "Male",
-                "+968 99223344", "ahmed.alhasani@royalhospital.om", "Muscat, Al Khuwair",
-                "DOC-001", "Cardiology", "FRCS", 18, "DEPT-001", 65.0,
-                new ArrayList<>(Arrays.asList("Mon 9-11", "Wed 10-12")), new ArrayList<>(),
-                Arrays.asList("Bypass", "Valve Replacement"), 45, true
-        );
-        Consultant doc2 = new Consultant(
-                "DOC-002", "Mariam", "Al-Rawahi", LocalDate.of(1980, 8, 23), "Female",
-                "+968 99335566", "mariam.alrawahi@khoula.om", "Muscat, Madinat Sultan Qaboos",
-                "DOC-002", "Emergency Medicine", "MD", 15, "DEPT-002", 50.0,
-                new ArrayList<>(Arrays.asList("Mon 8-12", "Thu 8-12")), new ArrayList<>(),
-                Arrays.asList("Trauma", "Critical Care"), 60, true
-        );
-        Surgeon doc3 = new Surgeon(
-                "DOC-003", "Yousuf", "Al-Maskari", LocalDate.of(1972, 7, 19), "Male",
-                "+968 99663344", "yousuf.maskari@ortho.om", "Nizwa, Farq",
-                "DOC-003", "Orthopedic Surgery", "FRCS", 20, "DEPT-003", 70.0,
-                new ArrayList<>(Arrays.asList("Tue 10-13", "Thu 10-13")), new ArrayList<>(),
-                200, Arrays.asList("Knee Replacement", "Fracture Fixation"), true
-        );
-        Surgeon doc4 = new Surgeon(
-                "DOC-004", "Rashid", "Al-Shanfari", LocalDate.of(1982, 2, 28), "Male",
-                "+968 99991122", "rashid.shanfari@surgery.om", "Salalah, Al Haffa",
-                "DOC-004", "General Surgery", "FRCS", 12, "DEPT-003", 65.0,
-                new ArrayList<>(Arrays.asList("Mon 15-17", "Thu 15-17")), new ArrayList<>(),
-                85, Arrays.asList("Appendectomy", "Hernia Repair"), true
-        );
-        Doctor doc5 = new Doctor(
-                "DOC-005", "Khalid", "Al-Balushi", LocalDate.of(1978, 11, 2), "Male",
-                "+968 99447788", "khalid.albalushi@noor.om", "Salalah, Al Dahariz",
-                "DOC-005", "Neurology", "MD", 12, "DEPT-002", 55.0,
-                new ArrayList<>(Arrays.asList("Tue 9-12", "Fri 9-11")), new ArrayList<>()
-        );
-        Doctor doc6 = new Doctor(
-                "DOC-006", "Nadia", "Al-Siyabi", LocalDate.of(1985, 3, 15), "Female",
-                "+968 99551122", "nadia.siyabi@royalhospital.om", "Sohar, Al Hail",
-                "DOC-006", "Pediatrics", "MBBS", 10, "DEPT-001", 48.0,
-                new ArrayList<>(Arrays.asList("Mon 14-16", "Wed 14-16")), new ArrayList<>()
-        );
-        Doctor doc7 = new Doctor(
-                "DOC-007", "Fatima", "Al-Hinai", LocalDate.of(1988, 9, 10), "Female",
-                "+968 99778899", "fatima.hinai@hospital.om", "Muscat, Al Ghubra",
-                "DOC-007", "General Medicine", "MBBS", 8, "DEPT-002", 40.0,
-                new ArrayList<>(Arrays.asList("Mon 9-12", "Fri 9-12")), new ArrayList<>()
-        );
-        Consultant doc8 = new Consultant(
-                "DOC-008", "Said", "Al-Harthi", LocalDate.of(1979, 12, 1), "Male",
-                "+968 99880011", "said.harthi@heart.om", "Muscat, Azaiba",
-                "DOC-008", "Cardiology", "MD", 14, "DEPT-001", 60.0,
-                new ArrayList<>(Arrays.asList("Wed 13-16", "Thu 13-16")), new ArrayList<>(),
-                Arrays.asList("Echocardiography", "Stress Test"), 60, true
-        );
-        DoctorService.doctors.addAll(Arrays.asList(doc1, doc2, doc3, doc4, doc5, doc6, doc7, doc8));
 
-        // ========================= NURSES =========================
+
+        // Doctors sample data
+
+        Consultant d1 = new Consultant(
+                "D001",
+                "Ahmed",
+                "Salim",
+                LocalDate.of(1980, 5, 12),
+                "Male",
+                "91111111",
+                "ahmed@hospital.com",
+                "Muscat",
+                "DOC001",
+                "Cardiology",
+                "MBBS",
+                15,
+                "DEP01",
+                25.0,
+                new ArrayList<>(Arrays.asList("9:00 AM", "10:00 AM")),
+                new ArrayList<>(),
+                new ArrayList<>(Arrays.asList("Heart Consultation")),
+                45,
+                true
+        );
+
+        Consultant d2 = new Consultant(
+                "D002",
+                "Mariam",
+                "Ali",
+                LocalDate.of(1985, 3, 20),
+                "Female",
+                "92222222",
+                "mariam@hospital.com",
+                "Seeb",
+                "DOC002",
+                "Dermatology",
+                "MD",
+                12,
+                "DEP02",
+                20.0,
+                new ArrayList<>(Arrays.asList("11:00 AM")),
+                new ArrayList<>(),
+                new ArrayList<>(Arrays.asList("Skin Consultation")),
+                30,
+                false
+        );
+
+        GeneralPractitioner d3 = new GeneralPractitioner(
+                "D003",
+                "Hassan",
+                "Khalid",
+                LocalDate.of(1978, 9, 15),
+                "Male",
+                "93333333",
+                "hassan@hospital.com",
+                "Nizwa",
+                "DOC003",
+                "General Medicine",
+                "MBBS",
+                18,
+                "DEP03",
+                18.5,
+                new ArrayList<>(Arrays.asList("8:00 AM")),
+                new ArrayList<>(),
+                true,
+                true,
+                true
+        );
+
+        GeneralPractitioner d4 = new GeneralPractitioner(
+                "D004",
+                "Fatma",
+                "Saeed",
+                LocalDate.of(1990, 11, 25),
+                "Female",
+                "94444444",
+                "fatma@hospital.com",
+                "Sohar",
+                "DOC004",
+                "Family Medicine",
+                "MBBS",
+                8,
+                "DEP03",
+                15.0,
+                new ArrayList<>(Arrays.asList("1:00 PM")),
+                new ArrayList<>(),
+                true,
+                false,
+                true
+        );
+
+        Surgeon d5 = new Surgeon(
+                "D005",
+                "Salem",
+                "Nasser",
+                LocalDate.of(1975, 1, 30),
+                "Male",
+                "95555555",
+                "salem@hospital.com",
+                "Muscat",
+                "DOC005",
+                "Orthopedic Surgery",
+                "PhD",
+                20,
+                "DEP04",
+                40.0,
+                new ArrayList<>(Arrays.asList("3:00 PM")),
+                new ArrayList<>(),
+                350,
+                new ArrayList<>(Arrays.asList("Knee Surgery")),
+                true
+        );
+
+        Surgeon d6 = new Surgeon(
+                "D006",
+                "Noor",
+                "Hamed",
+                LocalDate.of(1988, 7, 14),
+                "Female",
+                "96666666",
+                "noor@hospital.com",
+                "Sur",
+                "DOC006",
+                "Neurosurgery",
+                "MD",
+                10,
+                "DEP04",
+                50.0,
+                new ArrayList<>(Arrays.asList("4:00 PM")),
+                new ArrayList<>(),
+                120,
+                new ArrayList<>(Arrays.asList("Brain Surgery")),
+                true
+        );
+
+        Consultant d7 = new Consultant(
+                "D007",
+                "Omar",
+                "Rashid",
+                LocalDate.of(1982, 6, 18),
+                "Male",
+                "97777777",
+                "omar@hospital.com",
+                "Ibri",
+                "DOC007",
+                "Pediatrics",
+                "MBBS",
+                14,
+                "DEP05",
+                22.0,
+                new ArrayList<>(Arrays.asList("12:00 PM")),
+                new ArrayList<>(),
+                new ArrayList<>(Arrays.asList("Child Consultation")),
+                40,true
+        );
+
+        GeneralPractitioner d8 = new GeneralPractitioner(
+                "D008",
+                "Aisha",
+                "Mohammed",
+                LocalDate.of(1992, 2, 8),
+                "Female",
+                "98888888",
+                "aisha@hospital.com",
+                "Barka",
+                "DOC008",
+                "General Practice",
+                "MBBS",
+                6,
+                "DEP03",
+                17.0,
+                new ArrayList<>(Arrays.asList("5:00 PM")),
+                new ArrayList<>(),
+                false,
+                true,
+                false
+        );
+
+        doctorService.add(d1);
+        doctorService.add(d2);
+        doctorService.add(d3);
+        doctorService.add(d4);
+        doctorService.add(d5);
+        doctorService.add(d6);
+        doctorService.add(d7);
+        doctorService.add(d8);
+// Nurses sample data
+
         Nurse n1 = new Nurse(
-                "SYS-N001", "Fatima", "Al-Kindi", LocalDate.of(1995, 4, 10), "Female",
-                "+968 97112233", "fatima.kindi@hospital.om", "Muscat", "NUR-001", "DEPT-001", "Morning", "BNSc", new ArrayList<>()
+                "N001",
+                "Layla",
+                "Ahmed",
+                LocalDate.of(1995, 4, 10),
+                "Female",
+                "91112222",
+                "layla@hospital.com",
+                "Muscat",
+                "N001",
+                "DEP01",
+                "Morning",
+                "BSc Nursing",
+                new ArrayList<>()
         );
+
         Nurse n2 = new Nurse(
-                "SYS-N002", "Amira", "Al-Balushi", LocalDate.of(1992, 8, 21), "Female",
-                "+968 97223344", "amira.balushi@hospital.om", "Seeb", "NUR-002", "DEPT-002", "Evening", "RN", new ArrayList<>()
+                "N002",
+                "Khalid",
+                "Salim",
+                LocalDate.of(1992, 8, 21),
+                "Male",
+                "92223333",
+                "khalid@hospital.com",
+                "Seeb",
+                "N002",
+                "DEP02",
+                "Night",
+                "Diploma Nursing",
+                new ArrayList<>()
         );
+
         Nurse n3 = new Nurse(
-                "SYS-N003", "Shamsa", "Al-Mazroui", LocalDate.of(1998, 1, 15), "Female",
-                "+968 97334455", "shamsa.mazroui@hospital.om", "Nizwa", "NUR-003", "DEPT-003", "Night", "BSN", new ArrayList<>()
+                "N003",
+                "Maha",
+                "Nasser",
+                LocalDate.of(1998, 1, 15),
+                "Female",
+                "93334444",
+                "maha@hospital.com",
+                "Nizwa",
+                "N003",
+                "DEP03",
+                "Evening",
+                "BSc Nursing",
+                new ArrayList<>()
         );
+
         Nurse n4 = new Nurse(
-                "SYS-N004", "Nawal", "Al-Riyami", LocalDate.of(1990, 11, 5), "Female",
-                "+968 97445566", "nawal.riyami@hospital.om", "Sohar", "NUR-004", "DEPT-001", "Morning", "RN", new ArrayList<>()
+                "N004",
+                "Saeed",
+                "Ali",
+                LocalDate.of(1990, 11, 5),
+                "Male",
+                "94445555",
+                "saeed@hospital.com",
+                "Sohar",
+                "N004",
+                "DEP01",
+                "Morning",
+                "MSc Nursing",
+                new ArrayList<>()
         );
+
         Nurse n5 = new Nurse(
-                "SYS-N005", "Mona", "Al-Habsi", LocalDate.of(1997, 6, 30), "Female",
-                "+968 97556677", "mona.habsi@hospital.om", "Sur", "NUR-005", "DEPT-002", "Evening", "BNSc", new ArrayList<>()
+                "N005",
+                "Huda",
+                "Mohammed",
+                LocalDate.of(1997, 6, 30),
+                "Female",
+                "95556666",
+                "huda@hospital.com",
+                "Sur",
+                "N005",
+                "DEP02",
+                "Night",
+                "BSc Nursing",
+                new ArrayList<>()
         );
-        NurseService.Nurses.addAll(Arrays.asList(n1, n2, n3, n4, n5));
 
-        // ========================= DEPARTMENTS =========================
+        nurseService.add(n1);
+        nurseService.add(n2);
+        nurseService.add(n3);
+        nurseService.add(n4);
+        nurseService.add(n5);
+
+// Department sample data
+
         Department dep1 = new Department(
-                "DEPT-001", "Cardiology", "DOC-001", new ArrayList<>(), new ArrayList<>(), 50, 30
+                "DEP01",
+                "Cardiology",
+                "D001",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                50,
+                35
         );
+
         Department dep2 = new Department(
-                "DEPT-002", "Emergency Medicine", "DOC-002", new ArrayList<>(), new ArrayList<>(), 40, 15
+                "DEP02",
+                "Dermatology",
+                "D002",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                30,
+                20
         );
+
         Department dep3 = new Department(
-                "DEPT-003", "Orthopedics", "DOC-003", new ArrayList<>(), new ArrayList<>(), 45, 25
+                "DEP03",
+                "General Medicine",
+                "D003",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                70,
+                45
         );
-        Department dep4 = new Department(
-                "DEPT-004", "Neurology", "DOC-005", new ArrayList<>(), new ArrayList<>(), 30, 20
+
+        departmentService.add(dep1);
+        departmentService.add(dep2);
+        departmentService.add(dep3);
+
+
+// Appointment sample data
+
+        Appointment a1 = new Appointment(
+                "A001",
+                "P001",
+                "D001",
+                LocalDate.of(2026, 5, 15),
+                "09:00 AM",
+                "Scheduled",
+                "Heart Checkup",
+                "Patient experiencing chest pain"
         );
-        DepartmentService.departments.addAll(Arrays.asList(dep1, dep2, dep3, dep4));
 
-        // ========================= APPOINTMENTS =========================
-        Appointment a1 = new Appointment("PAT-001", "APP-001", "DOC-001", LocalDate.of(2026, 5, 15), "09:00 AM", "Scheduled", "Heart Checkup", "Chest pain");
-        Appointment a2 = new Appointment("PAT-002", "APP-002", "DOC-002", LocalDate.of(2026, 5, 16), "11:30 AM", "Completed", "Skin Allergy", "Prescribed medication");
-        Appointment a3 = new Appointment("PAT-003", "APP-003", "DOC-005", LocalDate.of(2026, 5, 17), "02:00 PM", "Scheduled", "General Fever", "Follow-up");
-        Appointment a4 = new Appointment("PAT-004", "APP-004", "DOC-003", LocalDate.of(2026, 5, 18), "10:15 AM", "Cancelled", "Knee Surgery", "Patient cancelled");
-        Appointment a5 = new Appointment("PAT-005", "APP-005", "DOC-001", LocalDate.of(2026, 5, 19), "01:00 PM", "Scheduled", "Asthma", "Inhaler check");
-        Appointment a6 = new Appointment("PAT-006", "APP-006", "DOC-002", LocalDate.of(2026, 5, 20), "09:30 AM", "Scheduled", "Fracture", "X-ray needed");
-        Appointment a7 = new Appointment("PAT-007", "APP-007", "DOC-007", LocalDate.of(2026, 5, 21), "10:00 AM", "Completed", "Back Pain", "Physiotherapy");
-        Appointment a8 = new Appointment("PAT-008", "APP-008", "DOC-006", LocalDate.of(2026, 5, 22), "11:00 AM", "Scheduled", "Cold & Fever", "Initial visit");
-        Appointment a9 = new Appointment("PAT-009", "APP-009", "DOC-008", LocalDate.of(2026, 5, 23), "12:00 PM", "Scheduled", "Cardiac eval", "ECG ordered");
-        Appointment a10 = new Appointment("PAT-010", "APP-010", "DOC-004", LocalDate.of(2026, 5, 24), "01:30 PM", "Completed", "Anemia", "Iron levels low");
-        Appointment a11 = new Appointment("PAT-001", "APP-011", "DOC-005", LocalDate.of(2026, 5, 25), "02:15 PM", "Scheduled", "Migraine", "Prescribed medication");
-        Appointment a12 = new Appointment("PAT-002", "APP-012", "DOC-006", LocalDate.of(2026, 5, 26), "03:00 PM", "Cancelled", "Routine", "Patient unavailable");
-        Appointment a13 = new Appointment("PAT-003", "APP-013", "DOC-002", LocalDate.of(2026, 5, 27), "09:00 AM", "Scheduled", "Allergy", "Follow-up");
-        Appointment a14 = new Appointment("PAT-004", "APP-014", "DOC-001", LocalDate.of(2026, 5, 28), "10:45 AM", "Scheduled", "Hypertension", "BP check");
-        Appointment a15 = new Appointment("PAT-005", "APP-015", "DOC-003", LocalDate.of(2026, 5, 29), "11:30 AM", "Scheduled", "Post-op", "Surgery follow-up");
-        AppointmentService.appointments.addAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15));
+        Appointment a2 = new Appointment(
+                "A002",
+                "P002",
+                "D002",
+                LocalDate.of(2026, 5, 16),
+                "11:30 AM",
+                "Completed",
+                "Skin Allergy",
+                "Prescribed allergy medication"
+        );
 
-        // ========================= MEDICAL RECORDS =========================
-        MedicalRecord mr1 = new MedicalRecord("MR-001", "PAT-001", "DOC-001", LocalDate.of(2026, 5, 1), "Hypertension", "Normal", "Amlodipine 5mg", "Reduce salt");
-        MedicalRecord mr2 = new MedicalRecord("MR-002", "PAT-002", "DOC-002", LocalDate.of(2026, 5, 2), "Skin Allergy", "Allergy test positive", "Antihistamine", "Avoid seafood");
-        MedicalRecord mr3 = new MedicalRecord("MR-003", "PAT-003", "DOC-005", LocalDate.of(2026, 5, 3), "Viral Fever", "Blood test normal", "Paracetamol", "Rest");
-        MedicalRecord mr4 = new MedicalRecord("MR-004", "PAT-004", "DOC-003", LocalDate.of(2026, 5, 4), "Knee Injury", "MRI shows tear", "Pain relief", "Surgery option");
-        MedicalRecord mr5 = new MedicalRecord("MR-005", "PAT-005", "DOC-001", LocalDate.of(2026, 5, 5), "Asthma", "Breathing test abnormal", "Inhaler", "Avoid dust");
-        MedicalRecord mr6 = new MedicalRecord("MR-006", "PAT-006", "DOC-002", LocalDate.of(2026, 5, 6), "Fracture", "X-ray confirms", "Painkillers", "Cast applied");
-        MedicalRecord mr7 = new MedicalRecord("MR-007", "PAT-007", "DOC-007", LocalDate.of(2026, 5, 7), "Back Pain", "X-ray normal", "Muscle relaxant", "Physio");
-        MedicalRecord mr8 = new MedicalRecord("MR-008", "PAT-008", "DOC-006", LocalDate.of(2026, 5, 8), "Common Cold", "Temperature elevated", "Cough syrup", "Hydrate");
-        MedicalRecord mr9 = new MedicalRecord("MR-009", "PAT-009", "DOC-008", LocalDate.of(2026, 5, 9), "Arrhythmia", "ECG abnormal", "Beta-blocker", "Follow-up");
-        MedicalRecord mr10 = new MedicalRecord("MR-010", "PAT-010", "DOC-004", LocalDate.of(2026, 5, 10), "Anemia", "Hemoglobin low", "Iron supplements", "Diet change");
-        MedicalRecord mr11 = new MedicalRecord("MR-011", "PAT-001", "DOC-005", LocalDate.of(2026, 5, 11), "Diabetes", "Blood sugar elevated", "Metformin", "Exercise");
-        MedicalRecord mr12 = new MedicalRecord("MR-012", "PAT-002", "DOC-006", LocalDate.of(2026, 5, 12), "Vitamin D Deficiency", "Vitamin D low", "Capsules", "Sun exposure");
-        MedicalRecordService.medicalRecords.addAll(Arrays.asList(mr1, mr2, mr3, mr4, mr5, mr6, mr7, mr8, mr9, mr10, mr11, mr12));
+        Appointment a3 = new Appointment(
+                "A003",
+                "P003",
+                "D003",
+                LocalDate.of(2026, 5, 17),
+                "02:00 PM",
+                "Scheduled",
+                "General Fever",
+                "Follow-up after medication"
+        );
 
-        // ========================= PRINT ALL DATA =========================
-        System.out.println(" LOADED SAMPLE DATA-------------------");
+        Appointment a4 = new Appointment(
+                "A004",
+                "P005",
+                "D004",
+                LocalDate.of(2026, 5, 18),
+                "10:15 AM",
+                "Cancelled",
+                "Routine Checkup",
+                "Patient cancelled due to travel"
+        );
+
+        Appointment a5 = new Appointment(
+                "A005",
+                "P008",
+                "D005",
+                LocalDate.of(2026, 5, 19),
+                "01:00 PM",
+                "Scheduled",
+                "Knee Surgery Consultation",
+                "MRI results attached"
+        );
+
+        Appointment a6 = new Appointment(
+                "A006",
+                "P004",
+                "D001",
+                LocalDate.of(2026, 5, 20),
+                "09:30 AM",
+                "Scheduled",
+                "Asthma Checkup",
+                "Follow-up on inhaler usage"
+        );
+
+        Appointment a7 = new Appointment(
+                "A007",
+                "P006",
+                "D002",
+                LocalDate.of(2026, 5, 21),
+                "10:00 AM",
+                "Completed",
+                "Back Pain Review",
+                "Improvement observed"
+        );
+
+        Appointment a8 = new Appointment(
+                "A008",
+                "P007",
+                "D003",
+                LocalDate.of(2026, 5, 22),
+                "11:00 AM",
+                "Scheduled",
+                "Cold & Fever",
+                "Initial consultation"
+        );
+
+        Appointment a9 = new Appointment(
+                "A009",
+                "P008",
+                "D004",
+                LocalDate.of(2026, 5, 23),
+                "12:00 PM",
+                "Scheduled",
+                "Injury Follow-up",
+                "Check healing progress"
+        );
+
+        Appointment a10 = new Appointment(
+                "A010",
+                "P009",
+                "D005",
+                LocalDate.of(2026, 5, 24),
+                "01:30 PM",
+                "Completed",
+                "Anemia Check",
+                "Iron levels improving"
+        );
+
+        Appointment a11 = new Appointment(
+                "A011",
+                "P010",
+                "D006",
+                LocalDate.of(2026, 5, 25),
+                "02:15 PM",
+                "Scheduled",
+                "Fracture Review",
+                "X-ray follow-up needed"
+        );
+
+        Appointment a12 = new Appointment(
+                "A012",
+                "P003",
+                "D007",
+                LocalDate.of(2026, 5, 26),
+                "03:00 PM",
+                "Cancelled",
+                "General Checkup",
+                "Patient unavailable"
+        );
+
+        Appointment a13 = new Appointment(
+                "A013",
+                "P002",
+                "D008",
+                LocalDate.of(2026, 5, 27),
+                "09:00 AM",
+                "Scheduled",
+                "Skin Review",
+                "Monitor allergy reaction"
+        );
+
+        Appointment a14 = new Appointment(
+                "A014",
+                "P001",
+                "D002",
+                LocalDate.of(2026, 5, 28),
+                "10:45 AM",
+                "Completed",
+                "Hypertension Follow-up",
+                "Blood pressure stable"
+        );
+
+        Appointment a15 = new Appointment(
+                "A015",
+                "P005",
+                "D003",
+                LocalDate.of(2026, 5, 29),
+                "11:30 AM",
+                "Scheduled",
+                "General Consultation",
+                "Routine checkup"
+        );
+
+        appointmentService.add(a1);
+        appointmentService.add(a2);
+        appointmentService.add(a3);
+        appointmentService.add(a4);
+        appointmentService.add(a5);
+        appointmentService.add(a6);
+        appointmentService.add(a7);
+        appointmentService.add(a8);
+        appointmentService.add(a9);
+        appointmentService.add(a10);
+        appointmentService.add(a11);
+        appointmentService.add(a12);
+        appointmentService.add(a13);
+        appointmentService.add(a14);
+        appointmentService.add(a15);
 
 
-        // Print Patients
-        System.out.println("\n PATIENTS (" + PatientService.getPatients().size() + " records):");
-        for (Patient p : PatientService.getPatients()) {
-            p.displayInfo();
-        }
+// Medical records sample data
 
-        // Print Doctors
-        System.out.println("\n DOCTORS (" + DoctorService.doctors.size() + " records):");
-        for (Doctor d : DoctorService.doctors) {
-            d.displayInfo();
-        }
-        // Print Nurses
-        System.out.println("\n NURSES (" + NurseService.Nurses.size() + " records):");
-        for (Nurse n : NurseService.Nurses) {
-            n.displayInfo();
-        }
+        MedicalRecord mr1 = new MedicalRecord(
+                "MR001",
+                "P001",
+                "D001",
+                LocalDate.of(2026, 5, 1),
+                "Hypertension",
+                "Amlodipine 5mg",
+                "Blood pressure slightly high",
+                "Patient advised to reduce salt intake"
+        );
 
-        // Print Departments
-        System.out.println("\n DEPARTMENTS (" + DepartmentService.departments.size() + " records):");
-        for (Department dept : DepartmentService.departments) {
-            dept.displayInfo();
-        }
+        MedicalRecord mr2 = new MedicalRecord(
+                "MR002",
+                "P002",
+                "D002",
+                LocalDate.of(2026, 5, 2),
+                "Skin Allergy",
+                "Antihistamine tablets",
+                "Allergy test positive",
+                "Avoid seafood and dust exposure"
+        );
 
-        // Print Appointments
-        System.out.println("\n APPOINTMENTS (" + AppointmentService.appointments.size() + " records):");
-        for (Appointment a : AppointmentService.appointments) {
-            a.displayInfo();
-        }
+        MedicalRecord mr3 = new MedicalRecord(
+                "MR003",
+                "P003",
+                "D003",
+                LocalDate.of(2026, 5, 3),
+                "Viral Fever",
+                "Paracetamol 500mg",
+                "Blood test normal",
+                "Rest and hydration recommended"
+        );
 
-        // Print Medical Records
-        System.out.println("\nMEDICAL RECORDS (" + MedicalRecordService.medicalRecords.size() + " records):");
-        for (MedicalRecord mr : MedicalRecordService.medicalRecords) {
-            mr.displayInfo();
-        }
+        MedicalRecord mr4 = new MedicalRecord(
+                "MR004",
+                "P005",
+                "D004",
+                LocalDate.of(2026, 5, 4),
+                "Migraine",
+                "Ibuprofen",
+                "CT scan normal",
+                "Patient should avoid stress"
+        );
 
-        System.out.println("Sample data loaded and printed successfully!........");
-    }
-    public static  void testOverloadedMethod(){
+        MedicalRecord mr5 = new MedicalRecord(
+                "MR005",
+                "P008",
+                "D005",
+                LocalDate.of(2026, 5, 5),
+                "Knee Injury",
+                "Pain relief medication",
+                "MRI shows ligament tear",
+                "Surgery may be required"
+        );
+
+        MedicalRecord mr6 = new MedicalRecord(
+                "MR006",
+                "P006",
+                "D006",
+                LocalDate.of(2026, 5, 6),
+                "Back Pain",
+                "Muscle Relaxant",
+                "X-ray normal",
+                "Physiotherapy recommended"
+        );
+
+        MedicalRecord mr7 = new MedicalRecord(
+                "MR007",
+                "P007",
+                "D007",
+                LocalDate.of(2026, 5, 7),
+                "Common Cold",
+                "Cough Syrup",
+                "Temperature slightly elevated",
+                "Drink warm fluids"
+        );
+
+        MedicalRecord mr8 = new MedicalRecord(
+                "MR008",
+                "P009",
+                "D008",
+                LocalDate.of(2026, 5, 8),
+                "Anemia",
+                "Iron Supplements",
+                "Hemoglobin level low",
+                "Follow-up after one month"
+        );
+
+        MedicalRecord mr9 = new MedicalRecord(
+                "MR009",
+                "P010",
+                "D005",
+                LocalDate.of(2026, 5, 9),
+                "Fracture",
+                "Painkillers",
+                "X-ray confirms arm fracture",
+                "Cast applied successfully"
+        );
+
+        MedicalRecord mr10 = new MedicalRecord(
+                "MR010",
+                "P001",
+                "D003",
+                LocalDate.of(2026, 5, 10),
+                "Diabetes",
+                "Metformin",
+                "Blood sugar elevated",
+                "Daily exercise advised"
+        );
+
+        MedicalRecord mr11 = new MedicalRecord(
+                "MR011",
+                "P004",
+                "D001",
+                LocalDate.of(2026, 5, 11),
+                "Asthma",
+                "Inhaler",
+                "Breathing test abnormal",
+                "Avoid dust and smoke"
+        );
+
+        MedicalRecord mr12 = new MedicalRecord(
+                "MR012",
+                "P002",
+                "D004",
+                LocalDate.of(2026, 5, 12),
+                "Vitamin D Deficiency",
+                "Vitamin D Capsules",
+                "Vitamin D level low",
+                "Sun exposure recommended"
+        );
+
+        medicalRecordService.add(mr1);
+        medicalRecordService.add(mr2);
+        medicalRecordService.add(mr3);
+        medicalRecordService.add(mr4);
+        medicalRecordService.add(mr5);
+        medicalRecordService.add(mr6);
+        medicalRecordService.add(mr7);
+        medicalRecordService.add(mr8);
+        medicalRecordService.add(mr9);
+        medicalRecordService.add(mr10);
+        medicalRecordService.add(mr11);
+        medicalRecordService.add(mr12);
 
 
 /*
@@ -365,6 +1004,11 @@ public class TestData {
         System.out.println("✓ Appointment.addNotes() overloaded");
 
         System.out.println("Overloaded methods test completed.");
+
+
+
+        //Test interface Method that  overloaded  :
+
     }
 
 

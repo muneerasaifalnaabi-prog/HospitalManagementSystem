@@ -19,6 +19,7 @@ public class Main {
    static Menue menue =new Menue();
     public static void main(String[] args) {
         handelMenu();
+        TestData.loadData();
 
         }
 
